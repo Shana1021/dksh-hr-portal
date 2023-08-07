@@ -1,0 +1,105 @@
+.sign-in-bg {
+  width: 100vw;
+  height: 100vh;
+  background-color: #EC0825;
+}
+
+.sign-in-card {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  width: 450px;
+  height: 550px;
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 5px 5px 50px -10px black;
+  text-align: center;
+  padding: 30px 50px
+}
+
+.logo {
+  position: relative;
+  height: 65px;
+}
+
+.title {
+  color: #CF152D;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.fields {
+  text-align: left;
+}
+
+.welcome-back {
+  width: 100%;
+  font-size: 0.75em;
+  color: gray;
+  margin-top: 25px;
+}
+
+.sign-in {
+  width: 100%;
+  font-size: 2.75em;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.sign-in-field {
+  margin: 5px 0;
+}
+
+.sign-in-field label {
+  text-shadow: 1px 2px 2px #EEEEEE;
+  font-size: 0.8em;
+}
+
+.sign-in-field input {
+  background-color: #EEEEEE;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  width: 100%;
+  margin-top: 5px;
+  font-size: 0.7em;
+  box-shadow: 2px 4px 5px -5px black;
+  transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.sign-in-field input:hover {
+  background-color: #E8E8E8;
+  box-shadow: 1px 2px 5px -2px black;
+}
+
+.sign-in-field input:focus {
+  outline: none;
+}
+
+.sign-in-btn {
+  margin: 25px auto;
+  display: block;
+  padding: 10px 20px 10px 20px;
+  background-color: #CF152D;
+  border: none;
+  border-radius: 100px;
+  font-size: 0.7em;
+  box-shadow: 2px 4px 5px -5px black;
+  transition: box-shadow 0.3s ease-in-out
+}
+
+.sign-in-btn:hover {
+  box-shadow: 1px 2px 5px -2px black;
+}
+
+.error {
+  color: red;
+  font-size: 0.6em;
+  width: 100%;
+  text-align: right;
+  display: inline-block;
+  visibility: hidden;
+}

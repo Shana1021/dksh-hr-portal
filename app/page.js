@@ -1,10 +1,5 @@
-import clientPromise from '../lib/mongodb'
+import { redirect } from 'next/navigation';
 
-export default async function Home() {
-  const client = await clientPromise;
-  console.log(client);
-
-  return (
-    <h1>test</h1>
-  )
+export default function Index() {
+    redirect('/SignIn');
 }
