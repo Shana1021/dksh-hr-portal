@@ -10,7 +10,7 @@
   bottom: 50%;
   transform: translate(50%, 50%);
   width: 450px;
-  height: 550px;
+  height: 600px;
   color: black;
   background-color: white;
   border-radius: 20px;
@@ -43,7 +43,7 @@
 
 .sign-in {
   width: 100%;
-  font-size: 2.75em;
+  font-size: 2.5em;
   font-weight: 600;
   margin-top: 10px;
 }
