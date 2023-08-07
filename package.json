@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "cookies-next": "^2.1.2",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "mongodb": "^5.7.0",
