@@ -1,6 +1,5 @@
 "use client";
 
-import SignInField from "./SignInField";
 import "./sign_in.css";
 import Image from "next/image";
 import { useState } from "react";
@@ -19,20 +18,32 @@ export default function SignIn() {
         <div className="fields">
           <div className="welcome-back">Welcome back</div>
           <div className="sign-in">Sign In</div>
-          <SignInField
-            type="email"
-            name="Email"
-            value={email}
-            placeholder="example@email.com"
-            onChange={e => setEmail(e.target.value)}
-          />
-          <SignInField
-            type="password"
-            name="Password"
-            value={password}
-            placeholder="Enter your password"
-            onChange={e => setPassword(e.target.value)}
-          />
+          <div className="sign-in-field">
+            <label for="email">Email</label>
+            <br />
+            <input
+              id="email"
+              type="email"
+              value={email}
+              placeholder="example@email.com"
+              onChange={e => setEmail(e.target.value)}
+            />
+            <br />
+            <span className="error"></span>
+          </div>
+          <div className="sign-in-field">
+            <label for="password">Password</label>
+            <br />
+            <input
+              id="password"
+              type="password"
+              value={password}
+              placeholder="Enter your password"
+              onChange={e => setPassword(e.target.value)}
+            />
+            <br />
+            <span className="error"></span>
+          </div>
           <button className="sign-in-btn">SIGN IN</button>
         </div>
       </div>
