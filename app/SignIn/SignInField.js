@@ -1,4 +1,4 @@
-export default function SignInField({ type, name, value, placeholder, onChange }) {
+export default function SignInField({ type, name, value, placeholder, error = "", onChange }) {
   return (
     <div className="sign-in-field">
       <label for={name}>{name}</label>
@@ -12,7 +12,7 @@ export default function SignInField({ type, name, value, placeholder, onChange }
         onChange={onChange}
       />
       <br />
-      <span className="error">Invalid thing</span>
+      <span className="error">{error}</span>
     </div>
   );
 }

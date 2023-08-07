@@ -16,7 +16,7 @@
   border-radius: 20px;
   box-shadow: 5px 5px 50px -10px black;
   text-align: center;
-  padding: 30px 50px
+  padding: 50px;
 }
 
 .logo {
@@ -101,5 +101,4 @@
   width: 100%;
   text-align: right;
   display: inline-block;
-  visibility: hidden;
 }

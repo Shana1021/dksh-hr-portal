@@ -20,7 +20,7 @@ export default function SignIn() {
           <div className="welcome-back">Welcome back</div>
           <div className="sign-in">Sign In</div>
           <SignInField
-            type="text"
+            type="email"
             name="Email"
             value={email}
             placeholder="example@email.com"
