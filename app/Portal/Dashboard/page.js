@@ -1,14 +1,12 @@
-"use client";
+import clientPromise from "@/lib/mongodb";
+import Dashboard from "./Dashboard.js";
 
-import { useSession } from "next-auth/react"
-
-export default function Home() {
-  const { data: session, status } = useSession();
-
-  console.log(session);
-  console.log(status);
+export default async function DashboardPage() {
+  const client = await clientPromise;
+  const db = client.db("hr_portal");
+  const data = await db.collection("test").find().toArray();
 
   return (
-    <h1>Dashboard</h1>
+    <Dashboard data={data.map(d => ({ ...d, _id: d._id.toString() }))} />
   )
 }
