@@ -1,10 +1,10 @@
-.sign-in-bg {
+.login-bg {
   width: 100vw;
   height: 100vh;
   background-color: #EC0825;
 }
 
-.sign-in-card {
+.login-card {
   position: absolute;
   right: 50%;
   bottom: 50%;
@@ -48,16 +48,16 @@
   margin: 15px 0;
 }
 
-.sign-in-field {
-  margin: 5px 0;
+.login-field {
+  margin: 15px 0;
 }
 
-.sign-in-field label {
+.login-field label {
   text-shadow: 1px 2px 2px #EEEEEE;
   font-size: 0.8em;
 }
 
-.sign-in-field input {
+.login-field input {
   background-color: #EEEEEE;
   padding: 12px;
   border-radius: 5px;
@@ -70,17 +70,17 @@
   transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-.sign-in-field input:hover {
+.login-field input:hover {
   background-color: #E8E8E8;
   box-shadow: 1px 2px 5px -2px black;
 }
 
-.sign-in-field input:focus {
+.login-field input:focus {
   outline: none;
 }
 
 .sign-in-btn {
-  margin: 25px auto;
+  margin: 35px auto;
   display: block;
   padding: 10px 20px 10px 20px;
   background-color: #CF152D;
@@ -93,12 +93,4 @@
 
 .sign-in-btn:hover {
   box-shadow: 1px 2px 5px -2px black;
-}
-
-.error {
-  color: red;
-  font-size: 0.55em;
-  width: 100%;
-  text-align: right;
-  display: inline-block;
 }
