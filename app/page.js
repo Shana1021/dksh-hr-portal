@@ -5,6 +5,10 @@ import { redirect } from "next/navigation";
 
 export default function Index() {
   const { status } = useSession();
+
+  if (status === "loading") {
+    return <></>;
+  }
   
   if (status === "unauthenticated") {
     redirect("/Login");

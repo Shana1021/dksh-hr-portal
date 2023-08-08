@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react"
 
-export default function Home({ data }) {
+export default function Dashboard({ data }) {
   const { data: session, status } = useSession();
 
   console.log(session);
@@ -14,7 +14,7 @@ export default function Home({ data }) {
       <p>Fetched data:</p>
       <ul>
         {data.map(d => (
-          <li key={d.id}>{d.test}</li>
+          <li key={d._id}>{d.test}</li>
         ))}
       </ul>
     </>
