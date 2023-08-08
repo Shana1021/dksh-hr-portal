@@ -33,11 +33,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
------------MongoDB Atlas Credentials--------------------
+# MongoDB Atlas Credentials
+
 Mongodb Atlas account
-email: sepab39@gmail.com
-password: dksh40002
+- email: sepab39@gmail.com
+- password: dksh40002
 
 Mongodb user
-username: sepab39
-password:LePTvVyxyFMCZQD5
+- username: sepab39
+- password: LePTvVyxyFMCZQD5
