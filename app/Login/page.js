@@ -15,7 +15,11 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const res = await signIn("credentials", { email, password, redirect: false });
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
 
     if (res.error) {
       return;
@@ -32,15 +36,15 @@ export default function Login() {
             src="/dksh_logo.png"
             alt="DKSH Logo"
             fill
-            sizes="65px"
-            style={{objectFit: "contain"}}
+            // sizes="50px"
+            style={{ objectFit: "contain" }}
             placeholder="blur"
             blurDataURL="/dksh_logo.png"
           />
         </div>
         <span className="title">HR Portal</span>
         <div className="fields">
-          <div className="welcome-back">Welcome back</div>
+          <div className="welcome-back">Welcome back!</div>
           <div className="sign-in">Sign In</div>
           <form onSubmit={handleSubmit}>
             <div className="login-field">
@@ -52,7 +56,7 @@ export default function Login() {
                   value={email}
                   placeholder="example@email.com"
                   required
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
               <br />
@@ -66,12 +70,16 @@ export default function Login() {
                   value={password}
                   placeholder="Password"
                   required
-                  onChange={e => setPassword(e.target.value)}
+                  minLength={5}
+                  maxLength={20}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
               <br />
             </div>
-            <button type="submit" className="sign-in-btn">SIGN IN</button>
+            <button type="submit" className="sign-in-btn">
+              SIGN IN
+            </button>
           </form>
         </div>
       </div>
