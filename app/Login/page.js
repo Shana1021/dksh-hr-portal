@@ -11,6 +11,7 @@ export default function Login() {
   const { callbackUrl } = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,6 +23,7 @@ export default function Login() {
     });
 
     if (res.error) {
+      setError("*Invalid email or password.");
       return;
     }
 
@@ -36,7 +38,7 @@ export default function Login() {
             src="/dksh_logo.png"
             alt="DKSH Logo"
             fill
-            // sizes="50px"
+            sizes="65px"
             style={{ objectFit: "contain" }}
             placeholder="blur"
             blurDataURL="/dksh_logo.png"
@@ -77,6 +79,7 @@ export default function Login() {
               </label>
               <br />
             </div>
+            <span className="error">{error}</span>
             <button type="submit" className="sign-in-btn">
               SIGN IN
             </button>

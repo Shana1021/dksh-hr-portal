@@ -53,11 +53,11 @@
   width: 100%;
   font-size: 2.3em;
   font-weight: 600;
-  margin: 15px 0;
+  margin: 5px 0;
 }
 
 .login-field {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
 }
 
 .login-field label {
@@ -88,7 +88,7 @@
 }
 
 .sign-in-btn {
-  margin: 35px auto;
+  margin: 0 auto;
   display: block;
   padding: 10px 20px 10px 20px;
   background-color: #be0028;
@@ -102,4 +102,13 @@
 
 .sign-in-btn:hover {
   box-shadow: 1px 2px 5px -2px black;
+}
+
+.error {
+  margin-top: 15px;
+  color: red;
+  font-size: 0.7em;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
 }

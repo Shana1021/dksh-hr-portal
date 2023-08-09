@@ -1,14 +1,10 @@
 "use client";
+
 import "./dashboard.css";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import "boxicons";
-export default function Dashboard({ data }) {
-  const { data: session, status } = useSession();
 
-  console.log(session);
-  console.log(status);
-
+export default function Dashboard() {
   return (
     <>
       <div className="sidebar close">
@@ -32,7 +28,7 @@ export default function Dashboard({ data }) {
             </a>
             <ul className="sub-menu blank">
               <li>
-                <a class="link_name" href="#">
+                <a className="link_name" href="#">
                   Dashboard
                 </a>
               </li>
@@ -69,11 +65,11 @@ export default function Dashboard({ data }) {
                 <i className="bx bx-book"></i>
                 <span className="link_name">Training</span>
               </a>
-              <i class="bx bxs-chevron-down arrow"></i>
+              <i className="bx bxs-chevron-down arrow"></i>
             </div>
-            <ul class="sub-menu">
+            <ul className="sub-menu">
               <li>
-                <a class="link_name" href="#">
+                <a className="link_name" href="#">
                   Training
                 </a>
               </li>
@@ -112,12 +108,12 @@ export default function Dashboard({ data }) {
           </li>
           <li>
             <a href="#">
-              <i class="bi bi-123"></i>
+              <i className="bi bi-123"></i>
               <span className="link_name">HR List</span>
             </a>
             <ul className="sub-menu blank">
               <li>
-                <a claclassNames="link_name" href="#">
+                <a className="link_name" href="#">
                   HR List
                 </a>
               </li>

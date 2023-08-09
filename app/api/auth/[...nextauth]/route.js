@@ -1,5 +1,7 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import clientPromise from "@/lib/mongodb";
+import bcrypt from "bcrypt";
 
 const handler = NextAuth({
   providers: [
@@ -10,8 +12,12 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        if (credentials.email === "test@email.com") {
-          return {  };
+        const client = await clientPromise;
+        const db = client.db("hr_portal");
+        const hrProfile = await db.collection("hr_profiles").findOne({email: credentials.email});
+        
+        if (hrProfile && await bcrypt.compare(credentials.password, hrProfile.password)) {
+          return hrProfile;
         }
 
         return null;
@@ -24,11 +30,18 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-
+        token._id = user._id;
+        token.name = user.name;
+        token.email = user.email;
+        token.phone = user.phone;
       }
       return token;
     },
     async session({ session, token }) {
+      session.user._id = token._id;
+      session.user.name = token.name;
+      session.user.email = token.email;
+      session.user.phone = token.phone;
       return session;
     }
   }
