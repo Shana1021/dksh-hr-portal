@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "bootstrap-icons": "^1.10.5",
     "boxicons": "^2.1.4",
     "chart.js": "^4.3.3",
