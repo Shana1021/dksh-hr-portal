@@ -27,7 +27,7 @@ export default function Login() {
       return;
     }
 
-    router.push(callbackUrl || "/Portal/Dashboard");
+    router.push(callbackUrl || "/Dashboard");
   }
 
   return (

@@ -14,5 +14,5 @@ export default function Index() {
     redirect("/Login");
   }
 
-  redirect("/Portal/Dashboard");
+  redirect("/Dashboard");
 }
