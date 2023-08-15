@@ -39,9 +39,9 @@ export default function Login() {
             alt="DKSH Logo"
             fill
             sizes="65px"
+            unoptimized="true"
             style={{ objectFit: "contain" }}
-            placeholder="blur"
-            blurDataURL="/dksh_logo.png"
+            priority
           />
         </div>
         <span className="title">HR Portal</span>
