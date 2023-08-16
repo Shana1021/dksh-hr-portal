@@ -27,8 +27,9 @@ export default function Home() {
           <button onClick={() => signOut({ callbackUrl: "/Login" })}>
             Test sign out button
           </button>
-          <button>
-            <Link to="/Portal/HR-List"> HR-List</Link>
+          <button onClick={<Link to="/Portal/HR-List"></Link>}>
+            {" "}
+            gfdsgfds
           </button>
         </div>
       </div>
