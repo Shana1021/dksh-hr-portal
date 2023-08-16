@@ -1,6 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
 export default function Home() {
   const { data: session, status } = useSession();
 
@@ -25,6 +26,9 @@ export default function Home() {
           <br />
           <button onClick={() => signOut({ callbackUrl: "/Login" })}>
             Test sign out button
+          </button>
+          <button>
+            <Link to="/Portal/HR-List"> HR-List</Link>
           </button>
         </div>
       </div>
