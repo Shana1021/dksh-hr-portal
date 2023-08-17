@@ -1,4 +1,3 @@
-import Sidebar from "../Sidebar";
 import "./style.css";
 import Table from "./table";
 export default function HRPage() {
