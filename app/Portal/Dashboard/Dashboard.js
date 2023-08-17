@@ -1,7 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Sidebar from "./Sidebar";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 export default function Home() {
   const { data: session, status } = useSession();
 
@@ -27,9 +27,8 @@ export default function Home() {
           <button onClick={() => signOut({ callbackUrl: "/Login" })}>
             Test sign out button
           </button>
-          <button onClick={<Link to="/Portal/HR-List"></Link>}>
-            {" "}
-            gfdsgfds
+          <button>
+            <Link href="/Portal/HR-List">this page!</Link>
           </button>
         </div>
       </div>
