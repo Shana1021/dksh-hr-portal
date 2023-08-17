@@ -26,7 +26,10 @@ export default function Home() {
         Test sign out button
       </button>
       <button>
-        <Link href="/Portal/HR-List">this page!</Link>
+        <Link href="/Portal/HR-List">Hr List</Link>
+      </button>
+      <button>
+        <Link href="/Portal/Settings">Settings</Link>
       </button>
     </div>
   );
