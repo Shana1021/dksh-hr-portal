@@ -7,6 +7,27 @@ import { useState } from "react";
 export default function SidebarMenu({ item }) {
   const { open, setOpen } = useState(true);
 
+  //under modification, not affecting
+  if (item.title === "Profile") {
+    return (
+      <a href={item.path || "#"} className="sidebar-menu profile-item">
+        <div className="profile-icon">{item.icon}</div>
+        <div className="profile-title">{item.title}</div>
+      </a>
+    );
+  }
+
+  if (item.title === "Log Out") {
+    return (
+      <a href={item.path || "#"} className="sidebar-menu">
+        <span className="test">
+          {item.icon}
+          {item.title}
+        </span>
+      </a>
+    );
+  }
+
   if (item.subnav) {
     return (
       <div className={open ? "sidebar-menu2" : "sidebar-menu"}>
