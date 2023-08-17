@@ -9,7 +9,7 @@ import { FaGear } from "react-icons/fa6"; //Settings
 export const SidebarData = [
   {
     title: "Dashboard",
-    path: "#",
+    path: "/Portal/Dashboard",
     icon: <FaRegChartBar className="icon" />,
   },
   {
@@ -19,7 +19,7 @@ export const SidebarData = [
     subnav: [
       {
         title: "Background Check",
-        path: "#",
+        path: "/Portal/Onboarding-BackgroundCheck",
       },
       {
         title: "Checklist",

@@ -1,7 +1,8 @@
 "use client";
+
 import { signIn, signOut, useSession } from "next-auth/react";
-import Sidebar from "./Sidebar";
 import Link from "next/link";
+
 export default function Home() {
   const { data: session, status } = useSession();
 
@@ -15,23 +16,18 @@ export default function Home() {
   }
 
   return (
-    <>
-      <div className="main">
-        <Sidebar />
-        <div className="container">
-          <h1 className="header">Container</h1>
-          <p className="content">content</p>
-          <h1>Dashboard</h1>
-          ID: {session.user._id}
-          <br />
-          <button onClick={() => signOut({ callbackUrl: "/Login" })}>
-            Test sign out button
-          </button>
-          <button>
-            <Link href="/Portal/HR-List">this page!</Link>
-          </button>
-        </div>
-      </div>
-    </>
+    <div className="container">
+      <h1 className="header">Container</h1>
+      <p className="content">content</p>
+      <h1>Dashboard</h1>
+      ID: {session.user._id}
+      <br />
+      <button onClick={() => signOut({ callbackUrl: "/Login" })}>
+        Test sign out button
+      </button>
+      <button>
+        <Link href="/Portal/HR-List">this page!</Link>
+      </button>
+    </div>
   );
 }

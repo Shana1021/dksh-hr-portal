@@ -1,8 +1,10 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
+import Sidebar from "./Sidebar";
+import "./Portal.css";
 
-export default function AuthGuard({ children }) {
+export default function PortalLayout({ children }) {
   const { status } = useSession();
 
   if (status === "loading") {
@@ -14,5 +16,10 @@ export default function AuthGuard({ children }) {
     return <></>;
   }
 
-  return children;
+  return (
+    <div className="main">
+      <Sidebar />
+      {children}
+    </div>
+  );
 }
