@@ -12,7 +12,7 @@ export const SidebarData = [
   {
     title: "Profile",
     path: "/Portal/HR-List", 
-    icon: <FaUserCircle className="icon" />, 
+    icon: <FaUserCircle className="icon profile-icon" />, 
   },
   {
     title: "Dashboard",
@@ -86,6 +86,5 @@ export const SidebarData = [
     title: "Log Out",
     path: "/Login",
     icon: <FaLockOpen className="icon" />,
-    
   },
 ];
