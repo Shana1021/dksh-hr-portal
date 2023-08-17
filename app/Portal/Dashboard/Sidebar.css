@@ -53,7 +53,7 @@ body {
   transition: background-color 0.15s;
 }
 .sidebar-menu:hover {
-  background-color: aqua;
+  background-color: blue;
 }
 .sidebar-title {
   display: flex;
