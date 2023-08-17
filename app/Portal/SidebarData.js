@@ -1,19 +1,19 @@
 import React from "react";
-import { FaRegChartBar } from "react-icons/fa";
-import { FaBookReader } from "react-icons/fa";
-import { BiNotepad } from "react-icons/bi";
-import { BiCalendarX } from "react-icons/bi";
-import { FaUserFriends } from "react-icons/fa";
-import { FaGear } from "react-icons/fa6";
-import { FaLockOpen } from "react-icons/fa6"; // Log Out icon
+import { FaUserCircle } from "react-icons/fa"; // Profile icon   
+import { FaRegChartBar } from "react-icons/fa"; // Dashboard icon
+import { FaBookReader } from "react-icons/fa"; // Training icon
+import { BiNotepad } from "react-icons/bi"; //  Onboarding
+import { BiCalendarX } from "react-icons/bi"; // Offboarding
+import { FaUserFriends } from "react-icons/fa"; // HR List
+import { FaGear } from "react-icons/fa6"; // Settings
+import { FaLockOpen } from "react-icons/fa6"; //Log Out icon
 
 export const SidebarData = [
   {
     title: "Profile",
-    path: "/Portal/HR-List", // Update with profile page later
-    icon: <img src="/path/to/profile-icon.png" alt="" className="icon" />, // Add your profile icon
+    path: "/Portal/HR-List", 
+    icon: <FaUserCircle className="icon" />, 
   },
-
   {
     title: "Dashboard",
     path: "/Portal/Dashboard",
