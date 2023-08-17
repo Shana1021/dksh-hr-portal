@@ -1,4 +1,5 @@
 import React from "react";
+import { FaUserCircle } from "react-icons/fa"; // Profile icon  
 import { FaRegChartBar } from "react-icons/fa"; //Dashboard Icon
 import { FaBookReader } from "react-icons/fa"; //Training icon
 import { BiSolidDashboard } from "react-icons/bi"; //optional for Dashboard icon
@@ -7,6 +8,11 @@ import { BiCalendarX } from "react-icons/bi"; //Offboarding
 import { FaUserFriends } from "react-icons/fa"; //HR List
 import { FaGear } from "react-icons/fa6"; //Settings
 export const SidebarData = [
+  {
+    title: "Profile",
+    path: "/Portal/HR-List",  
+    icon: <FaUserCircle className="icon profile-icon" />, 
+  },
   {
     title: "Dashboard",
     path: "/Portal/Dashboard",
