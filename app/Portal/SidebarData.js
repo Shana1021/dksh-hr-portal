@@ -1,6 +1,4 @@
-import React from "react";
 import { FaUserCircle } from "react-icons/fa"; // Profile icon
-import { FaRegChartBar } from "react-icons/fa"; //Dashboard Icon
 import { FaBookReader } from "react-icons/fa"; //Training icon
 import { BiSolidDashboard } from "react-icons/bi"; //Dashboard icon
 import { BiNotepad } from "react-icons/bi"; //Onboarding
@@ -8,7 +6,8 @@ import { BiCalendarX } from "react-icons/bi"; //Offboarding
 import { FaUserFriends } from "react-icons/fa"; //HR List
 import { FaGear } from "react-icons/fa6"; //Settings
 import { BiLogOut } from "react-icons/bi"; //Log out
-export const SidebarData = [
+
+const sidebarData = [
   {
     title: "Profile",
     path: "#",
@@ -88,3 +87,5 @@ export const SidebarData = [
     icon: <BiLogOut />,
   },
 ];
+
+export default sidebarData;

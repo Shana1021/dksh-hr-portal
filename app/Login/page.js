@@ -39,7 +39,7 @@ export default function Login() {
             alt="DKSH Logo"
             fill
             sizes="65px"
-            unoptimized="true"
+            unoptimized
             style={{ objectFit: "contain" }}
             priority
           />
