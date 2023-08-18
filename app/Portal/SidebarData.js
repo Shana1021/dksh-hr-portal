@@ -5,7 +5,6 @@ import { BiNotepad } from "react-icons/bi"; //Onboarding
 import { BiCalendarX } from "react-icons/bi"; //Offboarding
 import { FaUserFriends } from "react-icons/fa"; //HR List
 import { FaGear } from "react-icons/fa6"; //Settings
-import { BiLogOut } from "react-icons/bi"; //Log out
 
 const sidebarData = [
   {
@@ -80,12 +79,7 @@ const sidebarData = [
     title: "Settings",
     path: "/Portal/Settings",
     icon: <FaGear className="icon" />,
-  },
-  {
-    title: "Log out",
-    path: "/Login",
-    icon: <BiLogOut />,
-  },
+  }
 ];
 
 export default sidebarData;

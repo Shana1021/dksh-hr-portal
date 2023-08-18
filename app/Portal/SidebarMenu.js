@@ -6,7 +6,7 @@ export default function SidebarMenu({ item }) {
     <div className="sidebar-menu">
       <div className="sidebar-title">
         <Link href={item.path}>
-          {item.icon}
+          {item.icon || <div className="icon" />}
           {item.title}
         </Link>
       </div>
