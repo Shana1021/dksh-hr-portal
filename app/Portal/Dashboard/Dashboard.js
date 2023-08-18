@@ -22,15 +22,6 @@ export default function Home() {
       <h1>Dashboard</h1>
       ID: {session.user._id}
       <br />
-      <button onClick={() => signOut({ callbackUrl: "/Login" })}>
-        Test sign out button
-      </button>
-      <button>
-        <Link href="/Portal/HR-List">Hr List</Link>
-      </button>
-      <button>
-        <Link href="/Portal/Settings">Settings</Link>
-      </button>
     </div>
   );
 }

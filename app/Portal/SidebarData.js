@@ -1,22 +1,23 @@
 import React from "react";
-import { FaUserCircle } from "react-icons/fa"; // Profile icon  
+import { FaUserCircle } from "react-icons/fa"; // Profile icon
 import { FaRegChartBar } from "react-icons/fa"; //Dashboard Icon
 import { FaBookReader } from "react-icons/fa"; //Training icon
-import { BiSolidDashboard } from "react-icons/bi"; //optional for Dashboard icon
+import { BiSolidDashboard } from "react-icons/bi"; //Dashboard icon
 import { BiNotepad } from "react-icons/bi"; //Onboarding
 import { BiCalendarX } from "react-icons/bi"; //Offboarding
 import { FaUserFriends } from "react-icons/fa"; //HR List
 import { FaGear } from "react-icons/fa6"; //Settings
+import { BiLogOut } from "react-icons/bi"; //Log out
 export const SidebarData = [
   {
     title: "Profile",
-    path: "/Portal/HR-List",  
-    icon: <FaUserCircle className="icon profile-icon" />, 
+    path: "#",
+    icon: <FaUserCircle className="icon profile-icon" />,
   },
   {
     title: "Dashboard",
     path: "/Portal/Dashboard",
-    icon: <FaRegChartBar className="icon" />,
+    icon: <BiSolidDashboard className="icon" />,
   },
   {
     title: "Onboarding",
@@ -73,12 +74,17 @@ export const SidebarData = [
   },
   {
     title: "HR List",
-    path: "#",
+    path: "/Portal/HR-List",
     icon: <FaUserFriends className="icon" />,
   },
   {
     title: "Settings",
-    path: "#",
+    path: "/Portal/Settings",
     icon: <FaGear className="icon" />,
+  },
+  {
+    title: "Log out",
+    path: "/Login",
+    icon: <BiLogOut />,
   },
 ];
