@@ -1,11 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 .login-bg {
   width: 100vw;
   height: 100vh;
@@ -98,6 +90,7 @@
   font-size: 0.7em;
   box-shadow: 2px 4px 5px -5px white;
   transition: box-shadow 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .sign-in-btn:hover {

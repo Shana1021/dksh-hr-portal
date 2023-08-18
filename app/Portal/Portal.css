@@ -17,6 +17,10 @@
   position: relative;
 }
 
+.portal-header-menu {
+  cursor: pointer;
+}
+
 .portal-header-logo {
   position: relative;
   width: 70px;
@@ -121,6 +125,7 @@
   padding: 2px;
   font-weight: lighter;
   margin-top: auto;
+  cursor: pointer
 }
 
 .sidebar-logout * {

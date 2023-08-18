@@ -1,0 +1,22 @@
+.container {
+  flex-grow: 1;
+  padding: 2em;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.header {
+  font-size: 2.5em; /* Slightly smaller font size */
+}
+
+.content {
+  font-size: 1em; /* Smaller font size */
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin: 1em; /* Slightly smaller margin */
+  color: #be0028; /* Set font color to red */
+}

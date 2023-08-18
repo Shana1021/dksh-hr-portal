@@ -29,6 +29,7 @@ export default function PortalLayout({ children }) {
       <div className="portal-content">
         <div className="portal-header">
           <AiOutlineMenu
+            className="portal-header-menu"
             color="black"
             size="25"
             onClick={() => { setShowSidebar(!showSidebar); }}
