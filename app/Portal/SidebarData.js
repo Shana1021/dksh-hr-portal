@@ -71,15 +71,24 @@ const sidebarData = [
     ],
   },
   {
-    title: "HR List",
-    path: "/Portal/HR-List",
+    title: "HR ",
+    path: "#",
     icon: <FaUserFriends className="icon" />,
+    subnav: [
+      {
+        title: "HR-List",
+        path: "/Portal/HR-List",
+      },
+      {
+        title: "NewEmployee",
+        path: "/Portal/NewEmployee",
+      },
+    ],
   },
   {
     title: "Settings",
     path: "/Portal/Settings",
     icon: <FaGear className="icon" />,
-  }
+  },
 ];
-
 export default sidebarData;

@@ -9,18 +9,23 @@ td,
 th {
   border: 1px solid black;
 }
-th {
-  height: 5%;
-}
-td {
-  height: 5%;
-}
+
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 95%;
+  justify-content: flex-end;
 }
 
 td {
-  height: 50px;
+  height: 35px;
+  padding: 10px;
   vertical-align: bottom;
+}
+th {
+  overflow-x: auto;
+  text-align: center;
+}
+table {
+  float: right;
+  margin: 10px;
 }

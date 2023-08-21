@@ -6,7 +6,7 @@ import { signIn, useSession } from "next-auth/react";
 import { AiOutlineMenu } from "react-icons/ai";
 import Image from "next/image";
 import Sidebar from "./Sidebar";
-import sidebarData from "./sidebarData";
+import sidebarData from "./SidebarData";
 import "./portal.css";
 
 export default function PortalLayout({ children }) {
@@ -32,7 +32,9 @@ export default function PortalLayout({ children }) {
             className="portal-header-menu"
             color="black"
             size="25"
-            onClick={() => { setShowSidebar(!showSidebar); }}
+            onClick={() => {
+              setShowSidebar(!showSidebar);
+            }}
           />
           <div className="portal-header-logo">
             <Image
@@ -44,9 +46,9 @@ export default function PortalLayout({ children }) {
               priority
             />
           </div>
-          <span className="portal-header-title">
-            {sidebarData.find(item => item.path === pathname).title}
-          </span>
+          {/* <span className="portal-header-title">
+            {sidebarData.find((item) => item.title === pathname).title}
+          </span> */}
         </div>
         {children}
       </div>
