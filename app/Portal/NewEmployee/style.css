@@ -1,0 +1,28 @@
+label {
+  font-size: 15px;
+}
+.Container {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: auto auto;
+  margin: 20px;
+  margin-left: 25px;
+}
+input {
+  width: 375px;
+  height: 35px;
+  align-items: center;
+}
+.radio {
+  margin: 25px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  align-content: center;
+  align-items: center;
+  margin-left: 35px;
+}
+.Button {
+  text-align: center;
+}

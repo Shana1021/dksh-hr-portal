@@ -1,4 +1,6 @@
+"use client";
 import "./style.css";
+import { FaPenToSquare } from "react-icons/fa6";
 export default function Table() {
   return (
     <table>
@@ -12,7 +14,7 @@ export default function Table() {
         <td>Peter</td>
         <td>Griffin</td>
         <td>$100</td>
-        <td>fdjsd</td>
+        <td></td>
       </tr>
       <tr>
         <td>Lois</td>
