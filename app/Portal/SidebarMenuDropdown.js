@@ -23,7 +23,7 @@ export default function SidebarMenuDropdown({ item }) {
       <div
         ref={sidebarContentRef}
         className="sidebar-content"
-        style={sidebarContentHeight && {"height": isOpen ? sidebarContentHeight : 0}}
+        style={sidebarContentHeight && {height: isOpen ? sidebarContentHeight : 0}}
       >
         {item.subnav.map((subItem, index) => (
           <SidebarMenu key={index} item={subItem} />
