@@ -1,39 +1,37 @@
-"use client";
-import "./style.css";
-import { FaPenToSquare } from "react-icons/fa6";
+import React from "react";
+import { BiEdit } from "react-icons/bi"; //Edit
+import { FiTrash } from "react-icons/fi"; //Delete
+
 export default function Table() {
   return (
-    <table>
+    <table className="custom-table">
+    <thead>
       <tr>
         <th>No</th>
         <th>Name</th>
+        <th>ID</th>
         <th>Position</th>
         <th>Action</th>
       </tr>
-      <tr>
-        <td>Peter</td>
-        <td>Griffin</td>
-        <td>$100</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Lois</td>
-        <td>Griffin</td>
-        <td>$150</td>
-        <td>fdjsd</td>
-      </tr>
-      <tr>
-        <td>Joe</td>
-        <td>Swanson</td>
-        <td>$300</td>
-        <td>fdjsd</td>
-      </tr>
-      <tr>
-        <td>Cleveland</td>
-        <td>Brown</td>
-        <td>$250</td>
-        <td>fdjsd</td>
-      </tr>
-    </table>
-  );
-}
+    </thead>
+    <tbody>
+      {Array.from({ length: 25 }).map((_, index) => (
+        <tr key={index}>
+          <td>Data 1</td>
+          <td>Data 2</td>
+          <td>Data 3</td>
+          <td>Data 4</td>
+          <td>
+              <button className="edit-button">
+              <BiEdit className="icon" />
+              </button>
+              <button className="delete-button">
+              <FiTrash className="icon" />
+              </button>
+            </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+};
