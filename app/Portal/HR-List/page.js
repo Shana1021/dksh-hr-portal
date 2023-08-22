@@ -5,13 +5,13 @@ import Table from "./table";
 import Link from "next/link";
 
 export default function HRPage() {
-    const [scrollWidth, setScrollWidth] = useState(0);
+  const [scrollWidth, setScrollWidth] = useState(0);
 
-    //for scrollbar - not complete
-    useEffect(() => {
-      // Calculate the scrollbar width
-      const calculateScrollbarWidth = () => {
-        const tblContent = document.querySelector(".tbl-content");
+  //for scrollbar - not complete
+  useEffect(() => {
+    // Calculate the scrollbar width
+    const calculateScrollbarWidth = () => {
+      const tblContent = document.querySelector(".tbl-content");
       const tblTable = document.querySelector(".tbl-content table");
 
       if (tblContent && tblTable) {
@@ -23,8 +23,8 @@ export default function HRPage() {
 
       return 0; // Return 0 if elements are not found (optional)
     };
-      // Set the scrollbar width in state
-      setScrollWidth(calculateScrollbarWidth());
+    // Set the scrollbar width in state
+    setScrollWidth(calculateScrollbarWidth());
     const handleResize = () => {
       setScrollWidth(calculateScrollbarWidth());
     };
@@ -37,18 +37,18 @@ export default function HRPage() {
   }, []);
 
   return (
-      <div className="container">
+    <div className="container">
       <h1>HR List</h1>
       <div className="container-search-button">
-      <div className="search-bar">
-        <input type="text" placeholder="Filter by Position" />
-        <span className="search-icon">&#128269;</span>
-      </div>
-      <button className="custom-button">
-        <Link href="./NewEmployee">
-        <span className="plus-icon">&#43;</span>Add New Employee
-        </Link>
-      </button>
+        <div className="search-bar">
+          <input type="text" placeholder="Filter by Position" />
+          <span className="search-icon">&#128269;</span>
+        </div>
+        <button className="custom-button">
+          <Link href="./NewEmployee">
+            <span className="plus-icon">&#43;</span>Add New Employee
+          </Link>
+        </button>
       </div>
       <Table className="hr-table"></Table>
     </div>
