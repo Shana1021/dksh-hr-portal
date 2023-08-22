@@ -1,6 +1,19 @@
-.label {
-  flex-direction: row;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-input {
-  flex-direction: row;
+form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 400px;
+  align-content: center;
+  margin: 15px auto;
+}
+h2 {
+  text-align: center;
+}
+label {
+  display: inline-block;
 }

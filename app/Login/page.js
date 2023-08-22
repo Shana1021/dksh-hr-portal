@@ -12,6 +12,11 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevState) => !prevState);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -68,7 +73,7 @@ export default function Login() {
                 Password
                 <br />
                 <input
-                  type="password"
+                  type={passwordVisible ? "text" : "password"}
                   value={password}
                   placeholder="Password"
                   required
@@ -77,6 +82,13 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
+              <div className="show">
+                <label>
+                  <input type="checkbox" onClick={togglePasswordVisibility} />
+                  Show Password
+                </label>
+              </div>
+
               <br />
             </div>
             <span className="error">{error}</span>
