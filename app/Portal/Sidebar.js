@@ -1,3 +1,4 @@
+import styles from "./sidebar.module.css";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { BiLogOut } from "react-icons/bi";
@@ -15,15 +16,15 @@ export default function Sidebar({ show }) {
 
   return (
     <div
-      className={`sidebar-container ${show ? "" : "closed"}`}
+      className={`${styles["sidebar-container"]} ${show ? "" : styles["closed"]}`}
       style={sidebarWidth && {width: show ? sidebarWidth : 0}}
     >
       <div
         ref={sidebarRef}
-        className="sidebar"
+        className={styles["sidebar"]}
         style={{width: sidebarWidth}}
       >
-        <div className="sidebar-navigation">
+        <div className={styles["sidebar-navigation"]}>
           {sidebarData.map((item, index) =>
             item.subnav ? (
               <SidebarMenuDropdown key={index} item={item} />
@@ -33,7 +34,7 @@ export default function Sidebar({ show }) {
           )}
         </div>
         <button
-          className="sidebar-logout"
+          className={styles["sidebar-logout"]}
           onClick={() => {
             signOut({ callbackUrl: "/Login" });
           }}

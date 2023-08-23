@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./portal.module.css";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
@@ -7,7 +8,6 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Image from "next/image";
 import Sidebar from "./Sidebar";
 import sidebarData from "./SidebarData";
-import "./portal.css";
 
 export default function PortalLayout({ children }) {
   const { status } = useSession();
@@ -24,19 +24,19 @@ export default function PortalLayout({ children }) {
   }
 
   return (
-    <div className="portal-main">
+    <div className={styles["portal-main"]}>
       <Sidebar show={showSidebar} />
-      <div className="portal-content">
-        <div className="portal-header">
+      <div className={styles["portal-content"]}>
+        <div className={styles["portal-header"]}>
           <AiOutlineMenu
-            className="portal-header-menu"
+            className={styles["portal-header-menu"]}
             color="black"
             size="25"
             onClick={() => {
               setShowSidebar(!showSidebar);
             }}
           />
-          <div className="portal-header-logo">
+          <div className={styles["portal-header-logo"]}>
             <Image
               src="/dksh_logo.png"
               alt="DKSH Logo"
@@ -46,7 +46,7 @@ export default function PortalLayout({ children }) {
               priority
             />
           </div>
-          {/* <span className="portal-header-title">
+          {/* <span className={styles["portal-header-title"]}>
             {sidebarData.find((item) => item.title === pathname).title}
           </span> */}
         </div>

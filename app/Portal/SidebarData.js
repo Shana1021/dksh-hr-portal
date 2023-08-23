@@ -10,17 +10,16 @@ const sidebarData = [
   {
     title: "Profile",
     path: "#",
-    icon: <FaUserCircle className="icon profile-icon" />,
+    icon: <FaUserCircle />,
   },
   {
     title: "Dashboard",
     path: "/Portal/Dashboard",
-    icon: <BiSolidDashboard className="icon" />,
+    icon: <BiSolidDashboard />,
   },
   {
     title: "Onboarding",
-    path: "#",
-    icon: <BiNotepad className="icon" />,
+    icon: <BiNotepad />,
     subnav: [
       {
         title: "Background Check",
@@ -38,8 +37,7 @@ const sidebarData = [
   },
   {
     title: "Training",
-    path: "#",
-    icon: <FaBookReader className="icon" />,
+    icon: <FaBookReader />,
     subnav: [
       {
         title: "Request Training",
@@ -53,8 +51,7 @@ const sidebarData = [
   },
   {
     title: "Offboarding",
-    path: "#",
-    icon: <BiCalendarX className="icon" />,
+    icon: <BiCalendarX />,
     subnav: [
       {
         title: "Request for Resignation",
@@ -71,9 +68,8 @@ const sidebarData = [
     ],
   },
   {
-    title: "HR ",
-    path: "#",
-    icon: <FaUserFriends className="icon" />,
+    title: "HR",
+    icon: <FaUserFriends />,
     subnav: [
       {
         title: "HR-List",
@@ -88,7 +84,7 @@ const sidebarData = [
   {
     title: "Settings",
     path: "/Portal/Settings",
-    icon: <FaGear className="icon" />,
+    icon: <FaGear />,
   },
 ];
 export default sidebarData;

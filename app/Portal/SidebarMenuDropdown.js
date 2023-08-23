@@ -1,3 +1,4 @@
+import styles from "./sidebar.module.css";
 import { useEffect, useRef, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import SidebarMenu from "./SidebarMenu";
@@ -12,17 +13,17 @@ export default function SidebarMenuDropdown({ item }) {
   }, []);
 
   return (
-    <div className="sidebar-menu">
-      <div className="sidebar-title">
+    <div className={styles["sidebar-menu"]}>
+      <div className={styles["sidebar-title"]}>
         <button onClick={() => { setIsOpen(!isOpen); }}>
-          {item.icon}
+          <span className={styles["sidebar-menu-icon"]}>{item.icon}</span>
           {item.title}
-          <FaAngleDown className={`sidebar-menu-arrow ${isOpen ? "open" : ""}`} />
+          <FaAngleDown className={`${styles["sidebar-menu-arrow"]} ${isOpen ? styles["open"] : ""}`} />
         </button>
       </div>
       <div
         ref={sidebarContentRef}
-        className="sidebar-content"
+        className={styles["sidebar-content"]}
         style={sidebarContentHeight && {height: isOpen ? sidebarContentHeight : 0}}
       >
         {item.subnav.map((subItem, index) => (

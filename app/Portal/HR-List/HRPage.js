@@ -1,37 +1,37 @@
 "use client";
 
-import "./hr.css";
+import styles from "./hr.module.css";
 import Table from "../Table";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { FiTrash } from "react-icons/fi";
 
-export default function HRPage({ hrProfiles }) {
+export default function HRListPage({ hrProfiles }) {
 
   for (const hrProfile of hrProfiles) {
     hrProfile.action = (
       <>
-        <button className="edit-button">
-        <BiEdit className="icon" />
+        <button className={styles["edit-button"]}>
+        <BiEdit className={styles["icon"]} />
         </button>
-        <button className="delete-button">
-        <FiTrash className="icon" />
+        <button className={styles["delete-button"]}>
+        <FiTrash className={styles["icon"]} />
         </button>
       </>
     );
   }
 
   return (
-      <div className="container">
+      <div className={styles["container"]}>
       <h1>HR List</h1>
-      <div className="container-search-button">
-      <div className="search-bar">
+      <div className={styles["container-search-button"]}>
+      <div className={styles["search-bar"]}>
         <input type="text" placeholder="Filter by Position" />
-        <span className="search-icon">&#128269;</span>
+        <span className={styles["search-icon"]}>&#128269;</span>
       </div>
-      <button className="custom-button">
+      <button className={styles["custom-button"]}>
         <Link href="./NewEmployee">
-        <span className="plus-icon">&#43;</span>Add New Employee
+        <span className={styles["plus-icon"]}>&#43;</span>Add New Employee
         </Link>
       </button>
       </div>

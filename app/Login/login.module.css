@@ -4,9 +4,6 @@
   background-color: #be0028;
 }
 
-body {
-  background-color: #eeeeee;
-}
 .login-card {
   position: absolute;
   right: 50%;
@@ -108,13 +105,13 @@ body {
   display: inline-block;
   text-align: center;
 }
-input[type="checkbox"] {
-  position: relative;
-  display: inline-block;
-  align-self: center;
-  width: 20px;
-}
-.show {
+
+.show-password {
   margin-top: 5px;
-  font-size: 13px;
+  font-size: 0.8em;
+}
+
+.show-password input[type="checkbox"] {
+  vertical-align: middle;
+  margin-right: 2px;
 }

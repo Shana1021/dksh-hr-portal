@@ -1,3 +1,5 @@
-export default function Home() {
-  return <h1>BackgroundCheck</h1>;
+export default function OnboardingBackgroundCheckPage() {
+  return (
+    <h1>Background Check</h1>
+  );
 }

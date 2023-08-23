@@ -1,6 +1,6 @@
 "use client";
 
-import "./login.css";
+import styles from "./login.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
@@ -36,9 +36,9 @@ export default function Login() {
   }
 
   return (
-    <div className="login-bg">
-      <div className="login-card">
-        <div className="logo">
+    <div className={styles["login-bg"]}>
+      <div className={styles["login-card"]}>
+        <div className={styles["logo"]}>
           <Image
             src="/dksh_logo.png"
             alt="DKSH Logo"
@@ -49,12 +49,12 @@ export default function Login() {
             priority
           />
         </div>
-        <span className="title">HR Portal</span>
-        <div className="fields">
-          <div className="welcome-back">Welcome back!</div>
-          <div className="sign-in">Sign In</div>
+        <span className={styles["title"]}>HR Portal</span>
+        <div className={styles["fields"]}>
+          <div className={styles["welcome-back"]}>Welcome back!</div>
+          <div className={styles["sign-in"]}>Sign In</div>
           <form onSubmit={handleSubmit}>
-            <div className="login-field">
+            <div className={styles["login-field"]}>
               <label>
                 Email
                 <br />
@@ -68,7 +68,7 @@ export default function Login() {
               </label>
               <br />
             </div>
-            <div className="login-field">
+            <div className={styles["login-field"]}>
               <label>
                 Password
                 <br />
@@ -82,17 +82,15 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
-              <div className="show">
-                <label>
-                  <input type="checkbox" onClick={togglePasswordVisibility} />
-                  Show Password
-                </label>
-              </div>
-
-              <br />
             </div>
-            <span className="error">{error}</span>
-            <button type="submit" className="sign-in-btn">
+            <div className={styles["show-password"]}>
+              <label>
+                <input type="checkbox" onClick={togglePasswordVisibility} />
+                Show Password
+              </label>
+            </div>
+            <span className={styles["error"]}>{error}</span>
+            <button type="submit" className={styles["sign-in-btn"]}>
               SIGN IN
             </button>
           </form>

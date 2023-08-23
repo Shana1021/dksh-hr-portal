@@ -1,0 +1,35 @@
+.portal-main {
+  display: flex;
+  height: 100%;
+}
+
+.portal-content {
+  flex-grow: 1;
+}
+
+.portal-header {
+  display: flex;
+  align-items: center;
+  height: 55px;
+  background-color: white;
+  color: black;
+  padding: 0 15px;
+  position: relative;
+}
+
+.portal-header-menu {
+  cursor: pointer;
+}
+
+.portal-header-logo {
+  position: relative;
+  width: 70px;
+  height: 100%;
+  margin-left: 15px;
+}
+
+.portal-header-title {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}

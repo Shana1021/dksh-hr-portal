@@ -1,4 +1,4 @@
-import HRPage from "./HRPage";
+import HRListPage from "./HRPage";
 import clientPromise from "@/lib/mongodb";
 
 export default async function HRPageFetch() {
@@ -9,5 +9,5 @@ export default async function HRPageFetch() {
     hrProfile._id = hrProfile._id.toString();
   }
   
-  return <HRPage hrProfiles={hrProfiles} />;
+  return <HRListPage hrProfiles={hrProfiles} />;
 }
