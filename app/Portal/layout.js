@@ -46,9 +46,13 @@ export default function PortalLayout({ children }) {
               priority
             />
           </div>
-          {/* <span className={styles["portal-header-title"]}>
-            {sidebarData.find((item) => item.title === pathname).title}
-          </span> */}
+          <span className={styles["portal-header-title"]}>
+            {sidebarData.find(item =>
+              item.path
+                ? item.path === pathname
+                : item.subnav.find(subItem => subItem.path === pathname)
+            ).title}
+          </span>
         </div>
         {children}
       </div>

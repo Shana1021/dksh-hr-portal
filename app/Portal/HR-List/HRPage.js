@@ -7,7 +7,6 @@ import { BiEdit } from "react-icons/bi";
 import { FiTrash } from "react-icons/fi";
 
 export default function HRListPage({ hrProfiles }) {
-
   for (const hrProfile of hrProfiles) {
     hrProfile.action = (
       <>
@@ -23,7 +22,6 @@ export default function HRListPage({ hrProfiles }) {
 
   return (
       <div className={styles["container"]}>
-      <h1>HR List</h1>
       <div className={styles["container-search-button"]}>
       <div className={styles["search-bar"]}>
         <input type="text" placeholder="Filter by Position" />
