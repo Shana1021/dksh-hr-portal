@@ -23,6 +23,22 @@ export default function PortalLayout({ children }) {
     return <></>;
   }
 
+  let headerTitle
+  for (const menu of sidebarData) {
+    if (menu.path) {
+      if (menu.path === pathname) {
+        headerTitle = menu.title;
+        break;
+      }
+    } else {
+      const subMenu = menu.subnav.find(subMenu => subMenu.path === pathname);
+      if (subMenu) {
+        headerTitle = subMenu.title;
+        break;
+      }
+    }
+  }
+
   return (
     <div className={styles["portal-main"]}>
       <Sidebar show={showSidebar} />
@@ -46,13 +62,7 @@ export default function PortalLayout({ children }) {
               priority
             />
           </div>
-          <span className={styles["portal-header-title"]}>
-            {sidebarData.find(item =>
-              item.path
-                ? item.path === pathname
-                : item.subnav.find(subItem => subItem.path === pathname)
-            ).title}
-          </span>
+          <span className={styles["portal-header-title"]}>{headerTitle}</span>
         </div>
         {children}
       </div>
