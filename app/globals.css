@@ -13,3 +13,17 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.module-button {
+  background-color: #FFEABF;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  padding: 15px 60px;
+  border: none;
+  transition: background-color 0.5s ease;
+}
+
+.module-button:hover {
+  cursor: pointer;
+}

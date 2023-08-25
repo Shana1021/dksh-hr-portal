@@ -1,0 +1,19 @@
+.recipient-email-settings-label {
+  text-align: center;
+}
+
+.recipient-email-settings {
+  width: 100%;
+  text-align: center;
+}
+
+.recipient-email-settings table {
+  margin: 20px auto;
+  text-align: left;
+  border-spacing: 10px;
+}
+
+.recipient-email-settings input {
+  padding: 5px;
+  width: 300px;
+}

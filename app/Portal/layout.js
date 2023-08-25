@@ -38,6 +38,7 @@ export default function PortalLayout({ children }) {
       }
     }
   }
+  console.log(pathname);
 
   return (
     <div className={styles["portal-main"]}>
