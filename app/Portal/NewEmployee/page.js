@@ -18,7 +18,6 @@ export default function NewEmployee() {
   };
   return (
     <>
-      <h1>HR PROFILE</h1>
       <div className="Container">
         <input type="text" placeholder="Enter First Name" required />
         <input type="email" placeholder="Enter Employee Email" required />
@@ -35,41 +34,48 @@ export default function NewEmployee() {
         </label>
 
         <input type="text" placeholder="Enter Employee ID" required />
-
-        
+        <label htmlFor="male" className="bigger-label">
+          Gender
+        </label>
+        <br />
         <div className="radio">
-          <label htmlFor="male" className="bigger-label">Gender </label><br/>
-          <label htmlFor="male" className="bigger-label"> Male</label>
+          <label htmlFor="male" className="bigger-label">
+            {" "}
+            Male
+          </label>
           <input type="radio" id="male" name="malefemale" value="male" />
-          <label htmlFor="female" className="bigger-label">Female</label>
+          <label htmlFor="female" className="bigger-label">
+            Female
+          </label>
           <input type="radio" id="female" name="malefemale" value="female" />
         </div>
 
         <input type="text" placeholder="Enter Address Line 1" required />
 
-        <input type="date" required/>
-        
+        <input type="date" required />
+
         <input type="text" placeholder="Enter Address Line 2" required />
         <div className="city-state-container">
           <input type="text" placeholder="Enter City" required />
           <input type="text" placeholder="Enter State" required />
         </div>
-        
+
         <div className="image-upload">
-          <label htmlFor="image">Upload Image:</label>
+          <label htmlFor="image">Upload Image: </label>
           <input
             type="file"
             id="image"
-            accept="image/*" 
+            accept="image/*"
             onChange={handleImageChange}
           />
-          {selectedImage && (
+          {/* We don't need to display an image */}
+          {/* {selectedImage && (
             <img
               src={selectedImage}
               alt="Selected Employee Image"
               className="uploaded-image"
             />
-          )}
+          )} */}
         </div>
 
         <div className="postal-phone-container">
@@ -77,15 +83,14 @@ export default function NewEmployee() {
           <input
             type="tel"
             placeholder="Enter Phone Number"
-            pattern="[0-9]{2}-[0-9]{3}-[0-9]{4}"
+            pattern={"[0-9]{2}-[0-9]{3}-[0-9]{4}"}
             required
           />
         </div>
-
       </div>
 
       <div className="Button">
-        <input type="submit" value="Save" className="bigger-button"/>
+        <input type="submit" value="Save" className="bigger-button" />
       </div>
     </>
   );
