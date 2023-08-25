@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function PUT(request) {
@@ -6,11 +7,13 @@ export async function PUT(request) {
 
   const client = await clientPromise;
   const db = await client.db("hr_portal");
-  db.collection("settings").updateOne({}, {$set: {
+  await db.collection("settings").updateOne({}, {$set: {
     itTeamEmailAddress: formData.get("itTeamEmailAddress"),
     adminTeamEmailAddress: formData.get("adminTeamEmailAddress"),
     hrTeamEmailAddress: formData.get("hrTeamEmailAddress")
   }});
+
+  revalidatePath("/Portal/Settings");
 
   return NextResponse.json({});
 }

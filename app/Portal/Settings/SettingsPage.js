@@ -1,24 +1,19 @@
 "use client";
 
 import styles from "./settings.module.css";
-import { useRouter } from "next/navigation";
 
 export default function SettingsPage({
   initialITTeamEmailAddress,
   initialAdminTeamEmailAddress,
   initialHRTeamEmailAddress
 }) {
-  const router = useRouter();
-
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    await fetch("/api/settings", {
+    fetch("/api/settings", {
       method: "PUT",
       body: new FormData(e.target)
     });
-
-    router.refresh();
   }
 
   return (
