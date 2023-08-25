@@ -1,5 +1,4 @@
 import clientPromise from "@/lib/mongodb";
-import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function PUT(request) {
@@ -12,8 +11,6 @@ export async function PUT(request) {
     adminTeamEmailAddress: formData.get("adminTeamEmailAddress"),
     hrTeamEmailAddress: formData.get("hrTeamEmailAddress")
   }});
-
-  revalidatePath("/Portal/Settings");
 
   return NextResponse.json({});
 }
