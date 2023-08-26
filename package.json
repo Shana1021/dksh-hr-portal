@@ -19,6 +19,7 @@
     "eslint-config-next": "13.4.13",
     "font-awesome": "^4.7.0",
     "mongodb": "^5.7.0",
+    "mongoose": "^7.4.5",
     "next": "13.4.13",
     "next-auth": "^4.22.4",
     "react": "18.2.0",
