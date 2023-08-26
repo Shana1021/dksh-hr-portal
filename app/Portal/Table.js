@@ -1,8 +1,8 @@
 import styles from "./table.module.css";
 
-export default function Table({ columns, data, height }) {
+export default function Table({ columns, data, width="auto", height="auto" }) {
   return (
-    <div className={styles["table-container"]} style={{height: height}}>
+    <div className={styles["table-container"]} style={{width, height}}>
       <table className={styles["table"]}>
         <thead>
           <tr>

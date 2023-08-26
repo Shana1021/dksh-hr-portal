@@ -1,0 +1,50 @@
+.employee-profile-form {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: 1fr 1fr;
+  width: 60%;
+  margin: auto;
+}
+
+.employee-profile-field {
+  display: grid;
+  font-size: 0.8em;
+}
+
+.employee-profile-form input {
+  border-color: #007bff;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.field-group {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+}
+
+.gender {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.gender label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.gender input {
+  width: 25px;
+  height: 25px;
+}
+
+.submit {
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+}

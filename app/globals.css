@@ -19,11 +19,31 @@ a {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 0.8em;
-  padding: 15px 60px;
+  padding: 15px 50px;
   border: none;
   transition: background-color 0.5s ease;
 }
 
 .module-button:hover {
   cursor: pointer;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 5px;
+  font-size: 16px;
+  color: #1dbb6f;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 5px;
+  font-size: 16px;
+  color: #c61717;
 }

@@ -1,3 +1,8 @@
+.table-container {
+  overflow: auto;
+  margin: auto;
+}
+
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -26,8 +31,4 @@
 .table thead th {
   position: sticky;
   top: 0px;
-}
-
-.table-container {
-  overflow: auto;
 }
