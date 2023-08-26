@@ -11,6 +11,10 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles }) {
   const router = useRouter();
 
   for (const employeeProfile of employeeProfiles) {
+    async function handleEdit() {
+      router.push("/Portal/Onboarding-BackgroundCheck/Employee/" + employeeProfile._id);
+    }
+
     async function handleDelete() {
       await fetch("/api/employee/" + employeeProfile._id, {
         method: "DELETE"
@@ -21,7 +25,7 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles }) {
 
     employeeProfile.action = (
       <>
-        <button className="edit-button">
+        <button className="edit-button" onClick={handleEdit}>
           <BiEdit />
         </button>
         <button className="delete-button" onClick={handleDelete}>
