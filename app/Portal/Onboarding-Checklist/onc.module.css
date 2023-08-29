@@ -1,0 +1,60 @@
+/* components/style.css */
+
+/* Style for the container */
+.container {
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+/* Style for the header */
+.header h1 {
+  margin: 0;
+  align-items: center;
+  width: 120%;
+  margin: 10px;
+  padding: 10px;
+}
+
+.container-search-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 20px;
+  padding-right: 10px;
+}
+
+/* Style for the search bar */
+.search-bar {
+  width: 300px;
+  height: 50px;
+  margin: 10px;
+  margin-right: 0px;
+  background-color: #fff3da;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  justify-content: flex-end;
+  border: 1px solid rgb(203, 202, 202);
+}
+
+.search-bar input[type="text"] {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  background-color: #fff3da;
+}
+
+/* Style for the icons */
+.search-icon,
+.plus-icon {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+/* Style for the table container */
+.tbl-container {
+  overflow-x: auto; /* Enable horizontal scrollbar when needed */
+  max-width: 70%; /* Ensure the table container doesn't exceed its parent */
+  max-height: 300px; /* Adjust the height as needed */
+}
+

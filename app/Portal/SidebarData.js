@@ -27,7 +27,7 @@ const sidebarData = [
       },
       {
         title: "Checklist",
-        path: "#",
+        path: "/Portal/Onboarding-Checklist",
       },
       {
         title: "Probationary",
