@@ -96,7 +96,7 @@ export default function ChecklistPage({ checklistItems }) {
         height="400px"
       />
 
-       {/* Step 4: Conditionally render the modal */}
+       {/*Conditionally render the modal */}
        {showModal && modalContent}
     </div>
   );

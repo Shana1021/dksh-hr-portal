@@ -24,11 +24,6 @@
   width: 400px;
 }
 
-/* Style for the modal content */
-.modal-content {
-  /* Your modal content styles here */
-}
-
 /* Style for the checklist */
 .checklist {
   list-style-type: none;
@@ -57,7 +52,7 @@
 /* Style for the active tab */
 .active-tab {
   background-color: #96969675; /* Change background color when active */
-  color: #ffffff; /* Change text color when active */
+  color: #f20000; /* Change text color when active */
 }
 
 /* Style for the checklist items */
@@ -130,3 +125,20 @@
   max-height: 300px; /* Adjust the height as needed */
 }
 
+/*Style for pop-up button temp - added in global.css, not working.*/
+.popup-button {
+  background-color: #FFEABF;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  padding: 10px 40px;
+  margin: 5px;
+  border: none;
+}
+
+.popup-button:hover {
+  background-color: #96969675;
+  transition: 0.5s ease;
+  cursor: pointer;
+  color: #f20000;
+}
