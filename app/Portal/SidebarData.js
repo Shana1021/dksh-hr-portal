@@ -63,7 +63,7 @@ const sidebarData = [
       },
       {
         title: "Checklist",
-        path: "#",
+        path: "/Portal/Offboarding-Checklist",
       },
     ],
   },

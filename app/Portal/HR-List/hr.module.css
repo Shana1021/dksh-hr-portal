@@ -34,6 +34,7 @@
   align-items: center;
   border-radius: 4px;
   justify-content: flex-end;
+  border: 1px solid rgb(203, 202, 202);
 }
 
 .search-bar input[type="text"] {
