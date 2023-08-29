@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./ofc.module.css";
 import Table from "../Table";
 import Link from "next/link";
@@ -6,7 +8,9 @@ export default function ChecklistPage({ checklistItems }) {
   for (const item of checklistItems) {
     item.checklist = (
       <>
-        <button className={styles["checklist-button"]}>Checklist</button>
+        <div className={styles["actions"]}>
+        <Link className="module-button" href="#">Checklist</Link>
+      </div>
       </>
     );
   }

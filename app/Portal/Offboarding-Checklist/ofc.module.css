@@ -58,21 +58,3 @@
   max-height: 300px; /* Adjust the height as needed */
 }
 
-/* Style for the button */
-.checklist-button {
-  width: 190px;
-  height: 40px;
-  padding: 10px;
-  margin-top: 5px;
-  background-color: #5b9dff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  text-decoration: none;
-}
