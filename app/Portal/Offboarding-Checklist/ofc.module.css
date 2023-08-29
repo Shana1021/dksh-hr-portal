@@ -1,5 +1,77 @@
 /* components/style.css */
 
+/* Style for the modal overlay (background) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Style for the modal container */
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  max-width: 80%;
+  width: 400px;
+}
+
+/* Style for the modal content */
+.modal-content {
+  /* Your modal content styles here */
+}
+
+/* Style for the checklist */
+.checklist {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0; /* Remove any default margin */
+}
+
+/* Style for the tabs */
+.tabs {
+  display: flex;
+  justify-content: space-between; /* Space evenly between List 1 and List 2 */
+  border: 1px solid #ccc; /* Add a border around the tabs */
+  border-radius: 4px; /* Rounded corners for the tabs container */
+  margin-bottom: 10px; /* Add some spacing between tabs and list */
+}
+
+/* Style for the individual tab */
+.tab {
+  flex: 1; /* Distribute available space evenly between tabs */
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a smooth transition for background color */
+}
+
+/* Style for the active tab */
+.active-tab {
+  background-color: #96969675; /* Change background color when active */
+  color: #ffffff; /* Change text color when active */
+}
+
+/* Style for the checklist items */
+.checklist li {
+  padding: 5px 0; /* Add spacing between checklist items */
+}
+
+/* Style for the buttons */
+.button-container {
+  text-align: right;
+  margin-top: 20px;
+}
+
+
 /* Style for the container */
 .container {
   flex-direction: column;

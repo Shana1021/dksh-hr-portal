@@ -1,15 +1,76 @@
 "use client";
-
+import { useState } from "react"; // Import useState
 import styles from "./ofc.module.css";
 import Table from "../Table";
 import Link from "next/link";
 
 export default function ChecklistPage({ checklistItems }) {
+  const [showModal, setShowModal] = useState(false);
+  const [activeList, setActiveList] = useState(1); // Track the active list (1 or 2)
+
+  const lists = [
+    [
+      "Task 1",
+      "Task 2",
+      // Add more tasks as needed for List 1
+    ],
+    [
+      "Task A",
+      "Task B",
+      // Add more tasks as needed for List 2
+    ],
+  ];
+
+  const modalContent = (
+    <div className={styles["modal-overlay"]}>
+    <div className={styles["modal"]}>
+      <div className={styles["modal-content"]}>
+        <h2>Checklist</h2>
+        {/* Tabs for switching between lists */}
+        <div className={styles["tabs"]}>
+            <div
+              className={`${styles["tab"]} ${
+                activeList === 1 ? styles["active-tab"] : ""
+              }`}
+              onClick={() => setActiveList(1)}
+            >
+              List 1
+            </div>
+            <div
+              className={`${styles["tab"]} ${
+                activeList === 2 ? styles["active-tab"] : ""
+              }`}
+              onClick={() => setActiveList(2)}
+            >
+              List 2
+            </div>
+          </div>
+          {/* Display the active list */}
+          <ul className={styles["checklist"]}>
+            {lists[activeList - 1].map((task, index) => (
+              <li key={index}>
+                <label>
+                  <input type="checkbox" /> {task}
+                </label>
+              </li>
+            ))}
+          </ul>
+          <div className={styles["button-container"]}>
+            <button className={styles["popup-button"]} onClick={() => setShowModal(false)} >Save</button>
+            <button className={styles["popup-button"]} onClick={() => setShowModal(false)} >Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   for (const item of checklistItems) {
     item.checklist = (
       <>
         <div className={styles["actions"]}>
-        <Link className="module-button" href="#">Checklist</Link>
+          <button className="module-button" onClick={() => setShowModal(true)}>
+            Checklist
+          </button>
       </div>
       </>
     );
@@ -34,6 +95,9 @@ export default function ChecklistPage({ checklistItems }) {
         data={checklistItems}
         height="400px"
       />
+
+       {/* Step 4: Conditionally render the modal */}
+       {showModal && modalContent}
     </div>
   );
 }
