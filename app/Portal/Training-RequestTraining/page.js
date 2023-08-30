@@ -1,95 +1,109 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import React, { useState } from "react";
+import "./style.css";
 
-export default function Home() {
+export default function TrainingRequestTraining() {
+   // To store the vendor code
+   const [vendorCode, setVendorCode] = useState('');
+
+   // Function to handle changes in the input field
+   const handleVendorCodeChange = (event) => {
+    setVendorCode(event.target.value);
+
+    const handleClick = () => {
+      alert('Button clicked!');
+    }
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <>
+    <div className="Container">
+      <label>Course Title
+        <input type="text" placeholder="Enter Course Title" required />
+        </label>
+        <label>Vendor Name
+          <input type="text" placeholder="Enter Vendor Name" required />
+          </label>
+          <label>Address Line 1
+            <input type="text" placeholder="Enter Address Line 1" required />
+            </label>
+            <label>Address Line 2
+              <input type="text" placeholder="Enter Address Line 2" required />
+              </label>
+              <label>Employee Name
+                <input type="text" placeholder="Enter Employee Name" required />
+                </label>
+                <label>Employee Email
+                  <input type="email" placeholder="Enter Employee Email" required />
+                  </label>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <div className="Location">
+        <div className="LocationGroup">
+          <label>Country</label>
+          <input type="text" placeholder="Enter Country" required />
+          </div>
+          <div className="LocationGroup">
+            <label>City</label>
+            <input type="text" placeholder="Enter City" required />
+          </div>
+          </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+          <div className="Location">
+            <div className="LocationGroup">
+              <label>Region</label>
+              <input type="text" placeholder="Enter Region" required />
+              </div>
+              <div className="LocationGroup">
+                <label>Postal Code</label>
+                <input type="text" placeholder="Enter Postal Code" required />
+                </div>
+           </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+           <div className="Course">
+             <div className="input-group">
+               <label>Course Date</label>
+               <input type="date" placeholder="Enter Course Date" required />
+               </div>
+               <div className="input-group">
+                 <label>Course Time</label>
+                 <input type="time" placeholder="Enter Course Time" required />
+                 </div>
+             </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+            <div className="Course">
+              <div className="input-group">
+                <label>Total Hours</label>
+                <input type="time" placeholder="Enter Total Hours" required />
+                </div>
+                <div className="input-group">
+                  <label>Course Fee</label>
+                  <input type="text" placeholder="Enter Course Fee" required />
+                  </div>
+             </div>
+  
+             <div className="radio">
+              <label htmlFor="vendor" className=" bigger-label">
+                {"Existing Vendor"}     
+                </label>
+                <input type="radio" id="vendor" name="vendor" value="existing vendor" />
+                <label htmlFor="vendor" className=" bigger-label">
+                  {"New Vendor"}     
+                  </label>
+                  <input type="radio" id="vendor" name="vendor" value="new vendor" />
+                  <label htmlFor="vendor" className=" bigger-label">
+                    {"No Vendor"}     
+                    </label>
+                    <input type="radio" id="vendor" name="vendor" value="no vendor" />
+                    </div>
+    </div>
+        
+        <label>Please Download Vendor file below</label>
+        <a href="file:///C:/Users/User/Desktop/TimeTable.pdf" download="TimeTable.pdf"  className="btn">
+        <i className="fa fa-download"></i> Download me</a>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <div className="Button">
+          <input type="submit" value="SUBMIT" className="bigger-button" />
+          </div>
+     </>
   )
-}
+};

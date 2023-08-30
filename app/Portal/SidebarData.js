@@ -41,11 +41,11 @@ const sidebarData = [
     subnav: [
       {
         title: "Request Training",
-        path: "#",
+        path: "/Portal/Training-RequestTraining",
       },
       {
         title: "Status Check",
-        path: "#",
+        path: "/Portal/Training-StatusCheck",
       },
     ],
   },

@@ -39,7 +39,7 @@ export default function NewEmployee() {
         </label>
         <br />
         <div className="radio">
-          <label htmlFor="male" className="bigger-label">
+          <label htmlFor="male" className=" bigger-label">
             {" "}
             Male
           </label>
@@ -90,7 +90,7 @@ export default function NewEmployee() {
       </div>
 
       <div className="Button">
-        <input type="submit" value="Save" className="bigger-button" />
+        <input type="submit" value="Submit" className="bigger-button" />
       </div>
     </>
   );
