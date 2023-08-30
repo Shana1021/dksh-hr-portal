@@ -98,6 +98,7 @@ export default function TrainingRequestTraining() {
     </div>
         
         <label>Please Download Vendor file below</label>
+        {/* This is for testing purpose */}
         <a href="file:///C:/Users/User/Desktop/TimeTable.pdf" download="TimeTable.pdf"  className="btn">
         <i className="fa fa-download"></i> Download me</a>
 
