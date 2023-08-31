@@ -1,0 +1,109 @@
+.training-status-table {
+  width: 100%;
+  border-collapse: collapse;  
+}
+
+.training-status-table thead tr {
+  background-color: #FFFFE0;
+}
+
+.training-status-table th,
+.training-status-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.training-status-table th:nth-child(1),
+.training-status-table td:nth-child(1) {
+  width: 5%;
+}
+
+.training-status-table th:nth-child(2),
+.training-status-table td:nth-child(2) {
+  width: 15%;
+}
+
+.training-status-table th:nth-child(3),
+.training-status-table td:nth-child(3) {
+  width: 10%;
+}
+
+.training-status-table th:nth-child(4),
+.training-status-table td:nth-child(4) {
+  width: 15%;
+}
+
+.training-status-table th:nth-child(5),
+.training-status-table td:nth-child(5) {
+  width: 15%;
+}
+
+.training-status-table th:nth-child(6),
+.training-status-table td:nth-child(6) {
+  width: 20%;
+}
+
+.training-status-table th:nth-child(7),
+.training-status-table td:nth-child(7) {
+  width: 20%;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 5px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px; 
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  margin-right: 25px;
+}
+
+.filter-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #FFFFE0;
+  font-weight:bolder;
+}
+
+.search-icon {
+  margin-left: -25px;
+  position: relative;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.refresh-button {
+  font-size: 12px;
+  padding: 10px 20px;
+  background-color: #FFFFE0; 
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bolder;
+  margin-top: 30px;
+  margin-left: 25px;
+}
