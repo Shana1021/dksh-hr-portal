@@ -9,5 +9,11 @@ export default async function HRPageFetch() {
     hrProfile._id = hrProfile._id.toString();
   }
 
-  return <HRListPage hrProfiles={hrProfiles} />;
+  return (
+    <>
+      {hrProfiles.map((t) => (
+        <HRListPage hrProfiles={hrProfiles} id={t._id} />
+      ))}
+    </>
+  );
 }

@@ -5,15 +5,31 @@ import Table from "../Table";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { FiTrash } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+export default function HRListPage({ hrProfiles, id }) {
+  const router = useRouter();
+  const removeData = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this profile?"
+    );
 
-export default function HRListPage({ hrProfiles }) {
+    if (confirmed) {
+      const res = await fetch(`http://localhost:3000/api/HRStaff?id=${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        router.refresh();
+      }
+    }
+  };
+
   for (const hrProfile of hrProfiles) {
     hrProfile.action = (
       <>
         <button className={styles["edit-button"]}>
           <BiEdit className={styles["icon"]} />
         </button>
-        <button className={styles["delete-button"]}>
+        <button className={styles["delete-button"]} onClick={removeData}>
           <FiTrash className={styles["icon"]} />
         </button>
       </>
