@@ -3,11 +3,8 @@
 import styles from "./onboarding-bc.module.css";
 import Table from "../Table";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function OnboardingBackgroundCheckPage({ employeeProfiles }) {
-  const router = useRouter();
-
   for (const employeeProfile of employeeProfiles) {
     
   }
