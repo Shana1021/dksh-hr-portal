@@ -26,7 +26,7 @@ export default function HRListPage({ hrProfiles, id }) {
   for (const hrProfile of hrProfiles) {
     hrProfile.action = (
       <>
-        <button className={styles["edit-button"]}>
+        <button id={id} className={styles["edit-button"]}>
           <BiEdit className={styles["icon"]} />
         </button>
         <button className={styles["delete-button"]} onClick={removeData}>
