@@ -67,11 +67,11 @@ export default function NewEmployee() {
           number,
         }),
       });
-      // if (res.ok) {
-      //   router.push("/");
-      // } else {
-      //   throw new Error("Failed");
-      // }
+      if (res.ok) {
+        router.push("/Portal/HR-List");
+      } else {
+        throw new Error("Failed");
+      }
     } catch (error) {}
   }; //For form to prevent empty submissions
   return (
