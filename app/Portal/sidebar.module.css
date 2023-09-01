@@ -7,10 +7,6 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
-.sidebar-container.closed {
-  width: 0;
-}
-
 .sidebar {
   background-color: white;
   height: 100%;

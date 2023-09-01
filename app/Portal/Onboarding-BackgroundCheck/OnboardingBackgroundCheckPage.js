@@ -3,36 +3,10 @@
 import styles from "./onboarding-bc.module.css";
 import Table from "../Table";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { BiEdit } from "react-icons/bi";
-import { FiTrash } from "react-icons/fi";
 
 export default function OnboardingBackgroundCheckPage({ employeeProfiles }) {
-  const router = useRouter();
-
   for (const employeeProfile of employeeProfiles) {
-    async function handleEdit() {
-      router.push("/Portal/Onboarding-BackgroundCheck/Employee/" + employeeProfile._id);
-    }
-
-    async function handleDelete() {
-      await fetch("/api/employee/" + employeeProfile._id, {
-        method: "DELETE"
-      });
-
-      router.refresh();
-    }
-
-    employeeProfile.action = (
-      <>
-        <button className="edit-button" onClick={handleEdit}>
-          <BiEdit />
-        </button>
-        <button className="delete-button" onClick={handleDelete}>
-          <FiTrash />
-        </button>
-      </>
-    );
+    
   }
 
   return (
@@ -57,10 +31,8 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles }) {
           {key: "postalCode", title: "Postal Code"},
           {key: "phone", title: "Phone Number"},
           {key: "bcStatus", title: "BC Status"},
-          {key: "emailStatus", title: "Email Status"},
-          {key: "action", title: "Action"}
+          {key: "emailStatus", title: "Email Status"}
         ]}
-        width="1200px"
         height="400px"
       />
       <div className={styles["actions"]}>

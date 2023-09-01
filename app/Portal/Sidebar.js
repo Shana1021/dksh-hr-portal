@@ -1,14 +1,16 @@
 import styles from "./sidebar.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from "react";
 import { signOut } from "next-auth/react";
 import { BiLogOut } from "react-icons/bi";
 import SidebarMenu from "./SidebarMenu";
 import SidebarMenuDropdown from "./SidebarMenuDropdown";
 import sidebarData from "./SidebarData";
 
-export default function Sidebar({ show }) {
+export default forwardRef(function Sidebar({ show }, ref) {
   const [sidebarWidth, setSidebarWidth] = useState(null);
   const sidebarRef = useRef(null);
+
+  useImperativeHandle(ref, () => sidebarRef.current);
 
   useEffect(() => {
     setSidebarWidth(sidebarRef.current.clientWidth);
@@ -16,7 +18,7 @@ export default function Sidebar({ show }) {
 
   return (
     <div
-      className={`${styles["sidebar-container"]} ${show ? "" : styles["closed"]}`}
+      className={styles["sidebar-container"]}
       style={sidebarWidth && {width: show ? sidebarWidth : 0}}
     >
       <div
@@ -44,4 +46,4 @@ export default function Sidebar({ show }) {
       </div>
     </div>
   );
-}
+});
