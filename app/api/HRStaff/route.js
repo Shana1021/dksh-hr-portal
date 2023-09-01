@@ -1,13 +1,44 @@
 import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
+
 //Create
 export async function POST(request) {
-  const { fname, mname, lname } = await request.json();
+  const {
+    fname,
+    mname,
+    lname,
+    empId,
+    password,
+    address1,
+    address2,
+    email,
+    gender,
+    dob,
+    city,
+    state,
+    code,
+    number,
+  } = await request.json();
   const client = await clientPromise;
   const db = await client.db("hr_portal");
   const collection = db.collection("hrstaffs");
-  await collection.insertOne({ fname, mname, lname });
+  await collection.insertOne({
+    fname,
+    mname,
+    lname,
+    empId,
+    password,
+    address1,
+    address2,
+    email,
+    gender,
+    dob,
+    city,
+    state,
+    code,
+    number,
+  });
   return NextResponse.json({ message: "Topic Created" }, { status: 201 });
 }
 
