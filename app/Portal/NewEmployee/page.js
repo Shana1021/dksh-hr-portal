@@ -16,6 +16,7 @@ export default function NewEmployee() {
       setSelectedImage(URL.createObjectURL(file));
     }
   };
+  const [fname, setFname] = useState("");
   return (
     <>
       <div className="Container">

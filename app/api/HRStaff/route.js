@@ -11,14 +11,25 @@ export async function POST(request) {
   return NextResponse.json({ message: "Topic Created" }, { status: 201 });
 }
 
-//Read
+// Read
 export async function GET() {
-  const client = await clientPromise;
-  const db = await client.db("hr_portal");
-  const collection = db.collection("hrstaffs");
-  const staffList = await collection.find().toArray();
-  return NextResponse.json({ staffList });
+  try {
+    const client = await clientPromise;
+    const db = await client.db("hr_portal");
+    const collection = db.collection("hrstaffs");
+    const staffList = await collection.find().toArray();
+    return NextResponse.json({ staffList });
+  } catch (error) {
+    return new NextResponse(
+      JSON.stringify({
+        message: "Error retrieving staff list",
+        error: error.message,
+      }),
+      { status: 500 }
+    );
+  }
 }
+
 //Delete
 export async function DELETE(request) {
   const { searchParams } = new URL(request.url);
