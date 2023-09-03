@@ -8,7 +8,6 @@ export default async function HRPageFetch() {
   for (const hrProfile of hrProfiles) {
     hrProfile._id = hrProfile._id.toString();
   }
-
   return (
     <>
       {hrProfiles.map((t) => (
