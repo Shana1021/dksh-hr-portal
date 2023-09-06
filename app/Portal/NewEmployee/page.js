@@ -300,6 +300,48 @@ export default function NewEmployee() {
                   ></i>
                 </div>
               </div>
+            {/* Position */}
+            <div className={styles.row}>
+            <div className={styles.colHalf}>
+            <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <input
+                type="text"
+                placeholder="Position"
+                className={styles.input} 
+              />
+              <div className={styles.inputIcon}>
+                <i className="fa fa-briefcase"></i>
+              </div>
+              </div>
+            </div>
+            {/* Department */}
+            <div className={styles.colHalf}>
+            <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <input
+                type="text"
+                placeholder="Department"
+                className={styles.input} 
+              />
+              <div className={styles.inputIcon}>
+                <i className="fa fa-building"></i>
+              </div>
+            </div>
+          </div>
+          </div>
+          {/* Image Upload */}
+          <div className={styles.row}>
+            <h5 className={styles.h5}>Profile Image Upload</h5>
+          <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <input
+                type="file"
+                accept="image/*"
+                className={styles.input}
+              />
+              <div className={styles.inputIcon}>
+                <i className="fa fa-upload"></i>
+              </div>
+            </div>
+          </div>
         </div>
             {/* Submit Button */}
             <div className={styles.row}>
