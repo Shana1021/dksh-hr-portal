@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import "./style.css";
+import styles from"./emp.module.css";
+import 'font-awesome/css/font-awesome.min.css';
 import { useRouter } from "next/navigation";
 import { Router } from "react-router-dom";
 
@@ -76,148 +77,257 @@ export default function NewEmployee() {
   }; //For form to prevent empty submissions
   return (
     <>
-      <div className="Container">
-        <input
-          type="text"
-          placeholder="Enter First Name"
-          required
-          onChange={(e) => setFname(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Enter Employee Email"
-          required
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Middle Name"
-          required
-          onChange={(e) => setMname(e.target.value)}
-        />
-        <input
-          type={passwordVisible ? "text" : "password"}
-          placeholder="Enter Employee Password"
-          required
-          onChange={(e) => setPassword(e.target.value.bscrypt)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Last Name"
-          required
-          onChange={(e) => setLname(e.target.value)}
-        />
-        <label>
-          Show Password
-          <input type="checkbox" onClick={togglePasswordVisibility} />
-        </label>
+     <div className={styles.formBody}>
+      <div className={styles.formContainer}>
+        <div className={styles.formWrapper}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            {/* Personal Details */}
+            <div className={styles.row}>
+              <h4 className={styles.h4}>Personal Details</h4>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      value={fname}
+                      onChange={(e) => setFname(e.target.value)}
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-user"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      value={lname}
+                      onChange={(e) => setLname(e.target.value)}
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-user"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  value={number}
+                  onChange={(e) => setNumber(e.target.value)}
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-phone"></i>
+                </div>
+              </div>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                  <h5 className={styles.h5}>Date of Birth</h5>
+                  <div className={styles.inputGroup}>
+                    <div className={styles.colThird}>
+                      <input
+                        type="date"
+                        value={dob}
+                        onChange={(e) => setDOB(e.target.value)}
+                        className={styles.input}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                  <h5 className={styles.h5}>Gender</h5>
+                  <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                    <input
+                      id="gender-male"
+                      type="radio"
+                      name="gender"
+                      value="Male"
+                      checked={gender === "Male"}
+                      onChange={() => setGender("Male")}
+                      className={styles.radioInput}
+                    />
+                    <label className={styles.label} htmlFor="gender-male">Male</label>
+                    <input
+                      id="gender-female"
+                      type="radio"
+                      name="gender"
+                      value="Female"
+                      checked={gender === "Female"}
+                      onChange={() => setGender("Female")}
+                      className={styles.radioInput}
+                    />
+                    <label className={styles.label} htmlFor="gender-female">Female</label>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <input
-          type="text"
-          placeholder="Enter Employee ID"
-          required
-          onChange={(e) => setEmpId(e.target.value)}
-        />
-        <label htmlFor="male" className="bigger-label">
-          Gender
-        </label>
-        <br />
-        <div className="radio">
-          <label htmlFor="male" className=" bigger-label">
-            {" "}
-            Male
-          </label>
-          <input
-            type="radio"
-            id="male"
-            name="malefemale"
-            value="male"
-            onChange={(e) => setGender(e.target.value)}
-          />
-          <label htmlFor="female" className="bigger-label">
-            Female
-          </label>
-          <input
-            type="radio"
-            id="female"
-            name="malefemale"
-            value="female"
-            onChange={(e) => setGender(e.target.value)}
-          />
-        </div>
+            {/* Residential Details */}
+            <div className={styles.row}>
+              <h4 className={styles.h4}>Residential Details</h4>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="text"
+                  placeholder="Address Line 1"
+                  value={address1}
+                  onChange={(e) => setAddress1(e.target.value)}
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-map-marker"></i>
+                </div>
+              </div>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="text"
+                  placeholder="Address Line 2"
+                  value={address2}
+                  onChange={(e) => setAddress2(e.target.value)}
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-map-marker"></i>
+                </div>
+              </div>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                    <input
+                      type="text"
+                      placeholder="Postal Code"
+                      value={code}
+                      onChange={(e) => setCode(e.target.value)}
+                      className={styles.input} 
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                    <input
+                      type="text"
+                      placeholder="City"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      className={styles.input} 
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                    <input
+                      type="text"
+                      placeholder="State"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      className={styles.input} 
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                    <input
+                      type="text"
+                      placeholder="Country"
+                      className={styles.input} 
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </form>
+            
+            {/* Account Details */}
+            <form className={styles.form}>
+            <div className={styles.row}>
+              <h4 className={styles.h4}>Account Details</h4>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={styles.input} 
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-envelope"></i>
+                </div>
+              </div>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="text"
+                  placeholder="Employee ID"
+                  value={empId}
+                  onChange={(e) => setEmpId(e.target.value)}
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-id-card"></i>
+                </div>
+              </div>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type={passwordVisible ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={styles.input} 
+                />
+                <div className={styles.inputIcon}>
+                  <i
+                    className={`fa ${passwordVisible ? "fa-eye" : "fa-eye-slash"}`}
+                    onClick={togglePasswordVisibility}
+                  ></i>
+                </div>
+              </div>
+            </div>
 
-        <input
-          type="text"
-          placeholder="Enter Address Line 1"
-          required
-          onChange={(e) => setAddress1(e.target.value)}
-        />
+            {/* Terms and Conditions */}
+            <div className={styles.row}>
+              <h4 className={styles.h4}>Terms and Conditions</h4>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  id="terms"
+                  type="checkbox"
+                  className={styles.checkboxInput}
+                />
+                <label className={styles.label} htmlFor="terms">
+                  I accept the terms and conditions for signing up to this
+                  service, and hereby confirm I have read the privacy policy.
+                </label>
+              </div>
+            </div>
 
-        <input type="date" required onChange={(e) => setDOB(e.target.value)} />
-
-        <input
-          type="text"
-          placeholder="Enter Address Line 2"
-          required
-          onChange={(e) => setAddress2(e.target.value)}
-        />
-        <div className="city-state-container">
-          <input
-            type="text"
-            placeholder="Enter City"
-            required
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Enter State"
-            required
-            onChange={(e) => setState(e.target.value)}
-          />
-        </div>
-
-        {/* <div className="image-upload">
-          <label htmlFor="image">Upload Image: </label>
-          <input
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-         
-          {selectedImage && (
-            <img
-              src={selectedImage}
-              alt="Selected Employee Image"
-              className="uploaded-image"
-            />
-          )}
-        </div> */}
-
-        <div className="postal-phone-container">
-          <input
-            type="text"
-            placeholder="Enter Postal Code"
-            required
-            onChange={(e) => setCode(e.target.value)}
-          />
-          <input
-            type="tel"
-            placeholder="Enter Phone Number"
-            pattern={"[0-9]{2}-[0-9]{3}-[0-9]{4}"}
-            required
-            onChange={(e) => setNumber(e.target.value)}
-          />
+            {/* Submit Button */}
+            <div className={styles.row}>
+            <div className={styles.inputGroup}>
+                <button type="submit" className={styles.button}>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-
-      <div className="Button">
-        <input
-          type="submit"
-          value="Submit"
-          className="bigger-button"
-          onClick={handleSubmit}
-        />
       </div>
     </>
   );
