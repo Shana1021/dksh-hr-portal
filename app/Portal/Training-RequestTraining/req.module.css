@@ -1,0 +1,312 @@
+/* req.module.css */
+
+/* Body styles */
+.formBody {
+  padding: 1em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #b9b9b9;
+  background-color: #e3e3e3;
+}
+
+/* Form container styles */
+.formContainer {
+  max-width: 70em;
+  max-height: max-content;
+  padding: 1em 3em 2em 3em;
+  margin: 10px auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading styles */
+.h4, .h5 {
+  color: #f0a500;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Input and Select styles */
+.input,
+.radioInput + .label,
+.checkboxInput + .label:before,
+.select option,
+.select {
+  width: 100%;
+  height: 3.5em;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: 0.35s ease-in-out;
+}
+
+.input:focus {
+  outline: 0;
+  border-color: #bd8200;
+}
+
+.input:focus + .inputIcon i {
+  color: #f0a500;
+}
+
+.input:focus + .inputIcon:after {
+  border-right-color: #f0a500;
+}
+
+.radioInput {
+  display: none;
+}
+
+.radioInput + .label,
+.select {
+  display: inline-block;
+  width: 50%;
+  height: 3.2em;
+  padding-top: 12px;
+  text-align: center;
+  float: none;
+  border-radius: 0;
+}
+
+.radioInput + .label:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.radioInput + .label:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.radioInput + .label i {
+  padding-right: 0.4em;
+}
+
+.radioInput:checked + .label,
+.input:checked + .label:before,
+.select:focus,
+.select:active {
+  background-color: #f0a500;
+  color: #fff;
+  border-color: #bd8200;
+}
+
+.checkboxInput {
+  display: none;
+}
+
+.checkboxInput + .label {
+  position: relative;
+  display: block;
+  padding-left: 2em;
+}
+
+.checkboxInput + .label:before {
+  position: absolute;
+  top: 0.2em;
+  left: 0;
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0;
+  content: "";
+}
+
+.checkboxInput + .label:after {
+  position: absolute;
+  top: 0.70em;
+  left: 0.4em;
+  font-size: 0.8em;
+  color: #fff;
+  opacity: 0;
+  font-family: FontAwesome;
+  content: "\f00c";
+}
+
+.input[id="terms"] + .label {
+  font-size: 13px;
+}
+
+.input:checked + .label:after {
+  opacity: 1;
+}
+
+.select {
+  height: 3.4em;
+  line-height: 2;
+}
+
+.select:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.select:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.select:focus,
+.select:active {
+  outline: 0;
+}
+
+.select option {
+  background-color: #f0a500;
+  color: #fff;
+}
+
+/* Spacing between input fields */
+.inputGroup {
+  margin-bottom: 1em;
+}
+
+/* Padding for input fields */
+.inputGroup input {
+  padding: 1.2em;
+}
+
+.inputGroup:before,
+.inputGroup:after {
+  content: "";
+  display: table;
+}
+
+.inputGroup:after {
+  clear: both;
+}
+
+.inputGroupIcon {
+  position: relative;
+}
+
+.inputGroupIcon input {
+  padding-left: 4.4em;
+}
+
+.inputGroupIcon .inputIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.4em;
+  height: 3.4em;
+  line-height: 3.4em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.inputGroupIcon .inputIcon:after {
+  position: absolute;
+  top: 0.6em;
+  bottom: 0.6em;
+  left: 3.4em;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  transition: 0.35s ease-in-out;
+}
+
+.inputGroupIcon .inputIcon i {
+  transition: 0.35s ease-in-out;
+}
+
+/* Row and Column styles */
+.row {
+  zoom: 0;
+}
+
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+
+.row:after {
+  clear: both;
+}
+
+.colHalf {
+  padding-right: 10px;
+  float: left;
+  width: 50%;
+}
+
+.colHalf:last-of-type {
+  padding-right: 0;
+}
+
+.colThird {
+  padding-right: 10px;
+  float: left;
+  width: 100%;
+}
+
+.colThird:last-of-type {
+  padding-right: 0;
+}
+
+/* Button styles */
+.button {
+  background-color: #de3737;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  margin-top: 11em; /* Increase the margin above the button */
+  padding: 1em 2.5em;
+  text-decoration: none;
+  width: 100%;
+  height: 3em;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+}
+
+/* Form wrapper styles */
+.formWrapper {
+  display: flex;
+  justify-content: space-between;
+  border-right: 2px solid #ffffff; /* Vertical line separator */
+  padding: 0 10px; /* Add some spacing */
+}
+
+/* Form styles */
+.form {
+  width: 100%; /* Adjust the width as needed */
+  padding: 0 10px; /* Add some padding to form sections */
+}
+
+/* Responsive styles for smaller screens */
+@media only screen and (max-width: 768px) {
+  .formWrapper {
+    flex-direction: column;
+    border-right: none; /* Remove separator on small screens */
+    padding: 0; /* Reset padding */
+  }
+
+  .form {
+    width: 100%;
+    padding: 0; /* Reset padding */
+  }
+
+  .colHalf {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .button {
+    margin-top: 1em; /* Increase the margin above the button */
+    padding: 1.2em 2.5em; /* Increase button padding for better spacing */
+  }
+}
