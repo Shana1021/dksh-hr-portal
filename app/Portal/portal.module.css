@@ -4,7 +4,7 @@
 }
 
 .portal-content {
-  transition: width 0.5s ease;
+  flex-grow: 1;
 }
 
 .portal-header {

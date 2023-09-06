@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function OnboardingBackgroundCheckPage({ employeeProfiles }) {
   for (const employeeProfile of employeeProfiles) {
-    
+    // TODO
   }
 
   return (
@@ -14,21 +14,14 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles }) {
       <Table
         data={employeeProfiles}
         columns={[
-          {key: "_id", title: "ID"},
+          {key: "employeeId", title: "Employee ID"},
           {key: "firstName", title: "First Name"},
           {key: "middleName", title: "Middle Name"},
           {key: "lastName", title: "Last Name"},
-          {key: "employeeId", title: "Employee ID"},
           {key: "gender", title: "Gender"},
-          {key: "dob", title: "D.O.B"},
           {key: "email", title: "Email"},
           {key: "position", title: "Position"},
           {key: "department", title: "Department"},
-          {key: "addressLine1", title: "Address Line 1"},
-          {key: "addressLine2", title: "Address Line 2"},
-          {key: "city", title: "City"},
-          {key: "state", title: "State"},
-          {key: "postalCode", title: "Postal Code"},
           {key: "phone", title: "Phone Number"},
           {key: "bcStatus", title: "BC Status"},
           {key: "emailStatus", title: "Email Status"}
