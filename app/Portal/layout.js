@@ -11,8 +11,6 @@ import sidebarData from "./SidebarData";
 
 export default function PortalLayout({ children }) {
   const { status } = useSession();
-  const pathname = usePathname();
-  const [showSidebar, setShowSidebar] = useState(true);
 
   if (status === "loading") {
     return <>Loading...</>;
@@ -22,6 +20,29 @@ export default function PortalLayout({ children }) {
     signIn();
     return <></>;
   }
+
+  return <Portal>{children}</Portal>;
+}
+
+function Portal({ children }) {
+  const pathname = usePathname();
+  const windowWidth = useSyncExternalStore(
+    callback => {
+      window.addEventListener("resize", callback);
+      return () => {
+        window.removeEventListener("resize", callback);
+      };
+    },
+    () => window.innerWidth,
+    () => 0
+  );
+  const sidebarRef = useRef(null);
+  const [sidebarWidth, setSidebarWidth] = useState(null);
+  const [showSidebar, setShowSidebar] = useState(true);
+
+  useEffect(() => {
+    setSidebarWidth(sidebarRef.current.clientWidth);
+  }, []);
 
   let headerTitle
   for (const menu of sidebarData) {
@@ -41,8 +62,11 @@ export default function PortalLayout({ children }) {
 
   return (
     <div className={styles["portal-main"]}>
-      <Sidebar show={showSidebar} />
-      <div className={styles["portal-content"]}>
+      <Sidebar ref={sidebarRef} show={showSidebar} />
+      {sidebarWidth && <div
+        className={styles["portal-content"]}
+        style={{width: showSidebar ? windowWidth - sidebarWidth : windowWidth}}
+      >
         <div className={styles["portal-header"]}>
           <AiOutlineMenu
             className={styles["portal-header-menu"]}
@@ -65,7 +89,7 @@ export default function PortalLayout({ children }) {
           <span className={styles["portal-header-title"]}>{headerTitle}</span>
         </div>
         {children}
-      </div>
+      </div>}
     </div>
   );
 }
