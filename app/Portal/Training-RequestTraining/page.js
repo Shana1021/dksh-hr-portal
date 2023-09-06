@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import "./style.css";
+import "./req.module.css";
 
 export default function TrainingRequestTraining() {
    // To store the vendor code
