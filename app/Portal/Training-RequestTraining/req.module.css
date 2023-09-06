@@ -21,10 +21,28 @@
 }
 
 /* Heading styles */
-.h4, .h5 {
+.h4 {
   color: #f0a500;
   margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+.h5 {
+  color: #8d8d8d;
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+/*Download link*/
+.link {
+  margin-top: 3.5em;
   margin-bottom: 0.5em;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #de3737;
+
 }
 
 /* Input and Select styles */
@@ -63,11 +81,11 @@
 .radioInput + .label,
 .select {
   display: inline-block;
-  width: 50%;
+  width: 149px;
   height: 3.2em;
   padding-top: 12px;
   text-align: center;
-  float: none;
+  float: left;
   border-radius: 0;
 }
 
@@ -257,7 +275,7 @@
   display: flex;
   font-size: 16px;
   justify-content: center;
-  margin-top: 11em; /* Increase the margin above the button */
+  margin-top: 1em; /* Increase the margin above the button */
   padding: 1em 2.5em;
   text-decoration: none;
   width: 100%;
@@ -309,4 +327,11 @@
     margin-top: 1em; /* Increase the margin above the button */
     padding: 1.2em 2.5em; /* Increase button padding for better spacing */
   }
+
+.input-group label[for="eVendor"],
+.input-group label[for="newVendor"],
+.input-group label[for="noVendor"] {
+    display: inline; /* Display the label inline with the radio button */
+    margin-left: 5px; /* Add spacing between radio button and label */
+}
 }

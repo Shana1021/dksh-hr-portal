@@ -129,14 +129,15 @@ export default function NewEmployee() {
               <div className={styles.row}>
                 <div className={styles.colHalf}>
                   <h5 className={styles.h5}>Date of Birth</h5>
-                  <div className={styles.inputGroup}>
-                    <div className={styles.colThird}>
+                  <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                       <input
                         type="date"
                         value={dob}
                         onChange={(e) => setDOB(e.target.value)}
                         className={styles.input}
                       />
+                      <div className={styles.inputIcon}>
+                      <i className="fa fa-calendar"></i>
                     </div>
                   </div>
                 </div>
@@ -299,24 +300,7 @@ export default function NewEmployee() {
                   ></i>
                 </div>
               </div>
-            </div>
-
-            {/* Terms and Conditions */}
-            <div className={styles.row}>
-              <h4 className={styles.h4}>Terms and Conditions</h4>
-              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
-                <input
-                  id="terms"
-                  type="checkbox"
-                  className={styles.checkboxInput}
-                />
-                <label className={styles.label} htmlFor="terms">
-                  I accept the terms and conditions for signing up to this
-                  service, and hereby confirm I have read the privacy policy.
-                </label>
-              </div>
-            </div>
-
+        </div>
             {/* Submit Button */}
             <div className={styles.row}>
             <div className={styles.inputGroup}>

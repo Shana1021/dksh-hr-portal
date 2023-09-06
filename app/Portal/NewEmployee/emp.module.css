@@ -30,7 +30,6 @@
 /* Input and Select styles */
 .input,
 .radioInput + .label,
-.checkboxInput + .label:before,
 .select option,
 .select {
   width: 100%;
@@ -92,38 +91,6 @@
   background-color: #f0a500;
   color: #fff;
   border-color: #bd8200;
-}
-
-.checkboxInput {
-  display: none;
-}
-
-.checkboxInput + .label {
-  position: relative;
-  display: block;
-  padding-left: 2em;
-}
-
-.checkboxInput + .label:before {
-  position: absolute;
-  top: 0.2em;
-  left: 0;
-  display: block;
-  width: 1.5em;
-  height: 1.5em;
-  padding: 0;
-  content: "";
-}
-
-.checkboxInput + .label:after {
-  position: absolute;
-  top: 0.70em;
-  left: 0.4em;
-  font-size: 0.8em;
-  color: #fff;
-  opacity: 0;
-  font-family: FontAwesome;
-  content: "\f00c";
 }
 
 .input[id="terms"] + .label {
@@ -257,7 +224,7 @@
   display: flex;
   font-size: 16px;
   justify-content: center;
-  margin-top: 11em; /* Increase the margin above the button */
+  margin-top: 8em; /* Increase the margin above the button */
   padding: 1em 2.5em;
   text-decoration: none;
   width: 100%;
