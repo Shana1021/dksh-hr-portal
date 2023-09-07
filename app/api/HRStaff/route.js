@@ -21,7 +21,7 @@ export async function POST(request) {
     number,
   } = await request.json();
   const client = await clientPromise;
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   const collection = db.collection("hrstaffs");
   await collection.insertOne({
     fname,
@@ -46,7 +46,7 @@ export async function POST(request) {
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = await client.db("hr_portal");
+    const db = await client.db();
     const collection = db.collection("hrstaffs");
     const staffList = await collection.find().toArray();
     return NextResponse.json({ staffList });
@@ -66,7 +66,7 @@ export async function DELETE(request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id").trim();
   const client = await clientPromise;
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   const collection = db.collection("hrstaffs");
   await collection.deleteOne({ _id: new ObjectId(id) });
 

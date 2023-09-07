@@ -8,7 +8,7 @@ export default async function Employee({ params }) {
   }
 
   const client = await clientPromise;
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   const employeeProfile = await db.collection("employee_profiles").findOne({_id: new ObjectId(params.id)});
   employeeProfile._id = employeeProfile._id.toString();
 

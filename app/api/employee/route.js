@@ -5,7 +5,7 @@ export async function POST(request) {
   const formData = await request.formData();
 
   const client = await clientPromise;
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   await db.collection("employee_profiles").insertOne({
     firstName: formData.get("firstName"),
     middleName: formData.get("middleName"),
@@ -26,5 +26,5 @@ export async function POST(request) {
     emailStatus: formData.get("emailStatus")
   });
 
-  return NextResponse.json({});
+  return new NextResponse();
 }
