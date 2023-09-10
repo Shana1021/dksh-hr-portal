@@ -1,80 +1,42 @@
 "use client";
-import { useState } from "react"; // Import useState
+
 import styles from "./ofc.module.css";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Table from "../Table";
-import Link from "next/link";
+import Checklist from "../Checklist";
 
-export default function ChecklistPage({ checklistItems }) {
-  const [showModal, setShowModal] = useState(false);
-  const [activeList, setActiveList] = useState(1); // Track the active list (1 or 2)
+export default function ChecklistPage({ offboardingChecklist, todoChecklist, itemChecklist }) {
+  const router = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const lists = [
-    [
-      "Task 1",
-      "Task 2",
-      // Add more tasks as needed for List 1
-    ],
-    [
-      "Task A",
-      "Task B",
-      // Add more tasks as needed for List 2
-    ],
+  const checklists = selectedIndex !== null && [
+    {
+      title: "To Do",
+      items: todoChecklist.map(todo => ({
+        ...todo,
+        checked: !!offboardingChecklist[selectedIndex].todos[todo._id]
+      }))
+    },
+    {
+      title: "Items to Return",
+      items: itemChecklist.map(item => ({
+        ...item,
+        checked: !!offboardingChecklist[selectedIndex].items[item._id]
+      }))
+    }
   ];
 
-  const modalContent = (
-    <div className={styles["modal-overlay"]}>
-    <div className={styles["modal"]}>
-      <div className={styles["modal-content"]}>
-        <h2>Checklist</h2>
-        {/* Tabs for switching between lists */}
-        <div className={styles["tabs"]}>
-            <div
-              className={`${styles["tab"]} ${
-                activeList === 1 ? styles["active-tab"] : ""
-              }`}
-              onClick={() => setActiveList(1)}
-            >
-              List 1
-            </div>
-            <div
-              className={`${styles["tab"]} ${
-                activeList === 2 ? styles["active-tab"] : ""
-              }`}
-              onClick={() => setActiveList(2)}
-            >
-              List 2
-            </div>
-          </div>
-          {/* Display the active list */}
-          <ul className={styles["checklist"]}>
-            {lists[activeList - 1].map((task, index) => (
-              <li key={index}>
-                <label>
-                  <input type="checkbox" /> {task}
-                </label>
-              </li>
-            ))}
-          </ul>
-          <div className={styles["button-container"]}>
-            <button className={styles["popup-button"]} onClick={() => setShowModal(false)} >Save</button>
-            <button className={styles["popup-button"]} onClick={() => setShowModal(false)} >Close</button>
-          </div>
-        </div>
+  for (const [index, employee] of offboardingChecklist.entries()) {
+    employee.checklist = (
+      <div className={styles["actions"]}>
+        <button className="module-button" onClick={() => { setSelectedIndex(index); }}>
+          Checklist
+        </button>
       </div>
-    </div>
-  );
-
-  for (const item of checklistItems) {
-    item.checklist = (
-      <>
-        <div className={styles["actions"]}>
-          <button className="module-button" onClick={() => setShowModal(true)}>
-            Checklist
-          </button>
-      </div>
-      </>
     );
   }
+
   return (
     <div className={styles["container"]}>
       <div className={styles["container-search-button"]}>
@@ -92,12 +54,32 @@ export default function ChecklistPage({ checklistItems }) {
           { key: "aor", title: "AOR" },
           { key: "checklist", title: "Action" }
         ]}
-        data={checklistItems}
+        data={offboardingChecklist}
         height="400px"
       />
+      {checklists && (
+        <Checklist
+          checklists={checklists}
+          onSave={async (checked, addedItems) => {
+            setSelectedIndex(null);
 
-       {/*Conditionally render the modal */}
-       {showModal && modalContent}
+            await fetch("/api/checklist/offboarding", {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify({
+                _id: offboardingChecklist[selectedIndex]._id,
+                todos: todoChecklist.map((todo, index) => [todo._id, checked[0][index]])
+                  .concat(addedItems[0].map(todo => [todo._id, todo.checked])),
+                items: itemChecklist.map((item, index) => [item._id, checked[1][index]])
+                  .concat(addedItems[1].map(item => [item._id, item.checked]))
+              })
+            });
+
+            router.refresh();
+          }}
+          onClose={() => setSelectedIndex(null)}
+        />
+      )}
     </div>
   );
 }

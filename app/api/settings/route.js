@@ -5,7 +5,7 @@ export async function PUT(request) {
   const formData = await request.formData();
 
   const client = await clientPromise;
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   await db.collection("settings").updateOne(
     {},
     {

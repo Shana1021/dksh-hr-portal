@@ -13,7 +13,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         const client = await clientPromise;
-        const db = client.db("hr_portal");
+        const db = client.db();
         const hrProfile = await db.collection("hr_profiles").findOne({email: credentials.email});
         
         if (hrProfile && await bcrypt.compare(credentials.password, hrProfile.password)) {

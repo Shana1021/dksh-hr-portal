@@ -6,7 +6,6 @@ export async function PUT(request, { params }) {
   const { id } = params;
   const {
     newFname: fname,
-    newMname: mname,
     newLname: lname,
     newEmpId: empId,
     newAddress1: address1,
@@ -20,7 +19,7 @@ export async function PUT(request, { params }) {
     newNumber: number,
   } = await request.json();
   const client = await clientPromise;
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   const collection = db.collection("hrstaffs");
   const objectId = new ObjectId(id);
 
@@ -29,7 +28,6 @@ export async function PUT(request, { params }) {
     {
       $set: {
         fname,
-        mname,
         lname,
         empId,
         address1,
@@ -50,7 +48,7 @@ export async function GET(request, { params }) {
   const client = await clientPromise;
   const id = params;
   const objectId = new ObjectId(id);
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   const collection = db.collection("hrstaffs");
   const topic = await collection.findOne({ _id: objectId });
   return NextResponse.json({ topic }, { status: 200 });

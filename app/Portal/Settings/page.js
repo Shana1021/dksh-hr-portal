@@ -3,7 +3,7 @@ import SettingsPage from "./SettingsPage";
 
 export default async function Settings() {
   const client = await clientPromise;
-  const db = await client.db("hr_portal");
+  const db = await client.db();
   const settings = await db.collection("settings").findOne();
   
   return (
