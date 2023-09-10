@@ -6,7 +6,7 @@ import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { FiTrash } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-export default function HRListPage({ hrProfiles, id }) {
+export default function HRListPage({ hrProfiles }) {
   const router = useRouter();
   const removeData = async () => {
     const confirmed = window.confirm(
@@ -14,11 +14,14 @@ export default function HRListPage({ hrProfiles, id }) {
     );
 
     if (confirmed) {
-      const res = await fetch(`http://localhost:3000/api/HRStaff?id=${id}`, {
-        method: "DELETE",
-      });
-      if (res.ok) {
-        router.refresh();
+      for (const hrProfile of hrProfiles) {
+        const id = hrProfile.id;
+        const res = await fetch(`http://localhost:3000/api/HRStaff?id=${id}`, {
+          method: "DELETE",
+        });
+        if (res.ok) {
+          router.refresh();
+        }
       }
     }
   };
@@ -26,10 +29,14 @@ export default function HRListPage({ hrProfiles, id }) {
   for (const hrProfile of hrProfiles) {
     hrProfile.action = (
       <>
-        <button id={id} className={styles["edit-button"]}>
+        <button id={hrProfile.id} className={styles["edit-button"]}>
           <BiEdit className={styles["icon"]} />
         </button>
-        <button className={styles["delete-button"]} onClick={removeData}>
+        <button
+          className={styles["delete-button"]}
+          onClick={removeData}
+          id={hrProfile.id}
+        >
           <FiTrash className={styles["icon"]} />
         </button>
       </>

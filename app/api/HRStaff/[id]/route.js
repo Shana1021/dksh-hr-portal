@@ -6,7 +6,6 @@ export async function PUT(request, { params }) {
   const { id } = params;
   const {
     newFname: fname,
-    newMname: mname,
     newLname: lname,
     newEmpId: empId,
     newAddress1: address1,
@@ -29,7 +28,6 @@ export async function PUT(request, { params }) {
     {
       $set: {
         fname,
-        mname,
         lname,
         empId,
         address1,

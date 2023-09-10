@@ -6,7 +6,6 @@ import { ObjectId } from "mongodb";
 export async function POST(request) {
   const {
     fname,
-    mname,
     lname,
     empId,
     password,
@@ -25,7 +24,6 @@ export async function POST(request) {
   const collection = db.collection("hrstaffs");
   await collection.insertOne({
     fname,
-    mname,
     lname,
     empId,
     password,
