@@ -14,5 +14,6 @@ export default function Index() {
     redirect("/Login");
   }
 
+  // test
   redirect("/Portal/Dashboard");
 }
