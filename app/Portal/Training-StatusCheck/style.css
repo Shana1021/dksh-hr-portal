@@ -1,19 +1,23 @@
+/* training.css */ 
+/* Default styles for larger screens */
 .training-status-table {
   width: 100%;
-  border-collapse: collapse;  
+  border-collapse: collapse;
 }
 
 .training-status-table thead tr {
   background-color: #FFFFE0;
 }
 
+/* Center text in both header cells and data cells */
 .training-status-table th,
 .training-status-table td {
   padding: 10px;
-  text-align: left;
+  text-align: center; /* Center the text horizontally */
   border: 1px solid #ddd;
 }
 
+/* Set specific widths for table columns on larger screens */
 .training-status-table th:nth-child(1),
 .training-status-table td:nth-child(1) {
   width: 5%;
@@ -49,6 +53,71 @@
   width: 20%;
 }
 
+/* Styles for medium screens (e.g., tablets) */
+@media screen and (max-width: 768px) {
+  .training-status-table {
+    margin-left: auto; /* Center the table horizontally */
+    margin-right: auto; /* Center the table horizontally */
+  }
+
+  .training-status-table th,
+  .training-status-table td {
+    padding: 5px; /* Reduce padding for medium screens */
+    text-align: center; /* Center the text horizontally */
+  }
+
+  /* Adjust column widths or hide some columns for smaller screens*/
+  .training-status-table th:nth-child(1),
+  .training-status-table td:nth-child(1),
+  .training-status-table th:nth-child(2),
+  .training-status-table td:nth-child(2),
+  .training-status-table th:nth-child(3),
+  .training-status-table td:nth-child(3),
+  .training-status-table th:nth-child(4),
+  .training-status-table td:nth-child(4),
+  .training-status-table th:nth-child(5),
+  .training-status-table td:nth-child(5),
+  .training-status-table th:nth-child(6),
+  .training-status-table td:nth-child(6),
+  .training-status-table th:nth-child(7),
+  .training-status-table td:nth-child(7) {
+    width: auto; 
+  }
+}
+
+/* Styles for small screens (e.g., smartphones) */
+@media screen and (max-width: 576px) {
+  .training-status-table {
+    margin-left: auto; /* Center the table horizontally */
+    margin-right: auto; /* Center the table horizontally */
+  }
+
+  .training-status-table th,
+  .training-status-table td {
+    padding: 3px; /* Further reduce padding for small screens */
+    text-align: center; /* Center the text horizontally */
+  }
+
+  /* Adjust column widths or hide some columns for small screens*/
+  .training-status-table th:nth-child(1),
+  .training-status-table td:nth-child(1),
+  .training-status-table th:nth-child(2),
+  .training-status-table td:nth-child(2),
+  .training-status-table th:nth-child(3),
+  .training-status-table td:nth-child(3),
+  .training-status-table th:nth-child(4),
+  .training-status-table td:nth-child(4),
+  .training-status-table th:nth-child(5),
+  .training-status-table td:nth-child(5),
+  .training-status-table th:nth-child(6),
+  .training-status-table td:nth-child(6),
+  .training-status-table th:nth-child(7),
+  .training-status-table td:nth-child(7) {
+    width: auto; 
+  }
+}
+
+
 .checkbox-group {
   display: flex;
   align-items: center;
@@ -68,31 +137,48 @@
   height: 20px; 
 }
 
-.filter-container {
+/* Updated Style for the search bar */
+.search-bar {
+  width: 300px;
+  height: 50px;
+  margin: 10px;
+  margin-left: auto; /* Add margin-left: auto; to push the search bar to the right */
+  background-color: #b0c4de;
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-  margin-right: 25px;
+  align-items: center;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
-.filter-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #FFFFE0;
-  font-weight:bolder;
+.search-bar input[type="text"] {
+  flex: 1;
+  padding: 10px; /* Increase padding for better input spacing */
+  border: none;
+  background-color: transparent; /* Transparent input background */
+  font-size: 16px; /* Larger font size for readability */
+  color: #fff; /* Set text color to white */
+  outline: none;
 }
 
+/* Style for the search icon */
 .search-icon {
-  margin-left: -25px;
-  position: relative;
-  cursor: pointer;
+  font-size: 24px; /* Slightly larger icon size */
+  margin-right: 15px;
+  color: #fff; /* Set icon color to white */
+  cursor: pointer; /* Add a pointer cursor for interaction */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.search-icon:hover {
+  color: #f39c12; /* Change icon color on hover */
 }
 
 .button-container {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  justify-content: flex-end; 
+  margin-top: 20px; 
 }
 
 .refresh-button {
@@ -105,5 +191,41 @@
   cursor: pointer;
   font-weight: bolder;
   margin-top: 30px;
-  margin-left: 25px;
+  margin-left: 15px;
+}
+
+/* Styles for 640x480 resolution */
+@media screen and (max-width: 640px) {
+  .training-status-table th,
+  .training-status-table td {
+    width: auto; 
+  }
+
+  .search-bar {
+    width: auto; 
+  }
+}
+
+/* Styles for 800x600 resolution */
+@media screen and (max-width: 800px) {
+  .training-status-table th,
+  .training-status-table td {
+    width: auto; 
+  }
+
+  .search-bar {
+    width: auto; 
+  }
+}
+
+/* Styles for 1024x768 resolution */
+@media screen and (max-width: 1024px) {
+  .training-status-table th,
+  .training-status-table td {
+    width: auto; 
+  }
+
+  .search-bar {
+    width: auto; 
+  }
 }

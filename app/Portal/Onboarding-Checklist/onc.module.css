@@ -1,12 +1,11 @@
-/* components/style.css */
+/* Checklist.css */
 
-/* Style for the container */
+/* Common styles for all resolutions */
 .container {
   flex-direction: column;
   padding-left: 30px;
 }
 
-/* Style for the header */
 .header h1 {
   margin: 0;
   align-items: center;
@@ -23,38 +22,84 @@
   padding-right: 10px;
 }
 
-/* Style for the search bar */
+/* Updated Style for the search bar */
 .search-bar {
   width: 300px;
   height: 50px;
   margin: 10px;
   margin-right: 0px;
-  background-color: #fff3da;
+  background-color: #b0c4de;
   display: flex;
   align-items: center;
-  border-radius: 4px;
-  justify-content: flex-end;
-  border: 1px solid rgb(203, 202, 202);
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 .search-bar input[type="text"] {
   flex: 1;
-  padding: 5px;
+  padding: 10px;
   border: none;
-  background-color: #fff3da;
+  background-color: transparent;
+  font-size: 16px;
+  color: #fff;
+  outline: none;
 }
 
-/* Style for the icons */
-.search-icon,
-.plus-icon {
-  font-size: 20px;
+/* Style for the search icon */
+.search-icon {
+  font-size: 24px;
   margin-right: 15px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.search-icon:hover {
+  color: #f39c12;
 }
 
 /* Style for the table container */
 .tbl-container {
-  overflow-x: auto; /* Enable horizontal scrollbar when needed */
-  max-width: 70%; /* Ensure the table container doesn't exceed its parent */
-  max-height: 300px; /* Adjust the height as needed */
+  overflow-x: auto;
+  max-width: 70%;
+  max-height: 300px;
 }
 
+/* Media Queries for specific resolutions */
+@media screen and (max-width: 640px) {
+  .container,
+  .container-search-button,
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 800px) {
+  .container,
+  .container-search-button,
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+  .container,
+  .container-search-button,
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar {
+    width: auto;
+  }
+}

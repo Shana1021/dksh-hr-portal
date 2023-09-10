@@ -1,3 +1,4 @@
+/* checklist*/
 "use client";
 
 import styles from "./onc.module.css";
@@ -26,7 +27,7 @@ export default function ChecklistPage({ checklistItems }) {
         columns={[
           { key: "_id", title: "No" },
           { key: "name", title: "Name" },
-          { key: "positionID", title: "ID" }, //placeholder
+          { key: "positionID", title: "ID" }, 
           { key: "department", title: "Department" },
           { key: "action", title: "Action" }
         ]}

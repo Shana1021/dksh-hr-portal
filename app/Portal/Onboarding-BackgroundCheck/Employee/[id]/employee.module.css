@@ -1,3 +1,4 @@
+/* Base styles for employee profile form */
 .employee-profile-form {
   display: grid;
   grid-gap: 25px;
@@ -47,4 +48,22 @@
   display: block;
   margin: auto;
   margin-top: 50px;
+}
+
+@media screen and (max-width: 640px) {
+  .employee-profile-form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .employee-profile-form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .employee-profile-form {
+    width: 80%;
+  }
 }

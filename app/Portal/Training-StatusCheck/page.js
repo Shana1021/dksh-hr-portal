@@ -1,3 +1,4 @@
+/* training */
 "use client";
 import React, { useState } from "react";
 import "./style.css";
@@ -14,51 +15,25 @@ export default function TrainingStatusCheck() {
       TrainingVendor: "",
       EmailStatus: "",
     },
-  ]
-  );
+  ]);
 
   const [filters, setFilters] = useState({
     // filter criteria goes here
     TrainingVendor: [],
     EmailStatus: [],
-  }
-  );
-
-  // Function to handle filtering
-  const handleFilterChange = (event, columnName) => {
-    const { value, checked } = event.target;
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [columnName]: checked
-        ? [...prevFilters[columnName], value]
-        : prevFilters[columnName].filter((item) => item !== value),
-       }
-      )
-     );
-  };
-
-  // Function to handle sending emails
-  const handleSendEmail = () => {
-    // email sending logic here
-  };
-
-  // Function to handle refreshing the data
-  const handleRefresh = () => {
-    // data refreshing logic here
-  };
+  });
 
   return (
     <>
-      <div className="filter-container">
-        <label>
+      <div className="container-search-button">
+        <div className="search-bar">
           <input
             type="text"
             placeholder="Filter by Status"
             className="filter-input"
-            // search functionality here
           />
-          <span className="search-icon">🔍</span>
-        </label>
+          <span className="search-icon">&#128269;</span>
+        </div>
       </div>
 
       {/* Table */}
@@ -159,15 +134,9 @@ export default function TrainingStatusCheck() {
         </tbody>
       </table>
       <div className="button-container">
-             {/* Refresh Button */}
-              <button className="refresh-button" onClick={handleRefresh}>
-                REFRESH
-                </button>
-                 {/* Send Email Button */}
-                 <button className="refresh-button" onClick={handleSendEmail}>
-                  SEND EMAIL
-                  </button>
-                  </div>
+        <button className="module-button refresh-button">REFRESH</button>
+        <button className="module-button refresh-button">SEND EMAIL</button>
+      </div>
     </>
   );
 }
