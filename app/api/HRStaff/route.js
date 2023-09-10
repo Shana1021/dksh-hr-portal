@@ -63,6 +63,7 @@ export async function GET() {
 export async function DELETE(request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id").trim();
+  
   const client = await clientPromise;
   const db = await client.db();
   const collection = db.collection("hrstaffs");

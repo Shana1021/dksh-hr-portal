@@ -8,14 +8,15 @@ import { FiTrash } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 export default function HRListPage({ hrProfiles }) {
   const router = useRouter();
-  const removeData = async () => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this profile?"
-    );
 
-    if (confirmed) {
-      for (const hrProfile of hrProfiles) {
-        const id = hrProfile.id;
+  for (const hrProfile of hrProfiles) {
+    const removeData = async () => {
+      const confirmed = window.confirm(
+        "Are you sure you want to delete this profile?"
+      );
+  
+      if (confirmed) {
+        const id = hrProfile._id;
         const res = await fetch(`http://localhost:3000/api/HRStaff?id=${id}`, {
           method: "DELETE",
         });
@@ -23,10 +24,8 @@ export default function HRListPage({ hrProfiles }) {
           router.refresh();
         }
       }
-    }
-  };
+    };
 
-  for (const hrProfile of hrProfiles) {
     hrProfile.action = (
       <>
         <button id={hrProfile.id} className={styles["edit-button"]}>
