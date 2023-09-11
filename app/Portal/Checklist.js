@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./checklist.module.css";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 export default function Checklist({ checklists, onSave, onClose }) {
   const addItemTitleRef = useRef(null);
@@ -11,10 +11,7 @@ export default function Checklist({ checklists, onSave, onClose }) {
   );
   const [addedItems, setAddedItems] = useState(Array.from({length: checklists.length}, () => []));
   const [addItemTitle, setAddItemTitle] = useState("");
-
-  useEffect(() => {
-    setChecked(checklists.map(checklist => checklist.items.map(item => item.checked)));
-  }, [checklists]);
+  const [saving, setSaving] = useState(false);
 
   return (
     <div className={styles["modal-overlay"]} onClick={onClose}>
@@ -39,6 +36,10 @@ export default function Checklist({ checklists, onSave, onClose }) {
                     type="checkbox"
                     checked={checked[activeIndex][index]}
                     onChange={() => {
+                      if (saving) {
+                        return;
+                      }
+
                       setChecked(checked.map((checklist, checklistIndex) =>
                         checklistIndex === activeIndex
                           ? checklist.map((c, cIndex) => cIndex === index ? !checked[activeIndex][index] : c)
@@ -56,6 +57,10 @@ export default function Checklist({ checklists, onSave, onClose }) {
                     type="checkbox"
                     checked={item.checked}
                     onChange={() => {
+                      if (saving) {
+                        return;
+                      }
+
                       setAddedItems(addedItems.map((checklist, checklistIndex) =>
                         checklistIndex === activeIndex
                           ? checklist.map((i, iIndex) => iIndex === index ? {...item, checked: !item.checked} : i)
@@ -73,11 +78,19 @@ export default function Checklist({ checklists, onSave, onClose }) {
               type="text"
               value={addItemTitle}
               onChange={e => {
+                if (saving) {
+                  return;
+                }
+                
                 setAddItemTitle(e.target.value);
                 e.target.setCustomValidity("");
               }}
             />
             <button onClick={() => {
+              if (saving) {
+                return;
+              }
+
               if (addItemTitle.length === 0) {
                 addItemTitleRef.current.setCustomValidity("Item cannot be empty.");
                 addItemTitleRef.current.reportValidity();
@@ -100,8 +113,15 @@ export default function Checklist({ checklists, onSave, onClose }) {
           </div>
           <button
             className={`module-button ${styles["save-btn"]}`}
-            onClick={() => onSave(checked, addedItems)}
-          >Save</button>
+            onClick={() => {
+              if (saving) {
+                return;
+              }
+
+              setSaving(true);
+              onSave(checked, addedItems);
+            }}
+          >{saving ? "Saving..." : "Save"}</button>
         </div>
       </div>
     </div>

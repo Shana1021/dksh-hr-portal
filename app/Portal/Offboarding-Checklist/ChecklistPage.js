@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./ofc.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Table from "../Table";
 import Checklist from "../Checklist";
@@ -9,6 +9,10 @@ import Checklist from "../Checklist";
 export default function ChecklistPage({ offboardingChecklist, todoChecklist, itemChecklist }) {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
+
+  useEffect(() => {
+    setSelectedIndex(null);
+  }, [offboardingChecklist]);
 
   const checklists = selectedIndex !== null && [
     {
@@ -30,7 +34,7 @@ export default function ChecklistPage({ offboardingChecklist, todoChecklist, ite
   for (const [index, employee] of offboardingChecklist.entries()) {
     employee.checklist = (
       <div className={styles["actions"]}>
-        <button className="module-button" onClick={() => { setSelectedIndex(index); }}>
+        <button className="module-button" onClick={() => setSelectedIndex(index)}>
           Checklist
         </button>
       </div>
@@ -61,8 +65,6 @@ export default function ChecklistPage({ offboardingChecklist, todoChecklist, ite
         <Checklist
           checklists={checklists}
           onSave={async (checked, addedItems) => {
-            setSelectedIndex(null);
-
             await fetch("/api/checklist/offboarding", {
               method: "POST",
               headers: {"Content-Type": "application/json"},
