@@ -85,7 +85,7 @@ export default function NewEmployee() {
   return (
     <>
       <div className={styles.formBody}>
-        <div className={styles.formContainer}>
+       
           <div className={styles.formWrapper}>
             <form className={styles.form}>
               {/* Personal Details */}
@@ -404,7 +404,6 @@ export default function NewEmployee() {
               </div>
             </form>
           </div>
-        </div>
       </div>
     </>
   );
