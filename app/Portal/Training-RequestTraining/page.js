@@ -25,7 +25,6 @@ export default function TrainingRequestTraining() {
   return (
     <>
  <div className={styles.formBody}>
-      <div className={styles.formContainer}>
         <div className={styles.formWrapper}>
           <form className={styles.form}>
             {/* Course Details */}
@@ -328,8 +327,7 @@ export default function TrainingRequestTraining() {
             </div>
           </form>
         </div>
-      </div>
-      </div>
+    </div>
 </>
   )
 };
