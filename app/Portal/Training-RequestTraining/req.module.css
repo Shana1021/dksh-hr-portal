@@ -71,7 +71,7 @@
 .radioInput + .label,
 .select {
   display: inline-block;
-  width: 180px;
+  width: 33.33%;
   height: 3.2em;
   padding-top: 12px;
   text-align: center;
@@ -323,5 +323,6 @@
 .input-group label[for="noVendor"] {
     display:inline; /* Display the label inline with the radio button */
     margin-left: 5px; /* Add spacing between radio button and label */
-}
+    font-size: smaller;
+  }
 }
