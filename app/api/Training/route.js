@@ -1,6 +1,5 @@
 import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
-
 export async function POST(request) {
   const {
     title,
@@ -14,8 +13,10 @@ export async function POST(request) {
     time,
     hours,
     fee,
-    vendor,
-    vendorCode,
+    vendorName,
+    vendorNameCode,
+    venderEmail,
+    venderNumber,
     E_name,
     E_email,
   } = await request.json();
@@ -34,8 +35,10 @@ export async function POST(request) {
     time,
     hours,
     fee,
-    vendor,
-    vendorCode,
+    vendorName,
+    venderNumber,
+    venderEmail,
+    vendorNameCode,
     E_name,
     E_email,
   });

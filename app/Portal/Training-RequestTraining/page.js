@@ -1,12 +1,84 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./req.module.css";
+import { useRouter } from "next/navigation";
 import "font-awesome/css/font-awesome.min.css";
 
 export default function TrainingRequestTraining() {
   // To store the vendor code
   const [vendorCode, setVendorCode] = useState("");
   const [vendor, setVendor] = useState("Existing Vendor");
+  const [title, setTitle] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [code, setCode] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [hours, setHours] = useState("");
+  const [fee, setFee] = useState("");
+  const [vendorName, setVendorName] = useState("");
+  const [venderEmail, setVenderEmail] = useState("");
+  const [venderNumber, setVendorNumber] = useState("");
+  const [vendorNameCode, setVenderNameCode] = useState("");
+  const [E_name, setE_name] = useState("");
+  const [E_email, setE_mail] = useState("");
+
+  const router = useRouter();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !title ||
+      !address1 ||
+      !code ||
+      !city ||
+      !state ||
+      !country ||
+      !date ||
+      !time ||
+      !hours ||
+      !fee ||
+      !E_name ||
+      !E_email
+    ) {
+      alert("Fill up all columns");
+      return;
+    }
+    try {
+      const res = await fetch("http://localhost:3000/api/Training", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          address1,
+          address2,
+          code,
+          city,
+          state,
+          country,
+          date,
+          time,
+          hours,
+          fee,
+          vendorName,
+          venderEmail,
+          venderNumber,
+          vendorNameCode,
+          E_name,
+          E_email,
+        }),
+      });
+      if (res.ok) {
+        router.push("/Portal/Training-StatusCheck");
+      } else {
+        throw new Error("Failed");
+      }
+    } catch (error) {}
+  };
 
   // Function to handle changes in the input field
   const handleVendorCodeChange = (event) => {
@@ -37,6 +109,8 @@ export default function TrainingRequestTraining() {
                   <input
                     type="text"
                     placeholder="Course Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
@@ -51,6 +125,8 @@ export default function TrainingRequestTraining() {
                   <input
                     type="text"
                     placeholder="Address Line 1"
+                    value={address1}
+                    onChange={(e) => setAddress1(e.target.value)}
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
@@ -63,6 +139,8 @@ export default function TrainingRequestTraining() {
                   <input
                     type="text"
                     placeholder="Address Line 2"
+                    value={address2}
+                    onChange={(e) => setAddress2(e.target.value)}
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
@@ -77,6 +155,8 @@ export default function TrainingRequestTraining() {
                       <input
                         type="text"
                         placeholder="Postal Code"
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
@@ -91,6 +171,8 @@ export default function TrainingRequestTraining() {
                       <input
                         type="text"
                         placeholder="City"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
@@ -107,6 +189,8 @@ export default function TrainingRequestTraining() {
                       <input
                         type="text"
                         placeholder="State"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
@@ -121,6 +205,8 @@ export default function TrainingRequestTraining() {
                       <input
                         type="text"
                         placeholder="Country"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
@@ -135,7 +221,12 @@ export default function TrainingRequestTraining() {
                   <div
                     className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
                   >
-                    <input type="date" className={styles.input} />
+                    <input
+                      type="date"
+                      className={styles.input}
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                    />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-calendar"></i>
                     </div>
@@ -148,6 +239,8 @@ export default function TrainingRequestTraining() {
                     <input
                       type="text"
                       placeholder="Course Time"
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -164,6 +257,8 @@ export default function TrainingRequestTraining() {
                     <input
                       type="text"
                       placeholder="Total Hours"
+                      value={hours}
+                      onChange={(e) => setHours(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -178,6 +273,8 @@ export default function TrainingRequestTraining() {
                     <input
                       type="text"
                       placeholder="Course Fee"
+                      value={fee}
+                      onChange={(e) => setFee(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -246,6 +343,8 @@ export default function TrainingRequestTraining() {
                     <input
                       type="text"
                       placeholder="Vendor Code"
+                      value={vendorNameCode}
+                      onChange={(e) => setVenderNameCode(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -262,6 +361,8 @@ export default function TrainingRequestTraining() {
                     <input
                       type="text"
                       placeholder="Vendor Name"
+                      value={vendorName}
+                      onChange={(e) => setVendorName(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -276,6 +377,8 @@ export default function TrainingRequestTraining() {
                         <input
                           type="email"
                           placeholder="Email"
+                          value={venderEmail}
+                          onChange={(e) => setVenderEmail(e.target.value)}
                           className={styles.input}
                         />
                         <div className={styles.inputIcon}>
@@ -290,6 +393,8 @@ export default function TrainingRequestTraining() {
                         <input
                           type="tel"
                           placeholder="Phone Number"
+                          value={venderNumber}
+                          onChange={(e) => setVendorNumber(e.target.value)}
                           className={styles.input}
                         />
                         <div className={styles.inputIcon}>
@@ -315,6 +420,8 @@ export default function TrainingRequestTraining() {
                 <input
                   type="text"
                   placeholder="Employee Name"
+                  value={E_name}
+                  onChange={(e) => setE_name(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -325,6 +432,8 @@ export default function TrainingRequestTraining() {
                 <input
                   type="email"
                   placeholder="Email Address"
+                  value={E_email}
+                  onChange={(e) => setE_mail(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -352,7 +461,11 @@ export default function TrainingRequestTraining() {
             {/* Submit Button */}
             <div className={styles.row}>
               <div className={styles.inputGroup}>
-                <button type="submit" className={styles.button}>
+                <button
+                  type="submit"
+                  className={styles.button}
+                  onClick={handleSubmit}
+                >
                   Submit
                 </button>
               </div>
