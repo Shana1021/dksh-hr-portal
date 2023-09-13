@@ -45,7 +45,7 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
         Showing {1 + (page - 1) * pageSize} - {Math.min(totalRows, page * pageSize)},{" "}
         <select
           onChange={e =>
-            router.push(`${pathname}?${new URLSearchParams([["pageSize", e.target.value], ["page", page]])}`)
+            router.push(`${pathname}?${new URLSearchParams([["pageSize", e.target.value], ["page", 1]])}`)
           }
         >
           <option name="25">25</option>
@@ -74,7 +74,7 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
                 return;
               }
 
-              router.push(`${pathname}?${new URLSearchParams([["pageSize", pageSize], ["page", goPage]])}`)
+              router.push(`${pathname}?${new URLSearchParams([["pageSize", pageSize], ["page", goPage]])}`);
             }}
           >Go</button>
         </div>
