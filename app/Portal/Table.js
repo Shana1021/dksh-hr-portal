@@ -65,7 +65,7 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
             style={{ width: 40 }}
             value={goPage}
             min="1"
-            max={pageSize}
+            max={totalPages}
             onChange={e => setGoPage(e.target.value)}
           />
           <button
