@@ -60,6 +60,7 @@ export default function Edit({
           newEmail,
           newGender,
           newDOB,
+          newCountry,
           newCity,
           newState,
           newPosition,
