@@ -10,8 +10,8 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const pageSize = parseInt(searchParams.get("pageSize"));
-  const page = parseInt(searchParams.get("page"));
+  const pageSize = parseInt(searchParams.get("pageSize") ?? 25);
+  const page = parseInt(searchParams.get("page") ?? 1);
 
   const [goPage, setGoPage] = useState(null);
 
