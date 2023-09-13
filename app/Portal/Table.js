@@ -11,13 +11,12 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pageSize = parseInt(searchParams.get("pageSize") ?? 25);
-  const page = parseInt(searchParams.get("page") ?? 1);
+  const totalPages = Math.ceil(totalRows / pageSize);
+  const page = Math.min(totalPages, parseInt(searchParams.get("page") ?? 1));
 
   const [goPage, setGoPage] = useState(null);
 
   useEffect(() => setGoPage(page), [page]);
-
-  const totalPages = Math.ceil(totalRows / pageSize);
 
   return (
     <div>
