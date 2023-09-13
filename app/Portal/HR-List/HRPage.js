@@ -44,7 +44,6 @@ export default function HRListPage({ hrProfiles }) {
       );
     }
   }
-
   return (
     <div className={styles["container"]}>
       <div className={styles["container-search-button"]}>
