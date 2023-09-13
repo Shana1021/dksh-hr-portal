@@ -14,8 +14,11 @@ export async function POST(request) {
     email,
     gender,
     dob,
+    country,
     city,
     state,
+    position,
+    department,
     code,
     number,
   } = await request.json();
@@ -34,6 +37,9 @@ export async function POST(request) {
     dob,
     city,
     state,
+    country,
+    position,
+    department,
     code,
     number,
   });
@@ -63,7 +69,7 @@ export async function GET() {
 export async function DELETE(request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id").trim();
-  
+
   const client = await clientPromise;
   const db = await client.db();
   const collection = db.collection("hrstaffs");

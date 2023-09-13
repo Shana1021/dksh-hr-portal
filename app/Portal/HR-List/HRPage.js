@@ -14,7 +14,7 @@ export default function HRListPage({ hrProfiles }) {
       const confirmed = window.confirm(
         "Are you sure you want to delete this profile?"
       );
-  
+
       if (confirmed) {
         const id = hrProfile._id;
         const res = await fetch(`http://localhost:3000/api/HRStaff?id=${id}`, {
@@ -25,21 +25,24 @@ export default function HRListPage({ hrProfiles }) {
         }
       }
     };
-
-    hrProfile.action = (
-      <>
-        <button id={hrProfile.id} className={styles["edit-button"]}>
-          <BiEdit className={styles["icon"]} />
-        </button>
-        <button
-          className={styles["delete-button"]}
-          onClick={removeData}
-          id={hrProfile.id}
-        >
-          <FiTrash className={styles["icon"]} />
-        </button>
-      </>
-    );
+    for (const hrProfile of hrProfiles) {
+      hrProfile.action = (
+        <>
+          <Link href={`./EditNewEmployee/${hrProfile._id}`}>
+            <button id={hrProfile.id} className={styles["edit-button"]}>
+              <BiEdit className={styles["icon"]} />
+            </button>
+          </Link>
+          <button
+            className={styles["delete-button"]}
+            onClick={removeData}
+            id={hrProfile.id}
+          >
+            <FiTrash className={styles["icon"]} />
+          </button>
+        </>
+      );
+    }
   }
 
   return (
