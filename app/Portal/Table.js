@@ -43,7 +43,7 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
         </table>
       </div>
       <div className={styles["table-footer"]}>
-        Showing{" "}
+        Showing {1 + (page - 1) * pageSize} - {Math.min(totalRows, page * pageSize)},{" "}
         <select
           onChange={e =>
             router.push(`${pathname}?${new URLSearchParams([["pageSize", e.target.value], ["page", page]])}`)
@@ -54,7 +54,7 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
           <option name="100">100</option>
           <option name="200">200</option>
         </select>
-        {" "}of {totalRows} records.
+        {" "}per page
         <div className={styles["table-footer-right"]}>
           <Link href={{ query: { pageSize, page: 1 } }}>First</Link>
           <Link href={{ query: { pageSize, page: Math.max(1, page - 1) } }}>Previous</Link>
