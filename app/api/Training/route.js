@@ -23,6 +23,8 @@ export async function POST(request) {
   const client = await clientPromise;
   const db = await client.db();
   const collection = db.collection("training");
+  const currentDate = new Date();
+  const timestamp = formatDate(currentDate);
   await collection.insertOne({
     title,
     address1,
@@ -41,8 +43,15 @@ export async function POST(request) {
     vendorNameCode,
     E_name,
     E_email,
+    timestamp,
   });
   return NextResponse.json({ message: "Training Created" }, { status: 201 });
+}
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${day}-${month}-${year}`;
 }
 
 export async function GET() {
