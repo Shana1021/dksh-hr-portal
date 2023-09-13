@@ -71,7 +71,7 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
           />
           <button
             onClick={() => {
-              if (!Number.isInteger(goPage) || goPage < 1 || goPage > totalPages) {
+              if (!/^\d+$/.test(goPage) || goPage < 1 || goPage > totalPages) {
                 return;
               }
 
