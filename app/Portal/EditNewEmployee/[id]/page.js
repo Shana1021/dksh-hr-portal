@@ -16,7 +16,6 @@ const getEmployeeById = async (id) => {
 
 export default async function EditNewEmployee({ params }) {
   const { id } = params;
-  console.log("id:", id);
   const { topic } = await getEmployeeById(id);
   const {
     fname,
