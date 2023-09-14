@@ -17,16 +17,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 20px;
   padding-right: 10px;
 }
 
 /* Updated Style for the search bar */
 .search-bar {
   width: 300px;
-  height: 50px;
-  margin: 10px;
-  margin-left: auto; /* Add margin-left: auto; to push the search bar to the right */
+  height: 40px;
+  margin-bottom: 10px;
   background-color: #b0c4de;
   display: flex;
   align-items: center;
@@ -49,7 +47,7 @@
 /* Style for the search icon */
 .search-icon {
   font-size: 24px; /* Slightly larger icon size */
-  margin-right: 15px;
+  margin-right: 10px;
   color: #fff; /* Set icon color to white */
   cursor: pointer; /* Add a pointer cursor for interaction */
   transition: color 0.3s ease; /* Smooth color transition on hover */

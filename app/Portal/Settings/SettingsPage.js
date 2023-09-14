@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function SettingsPage({
   initialITTeamEmailAddress,
   initialAdminTeamEmailAddress,
-  initialHRTeamEmailAddress
+  initialHRTeamEmailAddress,
 }) {
   const router = useRouter();
 
@@ -15,7 +15,7 @@ export default function SettingsPage({
 
     await fetch("/api/settings", {
       method: "PUT",
-      body: new FormData(e.target)
+      body: new FormData(e.target),
     });
 
     router.refresh();
@@ -23,8 +23,13 @@ export default function SettingsPage({
 
   return (
     <>
-      <h1 className={styles["recipient-email-settings-label"]}>Recipient Email Settings</h1>
-      <form className={styles["recipient-email-settings"]} onSubmit={handleSubmit}>
+      <h1 className={styles["recipient-email-settings-label"]}>
+        Recipient Email Settings
+      </h1>
+      <form
+        className={styles["recipient-email-settings"]}
+        onSubmit={handleSubmit}
+      >
         <table>
           <tbody>
             <tr>
@@ -62,7 +67,9 @@ export default function SettingsPage({
             </tr>
           </tbody>
         </table>
-        <button type="submit" className="module-button">Save</button>
+        <button type="submit" className="module-button">
+          Save
+        </button>
       </form>
     </>
   );

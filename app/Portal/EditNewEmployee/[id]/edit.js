@@ -4,93 +4,85 @@ import styles from "./emp.module.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useRouter } from "next/navigation";
 import { Router } from "react-router-dom";
-
-export default function NewEmployee() {
+export default function Edit({
+  id,
+  fname,
+  lname,
+  empId,
+  password,
+  address1,
+  address2,
+  email,
+  gender,
+  dob,
+  city,
+  country,
+  state,
+  department,
+  position,
+  code,
+  number,
+}) {
+  const [newFname, setNewFname] = useState(fname);
+  const [newLname, setNewLname] = useState(lname);
+  const [newEmpId, setNewEmpId] = useState(empId);
+  const [newPassword, setNewPassword] = useState(password);
+  const [newAddress1, setNewAddress1] = useState(address1);
+  const [newAddress2, setNewAddress2] = useState(address2);
+  //const [image, setImage] = useState("");
+  const [newEmail, setNewEmail] = useState(email);
+  const [newGender, setNewGender] = useState(gender);
+  const [newDOB, setNewDOB] = useState(dob);
+  const [newCity, setNewCity] = useState(city);
+  const [newCountry, setNewCountry] = useState(country);
+  const [newState, setNewState] = useState(state);
+  const [newPosition, setNewPosition] = useState(position);
+  const [newDepartment, setNewDepartment] = useState(department);
+  const [newCode, setNewCode] = useState(code);
+  const [newNumber, setNewNumber] = useState(number);
   const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible((prevState) => !prevState);
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
-    }
-  };
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [empId, setEmpId] = useState("");
-  const [password, setPassword] = useState("");
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
-  const [position, setPosition] = useState("");
-  const [department, setDepartment] = useState("");
-  //const [image, setImage] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("Male");
-  const [dob, setDOB] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [code, setCode] = useState("");
-  const [number, setNumber] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !fname ||
-      !lname ||
-      !empId ||
-      !password ||
-      !address1 ||
-      !email ||
-      !gender ||
-      !dob ||
-      !city ||
-      !state ||
-      !code ||
-      !number ||
-      !department ||
-      !position ||
-      !country
-    ) {
-      alert("Fill up all columns");
-      return;
-    }
     try {
-      const res = await fetch("http://localhost:3000/api/HRStaff", {
-        method: "POST",
+      const res = await fetch(`http://localhost:3000/api/HRStaff/${id}`, {
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          fname,
-          lname,
-          empId,
-          password,
-          address1,
-          address2,
-          email,
-          gender,
-          dob,
-          city,
-          state,
-          position,
-          country,
-          department,
-          code,
-          number,
+          newFname,
+          newLname,
+          newEmpId,
+          newPassword,
+          newAddress1,
+          newAddress2,
+          newEmail,
+          newGender,
+          newDOB,
+          newCountry,
+          newCity,
+          newState,
+          newPosition,
+          newDepartment,
+          newCode,
+          newNumber,
         }),
       });
-      if (res.ok) {
-        router.push("/Portal/HR-List");
-      } else {
-        throw new Error("Failed");
+
+      if (!res.ok) {
+        throw new Error("Failed to update ");
       }
-    } catch (error) {}
-  }; //For form to prevent empty submissions
+      router.refresh();
+      router.push("/Portal/HR-List");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevState) => !prevState);
+  };
+
   return (
     <>
       <div className={styles.formBody}>
@@ -107,8 +99,8 @@ export default function NewEmployee() {
                     <input
                       type="text"
                       placeholder="First Name"
-                      value={fname}
-                      onChange={(e) => setFname(e.target.value)}
+                      value={newFname}
+                      onChange={(e) => setNewFname(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -123,8 +115,8 @@ export default function NewEmployee() {
                     <input
                       type="text"
                       placeholder="Last Name"
-                      value={lname}
-                      onChange={(e) => setLname(e.target.value)}
+                      value={newLname}
+                      onChange={(e) => setNewLname(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -137,8 +129,8 @@ export default function NewEmployee() {
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
+                  value={newNumber}
+                  onChange={(e) => setNewNumber(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -153,8 +145,8 @@ export default function NewEmployee() {
                   >
                     <input
                       type="date"
-                      value={dob}
-                      onChange={(e) => setDOB(e.target.value)}
+                      value={newDOB}
+                      onChange={(e) => setNewDOB(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -172,8 +164,8 @@ export default function NewEmployee() {
                       type="radio"
                       name="gender"
                       value="Male"
-                      checked={gender === "Male"}
-                      onChange={() => setGender("Male")}
+                      checked={newGender === "Male"}
+                      onChange={() => setNewGender("Male")}
                       className={styles.radioInput}
                     />
                     <label className={styles.label} htmlFor="gender-male">
@@ -184,8 +176,8 @@ export default function NewEmployee() {
                       type="radio"
                       name="gender"
                       value="Female"
-                      checked={gender === "Female"}
-                      onChange={() => setGender("Female")}
+                      checked={newGender === "Female"}
+                      onChange={() => setNewGender("Female")}
                       className={styles.radioInput}
                     />
                     <label className={styles.label} htmlFor="gender-female">
@@ -203,8 +195,8 @@ export default function NewEmployee() {
                 <input
                   type="text"
                   placeholder="Address Line 1"
-                  value={address1}
-                  onChange={(e) => setAddress1(e.target.value)}
+                  value={newAddress1}
+                  onChange={(e) => setNewAddress1(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -215,8 +207,8 @@ export default function NewEmployee() {
                 <input
                   type="text"
                   placeholder="Address Line 2"
-                  value={address2}
-                  onChange={(e) => setAddress2(e.target.value)}
+                  value={newAddress2}
+                  onChange={(e) => setNewAddress2(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -231,8 +223,8 @@ export default function NewEmployee() {
                     <input
                       type="text"
                       placeholder="Postal Code"
-                      value={code}
-                      onChange={(e) => setCode(e.target.value)}
+                      value={newCode}
+                      onChange={(e) => setNewCode(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -247,8 +239,8 @@ export default function NewEmployee() {
                     <input
                       type="text"
                       placeholder="City"
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
+                      value={newCity}
+                      onChange={(e) => setNewCity(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -265,8 +257,8 @@ export default function NewEmployee() {
                     <input
                       type="text"
                       placeholder="State"
-                      value={state}
-                      onChange={(e) => setState(e.target.value)}
+                      value={newState}
+                      onChange={(e) => setNewState(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -281,8 +273,8 @@ export default function NewEmployee() {
                     <input
                       type="text"
                       placeholder="Country"
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
+                      value={newCountry}
+                      onChange={(e) => setNewCountry(e.target.value)}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -302,8 +294,8 @@ export default function NewEmployee() {
                 <input
                   type="email"
                   placeholder="Email Address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={newEmail}
+                  onChange={(e) => setNewEmail(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -314,8 +306,8 @@ export default function NewEmployee() {
                 <input
                   type="text"
                   placeholder="Employee ID"
-                  value={empId}
-                  onChange={(e) => setEmpId(e.target.value)}
+                  value={newEmpId}
+                  onChange={(e) => setNewEmpId(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -326,8 +318,8 @@ export default function NewEmployee() {
                 <input
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -349,8 +341,8 @@ export default function NewEmployee() {
                       type="text"
                       placeholder="Position"
                       className={styles.input}
-                      value={position}
-                      onChange={(e) => setPosition(e.target.value)}
+                      value={newPosition}
+                      onChange={(e) => setNewPosition(e.target.value)}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-briefcase"></i>
@@ -366,8 +358,8 @@ export default function NewEmployee() {
                       type="text"
                       placeholder="Department"
                       className={styles.input}
-                      value={department}
-                      onChange={(e) => setDepartment(e.target.value)}
+                      value={newDepartment}
+                      onChange={(e) => setNewDepartment(e.target.value)}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-building"></i>
