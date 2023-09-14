@@ -1,5 +1,6 @@
 import Edit from "./edit";
 
+
 const getEmployeeById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/HRStaff/${id}`, {

@@ -1,5 +1,5 @@
 "use client";
-
+import "font-awesome/css/font-awesome.min.css";
 import styles from "./employee.module.css";
 import { useRouter } from "next/navigation";
 
@@ -37,86 +37,270 @@ export default function EmployeeProfileForm({ employeeProfile }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles["employee-profile-form"]}>
-        <label className={styles["employee-profile-field"]}>
-          Employee First Name
-          <input type="text" name="firstName" placeholder="Enter First Name" defaultValue={employeeProfile?.firstName} />
-        </label>
-        <label className={styles["employee-profile-field"]}>
-          Employee Email
-          <input type="email" name="email" placeholder="Enter Employee Email" defaultValue={employeeProfile?.email} required />
-        </label>
-        <label className={styles["employee-profile-field"]}>
-          Employee Middle Name
-          <input type="text" name="middleName" placeholder="Enter Middle Name" defaultValue={employeeProfile?.middleName} />
-        </label>
-        <div className={styles["field-group"]}>
-          <label className={styles["employee-profile-field"]}>
-            Position
-            <input type="text" name="position" placeholder="Enter Position" defaultValue={employeeProfile?.position} />
-          </label>
-          <label className={styles["employee-profile-field"]}>
-            Department
-            <input type="text" name="department" placeholder="Enter Department" defaultValue={employeeProfile?.department} />
-          </label>
-        </div>
-        <label className={styles["employee-profile-field"]}>
-          Employee Last Name
-          <input type="text" name="lastName" placeholder="Enter Last Name" defaultValue={employeeProfile?.lastName} />
-        </label>
-        <label className={styles["employee-profile-field"]}>
-          Address Line 1
-          <input type="text" name="addressLine1" placeholder="Enter Address Line 1" defaultValue={employeeProfile?.addressLine1} />
-        </label>
-        <label className={styles["employee-profile-field"]}>
-          Employee ID
-          <input type="text" name="employeeId" placeholder="Enter Employee ID" defaultValue={employeeProfile?.employeeId} required />
-        </label>
-        <label className={styles["employee-profile-field"]}>
-          Address Line 2
-          <input type="text" name="addressLine2" placeholder="Enter Address Line 2" defaultValue={employeeProfile?.addressLine2} />
-        </label>
-        <div className={styles["employee-profile-field"]}>
-          Gender
-          <div className={styles["gender"]}>
-            <label>
-              <input type="radio" name="gender" value="Male" defaultChecked={gender === "Male"} />
-              Male
-            </label>
-            <label>
-              <input type="radio" name="gender" value="Female" defaultChecked={gender === "Female"} />
-              Female
-            </label>
-          </div>
-        </div>
-        <div className={styles["field-group"]}>
-          <label className={styles["employee-profile-field"]}>
-            City
-            <input type="text" name="city" placeholder="Enter City" defaultValue={employeeProfile?.city} />
-          </label>
-          <label className={styles["employee-profile-field"]}>
-            State
-            <input type="text" name="state" placeholder="Enter State" defaultValue={employeeProfile?.state} />
-          </label>
-        </div>
-        <label className={styles["employee-profile-field"]}>
-          D.O.B
-          <input type="date" name="dob" defaultValue={employeeProfile?.dob} />
-        </label>
-        <div className={styles["field-group"]}>
-          <label className={styles["employee-profile-field"]}>
-            Postal Code
-            <input type="text" name="postalCode" placeholder="Enter Postal Code" defaultValue={employeeProfile?.postalCode} />
-          </label>
-          <label className={styles["employee-profile-field"]}>
-            Phone Number
-            <input type="tel" name="phone" placeholder="Enter Phone Number" defaultValue={employeeProfile?.phone} />
-          </label>
+ <div className={styles.formBody}>
+        <div className={styles.formWrapper}>
+          <form className={styles.form}>
+            {/* Personal Details */}
+            <div className={styles.row}>
+              <h4 className={styles.h4}>Personal Details</h4>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-user"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-user"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-phone"></i>
+                </div>
+              </div>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                  <h5 className={styles.h5}>Date of Birth</h5>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="date"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                  <h5 className={styles.h5}>Gender</h5>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      id="gender-male"
+                      type="radio"
+                      name="gender"
+                      className={styles.radioInput}
+                    />
+                    <label className={styles.label} htmlFor="gender-male">
+                      Male
+                    </label>
+                    <input
+                      id="gender-female"
+                      type="radio"
+                      name="gender"
+                      className={styles.radioInput}
+                    />
+                    <label className={styles.label} htmlFor="gender-female">
+                      Female
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Residential Details */}
+            <div className={styles.row}>
+              <h4 className={styles.h4}>Residential Details</h4>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="text"
+                  placeholder="Address Line 1"
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-map-marker"></i>
+                </div>
+              </div>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="text"
+                  placeholder="Address Line 2"
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-map-marker"></i>
+                </div>
+              </div>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="Postal Code"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="City"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="State"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="Country"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          {/* Account Details */}
+          <form className={styles.form}>
+            <div className={styles.row}>
+              <h4 className={styles.h4}>Account Details</h4>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-envelope"></i>
+                </div>
+              </div>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  type="text"
+                  placeholder="Employee ID"
+                  className={styles.input}
+                />
+                <div className={styles.inputIcon}>
+                  <i className="fa fa-id-card"></i>
+                </div>
+              </div>
+              {/* Position */}
+              <div className={styles.row}>
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="Position"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-briefcase"></i>
+                    </div>
+                  </div>
+                </div>
+                {/* Department */}
+                <div className={styles.colHalf}>
+                  <div
+                    className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                  >
+                    <input
+                      type="text"
+                      placeholder="Department"
+                      className={styles.input}
+                    />
+                    <div className={styles.inputIcon}>
+                      <i className="fa fa-building"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Image Upload */}
+              <div className={styles.row}>
+                <h5 className={styles.h5}>Profile Image Upload</h5>
+                <div
+                  className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+                >
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className={styles.input}
+                  />
+                  <div className={styles.inputIcon}>
+                    <i className="fa fa-upload"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Submit Button */}
+            <div className={styles.row}>
+              <div className={styles.inputGroup}>
+                <button
+                  type="submit"
+                  className={styles.button}
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <input type="hidden" name="bcStatus" value={employeeProfile?.bcStatus ?? "Pending"} />
-      <input type="hidden" name="emailStatus" value={employeeProfile?.emailStatus ?? "Pending"} />
-      <button type="submit" className={`module-button ${styles["submit"]}`}>Submit</button>
+    
     </form>
   );
 }
