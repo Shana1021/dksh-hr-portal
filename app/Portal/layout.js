@@ -88,7 +88,9 @@ function Portal({ children }) {
           </div>
           <span className={styles["portal-header-title"]}>{headerTitle}</span>
         </div>
-        {children}
+        <div className={styles["page-content"]}>
+          {children}
+        </div>
       </div>}
     </div>
   );

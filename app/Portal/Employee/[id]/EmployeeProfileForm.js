@@ -1,45 +1,66 @@
 "use client";
+
 import "font-awesome/css/font-awesome.min.css";
 import styles from "./employee.module.css";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function EmployeeProfileForm({ employeeProfile }) {
   const router = useRouter();
+  const employeeIdRef = useRef(null);
+  const [redirecting, setRedirecting] = useState(false);
 
-  let handleSubmit;
-  if (employeeProfile) {
-    handleSubmit = async function(e) {
-      e.preventDefault();
-  
-      await fetch("/api/employee/" + employeeProfile._id, {
-        method: "PUT",
-        body: new FormData(e.target)
-      });
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-      router.push("/Portal/Onboarding-BackgroundCheck");
-      router.refresh();
-    };
-  } else {
-    handleSubmit = async function(e) {
-      e.preventDefault();
-  
-      await fetch("/api/employee", {
-        method: "POST",
-        body: new FormData(e.target)
-      });
+    if (redirecting) {
+      return;
+    }
+    setRedirecting(true);
 
-      router.push("/Portal/Onboarding-BackgroundCheck");
-      router.refresh();
-    };
+    const res = await fetch(employeeProfile ? `/api/employee/${encodeURIComponent(employeeProfile._id)}` : "/api/employee", {
+      method: employeeProfile ? "PUT" : "POST",
+      body: new FormData(e.target)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setRedirecting(false);
+      alert(data.error);
+      return;
+    }
+
+    if (data.status === "idExists") {
+      setRedirecting(false);
+      employeeIdRef.current.setCustomValidity("Employee ID already exists.");
+      employeeIdRef.current.reportValidity();
+      return;
+    }
+
+    router.push("/Portal/Onboarding-BackgroundCheck");
+    router.refresh();
   }
 
   const gender = employeeProfile?.gender ?? "Male";
 
   return (
     <form onSubmit={handleSubmit}>
- <div className={styles.formBody}>
+      <div className={styles.formBody}>
+        {employeeProfile && (
+          <div className={styles["image-container"]}>
+            <Image
+              src={`/api/employee/${encodeURIComponent(employeeProfile?._id)}/profileImage`}
+              alt="test"
+              fill
+              style={{ objectFit: "cover", borderRadius: "50%" }}
+              unoptimized
+            />
+          </div>
+        )}
         <div className={styles.formWrapper}>
-          <form className={styles.form}>
+          <div className={styles.form}>
             {/* Personal Details */}
             <div className={styles.row}>
               <h4 className={styles.h4}>Personal Details</h4>
@@ -52,6 +73,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="First Name"
                       className={styles.input}
+                      name="firstName"
+                      defaultValue={employeeProfile?.firstName}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-user"></i>
@@ -66,6 +89,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="Last Name"
                       className={styles.input}
+                      name="lastName"
+                      defaultValue={employeeProfile?.lastName}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-user"></i>
@@ -78,6 +103,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   type="tel"
                   placeholder="Phone Number"
                   className={styles.input}
+                  name="phone"
+                  defaultValue={employeeProfile?.phone}
                 />
                 <div className={styles.inputIcon}>
                   <i className="fa fa-phone"></i>
@@ -92,6 +119,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                     <input
                       type="date"
                       className={styles.input}
+                      name="dob"
+                      defaultValue={employeeProfile?.dob}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-calendar"></i>
@@ -106,8 +135,10 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                     <input
                       id="gender-male"
                       type="radio"
-                      name="gender"
                       className={styles.radioInput}
+                      name="gender"
+                      value="Male"
+                      defaultChecked={gender === "Male"}
                     />
                     <label className={styles.label} htmlFor="gender-male">
                       Male
@@ -115,8 +146,10 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                     <input
                       id="gender-female"
                       type="radio"
-                      name="gender"
                       className={styles.radioInput}
+                      name="gender"
+                      value="Female"
+                      defaultChecked={gender === "Female"}
                     />
                     <label className={styles.label} htmlFor="gender-female">
                       Female
@@ -134,6 +167,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   type="text"
                   placeholder="Address Line 1"
                   className={styles.input}
+                  name="addressLine1"
+                  defaultValue={employeeProfile?.addressLine1}
                 />
                 <div className={styles.inputIcon}>
                   <i className="fa fa-map-marker"></i>
@@ -144,6 +179,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   type="text"
                   placeholder="Address Line 2"
                   className={styles.input}
+                  name="addressLine2"
+                  defaultValue={employeeProfile?.addressLine2}
                 />
                 <div className={styles.inputIcon}>
                   <i className="fa fa-map-marker"></i>
@@ -158,6 +195,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="Postal Code"
                       className={styles.input}
+                      name="postalCode"
+                      defaultValue={employeeProfile?.postalCode}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-map-marker"></i>
@@ -172,6 +211,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="City"
                       className={styles.input}
+                      name="city"
+                      defaultValue={employeeProfile?.city}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-map-marker"></i>
@@ -188,6 +229,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="State"
                       className={styles.input}
+                      name="state"
+                      defaultValue={employeeProfile?.state}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-map-marker"></i>
@@ -202,6 +245,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="Country"
                       className={styles.input}
+                      name="country"
+                      defaultValue={employeeProfile?.country}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-map-marker"></i>
@@ -210,10 +255,10 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                 </div>
               </div>
             </div>
-          </form>
+          </div>
 
           {/* Account Details */}
-          <form className={styles.form}>
+          <div className={styles.form}>
             <div className={styles.row}>
               <h4 className={styles.h4}>Account Details</h4>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
@@ -221,6 +266,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   type="email"
                   placeholder="Email Address"
                   className={styles.input}
+                  name="email"
+                  defaultValue={employeeProfile?.email}
                 />
                 <div className={styles.inputIcon}>
                   <i className="fa fa-envelope"></i>
@@ -228,9 +275,18 @@ export default function EmployeeProfileForm({ employeeProfile }) {
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                 <input
+                  ref={employeeIdRef}
                   type="text"
                   placeholder="Employee ID"
                   className={styles.input}
+                  name="_id"
+                  defaultValue={employeeProfile?._id}
+                  required
+                  onChange={e => {
+                    e.target.setCustomValidity("");
+                    e.target.reportValidity();
+                  }}
+                  readOnly={!!employeeProfile}
                 />
                 <div className={styles.inputIcon}>
                   <i className="fa fa-id-card"></i>
@@ -246,6 +302,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="Position"
                       className={styles.input}
+                      name="position"
+                      defaultValue={employeeProfile?.position}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-briefcase"></i>
@@ -261,6 +319,8 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       type="text"
                       placeholder="Department"
                       className={styles.input}
+                      name="department"
+                      defaultValue={employeeProfile?.department}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-building"></i>
@@ -278,6 +338,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                     type="file"
                     accept="image/*"
                     className={styles.input}
+                    name="profileImage"
                   />
                   <div className={styles.inputIcon}>
                     <i className="fa fa-upload"></i>
@@ -291,16 +352,14 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                 <button
                   type="submit"
                   className={styles.button}
-                  onClick={handleSubmit}
                 >
                   Submit
                 </button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    
     </form>
   );
 }

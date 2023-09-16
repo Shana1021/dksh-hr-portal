@@ -73,8 +73,8 @@ export default function Edit({
       if (!res.ok) {
         throw new Error("Failed to update ");
       }
-      router.refresh();
       router.push("/Portal/HR-List");
+      router.refresh();
     } catch (error) {
       console.log(error);
     }

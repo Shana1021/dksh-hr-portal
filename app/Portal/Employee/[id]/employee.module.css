@@ -245,6 +245,13 @@
   padding: 0 10px; /* Add some padding to form sections */
 }
 
+.image-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: auto;
+}
+
 /* Responsive styles for smaller screens */
 @media only screen and (max-width: 768px) {
   .formWrapper {
