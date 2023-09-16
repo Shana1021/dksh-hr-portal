@@ -82,6 +82,7 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
             if (loading) {
               return;
             }
+            setLoading(true);
 
             await fetch(`/api/employee/${employeeProfile._id}`, {
               method: "DELETE",
