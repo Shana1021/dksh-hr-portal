@@ -19,32 +19,33 @@ export async function PUT(request) {
       employeeProfiles.map(employeeProfile => [employeeProfile._id, employeeProfile.status])
     );
 
-    await db.collection("onboarding_checklist").bulkWrite(
-      updates
-        .filter(update => statuses[update._id] === "Pending" && update.status === "Pass")
-        .map(update => ({
-          updateOne: {
-            filter: { _id: update._id },
-            update: {
-              $set: {
-                todos: [
-                  {
-                    title: "1 Hour Introduction",
-                    checked: false
-                  },
-                  {
-                    title: "Office Tour",
-                    checked: false
-                  }
-                ],
-                items: []
-              },
-              $currentDate: { createdAt: true }
+    const operations = updates
+      .filter(update => statuses[update._id] === "Pending" && update.status === "Pass")
+      .map(update => ({
+        updateOne: {
+          filter: { _id: update._id },
+          update: {
+            $set: {
+              todos: [
+                {
+                  title: "1 Hour Introduction",
+                  checked: false
+                },
+                {
+                  title: "Office Tour",
+                  checked: false
+                }
+              ],
+              items: []
             },
-            upsert: true
-          }
-        }))
-    );
+            $currentDate: { createdAt: true }
+          },
+          upsert: true
+        }
+      }));
+    if (operations.length > 0) {
+      await db.collection("onboarding_checklist").bulkWrite(operations);
+    }
 
     await db.collection("employee_profiles").bulkWrite(
       updates

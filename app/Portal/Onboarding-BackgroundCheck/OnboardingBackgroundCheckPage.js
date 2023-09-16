@@ -10,8 +10,12 @@ import { useEffect, useState } from "react";
 export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalRows }) {
   const router = useRouter();
   const [statuses, setStatuses] = useState(employeeProfiles.map(employeeProfile => employeeProfile.status));
+  const [loading, setLoading] = useState();
 
-  useEffect(() => setStatuses(employeeProfiles.map(employeeProfile => employeeProfile.status)), [employeeProfiles]);
+  useEffect(() => {
+    setStatuses(employeeProfiles.map(employeeProfile => employeeProfile.status))
+    setLoading(false);
+  }, [employeeProfiles]);
 
   for (const [index, employeeProfile] of employeeProfiles.entries()) {
     employeeProfile.id = (
@@ -75,6 +79,10 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
         <FiTrash
           className="delete-button"
           onClick={async () => {
+            if (loading) {
+              return;
+            }
+
             await fetch(`/api/employee/${employeeProfile._id}`, {
               method: "DELETE",
             });
@@ -109,6 +117,11 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
         <button
           className="module-button"
           onClick={async () => {
+            if (loading) {
+              return;
+            }
+            setLoading(true);
+
             await fetch("/api/employee/backgroundCheck", {
               method: "PUT",
               body: JSON.stringify(
