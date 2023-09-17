@@ -1,6 +1,6 @@
-/* req.module.css */
+/* res.module.css */
 
-/* Body styles */
+/* Form styles */
 .formBody {
   margin: 10px auto;
   padding: 1em 3em 2em 3em;
@@ -9,7 +9,33 @@
   color: #b9b9b9;
   background-color: #ffffff;
   max-height:max-content;
+  max-width: 600px;
 }
+
+.formContainer{
+  max-width: 70em;
+  max-height: max-content;
+  padding: 1em 2em 1em 2em;
+  margin: 10px auto;
+  background-color: #de3535;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.formWrapper {
+  max-width: 70em;
+  max-height: max-content;
+  padding: 1em 3em 2em 3em;
+  margin: 10px auto;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.form {
+  width: 100%; /* Adjust the width as needed */
+  padding: 0 10px; /* Add some padding to form sections */
+}
+
 
 /* Heading styles */
 .h4 {
@@ -21,36 +47,21 @@
 .h5 {
   color: #8d8d8d;
   margin-top: 1em;
-  margin-bottom: 0;
-}
-
-/*Download link*/
-.link {
-  margin-top: 3.5em;
   margin-bottom: 0.5em;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: #de3737;
 }
 
 /* Input and Select styles */
-.input,
-.radioInput + .label,
-.checkboxInput + .label:before,
-.select option,
-.select {
+.input {
   width: 100%;
   height: 3.5em;
   padding: 1em;
   line-height: 1.4;
   background-color: #f9f9f9;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
   transition: 0.35s ease-in-out;
 }
-
 
 .input:focus {
   outline: 0;
@@ -65,74 +76,10 @@
   border-right-color: #f0a500;
 }
 
-.radioInput {
-  display: none;
-}
-
-.radioInput + .label,
-.select {
-  display: inline-block;
-  width: 33.33%;
-  height: 3.2em;
-  padding-top: 12px;
-  text-align: center;
-  float: none;
-  border-radius: 0;
-}
-
-.radioInput + .label:first-of-type {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-.radioInput + .label:last-of-type {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.radioInput + .label i {
-  padding-right: 0.4em;
-}
-
-.radioInput:checked + .label,
-.input:checked + .label:before,
-.select:focus,
-.select:active {
+.input:checked {
   background-color: #f0a500;
   color: #fff;
   border-color: #bd8200;
-}
-
-.checkboxInput {
-  display: none;
-}
-
-.checkboxInput + .label {
-  position: relative;
-  display: block;
-  padding-left: 2em;
-}
-
-.checkboxInput + .label:before {
-  position: absolute;
-  top: 0.2em;
-  left: 0;
-  display: block;
-  width: 1.5em;
-  height: 1.5em;
-  padding: 0;
-  content: "";
-}
-
-.checkboxInput + .label:after {
-  position: absolute;
-  top: 0.70em;
-  left: 0.4em;
-  font-size: 0.8em;
-  color: #fff;
-  opacity: 0;
-  font-family: FontAwesome;
-  content: "\f00c";
 }
 
 .input[id="terms"] + .label {
@@ -143,31 +90,6 @@
   opacity: 1;
 }
 
-.select {
-  height: 3.4em;
-  line-height: 2;
-}
-
-.select:first-of-type {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-.select:last-of-type {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.select:focus,
-.select:active {
-  outline: 0;
-}
-
-.select option {
-  background-color: #bd8200;
-  color: #fff;
-}
-
 /* Spacing between input fields */
 .inputGroup {
   margin-bottom: 2em;
@@ -176,6 +98,8 @@
 /* Padding for input fields */
 .inputGroup input {
   padding: 1.2em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 .inputGroup:before,
@@ -221,6 +145,25 @@
 
 .inputGroupIcon .inputIcon i {
   transition: 0.35s ease-in-out;
+}
+
+.textarea {
+  width: 100%;
+  max-height: 3.5em;
+  max-height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  padding-left: 4.5em; /* Adjust the left padding to accommodate the icon */
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.textarea:focus {
+  outline: 0;
+  border-color: #bd8200;
 }
 
 /* Row and Column styles */
@@ -280,21 +223,7 @@
 }
 
 .button:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
-}
-
-/* Form wrapper styles */
-.formWrapper {
-  display: flex;
-  justify-content: space-between;
-  border-right: 2px solid #ffffff; /* Vertical line separator */
-  padding: 0 10px; /* Add some spacing */
-}
-
-/* Form styles */
-.form {
-  width: 100%; /* Adjust the width as needed */
-  padding: 0 10px; /* Add some padding to form sections */
+  background-color: #fb8c00;
 }
 
 /* Responsive styles for smaller screens */
@@ -302,7 +231,7 @@
   .formWrapper {
     flex-direction: column;
     border-right: none; /* Remove separator on small screens */
-    padding: 0; /* Reset padding */
+    padding: 1em 3em 2em 3em; /* Reset padding */
   }
 
   .form {
@@ -320,11 +249,4 @@
     padding: 1.2em 2.5em; /* Increase button padding for better spacing */
   }
 
-.input-group label[for="eVendor"],
-.input-group label[for="newVendor"],
-.input-group label[for="noVendor"] {
-    display:inline; /* Display the label inline with the radio button */
-    margin-left: 5px; /* Add spacing between radio button and label */
-    font-size: smaller;
-  }
 }

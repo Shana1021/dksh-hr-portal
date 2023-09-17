@@ -1,95 +1,91 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import React, { useState } from "react";
+import styles from "./res.module.css";
+import { useRouter } from "next/navigation";
+
+//icons
+import { BiCalendar } from "react-icons/bi"; //Calendar
+import { HiOutlineIdentification } from "react-icons/hi2"; //ID
+import { CiMoneyCheck1} from "react-icons/ci"; //Title
 
 export default function Home() {
+  const [textareaValue, setTextareaValue] = useState("");
+  const maxCharacters = 250; // Maximum allowed characters
+
+  // Function to update the textarea height as the user types
+  const handleTextareaChange = (event) => {
+    const element = event.target;
+    element.style.height = "auto";
+    element.style.height = element.scrollHeight + "px";
+    const inputValue = event.target.value;
+    
+    // Limit the input to maxCharacters
+    if (inputValue.length <= maxCharacters) {
+      setTextareaValue(inputValue);
+    }
+
+    // Reset the height when the input is empty
+    if (inputValue === "") {
+        element.style.height = "3.5em"; // Adjust to the initial height
+      }
+    };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <>
+    <div className={styles.formBody}>
+    <div className={styles.formContainer}>
+      <div className={styles.formWrapper}>
+        <form className={styles.form}>
+          <div className={styles.row}>
+            {/*Request for Resignation*/}
+            <h4 className={styles.h4}>Request for Resignation</h4>
+            <h5 className={styles.h5}>Fill the below form....</h5>
+            <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <input
+                type="date"
+                placeholder="Date"
+                className={styles.input}
+              />
+              <div className={styles.inputIcon}>
+                <BiCalendar />
+              </div>
+            </div>
+            <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <input
+                type="text"
+                placeholder="Employee ID"
+                className={styles.input}
+              />
+              <div className={styles.inputIcon}>
+                <HiOutlineIdentification />
+              </div>
+            </div>
+            <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <textarea
+                    placeholder="Reason"
+                    className={`${styles.input} ${styles.textarea}`}
+                    onChange={handleTextareaChange} // Add onChange event handler
+                    value={textareaValue} // Bind the value to the state
+                  />
+              <div className={styles.inputIcon}>
+                <CiMoneyCheck1/>
+              </div>
+            </div>
+          </div>
+          {/* Submit Button */}
+          <div className={styles.row}>
+            <div className={styles.inputGroup}>
+              <button className={styles.button}
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
+  </>
   )
 }

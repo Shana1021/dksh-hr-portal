@@ -4,6 +4,21 @@ import styles from "./req.module.css";
 import { useRouter } from "next/navigation";
 import "font-awesome/css/font-awesome.min.css";
 
+//icons
+import { BiSolidUser} from "react-icons/bi"; //User
+import { FaMapMarkerAlt } from "react-icons/fa"; //Address
+import { BiCalendar } from "react-icons/bi"; //Calendar
+import { AiOutlineClockCircle } from "react-icons/ai"; //Time Clock
+import { BiSolidHourglass } from "react-icons/bi"; //Duration Hourglass
+import { AiOutlineDollar } from "react-icons/ai"; //Money
+import { HiOutlineIdentification } from "react-icons/hi2"; //ID
+import { AiOutlineMail } from "react-icons/ai"; //Email
+import { BsTelephone } from "react-icons/bs"; //Phone
+import { FaGear } from "react-icons/fa6"; //Position
+import { FHiOutlineOfficeBuilding} from "react-icons/hi"; //Department
+import { FiUpload } from "react-icons/fi"; //Upload
+import { CiMoneyCheck1} from "react-icons/ci"; //Title
+
 export default function TrainingRequestTraining() {
   // To store the vendor code
   const [vendorCode, setVendorCode] = useState("");
@@ -114,7 +129,7 @@ export default function TrainingRequestTraining() {
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
-                    <i className="fa fa-window-maximize"></i>
+                    <BiSolidUser />
                   </div>
                 </div>
               </div>
@@ -130,7 +145,7 @@ export default function TrainingRequestTraining() {
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
-                    <i className="fa fa-map-marker"></i>
+                  <FaMapMarkerAlt />
                   </div>
                 </div>
                 <div
@@ -144,7 +159,7 @@ export default function TrainingRequestTraining() {
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
-                    <i className="fa fa-map-marker"></i>
+                  <FaMapMarkerAlt />
                   </div>
                 </div>
                 <div className={styles.row}>
@@ -160,7 +175,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                        <i className="fa fa-map-marker"></i>
+                      <FaMapMarkerAlt />
                       </div>
                     </div>
                   </div>
@@ -176,7 +191,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                        <i className="fa fa-map-marker"></i>
+                      <FaMapMarkerAlt />
                       </div>
                     </div>
                   </div>
@@ -194,7 +209,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                        <i className="fa fa-map-marker"></i>
+                      <FaMapMarkerAlt />
                       </div>
                     </div>
                   </div>
@@ -210,7 +225,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                        <i className="fa fa-map-marker"></i>
+                      <FaMapMarkerAlt />
                       </div>
                     </div>
                   </div>
@@ -228,7 +243,7 @@ export default function TrainingRequestTraining() {
                       onChange={(e) => setDate(e.target.value)}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-calendar"></i>
+                      <BiCalendar/>
                     </div>
                   </div>
                 </div>
