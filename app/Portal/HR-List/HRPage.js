@@ -1,11 +1,12 @@
 "use client";
-
 import styles from "./hr.module.css";
 import Table from "../Table";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { FiTrash } from "react-icons/fi";
+import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
 import { useRouter } from "next/navigation";
+
 export default function HRListPage({ hrProfiles }) {
   const router = useRouter();
 
@@ -46,18 +47,13 @@ export default function HRListPage({ hrProfiles }) {
   }
 
   return (
-    <div className={styles["container"]}>
-      <div className={styles["container-search-button"]}>
-        <div className={styles["search-bar"]}>
-          <input type="text" placeholder="Filter by Position" />
-          <span className={styles["search-icon"]}>&#128269;</span>
-        </div>
-        <button className={styles["custom-button"]}>
-          <Link href="./NewEmployee">
-            <span className={styles["plus-icon"]}>&#43;</span>Add New Employee
-          </Link>
-        </button>
-      </div>
+  <div className={styles["container"]}>
+    <div className={styles["container-search-button"]}>
+      <div className={styles["search-bar"]}>
+        <input type="text" placeholder="Filter by Position" />
+        <span className={styles["search-icon"]}><FaSearch/></span>
+          </div>
+              </div>
       <Table
         columns={[
           { key: "_id", title: "ID" },
@@ -69,6 +65,11 @@ export default function HRListPage({ hrProfiles }) {
         data={hrProfiles}
         height="400px"
       />
+      <button className={styles["custom-button"]}>
+            <Link href="./NewEmployee">
+              <span className={styles["plus-icon"]}>&#43;</span>Add New Employee
+              </Link>
+              </button>
     </div>
   );
 }

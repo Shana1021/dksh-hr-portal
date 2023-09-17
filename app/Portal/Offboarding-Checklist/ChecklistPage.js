@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Table from "../Table";
 import Checklist from "../Checklist";
+import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
 
 export default function ChecklistPage({ offboardingChecklist, todoChecklist, itemChecklist }) {
   const router = useRouter();
@@ -46,7 +47,7 @@ export default function ChecklistPage({ offboardingChecklist, todoChecklist, ite
       <div className={styles["container-search-button"]}>
         <div className={styles["search-bar"]}>
           <input type="text" placeholder="Filter by Status" />
-          <span className={styles["search-icon"]}>&#128269;</span>
+          <span className={styles["search-icon"]}><FaSearch/></span>
         </div>
       </div>
       <Table

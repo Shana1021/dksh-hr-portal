@@ -1,9 +1,9 @@
-/* checklist*/
 "use client";
 
 import styles from "./onc.module.css";
 import Table from "../Table";
 import Link from "next/link";
+import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
 
 export default function ChecklistPage({ checklistItems }) {
   for (const item of checklistItems) {
@@ -20,7 +20,7 @@ export default function ChecklistPage({ checklistItems }) {
       <div className={styles["container-search-button"]}>
         <div className={styles["search-bar"]}>
           <input type="text" placeholder="Filter by Status" />
-          <span className={styles["search-icon"]}>&#128269;</span>
+          <span className={styles["search-icon"]}><FaSearch/></span>
         </div>
       </div>
       <Table
