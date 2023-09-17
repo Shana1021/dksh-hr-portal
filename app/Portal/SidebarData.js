@@ -55,7 +55,7 @@ const sidebarData = [
     subnav: [
       {
         title: "Request for Resignation",
-        path: "#",
+        path: "/Portal/Offboarding-RequestForResignation",
       },
       {
         title: "Resignation Requests",
