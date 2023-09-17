@@ -5,16 +5,11 @@ import Table from "../Table";
 import Link from "next/link";
 import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
 
-export default function ChecklistPage({ checklistItems }) {
-  for (const item of checklistItems) {
-    item.checklist = (
-      <>
-        <div className={styles["actions"]}>
-        <Link className="module-button" href="#">Checklist</Link>
-      </div>
-      </>
-    );
+export default function OnboardingChecklistPage({ onboardingChecklist, totalRows }) {
+  for (const item of onboardingChecklist) {
+    
   }
+
   return (
     <div className={styles["container"]}>
       <div className={styles["container-search-button"]}>
@@ -25,13 +20,11 @@ export default function ChecklistPage({ checklistItems }) {
       </div>
       <Table
         columns={[
-          { key: "_id", title: "No" },
-          { key: "name", title: "Name" },
-          { key: "positionID", title: "ID" }, 
-          { key: "department", title: "Department" },
-          { key: "action", title: "Action" }
+          { key: "_id", title: "Employee ID" },
+          { key: "firstName", title: "First Name" },
+          { key: "lastName", title: "Last Name" }
         ]}
-        data={checklistItems}
+        data={onboardingChecklist}
         height="400px"
       />
     </div>

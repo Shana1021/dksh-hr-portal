@@ -3,26 +3,28 @@ import clientPromise from "@/lib/mongodb";
 import { GridFSBucket } from "mongodb";
 import { Readable } from "stream";
 
-export async function POST(request) {
+export async function PUT(request, { params }) {
+  const id = decodeURIComponent(params.id);
   const formData = await request.formData();
   
   try {
     const client = await clientPromise;
     const db = await client.db();
-  
-    if (await db.collection("employee_profiles").findOne({ _id: formData.get("_id") }, { _id: true })) {
-      return NextResponse.json({ status: "idExists" });
-    }
-    
+
     if (formData.get("profileImage").size > 0) {
       const bucket = new GridFSBucket(db, { bucketName: "employeeProfileImages" });
+
+      const file = (await bucket.find({ filename: id }).toArray())[0];
+      if (file) {
+        await bucket.delete(file._id);
+      }
 
       Readable.from(Buffer.from(await formData.get("profileImage").arrayBuffer()))
         .pipe(bucket.openUploadStream(formData.get("_id")));
     }
-    
+
     await db.collection("employee_profiles").updateOne(
-      { _id: formData.get("_id") },
+      { _id: id },
       {
         $set: {
           firstName: formData.get("firstName"),
@@ -38,13 +40,32 @@ export async function POST(request) {
           state: formData.get("state"),
           postalCode: formData.get("postalCode"),
           phone: formData.get("phone"),
-          country: formData.get("country"),
-          status: "Pending"
-        },
-        $currentDate: { createdAt: true }
-      },
-      { upsert: true }
+          country: formData.get("country")
+        }
+      }
     );
+  
+    return NextResponse.json({ status: "success" });
+  } catch (e) {
+    return NextResponse.json({ error: e.toString() }, { status: 500 });
+  }
+}
+
+export async function DELETE(_, { params }) {
+  const id = decodeURIComponent(params.id);
+
+  try {
+    const client = await clientPromise;
+    const db = await client.db();
+
+    const bucket = new GridFSBucket(db, { bucketName: "employeeProfileImages" });
+
+    const file = (await bucket.find({ filename: id }).toArray())[0];
+    if (file) {
+      await bucket.delete(file._id);
+    }
+    
+    await db.collection("employee_profiles").deleteOne({ _id: params.id });
   
     return NextResponse.json({ status: "success" });
   } catch (e) {

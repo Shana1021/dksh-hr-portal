@@ -93,6 +93,7 @@ export default function Checklist({ checklists, onSave, onClose }) {
                 
                 setAddItemTitle(e.target.value);
                 e.target.setCustomValidity("");
+                e.target.reportValidity();
               }}
             />
             <button onClick={() => {

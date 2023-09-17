@@ -68,18 +68,9 @@ const sidebarData = [
     ],
   },
   {
-    title: "HR",
+    title: "HR-List",
+    path: "/Portal/HR-List",
     icon: <FaUserFriends />,
-    subnav: [
-      {
-        title: "HR-List",
-        path: "/Portal/HR-List",
-      },
-      {
-        title: "NewEmployee",
-        path: "/Portal/NewEmployee",
-      },
-    ],
   },
   {
     title: "Settings",

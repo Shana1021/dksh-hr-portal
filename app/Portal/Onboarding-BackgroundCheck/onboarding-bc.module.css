@@ -11,3 +11,20 @@
   display: flex;
   gap: 15px;
 }
+
+.bc-status-radios {
+  text-align: left;
+}
+
+.email-status-label {
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.email-status-complete {
+  background-color: lightgreen;
+}
+
+.email-status-pending {
+  background-color: lightblue;
+}

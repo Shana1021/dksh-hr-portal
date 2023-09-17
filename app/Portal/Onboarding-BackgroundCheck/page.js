@@ -8,10 +8,8 @@ export default async function OnboardingBackgroundCheck({ searchParams: { pageSi
   const client = await clientPromise;
   const db = await client.db();
   const employeeProfiles = await db.collection("employee_profiles")
-    .find().skip((page - 1) * pageSize).limit(pageSize).toArray();
-  for (const employeeProfile of employeeProfiles) {
-    employeeProfile._id = employeeProfile._id.toString();
-  }
+    .find().sort({ createdAt: -1 })
+    .skip(page > 0 ? (page - 1) * pageSize : 0).limit(pageSize).toArray();
 
   const totalRows = await db.collection("employee_profiles").count();
   

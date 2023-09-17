@@ -1,5 +1,6 @@
 import Edit from "./edit";
 
+
 const getEmployeeById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/HRStaff/${id}`, {
@@ -16,7 +17,6 @@ const getEmployeeById = async (id) => {
 
 export default async function EditNewEmployee({ params }) {
   const { id } = params;
-  console.log("id:", id);
   const { topic } = await getEmployeeById(id);
   const {
     fname,

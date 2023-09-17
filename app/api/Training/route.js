@@ -1,53 +1,51 @@
 import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
-import { ObjectId } from "mongodb";
-
-//Create
 export async function POST(request) {
   const {
-    fname,
-    lname,
-    empId,
-    password,
+    title,
     address1,
     address2,
-    email,
-    gender,
-    dob,
-    country,
+    code,
     city,
     state,
-    position,
-    department,
-    code,
-    number,
+    country,
+    date,
+    time,
+    hours,
+    fee,
+    vendorName,
+    vendorNameCode,
+    venderEmail,
+    venderNumber,
+    E_name,
+    E_email,
   } = await request.json();
   const client = await clientPromise;
   const db = await client.db();
-  const collection = db.collection("hrstaffs");
+  const collection = db.collection("training");
   const currentDate = new Date();
   const timestamp = formatDate(currentDate);
-
   await collection.insertOne({
-    fname,
-    lname,
-    empId,
-    password,
+    title,
     address1,
     address2,
-    email,
-    gender,
-    dob,
-    country,
+    code,
     city,
     state,
-    position,
-    department,
-    code,
-    number,
+    country,
+    date,
+    time,
+    hours,
+    fee,
+    vendorName,
+    venderNumber,
+    venderEmail,
+    vendorNameCode,
+    E_name,
+    E_email,
     timestamp,
   });
-  return NextResponse.json({ message: "Topic Created" }, { status: 201 });
+  return NextResponse.json({ message: "Training Created" }, { status: 201 });
 }
 function formatDate(date) {
   const year = date.getFullYear();
@@ -55,33 +53,22 @@ function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");
   return `${day}-${month}-${year}`;
 }
-// Read
+
 export async function GET() {
-  try {
-    const client = await clientPromise;
-    const db = await client.db();
-    const collection = db.collection("hrstaffs");
-    const staffList = await collection.find().toArray();
-    return NextResponse.json({ staffList });
-  } catch (error) {
-    return new NextResponse(
-      JSON.stringify({
-        message: "Error retrieving staff list",
-        error: error.message,
-      }),
-      { status: 500 }
-    );
-  }
+  const client = await clientPromise;
+  const db = client.db();
+  const collection = db.collection("training");
+  const TrainingList = await collection.find().toArray();
+  return NextResponse.json({ TrainingList });
 }
 
-//Delete
 export async function DELETE(request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id").trim();
 
   const client = await clientPromise;
   const db = await client.db();
-  const collection = db.collection("hrstaffs");
+  const collection = db.collection("training");
   await collection.deleteOne({ _id: new ObjectId(id) });
 
   return new NextResponse(JSON.stringify({ message: "Document deleted" }), {
