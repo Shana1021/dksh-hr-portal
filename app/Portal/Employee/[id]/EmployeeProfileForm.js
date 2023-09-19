@@ -51,7 +51,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
         {employeeProfile && (
           <div className={styles["image-container"]}>
             <Image
-              src={`/api/employee/${encodeURIComponent(employeeProfile?._id)}/profileImage`}
+              src={`/api/employee/${encodeURIComponent(employeeProfile?._id)}/profileImage?${new Date().getTime()}`}
               alt="test"
               fill
               style={{ objectFit: "cover", borderRadius: "50%" }}

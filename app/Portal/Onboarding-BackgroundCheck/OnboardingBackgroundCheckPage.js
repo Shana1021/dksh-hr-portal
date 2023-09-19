@@ -84,7 +84,7 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
             }
             setLoading(true);
 
-            await fetch(`/api/employee/${employeeProfile._id}`, {
+            await fetch(`/api/employee/${encodeURIComponent(employeeProfile._id)}`, {
               method: "DELETE",
             });
   
@@ -123,7 +123,7 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
             }
             setLoading(true);
 
-            await fetch("/api/employee/backgroundCheck", {
+            await fetch("/api/employee", {
               method: "PUT",
               body: JSON.stringify(
                 statuses
