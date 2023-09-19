@@ -31,7 +31,7 @@ const sidebarData = [
       },
       {
         title: "Probationary",
-        path: "#",
+        path: "/Portal/Onboarding-Probationary",
       },
     ],
   },

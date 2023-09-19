@@ -4,7 +4,7 @@ import Table from "../Table";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { FiTrash } from "react-icons/fi";
-import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
+import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 export default function HRListPage({ hrProfiles }) {

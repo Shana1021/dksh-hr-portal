@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Table from "../Table";
 import Checklist from "../Checklist";
-import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
+import { FaSearch } from "react-icons/fa";
 
 export default function ChecklistPage({ offboardingChecklist, todoChecklist, itemChecklist }) {
   const router = useRouter();
