@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import styles from "./req.module.css";
 import { useRouter } from "next/navigation";
-import "font-awesome/css/font-awesome.min.css";
 
 //icons
-import { BiSolidUser} from "react-icons/bi"; //User
+import { FaUserAlt} from "react-icons/fa"; //User
 import { FaMapMarkerAlt } from "react-icons/fa"; //Address
+import { FaMapLocationDot } from "react-icons/fa6"; //Country,State
+import { FaLocationCrosshairs } from "react-icons/fa6"; //PostCode
 import { BiCalendar } from "react-icons/bi"; //Calendar
 import { AiOutlineClockCircle } from "react-icons/ai"; //Time Clock
 import { BiSolidHourglass } from "react-icons/bi"; //Duration Hourglass
@@ -14,10 +15,10 @@ import { AiOutlineDollar } from "react-icons/ai"; //Money
 import { HiOutlineIdentification } from "react-icons/hi2"; //ID
 import { AiOutlineMail } from "react-icons/ai"; //Email
 import { BsTelephone } from "react-icons/bs"; //Phone
-import { FaGear } from "react-icons/fa6"; //Position
-import { FHiOutlineOfficeBuilding} from "react-icons/hi"; //Department
+import { FaIdCard } from "react-icons/fa6"; //Position
+import { HiOutlineOfficeBuilding} from "react-icons/hi"; //Department
 import { FiUpload } from "react-icons/fi"; //Upload
-import { CiMoneyCheck1} from "react-icons/ci"; //Title
+import { MdOutlineCardMembership} from "react-icons/md"; //Title
 
 export default function TrainingRequestTraining() {
   // To store the vendor code
@@ -129,7 +130,7 @@ export default function TrainingRequestTraining() {
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
-                    <BiSolidUser />
+                    <MdOutlineCardMembership/>
                   </div>
                 </div>
               </div>
@@ -175,7 +176,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                      <FaMapMarkerAlt />
+                      <FaLocationCrosshairs />
                       </div>
                     </div>
                   </div>
@@ -191,7 +192,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                      <FaMapMarkerAlt />
+                      <FaMapLocationDot />
                       </div>
                     </div>
                   </div>
@@ -209,7 +210,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                      <FaMapMarkerAlt />
+                      <FaLocationCrosshairs />
                       </div>
                     </div>
                   </div>
@@ -225,7 +226,7 @@ export default function TrainingRequestTraining() {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                      <FaMapMarkerAlt />
+                      <FaMapLocationDot />
                       </div>
                     </div>
                   </div>
@@ -259,7 +260,7 @@ export default function TrainingRequestTraining() {
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-clock-o"></i>
+                      <AiOutlineClockCircle/>
                     </div>
                   </div>
                 </div>
@@ -277,7 +278,7 @@ export default function TrainingRequestTraining() {
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-hourglass"></i>
+                      <BiSolidHourglass/>
                     </div>
                   </div>
                 </div>
@@ -293,7 +294,7 @@ export default function TrainingRequestTraining() {
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-money"></i>
+                    <AiOutlineDollar/>
                     </div>
                   </div>
                 </div>
@@ -363,7 +364,7 @@ export default function TrainingRequestTraining() {
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-id-card"></i>
+                      <FaIdCard/>
                     </div>
                   </div>
                 </div>
@@ -381,7 +382,7 @@ export default function TrainingRequestTraining() {
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-user"></i>
+                      <FaUserAlt/>
                     </div>
                   </div>
                   <div className={styles.row}>
@@ -397,7 +398,7 @@ export default function TrainingRequestTraining() {
                           className={styles.input}
                         />
                         <div className={styles.inputIcon}>
-                          <i className="fa fa-envelope"></i>
+                          <AiOutlineMail/>
                         </div>
                       </div>
                     </div>
@@ -413,7 +414,7 @@ export default function TrainingRequestTraining() {
                           className={styles.input}
                         />
                         <div className={styles.inputIcon}>
-                          <i className="fa fa-phone"></i>
+                          <BsTelephone/>
                         </div>
                       </div>
                     </div>
@@ -440,7 +441,7 @@ export default function TrainingRequestTraining() {
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-user"></i>
+                  <FaUserAlt/>
                 </div>
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
@@ -452,7 +453,7 @@ export default function TrainingRequestTraining() {
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-envelope"></i>
+                  <AiOutlineMail/>
                 </div>
               </div>
             </div>
