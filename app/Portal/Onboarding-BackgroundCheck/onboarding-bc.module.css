@@ -2,7 +2,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  /* padding: 25px; */
 }
 
 .actions {
@@ -27,4 +27,40 @@
 
 .email-status-pending {
   background-color: lightblue;
+}
+
+.container-search-button{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+.search-bar {
+  width: 265px;
+  height: 42px;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  background-color: #f39c12;
+  margin-right: 10px;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  color: black;
+  outline-color: #f39c12;
+  border: 2px solid;
+  border-color: #f39c12;
+  outline: none;
+}
+
+.search-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-left: 10px;
 }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FiTrash } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalRows }) {
   const router = useRouter();
@@ -97,6 +98,12 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
 
   return (
     <div className={styles["container"]}>
+      <div className={styles["container-search-button"]}>
+          <div className={styles["search-bar"]}>
+            <input type="text" placeholder="Filter by Status" />
+            <span className={styles["search-icon"]}><FaSearch/></span>
+          </div>
+        </div>
       <Table
         columns={[
           { key: "id", title: "Employee ID" },
