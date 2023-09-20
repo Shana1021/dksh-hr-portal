@@ -66,7 +66,7 @@ export default function ChecklistPage({ offboardingChecklist, todoChecklist, ite
         <Checklist
           checklists={checklists}
           onSave={async (checked, addedItems) => {
-            await fetch("/api/checklist/offboarding", {
+            const res = await fetch("/api/checklist/offboarding", {
               method: "POST",
               headers: {"Content-Type": "application/json"},
               body: JSON.stringify({
@@ -77,6 +77,10 @@ export default function ChecklistPage({ offboardingChecklist, todoChecklist, ite
                   .concat(addedItems[1].map(item => [item._id, item.checked]))
               })
             });
+            if (!res.ok) {
+              alert(res.statusText);
+              return;
+            }
 
             router.refresh();
           }}
