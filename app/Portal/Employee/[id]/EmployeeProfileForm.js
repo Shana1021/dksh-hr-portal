@@ -9,15 +9,11 @@ import Image from "next/image";
 export default function EmployeeProfileForm({ employeeProfile }) {
   const router = useRouter();
   const employeeIdRef = useRef(null);
-  const [redirecting, setRedirecting] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (redirecting) {
-      return;
-    }
-    setRedirecting(true);
+    router.push("/Portal/Onboarding-BackgroundCheck");
 
     const res = await fetch(employeeProfile ? `/api/employee/${encodeURIComponent(employeeProfile._id)}` : "/api/employee", {
       method: employeeProfile ? "PUT" : "POST",
@@ -27,19 +23,16 @@ export default function EmployeeProfileForm({ employeeProfile }) {
     const data = await res.json();
 
     if (!res.ok) {
-      setRedirecting(false);
       alert(data.error);
       return;
     }
 
     if (data.status === "idExists") {
-      setRedirecting(false);
       employeeIdRef.current.setCustomValidity("Employee ID already exists.");
       employeeIdRef.current.reportValidity();
       return;
     }
 
-    router.push("/Portal/Onboarding-BackgroundCheck");
     router.refresh();
   }
 

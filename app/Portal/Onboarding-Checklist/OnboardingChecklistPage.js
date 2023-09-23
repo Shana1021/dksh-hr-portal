@@ -1,8 +1,7 @@
 "use client";
 
-import styles from "./onc.module.css";
+import styles from "./onboarding-checklist.module.css";
 import Table from "../Table";
-import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
 
 export default function OnboardingChecklistPage({ onboardingChecklist, totalRows }) {

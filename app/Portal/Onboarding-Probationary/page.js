@@ -37,11 +37,6 @@ export default function Probationary() {
           data={checklistItems}
           height="400px"
           />
-          <button className={styles["custom-button"]}>
-            <Link href="./NewEmployee">
-              <span className={styles["plus-icon"]}>&#43;</span>Add New Employee
-              </Link>
-              </button>
         </div>
     )
 }

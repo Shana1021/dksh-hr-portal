@@ -95,6 +95,7 @@ export async function PUT(request) {
 
   await db.collection("employee_profiles").bulkWrite(
     updates
+      .filter(update => update.status === "Pending")
       .map(update => ({
         updateOne: {
           filter: { _id: update._id },

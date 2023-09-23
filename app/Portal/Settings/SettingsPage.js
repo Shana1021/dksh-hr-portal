@@ -13,11 +13,15 @@ export default function SettingsPage({
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await fetch("/api/settings", {
+    const res = await fetch("/api/settings", {
       method: "PUT",
       body: new FormData(e.target),
     });
-
+    if (!res.ok) {
+      alert(res.statusText);
+      return;
+    }
+    
     router.refresh();
   }
 

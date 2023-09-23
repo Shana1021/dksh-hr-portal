@@ -7,16 +7,14 @@ import { FiTrash } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import ConfirmationDialog from "../ConfirmationDialog";
 
 export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalRows }) {
   const router = useRouter();
   const [statuses, setStatuses] = useState(employeeProfiles.map(employeeProfile => employeeProfile.status));
-  const [loading, setLoading] = useState();
+  const [confirmation, setConfirmation] = useState(null);
 
-  useEffect(() => {
-    setStatuses(employeeProfiles.map(employeeProfile => employeeProfile.status))
-    setLoading(false);
-  }, [employeeProfiles]);
+  useEffect(() => setStatuses(employeeProfiles.map(employeeProfile => employeeProfile.status)), [employeeProfiles]);
 
   for (const [index, employeeProfile] of employeeProfiles.entries()) {
     employeeProfile.id = (
@@ -77,77 +75,100 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
 
     if (employeeProfile.status === "Pending") {
       employeeProfile.action = (
-        <FiTrash
-          className="delete-button"
-          onClick={async () => {
-            if (loading) {
-              return;
-            }
-            setLoading(true);
+        <>
+          <FiTrash
+            className="delete-button"
+            onClick={() =>
+              setConfirmation({
+                message: "Are you sure you want to delete this?",
+                async onConfirm() {
+                  const res = await fetch(`/api/employee/${encodeURIComponent(employeeProfile._id)}`, {
+                    method: "DELETE"
+                  });
+                  if (!res.ok) {
+                    alert(res.statusText);
+                    return;
+                  }
 
-            await fetch(`/api/employee/${encodeURIComponent(employeeProfile._id)}`, {
-              method: "DELETE",
-            });
-  
-            router.refresh();
-          }}
-        />
+                  router.refresh();
+                }
+              })
+            }
+          />
+        </>
       );
     }
   }
 
   return (
-    <div className={styles["container"]}>
-      <div className={styles["container-search-button"]}>
-          <div className={styles["search-bar"]}>
-            <input type="text" placeholder="Filter by Status" />
-            <span className={styles["search-icon"]}><FaSearch/></span>
+    <>
+      <div className={styles["container"]}>
+        <div className={styles["container-search-button"]}>
+            <div className={styles["search-bar"]}>
+              <input type="text" placeholder="Filter by Status" />
+              <span className={styles["search-icon"]}><FaSearch/></span>
+            </div>
           </div>
-        </div>
-      <Table
-        columns={[
-          { key: "id", title: "Employee ID" },
-          { key: "firstName", title: "First Name" },
-          { key: "lastName", title: "Last Name" },
-          { key: "email", title: "Email" },
-          { key: "position", title: "Position" },
-          { key: "department", title: "Department" },
-          { key: "bcStatus", title: "BC Status" },
-          { key: "emailStatus", title: "Email Status" },
-          { key: "action", title: "Action" }
-        ]}
-        data={employeeProfiles}
-        height="400px"
-        totalRows={totalRows}
-      />
-      <div className={styles["actions"]}>
-        <Link className="module-button" href="/Portal/Employee/New">Add Employee</Link>
-        <button
-          className="module-button"
-          onClick={async () => {
-            if (loading) {
-              return;
+        <Table
+          columns={[
+            { key: "id", title: "Employee ID" },
+            { key: "firstName", title: "First Name" },
+            { key: "lastName", title: "Last Name" },
+            { key: "email", title: "Email" },
+            { key: "position", title: "Position" },
+            { key: "department", title: "Department" },
+            { key: "bcStatus", title: "BC Status" },
+            { key: "emailStatus", title: "Email Status" },
+            { key: "action", title: "Action" }
+          ]}
+          data={employeeProfiles}
+          height="400px"
+          totalRows={totalRows}
+        />
+        <div className={styles["actions"]}>
+          <Link className="module-button" href="/Portal/Employee/New">Add Employee</Link>
+          <button
+            className="module-button"
+            onClick={() =>
+              setConfirmation({
+                message: "Are you sure you want to send all emails for this page?",
+                async onConfirm() {
+                  const res = await fetch("/api/employee", {
+                    method: "PUT",
+                    body: JSON.stringify(
+                      statuses
+                        .map((status, i) => ({
+                          _id: employeeProfiles[i]._id,
+                          status
+                        }))
+                        .filter((update, i) => employeeProfiles[i].status === "Pending" && update.status !== "Pending")
+                    )
+                  });
+                  if (!res.ok) {
+                    alert(res.statusText);
+                    return;
+                  }
+                  
+                  router.refresh();
+                }
+              })
             }
-            setLoading(true);
-
-            await fetch("/api/employee", {
-              method: "PUT",
-              body: JSON.stringify(
-                statuses
-                  .map((status, i) => ({
-                    _id: employeeProfiles[i]._id,
-                    status
-                  }))
-                  .filter((update, i) => employeeProfiles[i].status === "Pending" && update.status !== "Pending")
-              )
-            });
-
-            router.refresh();
-          }}
-        >
-          Send Email
-        </button>
+          >
+            Send Email
+          </button>
+        </div>
       </div>
-    </div>
+      {confirmation && (
+        <ConfirmationDialog
+          onConfirm={() => {
+            setConfirmation(null);
+            confirmation.onConfirm();
+          }}
+          onClose={() => setConfirmation(null)}
+        >
+          {confirmation.message}
+        </ConfirmationDialog>
+      )}
+    </>
   );
 }
