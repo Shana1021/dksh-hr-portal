@@ -15,10 +15,15 @@ export default function EmployeeProfileForm({ employeeProfile }) {
 
     router.push("/Portal/Onboarding-BackgroundCheck");
 
-    const res = await fetch(employeeProfile ? `/api/employee/${encodeURIComponent(employeeProfile._id)}` : "/api/employee", {
-      method: employeeProfile ? "PUT" : "POST",
-      body: new FormData(e.target)
-    });
+    const res = await fetch(
+      employeeProfile
+        ? `/api/employee/${encodeURIComponent(employeeProfile._id)}`
+        : "/api/employee",
+      {
+        method: employeeProfile ? "PUT" : "POST",
+        body: new FormData(e.target),
+      }
+    );
 
     const data = await res.json();
 
@@ -44,7 +49,9 @@ export default function EmployeeProfileForm({ employeeProfile }) {
         {employeeProfile && (
           <div className={styles["image-container"]}>
             <Image
-              src={`/api/employee/${encodeURIComponent(employeeProfile?._id)}/profileImage?${new Date().getTime()}`}
+              src={`/api/employee/${encodeURIComponent(
+                employeeProfile?._id
+              )}/profileImage?${new Date().getTime()}`}
               alt="test"
               fill
               style={{ objectFit: "cover", borderRadius: "50%" }}
@@ -275,7 +282,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   name="_id"
                   defaultValue={employeeProfile?._id}
                   required
-                  onChange={e => {
+                  onChange={(e) => {
                     e.target.setCustomValidity("");
                     e.target.reportValidity();
                   }}
@@ -342,10 +349,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
             {/* Submit Button */}
             <div className={styles.row}>
               <div className={styles.inputGroup}>
-                <button
-                  type="submit"
-                  className={styles.button}
-                >
+                <button type="submit" className={styles.button}>
                   Submit
                 </button>
               </div>

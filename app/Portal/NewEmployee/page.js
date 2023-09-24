@@ -86,6 +86,7 @@ export default function NewEmployee() {
       });
       if (res.ok) {
         router.push("/Portal/HR-List");
+        router.refresh();
       } else {
         throw new Error("Failed");
       }

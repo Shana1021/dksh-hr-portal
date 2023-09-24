@@ -23,7 +23,7 @@ export async function PUT(request, { params }) {
   } = await request.json();
   const client = await clientPromise;
   const db = await client.db();
-  const collection = db.collection("hrstaffs");
+  const collection = db.collection("hr_profiles");
   const objectId = new ObjectId(id);
 
   await collection.updateOne(
@@ -55,7 +55,7 @@ export async function GET(request, { params }) {
   const id = params;
   const objectId = new ObjectId(id);
   const db = await client.db();
-  const collection = db.collection("hrstaffs");
+  const collection = db.collection("hr_profiles");
   const topic = await collection.findOne({ _id: objectId });
   return NextResponse.json({ topic }, { status: 200 });
 }
