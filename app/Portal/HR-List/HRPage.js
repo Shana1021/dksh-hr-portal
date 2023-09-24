@@ -13,12 +13,10 @@ export default function HRListPage({ hrProfiles, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
 
-  for (const [index, hrProfile] of hrProfiles.entries()) {
-    hrProfile.id = (
-      <Link href={`./EditNewEmployee/${hrProfile._id}`}>{hrProfile._id}</Link>
-    );
-  }
   for (const hrProfile of hrProfiles) {
+    hrProfile.empId = (
+      <Link href={`./EditNewEmployee/${hrProfile._id}`}>{hrProfile.empId}</Link>
+    );
     hrProfile.action = (
       <>
         <Link
