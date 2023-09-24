@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./popup.module.css";
+import styles from "./checklist.module.css";
 import { useState, useRef } from "react";
 
 export default function Checklist({ checklists, onSave, onClose }) {
