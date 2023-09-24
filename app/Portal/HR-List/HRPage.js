@@ -9,51 +9,64 @@ import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import ConfirmationDialog from "../ConfirmationDialog"; // Import the confirmation dialog component
 
-export default function HRListPage({ hrProfiles }) {
+export default function HRListPage({ hrProfiles, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
 
+  for (const [index, hrProfile] of hrProfiles.entries()) {
+    hrProfile.id = (
+      <Link href={`./EditNewEmployee/${hrProfile._id}`}>{hrProfile._id}</Link>
+    );
+  }
   for (const hrProfile of hrProfiles) {
     hrProfile.action = (
       <>
-        <Link className="edit-button" href={`./EditNewEmployee/${hrProfile._id}`}>
+        <Link
+          className="edit-button"
+          href={`./EditNewEmployee/${hrProfile._id}`}
+        >
           <BiEdit />
         </Link>
-         <FiTrash
+        <FiTrash
           className="delete-button"
           onClick={() =>
             setConfirmation({
               message: "Are you sure you want to delete this?",
               async onConfirm() {
-                const res = await fetch(`/api/HRStaff?id=${encodeURIComponent(hrProfile._id)}`, {
-                  method: "DELETE"
-                });
+                const res = await fetch(
+                  `/api/HRStaff?id=${encodeURIComponent(hrProfile._id)}`,
+                  {
+                    method: "DELETE",
+                  }
+                );
                 if (!res.ok) {
                   alert(res.statusText);
                   return;
                 }
 
                 router.refresh();
-              }
+              },
             })
           }
         />
       </>
     );
   }
-  
+
   return (
     <>
       <div className={styles["container"]}>
         <div className={styles["container-search-button"]}>
           <div className={styles["search-bar"]}>
             <input type="text" placeholder="Filter by Position" />
-            <span className={styles["search-icon"]}><FaSearch/></span>
+            <span className={styles["search-icon"]}>
+              <FaSearch />
+            </span>
           </div>
         </div>
         <Table
           columns={[
-            { key: "_id", title: "ID" },
+            { key: "empId", title: "ID" },
             { key: "fname", title: "Name" },
             { key: "email", title: "Email" },
             { key: "number", title: "Phone" },
@@ -61,9 +74,11 @@ export default function HRListPage({ hrProfiles }) {
           ]}
           data={hrProfiles}
           height="400px"
+          totalRows={totalRows}
         />
         <Link className={styles["custom-button"]} href="./NewEmployee">
-          <span className={styles["plus-icon"]}>&#43;</span>&nbsp;Add HR Employee
+          <span className={styles["plus-icon"]}>&#43;</span>&nbsp;Add HR
+          Employee
         </Link>
       </div>
       {confirmation && (

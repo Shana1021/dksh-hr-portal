@@ -1,7 +1,7 @@
 import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
-
+import bcrypt from "bcrypt";
 //Create
 export async function POST(request) {
   const {
@@ -27,12 +27,12 @@ export async function POST(request) {
   const collection = db.collection("hrstaffs");
   const currentDate = new Date();
   const timestamp = formatDate(currentDate);
-
+  const hashedPassword = await bcrypt.hash(password, 10);
   await collection.insertOne({
     fname,
     lname,
     empId,
-    password,
+    password: hashedPassword,
     address1,
     address2,
     email,
