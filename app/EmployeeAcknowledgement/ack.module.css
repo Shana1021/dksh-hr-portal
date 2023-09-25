@@ -1,0 +1,106 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.acknowledged {
+  width: 50%;
+  background-color: #feefc6;
+  padding: 15px;
+  border: 2px solid #888 none;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.acknowledged input[type="text"] {
+  width: 20%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; 
+  flex-wrap: wrap; 
+}
+
+.calendar-container {
+  flex: 1;
+  width: 30%;
+  background-color: #feefc6;
+  padding: 20px;
+  border: 1px solid none;
+  border-radius: 8px;
+  text-align: start;
+  margin-top: 50px;
+}
+
+.acknowledged h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.acknowledged p {
+  font-size: 16px;
+  text-align: start;
+  word-wrap: break-word; 
+}
+
+.calendar-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.calendar button:hover {
+  background-color: #be0028;
+  color: #ccc;
+}
+
+.resignation-letter,
+.aor-letter {
+  flex: 1;
+  width: 100%; 
+  background-color: #feefc6;
+  padding: 20px;
+  border: 1px solid none;
+  border-radius: 8px;
+  text-align: start;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.resignation-letter h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.resignation-letter h3 {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.resignation-letter button,
+.aor-letter button {
+  font-size: 12px;
+  padding: 10px;
+  background-color: #be0028;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+

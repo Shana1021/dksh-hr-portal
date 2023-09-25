@@ -9,7 +9,9 @@ export default async function Employee({ params }) {
 
   const client = await clientPromise;
   const db = await client.db();
-  const employeeProfile = await db.collection("employee_profiles").findOne({ _id: params.id });
+  const employeeProfile = await db
+    .collection("employee_profiles")
+    .findOne({ _id: params.id });
 
-  return <EmployeeProfileForm employeeProfile={employeeProfile} />
+  return <EmployeeProfileForm employeeProfile={employeeProfile} />;
 }
