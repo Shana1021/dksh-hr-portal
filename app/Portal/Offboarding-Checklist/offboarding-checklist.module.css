@@ -1,12 +1,10 @@
-/* components/style.css */
-
-/* Style for the container */
 .container {
+  margin: auto;
+  display: flex;
   flex-direction: column;
-  padding-left: 30px;
+  padding: 25px;
 }
 
-/* Style for the header */
 .header h1 {
   margin: 0;
   align-items: center;
