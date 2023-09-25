@@ -59,7 +59,7 @@ const sidebarData = [
       },
       {
         title: "Resignation Requests",
-        path: "#",
+        path: "/Portal/Offboarding-ResignationRequests",
       },
       {
         title: "Checklist",
