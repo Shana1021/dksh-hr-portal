@@ -1,42 +1,31 @@
-'use client';
+import ProbationaryPage from "./ProbationaryPage";
+import clientPromise from "@/lib/mongodb";
 
-import styles from './on.module.css';
-import Table from "../Table";
-import Link from "next/link";
-import { FaSearch } from "react-icons/fa";
+export default async function OnboardingProbationary({ searchParams: { pageSize=25, page=1 } }) {
+  pageSize = parseInt(pageSize);
+  page = parseInt(page);
 
-const checklistItems = [
-  {
-    _id: 1,
-    name: "John Doe",
-    positionID: "12345",
-    incharge: "Manager",
-    vendor: "Training Co.",
-    email: "john@example.com",
-  },
-];
+  const client = await clientPromise;
+  const db = await client.db();
 
-export default function Probationary() {
-  return (
-      <div className={styles["container"]}>
-        <div className={styles["container-search-button"]}>
-          <div className={styles["search-bar"]}>
-            <input type="text" placeholder="Filter by Status" />
-            <span className={styles["search-icon"]}><FaSearch/></span>
-          </div>
-        </div>
-        <Table
-          columns={[
-            { key: "_id", title: "No" },
-            { key: "name", title: "Name" },
-            { key: "positionID", title: "ID" },
-            { key: "startdate", title: "Start Date" },
-            { key: "enddate", title: "End Date" },
-            { key: "email", title: "Email Status", }
-          ]}
-          data={checklistItems}
-          height="400px"
-          />
-        </div>
-    )
+  const probationaries = await db.collection("onboarding_probationary")
+    .aggregate([
+      {
+        $lookup: {
+          from: "employee_profiles",
+          localField: "_id",
+          foreignField: "_id",
+          as: "profile"
+        }
+      }
+    ])
+    .sort({ createdAt: -1 })
+    .skip(page > 0 ? (page - 1) * pageSize : 0)
+    .limit(pageSize)
+    .map(doc => ({ ...doc, ...doc.profile[0] }))
+    .toArray();
+
+  const totalRows = await db.collection("onboarding_probationary").count();
+  
+  return <ProbationaryPage probationaries={probationaries} totalRows={totalRows} />;
 }

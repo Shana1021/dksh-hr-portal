@@ -1,14 +1,14 @@
 import OnboardingChecklistPage from "./OnboardingChecklistPage";
 import clientPromise from "@/lib/mongodb";
 
-export default async function ChecklistPageFetch({ searchParams: { pageSize=25, page=1 } }) {
+export default async function OnboardingChecklist({ searchParams: { pageSize=25, page=1 } }) {
   pageSize = parseInt(pageSize);
   page = parseInt(page);
 
   const client = await clientPromise;
   const db = await client.db();
 
-  const onboardingChecklist = await db.collection("onboarding_checklist")
+  const onboardingChecklists = await db.collection("onboarding_checklists")
     .aggregate([
       {
         $lookup: {
@@ -22,13 +22,10 @@ export default async function ChecklistPageFetch({ searchParams: { pageSize=25, 
     .sort({ createdAt: -1 })
     .skip(page > 0 ? (page - 1) * pageSize : 0)
     .limit(pageSize)
-    .map(doc => ({
-      ...doc,
-      ...doc.profile[0]
-    }))
+    .map(doc => ({ ...doc, ...doc.profile[0] }))
     .toArray();
 
-  const totalRows = await db.collection("onboarding_checklist").count();
+  const totalRows = await db.collection("onboarding_checklists").count();
   
-  return <OnboardingChecklistPage onboardingChecklist={onboardingChecklist} totalRows={totalRows} />;
+  return <OnboardingChecklistPage onboardingChecklists={onboardingChecklists} totalRows={totalRows} />;
 }

@@ -1,6 +1,8 @@
 .container {
+  margin: auto;
+  display: flex;
   flex-direction: column;
-  padding-left: 30px;
+  padding: 25px;
 }
 
 .header h1 {

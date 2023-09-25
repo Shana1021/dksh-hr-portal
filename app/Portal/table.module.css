@@ -5,13 +5,14 @@
 }
 
 .table-scroll-container {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .table {
-  margin: -1px;
   border-collapse: collapse;
-  width: 100%;
+  width: calc(100% + 2px);
+  margin: -1px;
 }
 
 .table th, .table td {

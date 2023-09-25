@@ -65,48 +65,78 @@ export async function PUT(request) {
     employeeProfiles.map(employeeProfile => [employeeProfile._id, employeeProfile.status])
   );
 
-  const operations = updates
-    .filter(update => statuses[update._id] === "Pending" && update.status === "Pass")
-    .map(update => ({
+  const validUpdates = updates.filter(update => statuses[update._id] === "Pending");
+  if (validUpdates.length === 0) {
+    return NextResponse.json({ status: "success" });
+  }
+
+  await db.collection("employee_profiles").bulkWrite(
+    validUpdates.map(update => ({
       updateOne: {
         filter: { _id: update._id },
         update: {
           $set: {
-            todos: [
-              {
-                title: "1 Hour Introduction",
-                checked: false
-              },
-              {
-                title: "Office Tour",
-                checked: false
-              }
-            ],
-            items: []
-          },
-          $currentDate: { createdAt: true }
-        },
-        upsert: true
+            status: update.status
+          }
+        }
       }
-    }));
-  if (operations.length > 0) {
-    await db.collection("onboarding_checklist").bulkWrite(operations);
+    }))
+  );
+
+  const passedUpdates = validUpdates.filter(update => update.status === "Pass");
+  if (passedUpdates.length === 0) {
+    return NextResponse.json({ status: "success" });
   }
 
-  await db.collection("employee_profiles").bulkWrite(
-    updates
-      .filter(update => update.status === "Pending")
-      .map(update => ({
+  await Promise.all([
+    db.collection("onboarding_checklists").bulkWrite(
+      passedUpdates.map(update => ({
         updateOne: {
           filter: { _id: update._id },
           update: {
             $set: {
-              status: update.status
-            }
-          }
+              todos: [
+                {
+                  title: "1 Hour Introduction",
+                  checked: false
+                },
+                {
+                  title: "Office Tour",
+                  checked: false
+                }
+              ],
+              items: [
+                {
+                  title: "Access Card",
+                  checked: false
+                },
+                {
+                  title: "Laptop",
+                  checked: false
+                }
+              ]
+            },
+            $currentDate: { createdAt: true }
+          },
+          upsert: true
         }
       }))
-  );
+    ),
+    db.collection("probationary").bulkWrite(
+      passedUpdates.map(update => ({
+        updateOne: {
+          filter: { _id: update._id },
+          update: {
+            $set: {
+              completed: false
+            },
+            $currentDate: { createdAt: true }
+          },
+          upsert: true
+        }
+      }))
+    )
+  ]);
 
   // TODO: send email for those who passed
 

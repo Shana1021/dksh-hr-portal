@@ -2,14 +2,12 @@
 
 import styles from "./checklist.module.css";
 import { useState, useRef } from "react";
+import { AiFillMinusCircle } from "react-icons/ai";
 
-export default function Checklist({ checklists, onSave, onClose }) {
+export default function Checklist({ initialChecklists, onSave, onClose }) {
   const addItemTitleRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [checked, setChecked] = useState(
-    checklists.map(checklist => checklist.items.map(item => item.checked))
-  );
-  const [addedItems, setAddedItems] = useState(Array.from({length: checklists.length}, () => []));
+  const [checklists, setChecklists] = useState(initialChecklists);
   const [addItemTitle, setAddItemTitle] = useState("");
   const [saving, setSaving] = useState(false);
 
@@ -38,29 +36,8 @@ export default function Checklist({ checklists, onSave, onClose }) {
             ))}
           </div>
           <ul className={styles["checklist"]}>
-            {checklists[activeIndex].items.map((item, index) => (
-              <li key={`item-${activeIndex}-${index}`}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checked[activeIndex][index]}
-                    onChange={() => {
-                      if (saving) {
-                        return;
-                      }
-
-                      setChecked(checked.map((checklist, checklistIndex) =>
-                        checklistIndex === activeIndex
-                          ? checklist.map((c, cIndex) => cIndex === index ? !checked[activeIndex][index] : c)
-                          : checklist
-                      ));
-                    }}
-                  /> {item._id}
-                </label>
-              </li>
-            ))}
-            {addedItems[activeIndex].map((item, index) => (
-              <li key={`addedItem-${activeIndex}-${index}`}>
+            {checklists[activeIndex].items.map(item => (
+              <li key={`item-${activeIndex}-${item.title}`}>
                 <label>
                   <input
                     type="checkbox"
@@ -70,14 +47,31 @@ export default function Checklist({ checklists, onSave, onClose }) {
                         return;
                       }
 
-                      setAddedItems(addedItems.map((checklist, checklistIndex) =>
+                      setChecklists(checklists.map((checklist, checklistIndex) =>
                         checklistIndex === activeIndex
-                          ? checklist.map((i, iIndex) => iIndex === index ? {...item, checked: !item.checked} : i)
+                          ? {
+                            title: checklist.title,
+                            items: checklist.items.map(cItem => cItem.title === item.title
+                              ? { title: item.title, checked: !item.checked } : cItem)
+                          }
                           : checklist
                       ));
                     }}
-                  /> {item._id}
+                  /> {item.title}
                 </label>
+                <AiFillMinusCircle
+                  className={styles["delete"]}
+                  onClick={() =>
+                    setChecklists(checklists.map((checklist, checklistIndex) =>
+                      checklistIndex === activeIndex
+                        ? {
+                          title: checklist.title,
+                          items: checklist.items.filter(cItem => cItem.title !== item.title)
+                        }
+                        : checklist
+                    ))
+                  }
+                />
               </li>
             ))}
           </ul>
@@ -107,15 +101,18 @@ export default function Checklist({ checklists, onSave, onClose }) {
                 return;
               }
 
-              if (checklists[activeIndex].items.some(item => item._id === addItemTitle)) {
+              if (checklists[activeIndex].items.some(item => item.title === addItemTitle)) {
                 addItemTitleRef.current.setCustomValidity("Item already exists.");
                 addItemTitleRef.current.reportValidity();
                 return;
               }
 
-              setAddedItems(addedItems.map((checklist, checklistIndex) =>
+              setChecklists(checklists.map((checklist, checklistIndex) =>
                 checklistIndex === activeIndex
-                  ? [...checklist, { _id: addItemTitle, checked: false }]
+                  ? {
+                    title: checklist.title,
+                    items: [...checklist.items, { title: addItemTitle, checked: false }]
+                  }
                   : checklist
               ));
               setAddItemTitle("");
@@ -129,7 +126,7 @@ export default function Checklist({ checklists, onSave, onClose }) {
               }
 
               setSaving(true);
-              onSave(checked, addedItems);
+              onSave(checklists);
             }}
           >{saving ? "Saving..." : "Save"}</button>
         </div>
