@@ -8,7 +8,7 @@ export default async function OnboardingProbationary({ searchParams: { pageSize=
   const client = await clientPromise;
   const db = await client.db();
 
-  const probationaries = await db.collection("onboarding_probationary")
+  const probationaries = await db.collection("probationary")
     .aggregate([
       {
         $lookup: {
@@ -25,7 +25,7 @@ export default async function OnboardingProbationary({ searchParams: { pageSize=
     .map(doc => ({ ...doc, ...doc.profile[0] }))
     .toArray();
 
-  const totalRows = await db.collection("onboarding_probationary").count();
+  const totalRows = await db.collection("probationary").count();
   
   return <ProbationaryPage probationaries={probationaries} totalRows={totalRows} />;
 }
