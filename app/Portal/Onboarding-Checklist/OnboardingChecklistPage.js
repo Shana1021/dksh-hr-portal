@@ -4,14 +4,12 @@ import styles from "./onboarding-checklist.module.css";
 import Table from "../Table";
 import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Checklist from "../Checklist";
 
 export default function OnboardingChecklistPage({ onboardingChecklists, totalRows }) {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
-
-  useEffect(() => setSelectedIndex(null), [onboardingChecklists]);
 
   for (const [index, checklist] of onboardingChecklists.entries()) {
     checklist.action = (
@@ -46,6 +44,9 @@ export default function OnboardingChecklistPage({ onboardingChecklists, totalRow
             { key: "_id", title: "Employee ID" },
             { key: "firstName", title: "First Name" },
             { key: "lastName", title: "Last Name" },
+            { key: "email", title: "Email" },
+            { key: "position", title: "Position" },
+            { key: "department", title: "Department" },
             { key: "action", title: "Action" }
           ]}
           data={onboardingChecklists}
@@ -71,6 +72,7 @@ export default function OnboardingChecklistPage({ onboardingChecklists, totalRow
             }
 
             router.refresh();
+            setSelectedIndex(null);
           }}
           onClose={() => setSelectedIndex(null)}
         />

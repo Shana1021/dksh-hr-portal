@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./onboarding-bc.module.css";
+import styles from "./onboarding-backgroundcheck.module.css";
 import Table from "../Table";
 import Link from "next/link";
 import { FiTrash } from "react-icons/fi";
@@ -11,10 +11,10 @@ import ConfirmationDialog from "../ConfirmationDialog";
 
 export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalRows }) {
   const router = useRouter();
-  const [statuses, setStatuses] = useState(employeeProfiles.map(employeeProfile => employeeProfile.status));
+  const [bcStatuses, setBCStatuses] = useState(employeeProfiles.map(employeeProfile => employeeProfile.bcStatus));
   const [confirmation, setConfirmation] = useState(null);
 
-  useEffect(() => setStatuses(employeeProfiles.map(employeeProfile => employeeProfile.status)), [employeeProfiles]);
+  useEffect(() => setBCStatuses(employeeProfiles.map(employeeProfile => employeeProfile.bcStatus)), [employeeProfiles]);
 
   for (const [index, employeeProfile] of employeeProfiles.entries()) {
     employeeProfile.id = (
@@ -24,18 +24,18 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
     );
 
     function handleBCStatusChange(e) {
-      if (employeeProfile.status === "Pending") {
-        setStatuses(statuses.map((bcStatus, i) => i == index ? e.target.value : bcStatus))
+      if (employeeProfile.bcStatus === "Pending") {
+        setBCStatuses(bcStatuses.map((bcStatus, i) => i == index ? e.target.value : bcStatus))
       }
     }
-    employeeProfile.bcStatus = (
+    employeeProfile.bcStatusRadios = (
       <div className={styles["bc-status-radios"]}>
         <label>
           <input
             type="radio"
             name={`bcStatus-${employeeProfile._id}`}
             value="Pending"
-            checked={statuses[index] === "Pending"}
+            checked={bcStatuses[index] === "Pending"}
             onChange={handleBCStatusChange}
           /> Pending
         </label>
@@ -45,7 +45,7 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
             type="radio"
             name={`bcStatus-${employeeProfile._id}`}
             value="Pass"
-            checked={statuses[index] === "Pass"}
+            checked={bcStatuses[index] === "Pass"}
             onChange={handleBCStatusChange}
           /> Pass
         </label>
@@ -55,7 +55,7 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
             type="radio"
             name={`bcStatus-${employeeProfile._id}`}
             value="Fail"
-            checked={statuses[index] === "Fail"}
+            checked={bcStatuses[index] === "Fail"}
             onChange={handleBCStatusChange}
             /> Fail
         </label>
@@ -66,14 +66,14 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
       <div
         className={
           `${styles["email-status-label"]} 
-          ${styles[employeeProfile.status === "Pending" ? "email-status-pending" : "email-status-complete"]}`
+          ${styles[employeeProfile.bcStatus === "Pending" ? "email-status-pending" : "email-status-complete"]}`
         }
       >
-        {employeeProfile.status === "Pending" ? "Pending" : "Complete"}
+        {employeeProfile.bcStatus === "Pending" ? "Pending" : "Complete"}
       </div>
     );
 
-    if (employeeProfile.status === "Pending") {
+    if (employeeProfile.bcStatus === "Pending") {
       employeeProfile.action = (
         <>
           <FiTrash
@@ -117,7 +117,7 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
             { key: "email", title: "Email" },
             { key: "position", title: "Position" },
             { key: "department", title: "Department" },
-            { key: "bcStatus", title: "BC Status" },
+            { key: "bcStatusRadios", title: "BC Status" },
             { key: "emailStatus", title: "Email Status" },
             { key: "action", title: "Action" }
           ]}
@@ -136,12 +136,12 @@ export default function OnboardingBackgroundCheckPage({ employeeProfiles, totalR
                   const res = await fetch("/api/employee", {
                     method: "PUT",
                     body: JSON.stringify(
-                      statuses
-                        .map((status, i) => ({
+                      bcStatuses
+                        .map((bcStatus, i) => ({
                           _id: employeeProfiles[i]._id,
-                          status
+                          bcStatus
                         }))
-                        .filter((update, i) => employeeProfiles[i].status === "Pending" && update.status !== "Pending")
+                        .filter((update, i) => employeeProfiles[i].bcStatus === "Pending" && update.bcStatus !== "Pending")
                     )
                   });
                   if (!res.ok) {

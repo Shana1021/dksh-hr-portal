@@ -38,7 +38,7 @@ export async function POST(request) {
         postalCode: formData.get("postalCode"),
         phone: formData.get("phone"),
         country: formData.get("country"),
-        status: "Pending"
+        bcStatus: "Pending"
       },
       $currentDate: { createdAt: true }
     },
@@ -58,14 +58,14 @@ export async function PUT(request) {
   const db = await client.db();
 
   const employeeProfiles = await db.collection("employee_profiles")
-    .find({ _id: { $in: updates.map(update => update._id) } }, { _id: true, status: true })
+    .find({ _id: { $in: updates.map(update => update._id) } }, { _id: true, bcStatus: true })
     .toArray();
   
-  const statuses = Object.fromEntries(
-    employeeProfiles.map(employeeProfile => [employeeProfile._id, employeeProfile.status])
+  const bcStatuses = Object.fromEntries(
+    employeeProfiles.map(employeeProfile => [employeeProfile._id, employeeProfile.bcStatus])
   );
 
-  const validUpdates = updates.filter(update => statuses[update._id] === "Pending");
+  const validUpdates = updates.filter(update => bcStatuses[update._id] === "Pending");
   if (validUpdates.length === 0) {
     return NextResponse.json({ status: "success" });
   }
@@ -76,14 +76,14 @@ export async function PUT(request) {
         filter: { _id: update._id },
         update: {
           $set: {
-            status: update.status
+            bcStatus: update.bcStatus
           }
         }
       }
     }))
   );
 
-  const passedUpdates = validUpdates.filter(update => update.status === "Pass");
+  const passedUpdates = validUpdates.filter(update => update.bcStatus === "Pass");
   if (passedUpdates.length === 0) {
     return NextResponse.json({ status: "success" });
   }

@@ -9,18 +9,11 @@ export default function Checklist({ initialChecklists, onSave, onClose }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [checklists, setChecklists] = useState(initialChecklists);
   const [addItemTitle, setAddItemTitle] = useState("");
-  const [saving, setSaving] = useState(false);
 
   return (
     <div
       className={styles["modal-overlay"]}
-      onClick={() => {
-        if (saving) {
-          return;
-        }
-        
-        onClose();
-      }}
+      onClick={onClose}
     >
       <div className={styles["modal"]} onClick={e => e.stopPropagation()}>
         <div className={styles["modal-content"]}>
@@ -43,10 +36,6 @@ export default function Checklist({ initialChecklists, onSave, onClose }) {
                     type="checkbox"
                     checked={item.checked}
                     onChange={() => {
-                      if (saving) {
-                        return;
-                      }
-
                       setChecklists(checklists.map((checklist, checklistIndex) =>
                         checklistIndex === activeIndex
                           ? {
@@ -81,20 +70,12 @@ export default function Checklist({ initialChecklists, onSave, onClose }) {
               type="text"
               value={addItemTitle}
               onChange={e => {
-                if (saving) {
-                  return;
-                }
-                
                 setAddItemTitle(e.target.value);
                 e.target.setCustomValidity("");
                 e.target.reportValidity();
               }}
             />
             <button onClick={() => {
-              if (saving) {
-                return;
-              }
-
               if (addItemTitle.length === 0) {
                 addItemTitleRef.current.setCustomValidity("Item cannot be empty.");
                 addItemTitleRef.current.reportValidity();
@@ -121,14 +102,9 @@ export default function Checklist({ initialChecklists, onSave, onClose }) {
           <button
             className={`module-button ${styles["save-btn"]}`}
             onClick={() => {
-              if (saving) {
-                return;
-              }
-
-              setSaving(true);
               onSave(checklists);
             }}
-          >{saving ? "Saving..." : "Save"}</button>
+          >Save</button>
         </div>
       </div>
     </div>

@@ -66,3 +66,23 @@
     width: auto;
   }
 }
+
+.status-label {
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.status-label-complete {
+  background-color: lightgreen;
+}
+
+.status-label-incomplete {
+  background-color: lightblue;
+}
+
+.mark-completed {
+  color: lime;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
