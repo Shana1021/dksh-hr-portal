@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./checklist.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AiFillMinusCircle } from "react-icons/ai";
 
 export default function Checklist({ initialChecklists, onSave, onClose }) {
@@ -9,6 +9,8 @@ export default function Checklist({ initialChecklists, onSave, onClose }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [checklists, setChecklists] = useState(initialChecklists);
   const [addItemTitle, setAddItemTitle] = useState("");
+
+  useEffect(() => setChecklists(initialChecklists), [initialChecklists]);
 
   return (
     <div

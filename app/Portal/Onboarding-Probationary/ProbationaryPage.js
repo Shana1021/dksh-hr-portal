@@ -34,7 +34,7 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
         className={styles["mark-completed"]}
         onClick={() =>
           setConfirmation({
-            message: "Are you sure you want to mark as complete?",
+            message: "Are you sure you want to mark this as complete?",
             async onConfirm() {
               // TODO
             }
