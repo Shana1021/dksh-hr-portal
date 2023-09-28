@@ -6,8 +6,10 @@ import { FaSearch } from "react-icons/fa";
 import { BsClipboard2Check } from "react-icons/bs";
 import { useState } from "react";
 import ConfirmationDialog from "../ConfirmationDialog";
+import { useRouter } from 'next/navigation';
 
 export default function ProbationaryPage({ probationaries, totalRows }) {
+  const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
 
   for (const probationary of probationaries) {
@@ -21,27 +23,38 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
     const differenceMillis = Math.max(0, endDate - new Date());
     probationary.daysLeft = Math.ceil(differenceMillis / 1000 / 60 / 60 / 24);
 
+    const completed = probationary.completed || differenceMillis === 0;
     probationary.status = (
       <div
-        className={`${styles["status-label"]} ${styles[probationary.completed ? "status-label-complete" : "status-label-incomplete"]}`}
+        className={`${styles["status-label"]} ${styles[completed ? "status-label-complete" : "status-label-incomplete"]}`}
       >
-        {probationary.completed ? "Complete" : "Incomplete"}
+        {completed ? "Complete" : "Incomplete"}
       </div>
     );
 
-    probationary.action = (
-      <BsClipboard2Check
-        className={styles["mark-completed"]}
-        onClick={() =>
-          setConfirmation({
-            message: "Are you sure you want to mark this as complete?",
-            async onConfirm() {
-              // TODO
-            }
-          })
-        }
-      />
-    );
+    if (!completed) {
+      probationary.action = (
+        <BsClipboard2Check
+          className={styles["mark-completed"]}
+          onClick={() =>
+            setConfirmation({
+              message: "Are you sure you want to mark this as complete?",
+              async onConfirm() {
+                const res = await fetch(`/api/probationary/${encodeURIComponent(probationary._id)}`, {
+                  method: "PUT"
+                });
+                if (!res.ok) {
+                  alert(res.statusText);
+                  return;
+                }
+  
+                router.refresh();
+              }
+            })
+          }
+        />
+      );
+    }
   }
 
   return (
