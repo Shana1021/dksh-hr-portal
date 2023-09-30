@@ -22,7 +22,7 @@ export default async function OnboardingChecklist({ searchParams: { pageSize=25,
     .sort({ createdAt: -1 })
     .skip(page > 0 ? (page - 1) * pageSize : 0)
     .limit(pageSize)
-    .map(doc => ({ ...doc, ...doc.profile[0] }))
+    .map(doc => ({ ...doc.profile[0], ...doc }))
     .toArray();
 
   const totalRows = await db.collection("onboarding_checklists").count();

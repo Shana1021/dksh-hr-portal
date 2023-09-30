@@ -13,6 +13,7 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
   const [confirmation, setConfirmation] = useState(null);
 
   for (const probationary of probationaries) {
+    console.log(probationary);
     const startDate = probationary.createdAt;
     probationary.startDate = startDate.toLocaleDateString();
 
