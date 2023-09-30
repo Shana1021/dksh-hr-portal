@@ -114,7 +114,8 @@ export async function PUT(request) {
                   title: "Laptop",
                   checked: false
                 }
-              ]
+              ],
+              completed: false
             },
             $currentDate: { createdAt: true }
           },

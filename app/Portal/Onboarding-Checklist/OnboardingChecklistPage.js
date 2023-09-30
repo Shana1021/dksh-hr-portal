@@ -12,11 +12,19 @@ export default function OnboardingChecklistPage({ onboardingChecklists, totalRow
   const [selectedIndex, setSelectedIndex] = useState(null);
 
   for (const [index, checklist] of onboardingChecklists.entries()) {
+    checklist.status = (
+      <div
+        className={`${styles["status-label"]} ${styles[checklist.completed ? "status-label-complete" : "status-label-incomplete"]}`}
+      >
+        {checklist.completed ? "Complete" : "Incomplete"}
+      </div>
+    );
+
     checklist.action = (
       <button className="module-button" onClick={() => setSelectedIndex(index)}>
         Checklist
       </button>
-    )
+    );
   }
 
   const checklists = selectedIndex !== null && [
@@ -47,6 +55,7 @@ export default function OnboardingChecklistPage({ onboardingChecklists, totalRow
             { key: "email", title: "Email" },
             { key: "position", title: "Position" },
             { key: "department", title: "Department" },
+            { key: "status", title: "Status" },
             { key: "action", title: "Action" }
           ]}
           data={onboardingChecklists}
@@ -57,11 +66,13 @@ export default function OnboardingChecklistPage({ onboardingChecklists, totalRow
       {checklists && (
         <Checklist
           initialChecklists={checklists}
+          completed={onboardingChecklists[selectedIndex].completed}
           onSave={async updatedChecklists => {
-            const res = await fetch("/api/onboarding-checklist", {
+            setSelectedIndex(null);
+
+            const res = await fetch(`/api/onboarding-checklist/${encodeURIComponent(onboardingChecklists[selectedIndex]._id)}`, {
               method: "PUT",
               body: JSON.stringify({
-                _id: onboardingChecklists[selectedIndex]._id,
                 todos: updatedChecklists[0].items,
                 items: updatedChecklists[1].items
               })
@@ -72,7 +83,6 @@ export default function OnboardingChecklistPage({ onboardingChecklists, totalRow
             }
 
             router.refresh();
-            setSelectedIndex(null);
           }}
           onClose={() => setSelectedIndex(null)}
         />
