@@ -1,9 +1,7 @@
-import HRListPage from "./HRPage";
+import HRListPage from "./HRListPage";
 import clientPromise from "@/lib/mongodb";
 
-export default async function HRPageFetch({
-  searchParams: { pageSize = 25, page = 1 },
-}) {
+export default async function HRList({ searchParams: { pageSize = 25, page = 1 } }) {
   pageSize = parseInt(pageSize);
   page = parseInt(page);
 
@@ -18,13 +16,6 @@ export default async function HRPageFetch({
     .toArray();
 
   const totalRows = await db.collection("hr_profiles").count();
-  for (const hrProfile of hrProfiles) {
-    hrProfile._id = hrProfile._id.toString();
-  }
-
-  return (
-    <>
-      <HRListPage hrProfiles={hrProfiles} totalRows={totalRows} />
-    </>
-  );
+  
+  return <HRListPage hrProfiles={hrProfiles} totalRows={totalRows} />;
 }

@@ -16,7 +16,7 @@ const handler = NextAuth({
         const db = client.db();
         const hrProfile = await db.collection("hr_profiles").findOne({ email: credentials.email });
         
-        if (hrProfile && await bcrypt.compare(credentials.password, hrProfile.password)) {
+        if (hrProfile && bcrypt.compareSync(credentials.password, hrProfile.password)) {
           return hrProfile;
         }
 

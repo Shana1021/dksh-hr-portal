@@ -2,7 +2,7 @@
 
 import "font-awesome/css/font-awesome.min.css";
 import styles from "./employee.module.css";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -52,7 +52,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
               src={`/api/employee/${encodeURIComponent(
                 employeeProfile?._id
               )}/profileImage?${new Date().getTime()}`}
-              alt="test"
+              alt="Profile Image"
               fill
               style={{ objectFit: "cover", borderRadius: "50%" }}
               unoptimized

@@ -1,5 +1,3 @@
-/* emp.module.css */
-
 /* Body styles */
 .formBody {
   margin: 10px auto;
@@ -243,6 +241,13 @@
 .form {
   width: 100%; /* Adjust the width as needed */
   padding: 0 10px; /* Add some padding to form sections */
+}
+
+.image-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: auto;
 }
 
 /* Responsive styles for smaller screens */

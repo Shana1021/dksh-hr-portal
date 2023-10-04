@@ -2,16 +2,16 @@
 
 import styles from "./login.module.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Login() {
   const router = useRouter();
   const { callbackUrl } = useSearchParams();
+  const passwordRef = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -28,7 +28,8 @@ export default function Login() {
     });
 
     if (res.error) {
-      setError("*Invalid email or password.");
+      passwordRef.current.setCustomValidity("Invalid email or password.");
+      passwordRef.current.reportValidity();
       return;
     }
 
@@ -61,7 +62,7 @@ export default function Login() {
                 <input
                   type="email"
                   value={email}
-                  placeholder="example@email.com"
+                  placeholder="employee@dksh.com"
                   required
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -73,13 +74,17 @@ export default function Login() {
                 Password
                 <br />
                 <input
+                  ref={passwordRef}
                   type={passwordVisible ? "text" : "password"}
                   value={password}
                   placeholder="Password"
                   required
                   minLength={5}
                   maxLength={20}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => {
+                    e.target.setCustomValidity("");
+                    setPassword(e.target.value);
+                  }}
                 />
               </label>
             </div>
@@ -89,7 +94,6 @@ export default function Login() {
                 Show Password
               </label>
             </div>
-            <span className={styles["error"]}>{error}</span>
             <button type="submit" className={styles["sign-in-btn"]}>
               SIGN IN
             </button>

@@ -1,93 +1,67 @@
 "use client";
-import React, { useState } from "react";
-import styles from "./emp.module.css";
-import "font-awesome/css/font-awesome.min.css";
-import { useRouter } from "next/navigation";
-import { Router } from "react-router-dom";
-export default function Edit({
-  id,
-  fname,
-  lname,
-  empId,
-  password,
-  address1,
-  address2,
-  email,
-  gender,
-  dob,
-  city,
-  country,
-  state,
-  department,
-  position,
-  code,
-  number,
-}) {
-  const [newFname, setNewFname] = useState(fname);
-  const [newLname, setNewLname] = useState(lname);
-  const [newEmpId, setNewEmpId] = useState(empId);
-  const [newPassword, setNewPassword] = useState(password);
-  const [newAddress1, setNewAddress1] = useState(address1);
-  const [newAddress2, setNewAddress2] = useState(address2);
-  //const [image, setImage] = useState("");
-  const [newEmail, setNewEmail] = useState(email);
-  const [newGender, setNewGender] = useState(gender);
-  const [newDOB, setNewDOB] = useState(dob);
-  const [newCity, setNewCity] = useState(city);
-  const [newCountry, setNewCountry] = useState(country);
-  const [newState, setNewState] = useState(state);
-  const [newPosition, setNewPosition] = useState(position);
-  const [newDepartment, setNewDepartment] = useState(department);
-  const [newCode, setNewCode] = useState(code);
-  const [newNumber, setNewNumber] = useState(number);
-  const router = useRouter();
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(`http://localhost:3000/api/HRStaff/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          newFname,
-          newLname,
-          newEmpId,
-          newPassword,
-          newAddress1,
-          newAddress2,
-          newEmail,
-          newGender,
-          newDOB,
-          newCountry,
-          newCity,
-          newState,
-          newPosition,
-          newDepartment,
-          newCode,
-          newNumber,
-        }),
-      });
 
-      if (!res.ok) {
-        throw new Error("Failed to update ");
+import "font-awesome/css/font-awesome.min.css";
+import { useRef, useState } from "react";
+import styles from "./hr.module.css";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+export default function HREmployeeProfileForm({ hrProfile }) {
+  const router = useRouter();
+  const employeeIdRef = useRef(null);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    router.push("/Portal/HR-List");
+    
+    const res = await fetch(
+      hrProfile
+        ? `/api/hr/${encodeURIComponent(hrProfile._id)}`
+        : "/api/hr",
+      {
+        method: hrProfile ? "PUT" : "POST",
+        body: new FormData(e.target),
       }
-      router.push("/Portal/HR-List");
-      router.refresh();
-    } catch (error) {
-      console.log(error);
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error);
+      return;
     }
-  };
-  const togglePasswordVisibility = () => {
-    setPasswordVisible((prevState) => !prevState);
-  };
+
+    if (data.status === "idExists") {
+      employeeIdRef.current.setCustomValidity("Employee ID already exists.");
+      employeeIdRef.current.reportValidity();
+      return;
+    }
+
+    router.refresh();
+  }
+  
+  const gender = hrProfile?.gender ?? "Male";
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <div className={styles.formBody}>
+        {hrProfile && (
+          <div className={styles["image-container"]}>
+            <Image
+              src={`/api/hr/${encodeURIComponent(
+                hrProfile?._id
+              )}/profileImage?${new Date().getTime()}`}
+              alt="Profile Image"
+              fill
+              style={{ objectFit: "cover", borderRadius: "50%" }}
+              unoptimized
+            />
+          </div>
+        )}
         <div className={styles.formWrapper}>
-          <form className={styles.form}>
+          <div className={styles.form}>
             {/* Personal Details */}
             <div className={styles.row}>
               <h4 className={styles.h4}>Personal Details</h4>
@@ -99,8 +73,8 @@ export default function Edit({
                     <input
                       type="text"
                       placeholder="First Name"
-                      value={newFname}
-                      onChange={(e) => setNewFname(e.target.value)}
+                      name="firstName"
+                      defaultValue={hrProfile?.firstName}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -115,8 +89,8 @@ export default function Edit({
                     <input
                       type="text"
                       placeholder="Last Name"
-                      value={newLname}
-                      onChange={(e) => setNewLname(e.target.value)}
+                      name="lastName"
+                      defaultValue={hrProfile?.lastName}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -129,8 +103,8 @@ export default function Edit({
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  value={newNumber}
-                  onChange={(e) => setNewNumber(e.target.value)}
+                  name="phone"
+                  defaultValue={hrProfile?.phone}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -145,8 +119,8 @@ export default function Edit({
                   >
                     <input
                       type="date"
-                      value={newDOB}
-                      onChange={(e) => setNewDOB(e.target.value)}
+                      name="dob"
+                      defaultValue={hrProfile?.dob}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -164,8 +138,7 @@ export default function Edit({
                       type="radio"
                       name="gender"
                       value="Male"
-                      checked={newGender === "Male"}
-                      onChange={() => setNewGender("Male")}
+                      defaultChecked={gender === "Male"}
                       className={styles.radioInput}
                     />
                     <label className={styles.label} htmlFor="gender-male">
@@ -176,8 +149,7 @@ export default function Edit({
                       type="radio"
                       name="gender"
                       value="Female"
-                      checked={newGender === "Female"}
-                      onChange={() => setNewGender("Female")}
+                      defaultChecked={gender === "Female"}
                       className={styles.radioInput}
                     />
                     <label className={styles.label} htmlFor="gender-female">
@@ -195,8 +167,8 @@ export default function Edit({
                 <input
                   type="text"
                   placeholder="Address Line 1"
-                  value={newAddress1}
-                  onChange={(e) => setNewAddress1(e.target.value)}
+                  name="addressLine1"
+                  defaultValue={hrProfile?.addressLine1}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -207,8 +179,8 @@ export default function Edit({
                 <input
                   type="text"
                   placeholder="Address Line 2"
-                  value={newAddress2}
-                  onChange={(e) => setNewAddress2(e.target.value)}
+                  name="addressLine2"
+                  defaultValue={hrProfile?.addressLine2}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -223,8 +195,8 @@ export default function Edit({
                     <input
                       type="text"
                       placeholder="Postal Code"
-                      value={newCode}
-                      onChange={(e) => setNewCode(e.target.value)}
+                      name="postalCode"
+                      defaultValue={hrProfile?.postalCode}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -239,8 +211,8 @@ export default function Edit({
                     <input
                       type="text"
                       placeholder="City"
-                      value={newCity}
-                      onChange={(e) => setNewCity(e.target.value)}
+                      name="city"
+                      defaultValue={hrProfile?.city}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -257,8 +229,8 @@ export default function Edit({
                     <input
                       type="text"
                       placeholder="State"
-                      value={newState}
-                      onChange={(e) => setNewState(e.target.value)}
+                      name="state"
+                      defaultValue={hrProfile?.state}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -273,8 +245,8 @@ export default function Edit({
                     <input
                       type="text"
                       placeholder="Country"
-                      value={newCountry}
-                      onChange={(e) => setNewCountry(e.target.value)}
+                      name="country"
+                      defaultValue={hrProfile?.country}
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
@@ -284,18 +256,19 @@ export default function Edit({
                 </div>
               </div>
             </div>
-          </form>
+          </div>
 
           {/* Account Details */}
-          <form className={styles.form}>
+          <div className={styles.form}>
             <div className={styles.row}>
               <h4 className={styles.h4}>Account Details</h4>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                 <input
                   type="email"
                   placeholder="Email Address"
-                  value={newEmail}
-                  onChange={(e) => setNewEmail(e.target.value)}
+                  name="email"
+                  required
+                  defaultValue={hrProfile?.email}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -304,10 +277,17 @@ export default function Edit({
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                 <input
+                  ref={employeeIdRef}
                   type="text"
                   placeholder="Employee ID"
-                  value={newEmpId}
-                  onChange={(e) => setNewEmpId(e.target.value)}
+                  name="_id"
+                  defaultValue={hrProfile?._id}
+                  required
+                  onChange={(e) => {
+                    e.target.setCustomValidity("");
+                    e.target.reportValidity();
+                  }}
+                  readOnly={!!hrProfile}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -318,8 +298,10 @@ export default function Edit({
                 <input
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  name="password"
+                  minLength={5}
+                  maxLength={20}
+                  required={!hrProfile}
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
@@ -327,7 +309,7 @@ export default function Edit({
                     className={`fa ${
                       passwordVisible ? "fa-eye" : "fa-eye-slash"
                     }`}
-                    onClick={togglePasswordVisibility}
+                    onClick={() => setPasswordVisible(!passwordVisible)}
                   ></i>
                 </div>
               </div>
@@ -341,8 +323,8 @@ export default function Edit({
                       type="text"
                       placeholder="Position"
                       className={styles.input}
-                      value={newPosition}
-                      onChange={(e) => setNewPosition(e.target.value)}
+                      name="position"
+                      defaultValue={hrProfile?.position}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-briefcase"></i>
@@ -358,8 +340,8 @@ export default function Edit({
                       type="text"
                       placeholder="Department"
                       className={styles.input}
-                      value={newDepartment}
-                      onChange={(e) => setNewDepartment(e.target.value)}
+                      name="department"
+                      defaultValue={hrProfile?.department}
                     />
                     <div className={styles.inputIcon}>
                       <i className="fa fa-building"></i>
@@ -377,6 +359,7 @@ export default function Edit({
                     type="file"
                     accept="image/*"
                     className={styles.input}
+                    name="profileImage"
                   />
                   <div className={styles.inputIcon}>
                     <i className="fa fa-upload"></i>
@@ -390,15 +373,14 @@ export default function Edit({
                 <button
                   type="submit"
                   className={styles.button}
-                  onClick={handleSubmit}
                 >
                   Submit
                 </button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </>
+    </form>
   );
 }

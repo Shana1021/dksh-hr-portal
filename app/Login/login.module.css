@@ -97,15 +97,6 @@
   box-shadow: 1px 2px 5px -2px black;
 }
 
-.error {
-  margin-top: 15px;
-  color: red;
-  font-size: 0.7em;
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-}
-
 .show-password {
   margin-top: 5px;
   font-size: 0.8em;
