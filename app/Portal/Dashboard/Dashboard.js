@@ -54,10 +54,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={styles["col2"]}>
-        <div className={styles["barChart"]}>
-          <div id="lab5-bar">
-            <BarChart />
-          </div>
+        <div className={styles["pieChart"]}>
         </div>
       </div>
       </div>
