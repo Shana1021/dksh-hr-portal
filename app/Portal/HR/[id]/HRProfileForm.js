@@ -13,8 +13,6 @@ export default function HREmployeeProfileForm({ hrProfile }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    router.push("/Portal/HR-List");
     
     const res = await fetch(
       hrProfile
@@ -39,6 +37,7 @@ export default function HREmployeeProfileForm({ hrProfile }) {
       return;
     }
 
+    router.push("/Portal/HR-List");
     router.refresh();
   }
   

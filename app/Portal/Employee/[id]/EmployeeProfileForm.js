@@ -13,8 +13,6 @@ export default function EmployeeProfileForm({ employeeProfile }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    router.push("/Portal/Onboarding-BackgroundCheck");
-
     const res = await fetch(
       employeeProfile
         ? `/api/employee/${encodeURIComponent(employeeProfile._id)}`
@@ -38,6 +36,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
       return;
     }
 
+    router.push("/Portal/Onboarding-BackgroundCheck");
     router.refresh();
   }
 
