@@ -14,7 +14,7 @@ export async function POST(request) {
   }
   
   if (formData.get("profileImage").size > 0) {
-    const bucket = new GridFSBucket(db, { bucketName: "employeeProfileImages" });
+    const bucket = new GridFSBucket(db, { bucketName: "employee_profile_images" });
 
     Readable.from(Buffer.from(await formData.get("profileImage").arrayBuffer()))
       .pipe(bucket.openUploadStream(formData.get("_id")));

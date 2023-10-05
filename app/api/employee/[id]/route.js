@@ -10,7 +10,7 @@ export async function PUT(request, { params }) {
   const db = await client.db();
 
   if (formData.get("profileImage").size > 0) {
-    const bucket = new GridFSBucket(db, { bucketName: "employeeProfileImages" });
+    const bucket = new GridFSBucket(db, { bucketName: "employee_profile_images" });
 
     const file = (await bucket.find({ filename: params.id }).toArray())[0];
     if (file) {
@@ -49,7 +49,7 @@ export async function DELETE(_, { params }) {
   const client = await clientPromise;
   const db = await client.db();
 
-  const bucket = new GridFSBucket(db, { bucketName: "employeeProfileImages" });
+  const bucket = new GridFSBucket(db, { bucketName: "employee_profile_images" });
 
   const file = (await bucket.find({ filename: params.id }).toArray())[0];
   if (file) {

@@ -21,7 +21,7 @@ function useDimensions(ref) {
     );
 
     observer.observe(ref.current);
-    return observer.disconnect;
+    return () => observer.disconnect();
   }, [ref]);
 
   return dimensions;
@@ -102,7 +102,7 @@ export default function BarChart() {
 
   const xScale = d3.scaleBand(d3.range(dataset.length), [0, svgWidth]).padding(0.05);
   const yScale = d3.scaleLinear([0, d3.max(dataset)], [0, svgHeight]);
-
+  
   return (
     <svg ref={svgRef} width="100%" height="100%">
       <g fill="maroon">
@@ -122,7 +122,7 @@ export default function BarChart() {
         fill="black" x={xScale(hoverIndex) + xScale.bandwidth() / 2} y={svgHeight - yScale(dataset[hoverIndex]) / 2}
         dominantBaseline="middle" textAnchor="middle"
         style={{ pointerEvents: "none" }}
-      >{dataset[hoverIndex]}</text>}
+        >{dataset[hoverIndex]}</text>}
     </svg>
   );
 }
