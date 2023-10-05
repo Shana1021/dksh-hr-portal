@@ -40,9 +40,12 @@ const Dashboard = () => {
       {/* Section 2 */}
       <div className={styles["midSection"]}>
         <div className={styles["col2"]}>
-          <div className={styles["barChart"]}>
-            <div id="barChart">{/* <BarChart /> */}</div>
+          {/*
+        <div className={styles["barChart"]}>
+          <div id="barChart">
           </div>
+        </div>
+  */}
         </div>
 
         <div className={styles["col3"]}>
