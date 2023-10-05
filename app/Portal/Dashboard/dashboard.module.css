@@ -10,14 +10,14 @@
 
 .topSection {
   border: 3px solid red;
-  padding: 5px 40px; 
+  padding: 5px 40px;
   width: 100%;
   float: left;
 }
 
-.col1{
-width : 25%;
-float: left;
+.col1 {
+  width: 25%;
+  float: left;
 }
 
 .col2 {
@@ -27,7 +27,7 @@ float: left;
   height: 15rem;
 }
 
-.barChart{
+.barChart {
   /* border: 3px solid rgb(0, 0, 0);*/
 }
 
@@ -39,15 +39,12 @@ float: left;
   align-items: flex-start;
 }
 
-
-
 .col3 {
   border: 1px solid #ff00b3;
   margin: 0px 10px;
   padding: 20px;
   width: 40%;
   height: 15rem;
-
 }
 
 .bottomSection {
@@ -70,7 +67,9 @@ float: left;
 
 .card:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(-5px); /* Bounce effect by moving the card up slightly */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
 }
 
 .card-body {
