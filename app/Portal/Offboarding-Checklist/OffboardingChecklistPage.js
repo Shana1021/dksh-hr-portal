@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Table from "../Table";
 import Checklist from "../Checklist";
-import { FaSearch } from "react-icons/fa";
+import SearchBar from "../SearchBar";
 
 export default function OffboardingChecklistPage({ offboardingChecklists }) {
   const router = useRouter();
@@ -16,12 +16,12 @@ export default function OffboardingChecklistPage({ offboardingChecklists }) {
   const checklists = selectedIndex !== null && [
     {
       title: "To Do",
-      items: []
+      items: [],
     },
     {
       title: "Items to Return",
-      items: []
-    }
+      items: [],
+    },
   ];
 
   for (const [index, employee] of offboardingChecklists.entries()) {
@@ -35,12 +35,7 @@ export default function OffboardingChecklistPage({ offboardingChecklists }) {
   return (
     <>
       <div className={styles["container"]}>
-        <div className={styles["container-search-button"]}>
-          <div className={styles["search-bar"]}>
-            <input type="text" placeholder="Filter by Status" />
-            <span className={styles["search-icon"]}><FaSearch/></span>
-          </div>
-        </div>
+        <SearchBar />
         <Table
           columns={[
             { key: "_id", title: "No" },
@@ -48,7 +43,7 @@ export default function OffboardingChecklistPage({ offboardingChecklists }) {
             { key: "positionID", title: "ID" }, //placeholder
             { key: "lastDate", title: "Last Date" },
             { key: "aor", title: "AOR" },
-            { key: "action", title: "Action" }
+            { key: "action", title: "Action" },
           ]}
           data={offboardingChecklists}
           height="400px"
@@ -57,15 +52,15 @@ export default function OffboardingChecklistPage({ offboardingChecklists }) {
       {checklists && (
         <Checklist
           checklists={checklists}
-          onSave={async updatedChecklist => {
+          onSave={async (updatedChecklist) => {
             const res = await fetch("/api/offboarding-checklist", {
               method: "POST",
-              headers: {"Content-Type": "application/json"},
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 _id: offboardingChecklists[selectedIndex]._id,
                 todos: updatedChecklist[0].items,
-                items: updatedChecklist[1].items
-              })
+                items: updatedChecklist[1].items,
+              }),
             });
             if (!res.ok) {
               alert(res.statusText);

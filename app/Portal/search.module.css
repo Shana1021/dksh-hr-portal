@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  width: 330px;
+  border: 03px solid #be0028;
+  padding: 3px 10px;
+  border-radius: 30px;
+}
+.main input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  width: 300px;
+  font-size: 16px;
+}
+
+.btn {
+  background: transparent;
+}
+.i {
+  color: #be0028;
+  font-size: 20px;
+}
+.i .a {
+  color: #be0028;
+  font-size: 20px;
+}
+.wrapper {
+  display: flex;
+  justify-content: end;
+  margin-top: 25px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.main input[type="search"]::-webkit-search-decoration,
+.main input[type="search"]::-webkit-search-cancel-button,
+.main input[type="search"]::-webkit-search-results-button,
+.main input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Table from "../Table";
 import styles from "./status.module.css";
-import { FaSearch } from "react-icons/fa";
+import SearchBar from "../SearchBar";
 
 const checklistItems = [
   {
@@ -17,16 +17,10 @@ const checklistItems = [
 ];
 
 export default function TrainingStatusCheck() {
-
   return (
     <>
       <div className={styles["container"]}>
-        <div className={styles["container-search-button"]}>
-          <div className={styles["search-bar"]}>
-            <input type="text" placeholder="Filter by Status" />
-            <span className={styles["search-icon"]}><FaSearch/></span>
-          </div>
-        </div>
+        <SearchBar />
         <Table
           columns={[
             { key: "_id", title: "No" },
@@ -34,7 +28,7 @@ export default function TrainingStatusCheck() {
             { key: "positionID", title: "ID" },
             { key: "incharge", title: "In-Charge" },
             { key: "vendor", title: "Training Vendor" },
-            { key: "email", title: "Email Status", }
+            { key: "email", title: "Email Status" },
           ]}
           data={checklistItems}
           height="400px"

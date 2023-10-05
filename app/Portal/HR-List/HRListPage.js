@@ -9,16 +9,17 @@ import { FiTrash } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import ConfirmationDialog from "../ConfirmationDialog";
-
+import SearchBar from "../SearchBar";
 export default function HRListPage({ hrProfiles, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
 
   for (const hrProfile of hrProfiles) {
     hrProfile.id = (
-      <Link href={`/Portal/HR/${encodeURIComponent(hrProfile._id)}`}>{hrProfile._id}</Link>
+      <Link href={`/Portal/HR/${encodeURIComponent(hrProfile._id)}`}>
+        {hrProfile._id}
+      </Link>
     );
-
     hrProfile.action = (
       <FiTrash
         className="delete-button"
@@ -48,14 +49,8 @@ export default function HRListPage({ hrProfiles, totalRows }) {
   return (
     <>
       <div className={styles["container"]}>
-        <div className={styles["container-search-button"]}>
-          <div className={styles["search-bar"]}>
-            <input type="text" placeholder="Filter by Position" />
-            <span className={styles["search-icon"]}>
-              <FaSearch />
-            </span>
-          </div>
-        </div>
+        <SearchBar />
+
         <Table
           columns={[
             { key: "id", title: "Employee ID" },
@@ -69,7 +64,8 @@ export default function HRListPage({ hrProfiles, totalRows }) {
           totalRows={totalRows}
         />
         <Link className={styles["custom-button"]} href="/Portal/HR/New">
-          <span className={styles["plus-icon"]}>&#43;</span>&nbsp;Add HR Employee
+          <span className={styles["plus-icon"]}>&#43;</span>&nbsp;Add HR
+          Employee
         </Link>
       </div>
       {confirmation && (

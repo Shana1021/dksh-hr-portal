@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
-import styles from './onboarding-probationary.module.css';
+import styles from "./onboarding-probationary.module.css";
 import Table from "../Table";
-import { FaSearch } from "react-icons/fa";
 import { BsClipboard2Check } from "react-icons/bs";
 import { useState } from "react";
 import ConfirmationDialog from "../ConfirmationDialog";
-import { useRouter } from 'next/navigation';
-
+import { useRouter } from "next/navigation";
+import SearchBar from "../SearchBar";
 export default function ProbationaryPage({ probationaries, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
@@ -26,7 +25,11 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
     const completed = probationary.completed || differenceMillis === 0;
     probationary.status = (
       <div
-        className={`${styles["status-label"]} ${styles[completed ? "status-label-complete" : "status-label-incomplete"]}`}
+        className={`${styles["status-label"]} ${
+          styles[
+            completed ? "status-label-complete" : "status-label-incomplete"
+          ]
+        }`}
       >
         {completed ? "Complete" : "Incomplete"}
       </div>
@@ -40,16 +43,19 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
             setConfirmation({
               message: "Are you sure you want to mark this as complete?",
               async onConfirm() {
-                const res = await fetch(`/api/probationary/${encodeURIComponent(probationary._id)}`, {
-                  method: "PUT"
-                });
+                const res = await fetch(
+                  `/api/probationary/${encodeURIComponent(probationary._id)}`,
+                  {
+                    method: "PUT",
+                  }
+                );
                 if (!res.ok) {
                   alert(res.statusText);
                   return;
                 }
-  
+
                 router.refresh();
-              }
+              },
             })
           }
         />
@@ -60,12 +66,7 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
   return (
     <>
       <div className={styles["container"]}>
-        <div className={styles["container-search-button"]}>
-          <div className={styles["search-bar"]}>
-            <input type="text" placeholder="Filter by Status" />
-            <span className={styles["search-icon"]}><FaSearch/></span>
-          </div>
-        </div>
+        <SearchBar />
         <Table
           columns={[
             { key: "_id", title: "Employee ID" },
@@ -76,7 +77,7 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
             { key: "endDate", title: "End Date" },
             { key: "daysLeft", title: "Days Left" },
             { key: "status", title: "Status" },
-            { key: "action", title: "Action" }
+            { key: "action", title: "Action" },
           ]}
           data={probationaries}
           height="400px"
@@ -95,5 +96,5 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
         </ConfirmationDialog>
       )}
     </>
-  )
+  );
 }
