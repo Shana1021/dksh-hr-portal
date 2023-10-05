@@ -6,7 +6,7 @@ export async function GET(_, { params }) {
   const client = await clientPromise;
   const db = await client.db();
 
-  const bucket = new GridFSBucket(db, { bucketName: "hrProfileImages" });
+  const bucket = new GridFSBucket(db, { bucketName: "hr_profile_images" });
 
   const file = (await bucket.find({ filename: params.id }).toArray())[0];
   if (!file) {
