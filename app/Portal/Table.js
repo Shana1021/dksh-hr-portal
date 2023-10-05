@@ -5,7 +5,12 @@ import styles from "./table.module.css";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Table({ columns, data, height="auto", totalRows=0 }) {
+export default function Table({
+  columns,
+  data,
+  height = "auto",
+  totalRows = 0,
+}) {
   const router = useRouter();
 
   const pathname = usePathname();
@@ -20,17 +25,17 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
 
   return (
     <div className={styles["table-container"]}>
-      <div className={styles["table-scroll-container"]} style={{height}}>
+      <div className={styles["table-scroll-container"]} style={{ height }}>
         <table className={styles["table"]}>
           <thead>
             <tr>
-              {columns.map(column => (
+              {columns.map((column) => (
                 <th key={column.key}>{column.title}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {data.map(d => {
+            {data.map((d) => {
               let row = [];
               for (const column of columns) {
                 row.push(<td key={column.key}>{d[column.key]}</td>);
@@ -42,31 +47,43 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
         </table>
       </div>
       <div className={styles["table-footer"]}>
-        Showing {totalRows == 0 ? 0 : 1 + (page - 1) * pageSize} - {Math.min(totalRows, page * pageSize)},{" "}
+        Showing {totalRows == 0 ? 0 : 1 + (page - 1) * pageSize} -{" "}
+        {Math.min(totalRows, page * pageSize)},{" "}
         <select
-          onChange={e =>
-            router.push(`${pathname}?${new URLSearchParams([["pageSize", e.target.value], ["page", 1]])}`)
+          onChange={(e) =>
+            router.push(
+              `${pathname}?${new URLSearchParams([
+                ["pageSize", e.target.value],
+                ["page", 1],
+              ])}`
+            )
           }
         >
           <option name="25">25</option>
           <option name="50">50</option>
           <option name="100">100</option>
           <option name="200">200</option>
-        </select>
-        {" "}per page
+        </select>{" "}
+        per page
         <div className={styles["table-footer-right"]}>
           <Link href={{ query: { pageSize, page: 1 } }}>First</Link>
-          <Link href={{ query: { pageSize, page: Math.max(1, page - 1) } }}>Previous</Link>
+          <Link href={{ query: { pageSize, page: Math.max(1, page - 1) } }}>
+            /Previous
+          </Link>
           Page {page} of {totalPages}
-          <Link href={{ query: { pageSize, page: Math.min(totalPages, page + 1) } }}>Next</Link>
-          <Link href={{ query: { pageSize, page: totalPages} }}>Last</Link>
+          <Link
+            href={{ query: { pageSize, page: Math.min(totalPages, page + 1) } }}
+          >
+            Next
+          </Link>
+          <Link href={{ query: { pageSize, page: totalPages } }}>/Last</Link>
           <input
             type="number"
             style={{ width: 40 }}
             value={goPage}
             min="1"
             max={totalPages}
-            onChange={e => setGoPage(e.target.value)}
+            onChange={(e) => setGoPage(e.target.value)}
           />
           <button
             onClick={() => {
@@ -74,11 +91,18 @@ export default function Table({ columns, data, height="auto", totalRows=0 }) {
                 return;
               }
 
-              router.push(`${pathname}?${new URLSearchParams([["pageSize", pageSize], ["page", goPage]])}`);
+              router.push(
+                `${pathname}?${new URLSearchParams([
+                  ["pageSize", pageSize],
+                  ["page", goPage],
+                ])}`
+              );
             }}
-          >Go</button>
+          >
+            Search
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}
