@@ -24,7 +24,7 @@ const BarChart = () => {
                        .range([0,h]);
 
    //SVG element
-   var svg = d3.select("#lab5-bar")
+   var svg = d3.select("#barChart")
                .append("svg")
                .attr("width",w)
                .attr("height",h);
@@ -68,7 +68,7 @@ const BarChart = () => {
 
   }, []);
 
-  return <svg id="lab5-bar"></svg>;
+  return <svg id="barChart"></svg>;
 };
 
 export default BarChart;
