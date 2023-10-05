@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import DatePicker from "react-datepicker"; 
-import { FaDownload, FaUpload } from "react-icons/fa";
+import { FaDownload } from "react-icons/fa";
 import styles from "./ack.module.css";
-import "react-datepicker/dist/react-datepicker.css"; 
+import Calendar from "react-calendar";
 
 export default function AcknowledgedEmployees() {
   const [date, setDate] = useState(new Date());
@@ -30,15 +29,6 @@ export default function AcknowledgedEmployees() {
     setSelectedFile(file);
   };
 
-  const handleUpload = () => {
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
-    } else {
-      alert("Please select a file to upload.");
-    }
-  };
-
   const handleNumberOfDaysChange = (event) => {
     const value = event.target.value;
     const parsedValue = parseInt(value, 10);
@@ -47,64 +37,53 @@ export default function AcknowledgedEmployees() {
       setNumberOfDays(parsedValue);
     }
   };
-  
 
   return (
-    <div className={styles["page"]}>
-      <div className={styles["acknowledged"]}>
-        <h1>Employee Acknowledgment</h1>
-        <p>Hi, </p>
-        <p>
-          After careful consideration, we have officially accepted your resignation and issued the
-          Acceptance of Resignation Letter (AOR). Do take note of the Annual Leave Balance,
-          <input
-            type="text"
-            onChange={handleNumberOfDaysChange}
-            className={styles["input-field"]}
-          />
-          {numberOfDays == 1 ? "day" : "days"}
-          <br />
+    <div className={styles["background-image"]} style={{ backgroundImage: "url('/img/business.jpg')" }}>
+      <div>
+        <img src="img/dksh.png" alt="DKSH" />
+      </div>
+      <div className={styles["page"]}>
+        <div className={styles["acknowledged"]}>
+          <h1>Employee Acknowledgment</h1>
+          <p>Hi,</p>
           <p>
-            {" "}
-            Please state your last day of work and upload back the signed AOR for our reference,
-            Thank you.{" "}
+            After careful consideration, we have officially accepted your resignation and issued the
+            Acceptance of Resignation Letter (AOR). Do take note of the Annual Leave Balance,{" "}
+            <input type="text" onChange={handleNumberOfDaysChange} className={styles["input-field"]} />{" "}
+            {numberOfDays === 1 ? "day" : "days"}
           </p>
-        </p>
-      </div>
-
-      <div className={styles["center-container"]}>
-        <div className={styles["calendar-container"]}>
-          <h2>End Date</h2>
-          <DatePicker
-            selected={date}
-            onChange={onChange}
-            className={styles["calendar"]} // You can apply your CSS styles here
-          />
+          <p>Please state your last day of work and upload back the signed AOR for our reference, Thank you.</p>
         </div>
 
-        <div className={styles["resignation-letter"]}>
-          <h2>Acceptance of Resignation Letter</h2>
-          <h3>Download the AOR file here</h3>
-          <div>
-            <button onClick={handleDownloadClick}>
-              Download File <FaDownload />
-            </button>
+        <div className={styles["row"]}>
+          <div className={styles["calendar"]}>
+            <h1>End Date</h1>
+            <div className={styles["react-calendar-medium"]}>
+              <Calendar value={date} onChange={onChange} />
+              <p>Current selected date is: <b>{date.toDateString()}</b></p>
+            </div>
+          </div>
+
+          <div className={styles["column"]}>
+            <div className={styles["resignation-letter"]}>
+              <h1>Acceptance of Resignation Letter</h1>
+              <h2>Download the AOR file here</h2>
+              <a href="#" onClick={handleDownloadClick} className={styles["download-link"]}>
+                <button>Download AOR <FaDownload /></button>
+              </a>
+            </div>
+
+            <div className={styles["aor-letter"]}>
+              <h1>Return of AOR</h1>
+              <h2>Upload your signed file here</h2>
+              <input type="file" onChange={handleFileChange} className={styles["upload"]} />
+            </div>
+            <div className={styles["button-container"]}>
+          <button> SAVE & SUBMIT</button>
+        </div>
           </div>
         </div>
-
-        <div className={styles["aor-letter"]}>
-          <h2>Return of AOR</h2>
-          <h3>Upload your signed file here</h3>
-          <div>
-            <input type="file" accept=".pdf" onChange={handleFileChange} />
-            <button onClick={handleUpload}>
-              Upload <FaUpload />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className={styles["button-container"]}>
-        <button className="module-button">SAVE & SUBMIT</button>
       </div>
     </div>
   );
