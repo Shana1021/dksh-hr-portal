@@ -55,7 +55,15 @@
   margin-right: 10px;
   float: right;
 }
-.table-footer-right button {
+.table-footer-right .pre-search {
+  margin-right: 15px;
+  text-decoration: underline;
+}
+.table-footer-right .after-search {
+  margin-left: 10px;
+}
+.table-footer-right .pagination-btn {
+  font-size: 16px;
   margin-left: 5px;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -64,4 +72,7 @@
   overflow: hidden;
   outline: none;
   text-decoration: underline;
+}
+.table-footer-right .Go-btn {
+  color: #be0028;
 }

@@ -47,7 +47,8 @@ export default function Table({
         </table>
       </div>
       <div className={styles["table-footer"]}>
-        Showing {totalRows == 0 ? 0 : 1 + (page - 1) * pageSize} -{" "}
+        Page {page} of {totalPages} | Showing{" "}
+        {totalRows == 0 ? 0 : 1 + (page - 1) * pageSize} -{" "}
         {Math.min(totalRows, page * pageSize)},{" "}
         <select
           onChange={(e) =>
@@ -66,17 +67,17 @@ export default function Table({
         </select>{" "}
         per page
         <div className={styles["table-footer-right"]}>
-          <Link href={{ query: { pageSize, page: 1 } }}>First</Link>
-          <Link href={{ query: { pageSize, page: Math.max(1, page - 1) } }}>
-            /Previous
-          </Link>
-          Page {page} of {totalPages}
-          <Link
-            href={{ query: { pageSize, page: Math.min(totalPages, page + 1) } }}
-          >
-            Next
-          </Link>
-          <Link href={{ query: { pageSize, page: totalPages } }}>/Last</Link>
+          <div className={styles["pre-search"]}>
+            <button className={styles["pagination-btn"]}>
+              <Link href={{ query: { pageSize, page: 1 } }}>First</Link>
+            </button>
+            <button className={styles["pagination-btn"]}>
+              <Link href={{ query: { pageSize, page: Math.max(1, page - 1) } }}>
+                /Previous
+              </Link>
+            </button>
+          </div>
+
           <input
             type="number"
             style={{ width: 40 }}
@@ -86,6 +87,7 @@ export default function Table({
             onChange={(e) => setGoPage(e.target.value)}
           />
           <button
+            className={styles["Go-btn"]}
             onClick={() => {
               if (!/^\d+$/.test(goPage) || goPage < 1 || goPage > totalPages) {
                 return;
@@ -99,8 +101,24 @@ export default function Table({
               );
             }}
           >
-            Search
+            Go
           </button>
+          <div className={styles["after-search"]}>
+            <button className={styles["pagination-btn"]}>
+              <Link
+                href={{
+                  query: { pageSize, page: Math.min(totalPages, page + 1) },
+                }}
+              >
+                Next
+              </Link>
+            </button>
+            <button className={styles["pagination-btn"]}>
+              <Link href={{ query: { pageSize, page: totalPages } }}>
+                /Last
+              </Link>
+            </button>
+          </div>
         </div>
       </div>
     </div>
