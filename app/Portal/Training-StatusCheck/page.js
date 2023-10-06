@@ -18,26 +18,24 @@ const checklistItems = [
 
 export default function TrainingStatusCheck() {
   return (
-    <>
-      <div className={styles["container"]}>
-        <SearchBar />
-        <Table
-          columns={[
-            { key: "_id", title: "No" },
-            { key: "name", title: "Name" },
-            { key: "positionID", title: "ID" },
-            { key: "incharge", title: "In-Charge" },
-            { key: "vendor", title: "Training Vendor" },
-            { key: "email", title: "Email Status" },
-          ]}
-          data={checklistItems}
-          height="400px"
-        />
-      </div>
-      <div className={styles["button"]}>
-        <button className="module-button">REFRESH</button>
+    <div className={styles["container"]}>
+      <SearchBar />
+      <Table
+        columns={[
+          { key: "_id", title: "No" },
+          { key: "name", title: "Name" },
+          { key: "positionID", title: "ID" },
+          { key: "incharge", title: "In-Charge" },
+          { key: "vendor", title: "Training Vendor" },
+          { key: "email", title: "Email Status" },
+        ]}
+        data={checklistItems}
+        height="400px"
+      />
+      <div className={styles["actions"]}>
+        <button className="module-button">ADD EMPLOYEE</button>
         <button className="module-button">SEND Email</button>
       </div>
-    </>
+    </div>
   );
 }

@@ -31,7 +31,7 @@
   font-weight: bold;
   font-family: Arial, sans-serif;
   position: sticky;
-  top: -1px;
+  top: 0;
 }
 
 .table tbody tr:nth-child(even) {
