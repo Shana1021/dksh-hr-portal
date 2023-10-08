@@ -30,12 +30,18 @@
   padding: 10px 10px 8px;
 }
 
+.card-body * {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .card-name {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
 
-.position {
+.department {
   font-size: 12px;
   margin-bottom: 8px;
 }
