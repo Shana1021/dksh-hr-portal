@@ -49,7 +49,7 @@ export default function AcknowledgedEmployees() {
           <p>Hi,</p>
           <p>
             After careful consideration, we have officially accepted your resignation and issued the
-            Acceptance of Resignation Letter (AOR). Do take note of the Annual Leave Balance,{" "}
+            Acceptance of Resignation Letter (AOR). Do take note of the Annual Leave Balance,
             <input type="text" onChange={handleNumberOfDaysChange} className={styles["input-field"]} />{" "}
             {numberOfDays === 1 ? "day" : "days"}
           </p>
@@ -73,12 +73,12 @@ export default function AcknowledgedEmployees() {
                 <button>Download AOR <FaDownload /></button>
               </a>
             </div>
-
             <div className={styles["aor-letter"]}>
               <h1>Return of AOR</h1>
               <h2>Upload your signed file here</h2>
               <input type="file" onChange={handleFileChange} className={styles["upload"]} />
             </div>
+
             <div className={styles["button-container"]}>
           <button> SAVE & SUBMIT</button>
         </div>
