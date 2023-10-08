@@ -8,7 +8,7 @@ export async function PUT(request, { params }) {
   const db = await client.db();
 
   if ((await db.collection("onboarding_checklists").findOne({ _id: params.id }, { completed: true })).completed) {
-    return NextResponse.json({ status: "success" });
+    return NextResponse.json({ status: "alreadyCompleted" });
   }
 
   const uniqueTodos = [];

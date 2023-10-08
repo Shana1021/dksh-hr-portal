@@ -15,20 +15,19 @@ export default function EmployeeProfileForm({ employeeProfile }) {
 
     const res = await fetch(
       employeeProfile
-        ? `/api/employee/${encodeURIComponent(employeeProfile._id)}`
-        : "/api/employee",
+        ? `/api/onboarding/${encodeURIComponent(employeeProfile._id)}`
+        : "/api/onboarding",
       {
         method: employeeProfile ? "PUT" : "POST",
         body: new FormData(e.target),
       }
     );
-
-    const data = await res.json();
-
     if (!res.ok) {
-      alert(data.error);
+      alert(res.statusText);
       return;
     }
+
+    const data = await res.json();
 
     if (data.status === "idExists") {
       employeeIdRef.current.setCustomValidity("Employee ID already exists.");
@@ -48,7 +47,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
         {employeeProfile && (
           <div className={styles["image-container"]}>
             <Image
-              src={`/api/employee/${encodeURIComponent(
+              src={`/api/onboarding/${encodeURIComponent(
                 employeeProfile?._id
               )}/profileImage?${new Date().getTime()}`}
               alt="Profile Image"
@@ -281,7 +280,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   name="_id"
                   defaultValue={employeeProfile?._id}
                   required
-                  onChange={(e) => {
+                  onChange={e => {
                     e.target.setCustomValidity("");
                     e.target.reportValidity();
                   }}

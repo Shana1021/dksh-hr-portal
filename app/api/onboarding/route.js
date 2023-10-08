@@ -9,7 +9,7 @@ export async function POST(request) {
   const client = await clientPromise;
   const db = await client.db();
 
-  if (await db.collection("employee_profiles").findOne({ _id: formData.get("_id") }, { _id: true })) {
+  if (await db.collection("employee_profiles").countDocuments({ _id: formData.get("_id") }, { limit: 1 }) > 0) {
     return NextResponse.json({ status: "idExists" });
   }
   

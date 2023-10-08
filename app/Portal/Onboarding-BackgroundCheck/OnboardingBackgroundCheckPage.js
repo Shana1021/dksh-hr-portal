@@ -106,7 +106,7 @@ export default function OnboardingBackgroundCheckPage({
                 message: "Are you sure you want to delete this?",
                 async onConfirm() {
                   const res = await fetch(
-                    `/api/employee/${encodeURIComponent(employeeProfile._id)}`,
+                    `/api/onboarding/${encodeURIComponent(employeeProfile._id)}`,
                     {
                       method: "DELETE",
                     }
@@ -157,7 +157,7 @@ export default function OnboardingBackgroundCheckPage({
                 message:
                   "Are you sure you want to send all emails for this page?",
                 async onConfirm() {
-                  const res = await fetch("/api/employee", {
+                  const res = await fetch("/api/onboarding", {
                     method: "PUT",
                     body: JSON.stringify(
                       bcStatuses
