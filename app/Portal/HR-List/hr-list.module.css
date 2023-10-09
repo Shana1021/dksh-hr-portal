@@ -19,6 +19,18 @@
   max-height: 300px;
 }
 
+.custom-button{
+  color:white;
+  background-color: #be0028;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.custom-button:hover {
+  color: black ;
+  background-color: #0BDA51; 
+}
+
 @media screen and (max-width: 640px) {
   .search-bar-container {
     width: auto;

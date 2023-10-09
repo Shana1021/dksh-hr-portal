@@ -63,10 +63,12 @@ export default function HRListPage({ hrProfiles, totalRows }) {
           height="400px"
           totalRows={totalRows}
         />
+        <div className={styles["add-button"]}>
         <Link className={styles["custom-button"]} href="/Portal/HR/New">
           <span className={styles["plus-icon"]}>&#43;</span>&nbsp;Add HR
           Employee
         </Link>
+        </div>
       </div>
       {confirmation && (
         <ConfirmationDialog
