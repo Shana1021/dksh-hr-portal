@@ -42,9 +42,8 @@
 
 .acknowledged h1 {
   font-size: 30px;
-  text-align: start;
+  text-align: center;
   word-wrap: break-word;
-  margin-left: 2%;
 }
 
 .acknowledged p {
@@ -74,9 +73,8 @@
 }
 
 .calendar h1 {
-  text-align: start;
+  text-align: center;
   word-wrap: break-word;
-  margin-left: 5%;
 }
 
 .calendar p{
@@ -101,11 +99,10 @@
   transform: scale(1.05); 
 }
 
-
 .resignation-letter h1{
+  text-align: center;
   font-size: 30px;
   word-wrap: break-word;
-  margin-left: 5%;
 }
 
 .resignation-letter h2{
@@ -149,9 +146,9 @@
 }
 
 .aor-letter h1{
+  text-align: center;
   font-size: 30px;
   word-wrap: break-word;
-  margin-left: 5%;
 }
 
 .aor-letter h2{
