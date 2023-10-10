@@ -8,11 +8,6 @@ import { FaGear } from "react-icons/fa6"; //Settings
 
 const sidebarData = [
   {
-    title: "Profile",
-    path: "#",
-    icon: <FaUserCircle />,
-  },
-  {
     title: "Dashboard",
     path: "/Portal/Dashboard",
     icon: <BiSolidDashboard />,
