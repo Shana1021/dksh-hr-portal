@@ -19,3 +19,49 @@
   display: flex;
   gap: 15px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px; 
+  }
+
+  .header h1 {
+    font-size: 1.2em;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-self: center; 
+    margin-top: 10px; 
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 20px; 
+  }
+
+  .header h1 {
+    font-size: 1.5em; 
+  }
+
+  .actions {
+    flex-direction: row; 
+    align-self: flex-end;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .container {
+    padding: 30px; 
+  }
+
+  .header h1 {
+    font-size: 2em; 
+  }
+
+  .actions {
+    flex-direction: row;
+    align-self: flex-end; 
+  }
+}
