@@ -25,18 +25,25 @@ export default function Home() {
     const data = await res.json();
 
     if (data.status === "idDoesNotExist") {
-      employeeIdRef.current.setCustomValidity("Employee ID does not exist.");
+      employeeIdRef.current.setCustomValidity("Employee does not exist.");
+      employeeIdRef.current.reportValidity();
+      return;
+    }
+
+    if (data.status === "requestExists") {
+      employeeIdRef.current.setCustomValidity("This employee has an existing resignation request.");
       employeeIdRef.current.reportValidity();
       return;
     }
 
     if (data.status === "alreadyResigned") {
-      employeeIdRef.current.setCustomValidity("Employee has already resigned.");
+      employeeIdRef.current.setCustomValidity("This employee has already resigned.");
       employeeIdRef.current.reportValidity();
       return;
     }
 
     router.push("/Portal/Offboarding-ResignationRequests");
+    router.refresh();
   }
 
   return (

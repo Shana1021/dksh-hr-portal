@@ -6,9 +6,8 @@ import { useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function Login() {
+export default function Login({ searchParams: { callbackUrl }}) {
   const router = useRouter();
-  const { callbackUrl } = useSearchParams();
   const passwordRef = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

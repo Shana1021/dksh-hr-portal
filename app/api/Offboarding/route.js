@@ -12,29 +12,23 @@ export async function POST(request) {
   }
 
   if (await db.collection("resignation_requests").countDocuments({ _id: formData.get("_id") }, { limit: 1 }) > 0) {
+    return NextResponse.json({ status: "requestExists" });
+  }
+
+  if (await db.collection("accepted_resignations").countDocuments({ _id: formData.get("_id") }, { limit: 1 }) > 0) {
     return NextResponse.json({ status: "alreadyResigned" });
   }
 
-  await Promise.all([
-    db.collection("resignation_requests").updateOne(
-      { _id: formData.get("_id") },
-      {
-        $set: {
-          reason: formData.get("reason")
-        },
-        $currentDate: { createdAt: true }
+  await db.collection("resignation_requests").updateOne(
+    { _id: formData.get("_id") },
+    {
+      $set: {
+        reason: formData.get("reason"),
       },
-      { upsert: true }
-    ),
-    db.collection("onboarding_checklists").updateOne(
-      { _id: formData.get("_id") },
-      {
-        $set: {
-          completed: true
-        }
-      }
-    )
-  ]);
+      $currentDate: { createdAt: true }
+    },
+    { upsert: true }
+  );
 
   return NextResponse.json({ status: "success" });
 }

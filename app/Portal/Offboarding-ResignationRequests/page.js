@@ -20,5 +20,5 @@ export default async function OffboardingResignationRequests() {
     .map(doc => ({ ...doc.profile[0], ...doc }))
     .toArray();
   
-  return <OffboardingResignationRequestsPage resignationRequests={resignationRequests}/>;
+  return <OffboardingResignationRequestsPage resignationRequests={resignationRequests} />;
 }

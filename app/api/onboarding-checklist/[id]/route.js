@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 
-export async function PUT(request, { params }) {
+export async function PUT(request, { params: { id } }) {
   const { todos, items } = await request.json();
 
   const client = await clientPromise;
   const db = await client.db();
 
-  if ((await db.collection("onboarding_checklists").findOne({ _id: params.id }, { completed: true })).completed) {
+  if ((await db.collection("onboarding_checklists").findOne({ _id: id }, { completed: true })).completed) {
     return NextResponse.json({ status: "alreadyCompleted" });
   }
 
@@ -29,14 +29,14 @@ export async function PUT(request, { params }) {
     }
   }
 
-  await db.collection("onboarding_checklists").updateOne({ _id: params.id }, {
+  await db.collection("onboarding_checklists").updateOne({ _id: id }, {
     $set: {
       todos: uniqueTodos,
       items: uniqueItems
     }
   });
   
-  await db.collection("onboarding_checklists").updateOne({ _id: params.id }, [
+  await db.collection("onboarding_checklists").updateOne({ _id: id }, [
     {
       $set: {
         completed: {

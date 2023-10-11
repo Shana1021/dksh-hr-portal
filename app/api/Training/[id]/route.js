@@ -1,7 +1,7 @@
 import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
 
-export async function PUT(request, { params }) {
+export async function PUT(request, { params: { id } }) {
   const { id } = params;
   const {
     newTitle: title,
@@ -54,7 +54,7 @@ export async function PUT(request, { params }) {
   return NextResponse.json({ message: "Trainig updated" }, { status: 200 });
 }
 
-export async function GET(request, { params }) {
+export async function GET(request, { params: { id } }) {
   const client = await clientPromise;
   const id = params;
   const objectId = new ObjectId(id);

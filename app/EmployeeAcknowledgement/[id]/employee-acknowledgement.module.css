@@ -2,6 +2,13 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  background-image: url("/img/business.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+  background-position: center bottom;
+  padding: 20px;
+  min-height: 100vh;
 }
 
 .row {
@@ -28,7 +35,6 @@
 .acknowledged:hover {
   transform: translateY(-5px); 
 }
-
 
 .acknowledged input[type="text"] {
   width: 10%;
@@ -178,7 +184,6 @@
   font-weight: bolder;
   word-wrap: break-word;
   transition: transform 0.3s; 
-  margin-left: 5%;
 }
 
 .button-container button:hover {
@@ -248,4 +253,21 @@
   .aor-letter {
     width: auto;
   }
+}
+
+.logo {
+  position: relative;
+  height: 40px;
+}
+
+.thank-you {
+  margin: auto;
+}
+
+.thank-you h1 {
+  font-size: 3em;
+}
+
+.thank-you p {
+  font-size: 1.5em;
 }

@@ -3,7 +3,7 @@ import clientPromise from "@/lib/mongodb";
 import { GridFSBucket } from "mongodb";
 import { Readable } from "stream";
 
-export async function PUT(request, { params }) {
+export async function PUT(request, { params: { id } }) {
   const formData = await request.formData();
   
   const client = await clientPromise;
@@ -12,7 +12,7 @@ export async function PUT(request, { params }) {
   if (formData.get("profileImage").size > 0) {
     const bucket = new GridFSBucket(db, { bucketName: "employee_profile_images" });
 
-    const file = (await bucket.find({ filename: params.id }).toArray())[0];
+    const file = (await bucket.find({ filename: id }).toArray())[0];
     if (file) {
       await bucket.delete(file._id);
     }
@@ -21,7 +21,7 @@ export async function PUT(request, { params }) {
       .pipe(bucket.openUploadStream(formData.get("_id")));
   }
 
-  await db.collection("employee_profiles").updateOne({ _id: params.id },
+  await db.collection("employee_profiles").updateOne({ _id: id },
     {
       $set: {
         firstName: formData.get("firstName"),
@@ -45,18 +45,18 @@ export async function PUT(request, { params }) {
   return NextResponse.json({ status: "success" });
 }
 
-export async function DELETE(_, { params }) {
+export async function DELETE(_, { params: { id } }) {
   const client = await clientPromise;
   const db = await client.db();
 
   const bucket = new GridFSBucket(db, { bucketName: "employee_profile_images" });
 
-  const file = (await bucket.find({ filename: params.id }).toArray())[0];
+  const file = (await bucket.find({ filename: id }).toArray())[0];
   if (file) {
     await bucket.delete(file._id);
   }
   
-  await db.collection("employee_profiles").deleteOne({ _id: params.id });
+  await db.collection("employee_profiles").deleteOne({ _id: id });
 
   return NextResponse.json({ status: "success" });
 }
