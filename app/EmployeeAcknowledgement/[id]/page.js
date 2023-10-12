@@ -19,7 +19,7 @@ export default async function EmployeeAcknowledgement({ params: { id } }) {
         }
       }
     ])
-    .map(doc => ({ ...doc.profile[0], ...doc }))
+    .map(doc => ({ ...doc, profile: doc.profile[0] }))
     .next();
 
   return <EmployeeAcknowledgementPage acceptedResignation={acceptedResignation} />;

@@ -54,7 +54,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
           />
         </div>
         <h1>Employee Acknowledgment</h1>
-        <p>Hi <b>{acceptedResignation.firstName} {acceptedResignation.lastName}</b>,</p>
+        <p>Hi <b>{acceptedResignation.profile.firstName} {acceptedResignation.profile.lastName}</b>,</p>
         <p>
           After careful consideration, we have officially accepted your resignation and issued the
           Acceptance of Resignation Letter (AOR).
@@ -67,7 +67,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
         <div className={styles["calendar"]}>
           <h1>End Date</h1>
           <div className={styles["react-calendar-medium"]}>
-            <input type="hidden" name="endDate" value={endDate} />
+            <input type="hidden" name="endDate" value={endDate.toISOString()} />
             <Calendar value={endDate} onChange={date => setEndDate(date)} />
             <p>Current selected date is: <b>{endDate.toDateString()}</b></p>
           </div>
@@ -77,12 +77,8 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
           <div className={styles["resignation-letter"]}>
             <h1>Acceptance of Resignation Letter</h1>
             <h2>Download the AOR file here</h2>
-            <a
-              className={styles["download-link"]}
-              href={`/api/offboarding/${encodeURIComponent(acceptedResignation._id)}/aor`}
-              download
-            >
-              <button>Download AOR <FaDownload /></button>
+            <a href={`/api/offboarding/${encodeURIComponent(acceptedResignation._id)}/aor`} download>
+              <button type="button">Download AOR <FaDownload /></button>
             </a>
           </div>
           <div className={styles["aor-letter"]}>

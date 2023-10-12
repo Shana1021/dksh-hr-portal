@@ -12,6 +12,10 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
   const [confirmation, setConfirmation] = useState(null);
 
   for (const probationary of probationaries) {
+    probationary.firstName = probationary.profile.firstName;
+    probationary.lastName = probationary.profile.lastName;
+    probationary.email = probationary.profile.email;
+
     const startDate = probationary.createdAt;
     probationary.startDate = startDate.toLocaleDateString();
 

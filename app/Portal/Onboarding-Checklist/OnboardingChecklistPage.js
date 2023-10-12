@@ -14,6 +14,11 @@ export default function OnboardingChecklistPage({
   const [selectedIndex, setSelectedIndex] = useState(null);
 
   for (const [index, checklist] of onboardingChecklists.entries()) {
+    checklist.firstName = checklist.profile.firstName;
+    checklist.lastName = checklist.profile.lastName;
+    checklist.email = checklist.profile.email;
+    checklist.department = checklist.profile.department;
+
     checklist.status = (
       <div
         className={`${styles["status-label"]} ${
@@ -56,7 +61,6 @@ export default function OnboardingChecklistPage({
             { key: "firstName", title: "First Name" },
             { key: "lastName", title: "Last Name" },
             { key: "email", title: "Email" },
-            { key: "position", title: "Position" },
             { key: "department", title: "Department" },
             { key: "status", title: "Status" },
             { key: "action", title: "Action" },
@@ -70,7 +74,7 @@ export default function OnboardingChecklistPage({
         <Checklist
           initialChecklists={checklists}
           completed={onboardingChecklists[selectedIndex].completed}
-          onSave={async (updatedChecklists) => {
+          onSave={async updatedChecklists => {
             setSelectedIndex(null);
 
             const res = await fetch(

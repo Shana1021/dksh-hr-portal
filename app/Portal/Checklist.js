@@ -4,7 +4,7 @@ import styles from "./checklist.module.css";
 import { useState, useRef, useEffect } from "react";
 import { AiFillMinusCircle } from "react-icons/ai";
 
-export default function Checklist({ initialChecklists, completed, onSave, onClose }) {
+export default function Checklist({ initialChecklists, checkOnly, completed, onSave, onClose }) {
   const addItemTitleRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [checklists, setChecklists] = useState(initialChecklists);
@@ -54,7 +54,7 @@ export default function Checklist({ initialChecklists, completed, onSave, onClos
                     }}
                   /> {item.title}
                 </label>
-                {!completed && <AiFillMinusCircle
+                {!checkOnly && !completed && <AiFillMinusCircle
                   className={styles["delete"]}
                   onClick={() =>
                     setChecklists(checklists.map((checklist, checklistIndex) =>
@@ -72,41 +72,43 @@ export default function Checklist({ initialChecklists, completed, onSave, onClos
           </ul>
           {!completed && (
             <>
-              <div className={styles["add-container"]}>
-                <input
-                  ref={addItemTitleRef}
-                  type="text"
-                  value={addItemTitle}
-                  onChange={e => {
-                    setAddItemTitle(e.target.value);
-                    e.target.setCustomValidity("");
-                    e.target.reportValidity();
-                  }}
-                />
-                <button onClick={() => {
-                  if (addItemTitle.length === 0) {
-                    addItemTitleRef.current.setCustomValidity("Item cannot be empty.");
-                    addItemTitleRef.current.reportValidity();
-                    return;
-                  }
+              {!checkOnly && (
+                <div className={styles["add-container"]}>
+                  <input
+                    ref={addItemTitleRef}
+                    type="text"
+                    value={addItemTitle}
+                    onChange={e => {
+                      setAddItemTitle(e.target.value);
+                      e.target.setCustomValidity("");
+                      e.target.reportValidity();
+                    }}
+                  />
+                  <button onClick={() => {
+                    if (addItemTitle.length === 0) {
+                      addItemTitleRef.current.setCustomValidity("Item cannot be empty.");
+                      addItemTitleRef.current.reportValidity();
+                      return;
+                    }
 
-                  if (checklists[activeIndex].items.some(item => item.title === addItemTitle)) {
-                    addItemTitleRef.current.setCustomValidity("Item already exists.");
-                    addItemTitleRef.current.reportValidity();
-                    return;
-                  }
+                    if (checklists[activeIndex].items.some(item => item.title === addItemTitle)) {
+                      addItemTitleRef.current.setCustomValidity("Item already exists.");
+                      addItemTitleRef.current.reportValidity();
+                      return;
+                    }
 
-                  setChecklists(checklists.map((checklist, checklistIndex) =>
-                    checklistIndex === activeIndex
-                      ? {
-                        title: checklist.title,
-                        items: [...checklist.items, { title: addItemTitle, checked: false }]
-                      }
-                      : checklist
-                  ));
-                  setAddItemTitle("");
-                }}>+</button>
-              </div>
+                    setChecklists(checklists.map((checklist, checklistIndex) =>
+                      checklistIndex === activeIndex
+                        ? {
+                          title: checklist.title,
+                          items: [...checklist.items, { title: addItemTitle, checked: false }]
+                        }
+                        : checklist
+                    ));
+                    setAddItemTitle("");
+                  }}>+</button>
+                </div>
+              )}
               <button
                 className={`module-button ${styles["save-btn"]}`}
                 onClick={() => {

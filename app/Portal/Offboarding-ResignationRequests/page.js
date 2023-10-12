@@ -17,7 +17,7 @@ export default async function OffboardingResignationRequests() {
       }
     ])
     .sort({ createdAt: -1 })
-    .map(doc => ({ ...doc.profile[0], ...doc }))
+    .map(doc => ({ ...doc, profile: doc.profile[0] }))
     .toArray();
   
   return <OffboardingResignationRequestsPage resignationRequests={resignationRequests} />;

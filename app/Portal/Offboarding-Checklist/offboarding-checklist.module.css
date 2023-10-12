@@ -133,3 +133,27 @@
     margin-right: 30px; 
   }
 }
+
+.download {
+  padding: 8px;
+  background-color: #be0028;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.status-label {
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.status-label-complete {
+  background-color: lightgreen;
+}
+
+.status-label-incomplete {
+  background-color: lightblue;
+}

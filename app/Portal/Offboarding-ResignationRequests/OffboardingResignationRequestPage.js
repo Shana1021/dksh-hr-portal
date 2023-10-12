@@ -117,16 +117,16 @@ export default function OffboardingResignationRequestsPage({ resignationRequests
               />
             </div>
             <div className={styles["card-body"]}>
-              <h4>{resignationRequest.firstName} {resignationRequest.lastName}</h4>
-              <p className={styles["department"]}>{resignationRequest.department}</p> 
+              <h4>{resignationRequest.profile.firstName} {resignationRequest.profile.lastName}</h4>
+              <p className={styles["department"]}>{resignationRequest.profile.department}</p> 
             </div>
           </div>
         ))}
       </div>
       {selectedIndex !== null && (
         <AcknowledgeResignationPopup
-          name={`${resignationRequests[selectedIndex].firstName} ${resignationRequests[selectedIndex].lastName}`}
-          department={resignationRequests[selectedIndex].department}
+          name={`${resignationRequests[selectedIndex].profile.firstName} ${resignationRequests[selectedIndex].profile.lastName}`}
+          department={resignationRequests[selectedIndex].profile.department}
           reason={resignationRequests[selectedIndex].reason}
           onClose={() => setSelectedIndex(null)}
           onConfirm={async formData => {

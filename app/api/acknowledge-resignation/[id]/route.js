@@ -13,7 +13,7 @@ export async function POST(request, { params: { id } }) {
     return NextResponse.json({ status: "idDoesNotExist" });
   }
 
-  const bucket = new GridFSBucket(db, { bucketName: "signed_acknowledgement_of_resignations" });
+  const bucket = new GridFSBucket(db, { bucketName: "signed_acceptance_of_resignations" });
 
   const file = (await bucket.find({ filename: id }).toArray())[0];
   if (file) {
@@ -28,7 +28,7 @@ export async function POST(request, { params: { id } }) {
       { _id: id },
       {
         $set: {
-          endDate: formData.get("endDate")
+          endDate: new Date(formData.get("endDate"))
         }
       }
     );
@@ -75,7 +75,7 @@ export async function POST(request, { params: { id } }) {
               }
             ],
             items: onboardingChecklist.items.map(item => ({ ...item, checked: false })),
-            endDate: formData.get("endDate")
+            endDate: new Date(formData.get("endDate"))
           },
           $currentDate: { createdAt: true }
         },
