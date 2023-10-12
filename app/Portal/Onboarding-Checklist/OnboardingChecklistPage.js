@@ -6,10 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Checklist from "../Checklist";
 import SearchBar from "../SearchBar";
-export default function OnboardingChecklistPage({
-  onboardingChecklists,
-  totalRows,
-}) {
+export default function OnboardingChecklistPage({ onboardingChecklists, totalRows }) {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
 

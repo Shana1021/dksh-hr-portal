@@ -8,7 +8,7 @@ import Checklist from "../Checklist";
 import SearchBar from "../SearchBar";
 import { FaDownload } from "react-icons/fa";
 
-export default function OffboardingChecklistPage({ offboardingChecklists }) {
+export default function OffboardingChecklistPage({ offboardingChecklists, totalRows }) {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -77,6 +77,7 @@ export default function OffboardingChecklistPage({ offboardingChecklists }) {
           ]}
           data={offboardingChecklists}
           height="400px"
+          totalRows={totalRows}
         />
       </div>
       {checklists && (
