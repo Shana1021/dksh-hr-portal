@@ -104,20 +104,16 @@
 }
 
 .checkboxInput {
-  display: none;
+  word-wrap: break-word;
 }
 
 .checkboxInput + .label {
-  position: relative;
-  display: block;
-  padding-left: 2em;
+  padding-left: 1em;
 }
 
 .checkboxInput + .label:before {
-  position: absolute;
   top: 0.2em;
   left: 0;
-  display: block;
   width: 1.5em;
   height: 1.5em;
   padding: 0;
@@ -125,7 +121,6 @@
 }
 
 .checkboxInput + .label:after {
-  position: absolute;
   top: 0.70em;
   left: 0.4em;
   font-size: 0.8em;
@@ -295,7 +290,7 @@
 .form {
   width: 100%; /* Adjust the width as needed */
   padding: 0 10px; /* Add some padding to form sections */
-}
+} 
 
 /* Responsive styles for smaller screens */
 @media only screen and (max-width: 768px) {
@@ -328,3 +323,4 @@
     font-size: smaller;
   }
 }
+

@@ -41,6 +41,11 @@ export default function TrainingRequestTraining() {
   const [vendorNameCode, setVenderNameCode] = useState("");
   const [E_name, setE_name] = useState("");
   const [E_email, setE_mail] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   const router = useRouter();
   const handleSubmit = async (e) => {
@@ -466,6 +471,8 @@ export default function TrainingRequestTraining() {
                   id="terms"
                   type="checkbox"
                   className={styles.checkboxInput}
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
                 />
                 <label className={styles.label} htmlFor="terms">
                   I accept the terms and conditions for signing up to this
