@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "./dashboard.module.css";
 import BarChart from "./BarChart";
+import PieChart from './PieChart';
+import DoughnutChart from "./DoughnutChart";
+import Table from "../Table";
+
 
 const Dashboard = () => {
   return (
@@ -41,24 +45,32 @@ const Dashboard = () => {
       <div className={styles["midSection"]}>
         <div className={styles["col2"]}>
           <div className={styles["barChart"]}>
-            <div id="barChart">{/* <BarChart /> */}</div>
+            <h3 className={styles["title"]}>Hires Chart</h3>
+             <BarChart />
           </div>
         </div>
 
         <div className={styles["col3"]}>
-          <div className={styles["pieChart"]}></div>
+          <div className={styles["doughnutChart"]}>
+          <h3 className={styles["title"]}>Employee Composition</h3>
+          <DoughnutChart />
+          </div>
         </div>
       </div>
 
       {/* Section 3 */}
       <div className={styles["bottomSection"]}>
         <div className={styles["col3"]}>
-          <div className={styles["doughnutChart"]}>
-            {/* Doughnut Chart Content */}
+          <div className={styles["pieChart"]}>
+          <h3 className={styles["title"]}>Department Composition</h3>
+            <PieChart />
           </div>
         </div>
         <div className={styles["col2"]}>
-          <div className={styles["table"]}>{/* Table Content */}</div>
+          <div className={styles["table"]}>
+          <h3 className={styles["title"]}>Employee Status</h3>
+          {/*<Table />*/}
+        </div>
         </div>
       </div>
     </div>
