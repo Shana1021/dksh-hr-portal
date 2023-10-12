@@ -2,14 +2,12 @@
 
 .container {
   box-sizing: border-box;
-  max-height: 850px;
-  border: 3px solid rgb(61, 255, 54);
+  height: 970px;
   display: flex;
   flex-direction: column; /* Make the children stack vertically */
 }
 
 .topSection {
-  border: 3px solid red;
   padding: 5px 40px;
   width: 100%;
   float: left;
@@ -20,40 +18,80 @@
   float: left;
 }
 
-.col2 {
-  border: 1px solid #00ff40;
-  padding: 10px;
-  width: 60%;
-  height: 15rem;
-}
-
-.barChart {
-  /* border: 3px solid rgb(0, 0, 0);*/
-}
-
 .midSection {
-  border: 3px solid rgb(0, 0, 0);
   padding: 15px;
+  height: 300px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.col2 {
+  padding: 10px;
+  width: 60%;
 }
 
 .col3 {
-  border: 1px solid #ff00b3;
   margin: 0px 10px;
   padding: 20px;
   width: 40%;
-  height: 15rem;
+}
+
+.barChart {
+  border: 1px solid rgb(163, 165, 172);
+  border-radius: 5px;
+  padding: 0px 15px;
+  width: 800px;
+  height: 380px;
+}
+
+.barChart:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
+}
+
+.doughnutChart {
+  border: 1px solid rgb(163, 165, 172);
+  border-radius: 5px;
+  padding: 0px 15px;
+  margin: 0px;
+  width: 450px;
+  height: 380px;
+}
+
+.doughnutChart:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
 }
 
 .bottomSection {
-  border: 3px solid red;
   padding: 15px;
+  height: 400px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.pieChart {
+  border: 1px solid rgb(163, 165, 172);
+  border-radius: 5px;
+  padding: 15px;
+  width: 450px;
+  height: 380px;
+}
+
+.pieChart:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
+}
+
+
 /*components*/
 .card {
   width: 17rem;
