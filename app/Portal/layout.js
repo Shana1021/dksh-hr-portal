@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import styles from "./portal.module.css";
 import { signIn, useSession } from "next-auth/react";
@@ -27,7 +27,7 @@ export default function PortalLayout({ children }) {
 function Portal({ children }) {
   const pathname = usePathname();
   const windowWidth = useSyncExternalStore(
-    callback => {
+    (callback) => {
       window.addEventListener("resize", callback);
       return () => {
         window.removeEventListener("resize", callback);
@@ -44,7 +44,7 @@ function Portal({ children }) {
     setSidebarWidth(sidebarRef.current.clientWidth);
   }, []);
 
-  let headerTitle
+  let headerTitle;
   for (const menu of sidebarData) {
     if (menu.path) {
       if (menu.path === pathname) {
@@ -52,7 +52,7 @@ function Portal({ children }) {
         break;
       }
     } else {
-      const subMenu = menu.subnav.find(subMenu => subMenu.path === pathname);
+      const subMenu = menu.subnav.find((subMenu) => subMenu.path === pathname);
       if (subMenu) {
         headerTitle = `${menu.title} - ${subMenu.title}`;
         break;
@@ -63,20 +63,23 @@ function Portal({ children }) {
   return (
     <div className={styles["portal-main"]}>
       <Sidebar ref={sidebarRef} show={showSidebar} />
-      {sidebarWidth && <div
-        className={styles["portal-content"]}
-        style={{width: showSidebar ? windowWidth - sidebarWidth : windowWidth}}
-      >
-        <div className={styles["portal-header"]}>
-          <AiOutlineMenu
-            className={styles["portal-header-menu"]}
-            color="black"
-            size="25"
-            onClick={() => {
-              setShowSidebar(!showSidebar);
-            }}
-          />
-          <div className={styles["portal-header-logo"]}>
+      {sidebarWidth && (
+        <div
+          className={styles["portal-content"]}
+          style={{
+            width: showSidebar ? windowWidth - sidebarWidth : windowWidth,
+          }}
+        >
+          <div className={styles["portal-header"]}>
+            <AiOutlineMenu
+              className={styles["portal-header-menu"]}
+              color="black"
+              size="28"
+              onClick={() => {
+                setShowSidebar(!showSidebar);
+              }}
+            />
+            {/* <div className={styles["portal-header-logo"]}>
             <Image
               src="/dksh_logo.png"
               alt="DKSH Logo"
@@ -85,13 +88,12 @@ function Portal({ children }) {
               style={{ objectFit: "contain" }}
               priority
             />
+          </div> */}
+            <span className={styles["portal-header-title"]}>{headerTitle}</span>
           </div>
-          <span className={styles["portal-header-title"]}>{headerTitle}</span>
+          <div className={styles["page-content"]}>{children}</div>
         </div>
-        <div className={styles["page-content"]}>
-          {children}
-        </div>
-      </div>}
+      )}
     </div>
   );
 }

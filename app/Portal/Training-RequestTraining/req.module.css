@@ -8,7 +8,7 @@
   font-size: 15px;
   color: #b9b9b9;
   background-color: #ffffff;
-  max-height:max-content;
+  max-height: max-content;
 }
 
 /* Heading styles */
@@ -50,7 +50,6 @@
   border-radius: 3px;
   transition: 0.35s ease-in-out;
 }
-
 
 .input:focus {
   outline: 0;
@@ -121,7 +120,7 @@
 }
 
 .checkboxInput + .label:after {
-  top: 0.70em;
+  top: 0.7em;
   left: 0.4em;
   font-size: 0.8em;
   color: #fff;
@@ -211,7 +210,6 @@
   border-right: 1px solid #e5e5e5;
   content: "";
   transition: 0.35s ease-in-out;
-
 }
 
 .inputGroupIcon .inputIcon i {
@@ -255,10 +253,10 @@
 
 /* Button styles */
 .button {
-  background-color: #de3737;
+  background-color: #be0028;
   border-radius: 0.5rem;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   font-size: 16px;
   justify-content: center;
@@ -275,7 +273,7 @@
 }
 
 .button:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
 }
 
 /* Form wrapper styles */
@@ -290,7 +288,7 @@
 .form {
   width: 100%; /* Adjust the width as needed */
   padding: 0 10px; /* Add some padding to form sections */
-} 
+}
 
 /* Responsive styles for smaller screens */
 @media only screen and (max-width: 768px) {
@@ -315,12 +313,11 @@
     padding: 1.2em 2.5em; /* Increase button padding for better spacing */
   }
 
-.input-group label[for="eVendor"],
-.input-group label[for="newVendor"],
-.input-group label[for="noVendor"] {
-    display:inline; /* Display the label inline with the radio button */
+  .input-group label[for="eVendor"],
+  .input-group label[for="newVendor"],
+  .input-group label[for="noVendor"] {
+    display: inline; /* Display the label inline with the radio button */
     margin-left: 5px; /* Add spacing between radio button and label */
     font-size: smaller;
   }
 }
-

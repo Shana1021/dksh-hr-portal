@@ -64,10 +64,11 @@ export default function HRListPage({ hrProfiles, totalRows }) {
           totalRows={totalRows}
         />
         <div className={styles["add-button"]}>
-        <Link className={styles["custom-button"]} href="/Portal/HR/New">
-          <span className={styles["plus-icon"]}>&#43;</span>&nbsp;Add HR
-          Employee
-        </Link>
+          <button>
+            <Link className="module-button" href="/Portal/HR/New">
+              Add Employee
+            </Link>
+          </button>
         </div>
       </div>
       {confirmation && (

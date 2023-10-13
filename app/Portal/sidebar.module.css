@@ -18,8 +18,8 @@
 
 .sidebar-menu {
   display: block;
-  transition: background-color 0.5s ;
-  font-size: 17px; /* Standardized font size */
+  transition: background-color 0.5s;
+  font-size: 18px; /* Standardized font size */
   color: #be0028; /* Set font color to red */
   padding: 5px;
 }
@@ -93,6 +93,11 @@
   margin-top: auto;
   cursor: pointer;
 }
+.sidebar-logout:hover {
+  cursor: pointer;
+  padding: 6px;
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
+}
 
 .sidebar-logout * {
   padding: 5px;
@@ -100,4 +105,10 @@
 
 .sidebar-content .sidebar-title {
   padding-left: 24px;
+}
+.portal-header-logo {
+  position: relative;
+  width: 90px;
+  height: 5%;
+  margin-left: 10px;
 }
