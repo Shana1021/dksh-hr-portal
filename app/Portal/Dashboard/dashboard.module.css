@@ -34,7 +34,7 @@
 .col3 {
   margin: 0px 10px;
   padding: 20px;
-  width: 40%;
+  width: 400%;
 }
 
 .barChart {
@@ -57,8 +57,8 @@
   border-radius: 5px;
   padding: 0px 15px;
   margin: 0px;
-  width: 450px;
-  height: 380px;
+  width: 10%;
+  height: 10%;
 }
 
 .doughnutChart:hover {
@@ -90,7 +90,6 @@
     -5px
   ); /* Bounce effect by moving the card up slightly */
 }
-
 
 /*components*/
 .card {

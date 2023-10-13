@@ -27,7 +27,7 @@ export default forwardRef(function Sidebar({ show }, ref) {
       className={styles["sidebar-container"]}
       style={sidebarWidth && { width: show ? sidebarWidth : 0 }}
     >
-      {/* <div className={styles["portal-header-logo"]}>
+      <div className={styles["portal-header-logo"]}>
         <Image
           src="/dksh_logo.png"
           alt="DKSH Logo"
@@ -36,8 +36,7 @@ export default forwardRef(function Sidebar({ show }, ref) {
           style={{ objectFit: "contain" }}
           priority
         />
-      </div> */}
-
+      </div>
       <div
         ref={sidebarRef}
         className={styles["sidebar"]}
@@ -52,7 +51,6 @@ export default forwardRef(function Sidebar({ show }, ref) {
             )
           )}
         </div>
-
         <button
           className={styles["sidebar-logout"]}
           onClick={() => {
