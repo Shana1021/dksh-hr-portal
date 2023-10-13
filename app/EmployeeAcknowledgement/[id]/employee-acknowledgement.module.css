@@ -47,18 +47,21 @@
 }
 
 .acknowledged h1 {
+  color: white;
+  background-color: black;
   font-size: 30px;
   text-align: center;
   word-wrap: break-word;
+  border: 3px solid black;
+  border-radius: 4px; 
 }
 
 .acknowledged p {
   font-size: 25px;
-  text-align: left;
+  text-align: start;
   word-wrap: break-word;
   line-height: 2.0;
   word-spacing: -2px;
-  margin-left: 2%;
 }
 
 .calendar {
@@ -79,6 +82,8 @@
 }
 
 .calendar h1 {
+  color: white;
+  background-color: black;
   text-align: center;
   word-wrap: break-word;
 }
@@ -86,7 +91,6 @@
 .calendar p{
   text-align: start;
   word-wrap: break-word;
-  margin-left: 5%;
 }
 
 .resignation-letter {
@@ -106,6 +110,8 @@
 }
 
 .resignation-letter h1{
+  color: white;
+  background-color: black;
   text-align: center;
   font-size: 30px;
   word-wrap: break-word;
@@ -114,7 +120,7 @@
 .resignation-letter h2{
   font-size: 25px;
   word-wrap: break-word;
-  margin-left: 5%;
+  text-align: start;
 }
 
 .resignation-letter button {
@@ -152,6 +158,8 @@
 }
 
 .aor-letter h1{
+  color: white;
+  background-color: black;
   text-align: center;
   font-size: 30px;
   word-wrap: break-word;
@@ -160,7 +168,7 @@
 .aor-letter h2{
   font-size: 25px;
   margin-bottom: 10px;
-  margin-left: 5%;
+  text-align: start;
   word-wrap: break-word;
 }
 
@@ -246,6 +254,15 @@
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .acknowledged, 
+  .calendar, 
+  .resignation-letter, 
+  .aor-letter {
+    width: auto;
+  }
+}
+
 @media screen and (max-width: 1440px) {
   .acknowledged, 
   .calendar, 
@@ -254,6 +271,25 @@
     width: auto;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .acknowledged, 
+  .calendar, 
+  .resignation-letter, 
+  .aor-letter {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .acknowledged, 
+  .calendar, 
+  .resignation-letter, 
+  .aor-letter {
+    width: auto;
+  }
+}
+
 
 .logo {
   position: relative;
