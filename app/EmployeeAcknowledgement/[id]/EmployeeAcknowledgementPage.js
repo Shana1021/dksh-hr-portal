@@ -54,13 +54,13 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
           />
         </div>
         <h1>Employee Acknowledgment</h1>
-        <p>Hi <b>{acceptedResignation.profile.firstName} {acceptedResignation.profile.lastName}</b>,</p>
+        <p>Hi <b>{acceptedResignation.profile.firstName} {acceptedResignation.profile.lastName}</b></p>
         <p>
           After careful consideration, we have officially accepted your resignation and issued the
           Acceptance of Resignation Letter (AOR).
           Do take note of the Annual Leave Balance: <b>{acceptedResignation.annualLeaveBalance} day(s)</b>.
         </p>
-        <p>Please state your last day of work and re-upload the signed AOR for our reference, thank you.</p>
+        <p>Please state your last day of work and re-upload the signed AOR for our reference, Thank you.</p>
       </div>
 
       <div className={styles["row"]}>
@@ -69,7 +69,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
           <div className={styles["react-calendar-medium"]}>
             <input type="hidden" name="endDate" value={endDate.toISOString()} />
             <Calendar value={endDate} onChange={date => setEndDate(date)} />
-            <p>Current selected date is: <b>{endDate.toDateString()}</b></p>
+            <p>Selected date is: <b>{endDate.toDateString()}</b></p>
           </div>
         </div>
 
