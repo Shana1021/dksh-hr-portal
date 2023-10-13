@@ -4,7 +4,6 @@
   flex-direction: column;
   padding: 25px;
 }
-
 .header h1 {
   margin: 0;
   align-items: center;
@@ -19,32 +18,18 @@
   max-height: 300px;
 }
 
-.custom-button{
-  color:white;
+.custom-button {
+  color: white;
   background-color: #be0028;
   border-radius: 5px;
   border: 1px solid #000;
 }
 
-.custom-button:hover {
-  color: black ;
-  background-color: #0BDA51; 
+.add-button {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
 }
-
-@media screen and (max-width: 640px) {
-  .search-bar-container {
-    width: auto;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .search-bar-container {
-    width: auto;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .search-bar-container {
-    width: auto;
-  }
+.add-button button {
+  font-size: 1em;
 }
