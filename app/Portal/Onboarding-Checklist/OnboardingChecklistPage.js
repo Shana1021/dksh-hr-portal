@@ -10,6 +10,19 @@ export default function OnboardingChecklistPage({
   onboardingChecklists,
   totalRows,
 }) {
+  const [filteredProfiles, setFilteredProfiles] =
+    useState(onboardingChecklists);
+  const handleSearch = (query) => {
+    const filteredData = onboardingChecklists.filter((profile) => {
+      const searchFields = ["firstName", "lastName", "email", "department"];
+      return searchFields.some((field) =>
+        profile && profile[field]
+          ? profile[field].toLowerCase().includes(query.toLowerCase())
+          : false
+      );
+    });
+    setFilteredProfiles(filteredData);
+  };
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
 
@@ -54,7 +67,7 @@ export default function OnboardingChecklistPage({
   return (
     <>
       <div className={styles["container"]}>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <Table
           columns={[
             { key: "_id", title: "Employee ID" },
@@ -65,7 +78,7 @@ export default function OnboardingChecklistPage({
             { key: "status", title: "Status" },
             { key: "action", title: "Action" },
           ]}
-          data={onboardingChecklists}
+          data={filteredProfiles}
           height="400px"
           totalRows={totalRows}
         />

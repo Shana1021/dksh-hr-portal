@@ -16,13 +16,7 @@ export default function OnboardingBackgroundCheckPage({
 
   const handleSearch = (query) => {
     const filteredData = employeeProfiles.filter((profile) => {
-      const searchFields = [
-        "firstName",
-        "lastName",
-        "email",
-        "position",
-        "department",
-      ];
+      const searchFields = ["firstName", "lastName", "email", "department"];
       return searchFields.some((field) =>
         profile[field].toLowerCase().includes(query.toLowerCase())
       );
@@ -164,7 +158,7 @@ export default function OnboardingBackgroundCheckPage({
           ]}
           data={filteredProfiles}
           height="400px"
-          totalRows={filteredProfiles.length}
+          totalRows={totalRows}
         />
         <div className={styles["actions"]}>
           <Link className="module-button" href="/Portal/Employee/New">
