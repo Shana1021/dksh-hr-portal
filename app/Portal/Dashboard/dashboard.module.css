@@ -34,7 +34,7 @@
 .col3 {
   margin: 0px 10px;
   padding: 20px;
-  width: 400%;
+  width: 40%;
 }
 
 .barChart {
@@ -57,8 +57,8 @@
   border-radius: 5px;
   padding: 0px 15px;
   margin: 0px;
-  width: 10%;
-  height: 10%;
+  width: 450px;
+  height: 380px;
 }
 
 .doughnutChart:hover {

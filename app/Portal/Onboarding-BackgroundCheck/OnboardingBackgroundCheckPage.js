@@ -12,6 +12,24 @@ export default function OnboardingBackgroundCheckPage({
   employeeProfiles,
   totalRows,
 }) {
+  const [filteredProfiles, setFilteredProfiles] = useState(employeeProfiles);
+
+  const handleSearch = (query) => {
+    const filteredData = employeeProfiles.filter((profile) => {
+      const searchFields = [
+        "firstName",
+        "lastName",
+        "email",
+        "position",
+        "department",
+      ];
+      return searchFields.some((field) =>
+        profile[field].toLowerCase().includes(query.toLowerCase())
+      );
+    });
+    setFilteredProfiles(filteredData);
+  };
+
   const router = useRouter();
   const [bcStatuses, setBCStatuses] = useState(
     employeeProfiles.map((employeeProfile) => employeeProfile.bcStatus)
@@ -106,7 +124,9 @@ export default function OnboardingBackgroundCheckPage({
                 message: "Are you sure you want to delete this?",
                 async onConfirm() {
                   const res = await fetch(
-                    `/api/onboarding/${encodeURIComponent(employeeProfile._id)}`,
+                    `/api/onboarding/${encodeURIComponent(
+                      employeeProfile._id
+                    )}`,
                     {
                       method: "DELETE",
                     }
@@ -129,7 +149,7 @@ export default function OnboardingBackgroundCheckPage({
   return (
     <>
       <div className={styles["container"]}>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <Table
           columns={[
             { key: "id", title: "Employee ID" },
@@ -142,9 +162,9 @@ export default function OnboardingBackgroundCheckPage({
             { key: "emailStatus", title: "Email Status" },
             { key: "action", title: "Action" },
           ]}
-          data={employeeProfiles}
+          data={filteredProfiles}
           height="400px"
-          totalRows={totalRows}
+          totalRows={filteredProfiles.length}
         />
         <div className={styles["actions"]}>
           <Link className="module-button" href="/Portal/Employee/New">
