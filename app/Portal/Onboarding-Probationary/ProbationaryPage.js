@@ -10,6 +10,18 @@ import SearchBar from "../SearchBar";
 export default function ProbationaryPage({ probationaries, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
+  const [filteredProfiles, setFilteredProfiles] = useState(probationaries);
+  const handleSearch = (query) => {
+    const filteredData = probationaries.filter((profile) => {
+      const searchFields = ["firstName", "lastName", "email", "department"];
+      return searchFields.some((field) =>
+        profile && profile[field]
+          ? profile[field].toLowerCase().includes(query.toLowerCase())
+          : false
+      );
+    });
+    setFilteredProfiles(filteredData);
+  };
 
   for (const probationary of probationaries) {
     probationary.firstName = probationary.profile.firstName;
@@ -70,7 +82,7 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
   return (
     <>
       <div className={styles["container"]}>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <Table
           columns={[
             { key: "_id", title: "Employee ID" },
@@ -83,7 +95,7 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
             { key: "status", title: "Status" },
             { key: "action", title: "Action" },
           ]}
-          data={probationaries}
+          data={filteredProfiles}
           height="400px"
           totalRows={totalRows}
         />
