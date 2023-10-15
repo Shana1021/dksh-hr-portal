@@ -470,11 +470,11 @@ export default function TrainingRequestTraining() {
                 <input
                   id="terms"
                   type="checkbox"
-                  className={styles.checkboxInput}
+                  className={styles.checkboxInput} 
                   checked={isChecked}
                   onChange={handleCheckboxChange}
                 />
-                <label className={styles.label} htmlFor="terms">
+                <label className={styles.label} htmlFor="terms"> 
                   I accept the terms and conditions for signing up to this
                   service, and hereby confirm I have read the privacy policy.
                 </label>
