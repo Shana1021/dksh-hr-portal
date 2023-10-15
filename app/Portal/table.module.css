@@ -27,6 +27,7 @@
 }
 
 .table th {
+  font-size: 1.1em;
   background-color: #be0028;
   font-weight: bold;
   font-family: Arial, sans-serif;

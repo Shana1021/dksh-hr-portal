@@ -97,7 +97,7 @@
 .sidebar-logout:hover {
   cursor: pointer;
   padding: 5px;
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
+  background-color: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
 }
 
 .sidebar-logout * {
