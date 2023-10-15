@@ -27,21 +27,21 @@ export default forwardRef(function Sidebar({ show }, ref) {
       className={styles["sidebar-container"]}
       style={sidebarWidth && { width: show ? sidebarWidth : 0 }}
     >
-      <div className={styles["portal-header-logo"]}>
-        <Image
-          src="/dksh_logo.png"
-          alt="DKSH Logo"
-          fill
-          unoptimized
-          style={{ objectFit: "contain" }}
-          priority
-        />
-      </div>
       <div
         ref={sidebarRef}
         className={styles["sidebar"]}
         style={{ width: sidebarWidth }}
       >
+        <div className={styles["portal-header-logo"]}>
+          <Image
+            src="/dksh_logo.png"
+            alt="DKSH Logo"
+            fill
+            unoptimized
+            style={{ objectFit: "contain" }}
+            priority
+          />
+        </div>
         <div className={styles["sidebar-navigation"]}>
           {sidebarData.map((item, index) =>
             item.subnav ? (

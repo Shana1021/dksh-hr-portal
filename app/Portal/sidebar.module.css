@@ -9,7 +9,7 @@
 
 .sidebar {
   background-color: white;
-  height: 93%;
+  height: 100%;
   padding: 15px;
   margin: 0;
   display: flex;
@@ -92,10 +92,11 @@
   font-weight: lighter;
   margin-top: auto;
   cursor: pointer;
+  transition: padding 0.2s ease;
 }
 .sidebar-logout:hover {
   cursor: pointer;
-  padding: 6px;
+  padding: 5px;
   background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
 }
 
@@ -106,11 +107,11 @@
 .sidebar-content .sidebar-title {
   padding-left: 24px;
 }
+
 .portal-header-logo {
-  top: 1%;
-  left: -5%;
   position: relative;
   font-size: 2em;
-  height: 5%;
+  min-height: 35px;
+  height: 35px;
   margin-bottom: 10px;
 }

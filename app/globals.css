@@ -26,7 +26,7 @@ button {
   font-size: 0.9em;
   padding: 10px 40px;
   border: none;
-  transition: background-color 0.5s ease;
+  transition: background-image 0.5s ease;
 }
 
 .module-button:hover {
