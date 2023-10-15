@@ -53,7 +53,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
             style={{ objectFit: "contain" }}
           />
         </div>
-        <h1>Employee Acknowledgment</h1>
+        <h1>Employee Acknowledgement</h1>
         <p>Hi <b>{acceptedResignation.profile.firstName} {acceptedResignation.profile.lastName}</b></p>
         <p>
           After careful consideration, we have officially accepted your resignation and issued the

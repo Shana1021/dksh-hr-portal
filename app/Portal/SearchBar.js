@@ -8,14 +8,16 @@ const SearchBar = ({ onSearch }) => {
   const handleInputChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-    onSearch(query);
+    onSearch(query); //accepts automatic typing search
   };
 
   const handleSearchClick = () => {
+    //button click
     onSearch(searchQuery);
   };
 
   const handleKeyPress = (e) => {
+    //enter keyboard key
     if (e.key === "Enter") {
       handleSearchClick();
     }

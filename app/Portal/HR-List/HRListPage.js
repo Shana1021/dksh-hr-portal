@@ -11,6 +11,17 @@ import { useRouter } from "next/navigation";
 import ConfirmationDialog from "../ConfirmationDialog";
 import SearchBar from "../SearchBar";
 export default function HRListPage({ hrProfiles, totalRows }) {
+  const [filteredProfiles, setFilteredProfiles] = useState(hrProfiles);
+
+  const handleSearch = (query) => {
+    const filteredData = hrProfiles.filter((profile) => {
+      const searchFields = ["firstName", "lastName", "email", "department"];
+      return searchFields.some((field) =>
+        profile[field].toLowerCase().includes(query.toLowerCase())
+      );
+    });
+    setFilteredProfiles(filteredData);
+  };
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
 
@@ -49,7 +60,7 @@ export default function HRListPage({ hrProfiles, totalRows }) {
   return (
     <>
       <div className={styles["container"]}>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
 
         <Table
           columns={[
@@ -59,7 +70,7 @@ export default function HRListPage({ hrProfiles, totalRows }) {
             { key: "phone", title: "Phone" },
             { key: "action", title: "Action" },
           ]}
-          data={hrProfiles}
+          data={filteredProfiles}
           height="400px"
           totalRows={totalRows}
         />
