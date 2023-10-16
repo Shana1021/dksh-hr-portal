@@ -24,17 +24,6 @@
   margin-bottom: 0;
 }
 
-/*Download link*/
-.link {
-  margin-top: 10px;
-  margin-bottom: 0em;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: #de3737;
-}
-
 /* Input and Select styles */
 .input,
 .radioInput + .label,
@@ -116,7 +105,6 @@
   width: 1.5em;
   height: 1.5em;
   padding: 0;
-  content: "";
 }
 
 .checkboxInput + .label:after {
@@ -125,17 +113,8 @@
   font-size: 0.8em;
   color: #fff;
   opacity: 0;
-  font-family: FontAwesome;
-  content: "\f00c";
 }
 
-.input[id="terms"] + .label {
-  font-size: 13px;
-}
-
-.input:checked + .label:after {
-  opacity: 1;
-}
 
 .select {
   height: 3.4em;
@@ -216,6 +195,10 @@
   transition: 0.35s ease-in-out;
 }
 
+.inputDropdown {
+  padding-left: 60px;
+  color: #696969;
+}
 /* Row and Column styles */
 .row {
   zoom: 0;

@@ -42,10 +42,16 @@ export default function TrainingRequestTraining() {
   const [E_name, setE_name] = useState("");
   const [E_email, setE_mail] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [isVendorChecked, setVendorIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+  const handleVendorCheckboxChange = () => {
+    setVendorIsChecked(!isVendorChecked);
+  };
+
 
   const router = useRouter();
   const handleSubmit = async (e) => {
@@ -348,11 +354,6 @@ export default function TrainingRequestTraining() {
                 <label htmlFor="noVendor" className={styles.label}>
                   No Vendor
                 </label>
-                <div className={styles.link}>
-                  <a href="https://docs.google.com/spreadsheets/d/1pHkJ47-xBV_M-ebJQFYA8MKjsTqSZDQxVKp_NwXcwmM/edit?usp=sharing">
-                    Click to view Vendor List
-                  </a>
-                </div>
               </div>
 
               {/* Rendering fields conditionally based on selected vendor */}
@@ -361,15 +362,19 @@ export default function TrainingRequestTraining() {
                   <div
                     className={`${styles.inputGroup} ${styles.inputGroupIcon} ${styles.inputGroupVendorCode}`}
                   >
-                    <input
-                      type="text"
-                      placeholder="Vendor Code"
+                    <select
                       value={vendorNameCode}
                       onChange={(e) => setVenderNameCode(e.target.value)}
-                      className={styles.input}
-                    />
+                      className={`${styles.input} ${styles.inputDropdown}`}
+                    >
+                      <option value="" disabled>Select Vendor Code</option>
+                      <option value="vendorCode1">Vendor Code 1</option>
+                      <option value="vendorCode2">Vendor Code 2</option>
+                      <option value="vendorCode3">Vendor Code 3</option>
+                      {/* Add more options as needed */}
+                    </select>
                     <div className={styles.inputIcon}>
-                      <FaIdCard/>
+                      <FaIdCard />
                     </div>
                   </div>
                 </div>
@@ -423,6 +428,18 @@ export default function TrainingRequestTraining() {
                         </div>
                       </div>
                     </div>
+                    <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+                <input
+                  id="addVendor"
+                  type="checkbox"
+                  className={styles.checkboxInput} 
+                  checked={isVendorChecked}
+                  onChange={handleVendorCheckboxChange}
+                />
+                <label className={styles.label} htmlFor="addVendor"> 
+                  Add New Vendor details as an Existing Vendor in the Vendor List.
+                </label>
+              </div>
                   </div>
                 </div>
               )}
