@@ -428,7 +428,7 @@ export default function TrainingRequestTraining() {
                         </div>
                       </div>
                     </div>
-                    <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                 <input
                   id="addVendor"
                   type="checkbox"
