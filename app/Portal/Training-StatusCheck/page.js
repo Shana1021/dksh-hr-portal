@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import styles from "./training-statuscheck.module.css";
+import { useState } from "react";
 import Table from "../Table";
-import styles from "./status.module.css";
 import SearchBar from "../SearchBar";
 
 const checklistItems = [

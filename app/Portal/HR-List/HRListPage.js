@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./hr-list.module.css";
 import Table from "../Table";
 import Link from "next/link";
-import { BiEdit } from "react-icons/bi";
 import { FiTrash } from "react-icons/fi";
-import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import ConfirmationDialog from "../ConfirmationDialog";
 import SearchBar from "../SearchBar";
+
 export default function HRListPage({ hrProfiles, totalRows }) {
-  const [filteredProfiles, setFilteredProfiles] = useState(hrProfiles);
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
+
+  useEffect(() => setFilteredProfiles(hrProfiles), [hrProfiles]);
 
   const handleSearch = (query) => {
     const filteredData = hrProfiles.filter((profile) => {
@@ -74,12 +75,9 @@ export default function HRListPage({ hrProfiles, totalRows }) {
           height="400px"
           totalRows={totalRows}
         />
-        <div className={styles["add-button"]}>
-          <button>
-            <Link className="module-button" href="/Portal/HR/New">
-              Add Employee
-            </Link>
-          </button>
+        <div className={styles["actions"]}>
+          <Link className="module-button" href="/Portal/HR/New">Add Employee</Link>
+          <button onClick={() => router.refresh()} className="module-button">Refresh</button>
         </div>
       </div>
       {confirmation && (

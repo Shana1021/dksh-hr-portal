@@ -22,18 +22,13 @@ export async function POST(request, { params: { id } }) {
     Readable.from(Buffer.from(await formData.get("acceptanceLetter").arrayBuffer()))
       .pipe(bucket.openUploadStream(id));
     
-    await db.collection("accepted_resignations").updateOne(
-      { _id: id },
-      {
-        $set: {
-          reason: resignationRequest.reason,
-          annualLeaveBalance: formData.get("annualLeaveBalance"),
-          managerEmail: formData.get("managerEmail")
-        },
-        $currentDate: { createdAt: true }
-      },
-      { upsert: true }
-    );
+    await db.collection("accepted_resignations").insertOne({
+      _id: id,
+      reason: resignationRequest.reason,
+      annualLeaveBalance: formData.get("annualLeaveBalance"),
+      managerEmail: formData.get("managerEmail"),
+      createdAt: new Date()
+    });
   }
 
   // TODO: send emails

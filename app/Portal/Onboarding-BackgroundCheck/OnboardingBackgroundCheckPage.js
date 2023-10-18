@@ -8,11 +8,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ConfirmationDialog from "../ConfirmationDialog";
 import SearchBar from "../SearchBar";
+
 export default function OnboardingBackgroundCheckPage({
   employeeProfiles,
   totalRows,
 }) {
-  const [filteredProfiles, setFilteredProfiles] = useState(employeeProfiles);
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
+
+  useEffect(() => setFilteredProfiles(employeeProfiles), [employeeProfiles]);
 
   const handleSearch = (query) => {
     const filteredData = employeeProfiles.filter((profile) => {
@@ -110,32 +113,30 @@ export default function OnboardingBackgroundCheckPage({
 
     if (employeeProfile.bcStatus === "Pending") {
       employeeProfile.action = (
-        <>
-          <FiTrash
-            className="delete-button"
-            onClick={() =>
-              setConfirmation({
-                message: "Are you sure you want to delete this?",
-                async onConfirm() {
-                  const res = await fetch(
-                    `/api/onboarding/${encodeURIComponent(
-                      employeeProfile._id
-                    )}`,
-                    {
-                      method: "DELETE",
-                    }
-                  );
-                  if (!res.ok) {
-                    alert(res.statusText);
-                    return;
+        <FiTrash
+          className="delete-button"
+          onClick={() =>
+            setConfirmation({
+              message: "Are you sure you want to delete this?",
+              async onConfirm() {
+                const res = await fetch(
+                  `/api/onboarding/${encodeURIComponent(
+                    employeeProfile._id
+                  )}`,
+                  {
+                    method: "DELETE",
                   }
+                );
+                if (!res.ok) {
+                  alert(res.statusText);
+                  return;
+                }
 
-                  router.refresh();
-                },
-              })
-            }
-          />
-        </>
+                router.refresh();
+              },
+            })
+          }
+        />
       );
     }
   }
@@ -198,6 +199,7 @@ export default function OnboardingBackgroundCheckPage({
           >
             Send Email
           </button>
+          <button onClick={() => router.refresh()} className="module-button">Refresh</button>
         </div>
       </div>
       {confirmation && (

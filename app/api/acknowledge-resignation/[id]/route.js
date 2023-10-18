@@ -44,43 +44,38 @@ export async function POST(request, { params: { id } }) {
       ),
       (async () => {
         const onboardingChecklist = await db.collection("onboarding_checklists")
-        .aggregate([
-          { $match: { _id: id } },
-          { $limit: 1 },
-          {
-            $project: {
-              items: {
-                $filter: {
-                  input: "$items",
-                  cond: "$$this.checked"
+          .aggregate([
+            { $match: { _id: id } },
+            { $limit: 1 },
+            {
+              $project: {
+                items: {
+                  $filter: {
+                    input: "$items",
+                    cond: "$$this.checked"
+                  }
                 }
               }
             }
-          }
-        ])
-        .next();
-  
-      await db.collection("offboarding_checklists").updateOne(
-        { _id: id },
-        {
-          $set: {
-            todos: [
-              {
-                title: "Exit Interview",
-                checked: false
-              },
-              {
-                title: "Questionnaire",
-                checked: false
-              }
-            ],
-            items: onboardingChecklist.items.map(item => ({ ...item, checked: false })),
-            endDate: new Date(formData.get("endDate"))
-          },
-          $currentDate: { createdAt: true }
-        },
-        { upsert: true }
-      );
+          ])
+          .next();
+    
+        await db.collection("offboarding_checklists").insertOne({
+          _id: id,
+          todos: [
+            {
+              title: "Exit Interview",
+              checked: false
+            },
+            {
+              title: "Questionnaire",
+              checked: false
+            }
+          ],
+          items: onboardingChecklist.items.map(item => ({ ...item, checked: false })),
+          endDate: new Date(formData.get("endDate")),
+          createdAt: new Date()
+        });
       })()
     ]);
   }

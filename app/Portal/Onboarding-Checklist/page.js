@@ -11,8 +11,7 @@ export default async function OnboardingChecklist({
   const db = await client.db();
 
   const [onboardingChecklists, totalRows] = await Promise.all([
-    db
-      .collection("onboarding_checklists")
+    db.collection("onboarding_checklists")
       .aggregate([
         {
           $lookup: {

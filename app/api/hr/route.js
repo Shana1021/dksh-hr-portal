@@ -23,30 +23,25 @@ export async function POST(request) {
 
   const password = bcrypt.hashSync(formData.get("password"), 12);
 
-  await db.collection("hr_profiles").updateOne(
-    { _id: formData.get("_id") },
-    {
-      $set: {
-        firstName: formData.get("firstName"),
-        lastName: formData.get("lastName"),
-        gender: formData.get("gender"),
-        dob: formData.get("dob"),
-        email: formData.get("email"),
-        position: formData.get("position"),
-        department: formData.get("department"),
-        addressLine1: formData.get("addressLine1"),
-        addressLine2: formData.get("addressLine2"),
-        city: formData.get("city"),
-        state: formData.get("state"),
-        postalCode: formData.get("postalCode"),
-        phone: formData.get("phone"),
-        country: formData.get("country"),
-        password
-      },
-      $currentDate: { createdAt: true }
-    },
-    { upsert: true }
-  );
+  await db.collection("hr_profiles").insertOne({
+    _id: formData.get("_id"),
+    firstName: formData.get("firstName"),
+    lastName: formData.get("lastName"),
+    gender: formData.get("gender"),
+    dob: formData.get("dob"),
+    email: formData.get("email"),
+    position: formData.get("position"),
+    department: formData.get("department"),
+    addressLine1: formData.get("addressLine1"),
+    addressLine2: formData.get("addressLine2"),
+    city: formData.get("city"),
+    state: formData.get("state"),
+    postalCode: formData.get("postalCode"),
+    phone: formData.get("phone"),
+    country: formData.get("country"),
+    password,
+    createdAt: new Date()
+  });
 
   return NextResponse.json({ status: "success" });
 }
