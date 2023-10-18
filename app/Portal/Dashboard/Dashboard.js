@@ -42,14 +42,14 @@ const Dashboard = () => {
 
       {/* Section 2 */}
       <div className={styles["midSection"]}>
-        <div className={styles["col2"]}>
+        <div className={styles["col"]}>
           <div className={styles["barChart"]}>
             <h3 className={styles["title"]}>Hires Chart</h3>
             <BarChart />
           </div>
         </div>
 
-        <div className={styles["col3"]}>
+        <div className={styles["col"]}>
           <div className={styles["doughnutChart"]}>
             <h3 className={styles["title"]}>Employee Composition</h3>
             <DoughnutChart />
@@ -59,15 +59,15 @@ const Dashboard = () => {
 
       {/* Section 3 */}
       <div className={styles["bottomSection"]}>
-        <div className={styles["col4"]}>
+        <div className={styles["col"]}>
           <div className={styles["pieChart"]}>
             <h3 className={styles["title"]}>Department Composition</h3>
             <PieChart />
           </div>
         </div>
-        <div className={styles["col5"]}>
+        <div className={styles["col"]}>
           <div className={styles["table"]}>
-            <h3 className={styles["title"]}>Employee Status</h3>
+            {/*(<h3 className={styles["title"]}>Employee Status</h3>*/}
             {/* <Table /> */}
           </div>
         </div>

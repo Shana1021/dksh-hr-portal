@@ -1,100 +1,67 @@
 /* Style for the container */
-
 .container {
   box-sizing: border-box;
-  height: 970px;
+  height: 100%;
   display: flex;
   flex-direction: column; /* Make the children stack vertically */
+  justify-content: space-between; /* Distribute space evenly between children */
 }
 
 .topSection {
   padding: 5px 40px;
   width: 100%;
-  float: left;
+  display: flex;
+  justify-content: space-between; /* Distribute space evenly between children */
 }
 
 .col1 {
-  width: 25%;
-  float: left;
+  width: 24%;
 }
 
 .midSection {
   padding: 15px;
-  height: 300px;
+  flex: 0; /* Let this section grow to fill the remaining space */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.col2 {
-  padding: 10px;
-  width: 60%;
+.col {
+  flex: 1; /* Allow this column to fill available space */
+  padding-left: 24px;
 }
 
-.col3 {
-  margin: 0px 10px;
-  padding: 20px;
-  width: 40%;
-}
-
-.barChart {
-  border: 1px solid rgb(163, 165, 172);
-  border-radius: 5px;
-  padding: 0px 15px;
-  width: 800px;
-  height: 380px;
-}
-
-.barChart:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(
-    -5px
-  ); /* Bounce effect by moving the card up slightly */
-}
-
-.doughnutChart {
-  border: 1px solid rgb(163, 165, 172);
-  border-radius: 5px;
-  padding: 0px 15px;
-  margin: 0px;
-  width: 450px;
-  height: 380px;
-}
-
-.doughnutChart:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(
-    -5px
-  ); /* Bounce effect by moving the card up slightly */
-}
-
-.bottomSection {
-  padding: 15px;
-  height: 400px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
+.barChart,
+.doughnutChart,
 .pieChart {
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
   padding: 15px;
-  width: 450px;
-  height: 380px;
+  width: 850px; /* Make the chart fill its container */
+  height: 300px; /* Make the chart fill its container */
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.barChart:hover,
+.doughnutChart:hover,
 .pieChart:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(
-    -5px
-  ); /* Bounce effect by moving the card up slightly */
+  transform: translateY(-5px); /* Bounce effect by moving the card up slightly */
 }
 
-/*components*/
+.bottomSection {
+  padding: 5px 15px;
+  flex: 1; /* Let this section grow to fill the remaining space */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .card {
-  width: 17rem;
-  height: 10rem;
+  width: 20rem;
+  height: 8rem;
   padding: 25px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -104,9 +71,7 @@
 
 .card:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(
-    -5px
-  ); /* Bounce effect by moving the card up slightly */
+  transform: translateY(-5px); /* Bounce effect by moving the card up slightly */
 }
 
 .card-body {
@@ -115,7 +80,7 @@
 
 .title {
   font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 .value {
@@ -127,4 +92,43 @@
 .subtitle {
   font-size: 12px;
   margin-bottom: 8px;
+}
+
+/* Media queries for screen size and sidebar state */
+@media (max-width: 620px) {
+  .barChart,
+  .doughnutChart,
+  .pieChart {
+    width: 100%; /* Full width for smaller screens */
+    height: 260px; /* Adjust the height as needed */
+  }
+
+  .card {
+    height: auto; /* Allow content to determine the card's height */
+  }
+
+  /* Adjust styles when the sidebar is open */
+  .sidebar-open .col1 {
+    width: 0;
+  }
+
+  .sidebar-open .col {
+    padding-left: 0;
+  }
+}
+
+/* Additional media query for screen height of 836px */
+@media (max-height: 836px) {
+  .card{
+    width: 18rem;
+  }
+  .barChart {
+    width: 800px;
+    height: 300px;
+  }
+  .doughnutChart,
+  .pieChart {
+    width: 400px;
+    height: 300px; /* Adjust the height for screens with 836px height */
+  }
 }
