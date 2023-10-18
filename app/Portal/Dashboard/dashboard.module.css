@@ -1,4 +1,3 @@
-/* Style for the container */
 .container {
   box-sizing: border-box;
   height: 100%;
@@ -33,10 +32,12 @@
 
 .doughnutChart,
 .pieChart {
+  display: flex;
+  align-self: center;
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
   padding: 15px;
-  width: 600px; /* Make the chart fill its container */
+  width: 630px; /* Make the chart fill its container */
   height: 500px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -47,7 +48,7 @@
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
   padding: 15px;
-  width: 1000px; /* Make the chart fill its container */
+  width: 800px; /* Make the chart fill its container */
   height: 500px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -55,11 +56,10 @@
 }
 
 .table-form {
-  left: 20%;
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
   padding: 15px;
-  width: 1000px; /* Make the chart fill its container */
+  width: 800px; /* Make the chart fill its container */
   height: 500px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -105,17 +105,21 @@
 }
 
 .title {
+  font-weight: bold;
+  text-align: center;
   font-size: 1.25rem;
   margin-bottom: 0rem;
 }
 
 .value {
+  text-align: center;
   font-size: 19px;
   margin-bottom: 8px;
   font-weight: bold;
 }
 
 .subtitle {
+  text-align: center;
   font-size: 12px;
   margin-bottom: 8px;
 }
@@ -150,16 +154,16 @@
     width: 18rem;
   }
   .barChart {
-    width: 800px;
+    width: 600px;
     height: 400px;
   }
   .table-form {
-    width: 800px;
+    width: 600px;
     height: 400px;
   }
   .doughnutChart,
   .pieChart {
-    width: 450px;
+    width: 520px;
     height: 400px; /* Adjust the height for screens with 836px height */
   }
 }
@@ -167,12 +171,13 @@
 /*------------------------------------ Table Design ------------------------------------------------------*/
 
 .table-container {
-  margin: auto;
+  margin-top: 20px;
   width: 100%;
 }
 
 .table-scroll-container {
-  overflow: auto;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; /* Set a fixed maximum height for the table */
   width: calc(100% + 2px);
   margin: -1px;
 }
@@ -184,19 +189,22 @@
 
 .table th,
 .table td {
-  padding: 7px;
-  color: black;
+  padding: 20px;
+  color: #949494;
 }
 .table td {
+  overflow: auto;
   color: black;
 }
 
 .table th {
-  font-size: 1.1em;
+  border-bottom: 3px solid #efefef;
+  text-align: left;
+  font-size: 1.2em;
   font-weight: bold;
   font-family: Arial, sans-serif;
   position: sticky;
-  top: 0;
+  top: 0px;
 }
 
 .table tbody tr:nth-child(even) {
@@ -205,4 +213,11 @@
 
 .table tbody tr:hover {
   background-color: #cee2f5;
+}
+
+.image-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  border-radius: 50%;
 }
