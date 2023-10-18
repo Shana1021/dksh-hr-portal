@@ -1,6 +1,6 @@
 "use client";
-import Chart from 'chart.js/auto';
-import { useRef, useEffect } from 'react';
+import Chart from "chart.js/auto";
+import { useRef, useEffect } from "react";
 
 export default function PieChart() {
   const canvas = useRef(null);
@@ -8,26 +8,26 @@ export default function PieChart() {
   useEffect(() => {
     const ctx = canvas.current;
 
-    let chartStatus = Chart.getChart(ctx, 'myChart');
+    let chartStatus = Chart.getChart(ctx, "myChart");
     if (chartStatus !== undefined) {
       chartStatus.destroy();
     }
 
     const chart = new Chart(ctx, {
-      type: 'pie',
+      type: "pie",
       data: {
-        labels: ['IT', 'Marketing', 'Finance', 'R&D'],
+        labels: ["IT", "Marketing", "Finance", "R&D"],
         datasets: [
           {
-            label: 'Dataset 1',
+            label: "Dataset 1",
             data: [12, 19, 20, 35],
             backgroundColor: [
-              'rgb(240,167,5,1)',
-              'rgb(0,0,135,1)',
-              'rgb(190,0,40,1)',
-              'rgb(2,46,31,1)',
+              "rgb(240,167,5,1)",
+              "rgb(0,0,135,1)",
+              "rgb(190,0,40,1)",
+              "rgb(2,46,31,1)",
             ],
-            borderColor: ['lightgrey'],
+            borderColor: ["lightgrey"],
             borderWidth: 1,
             hoverOffset: 25, // Set the hover offset
           },
@@ -37,7 +37,7 @@ export default function PieChart() {
         responsive: true,
         plugins: {
           legend: {
-            position: 'right',
+            position: "right",
           },
         },
       },

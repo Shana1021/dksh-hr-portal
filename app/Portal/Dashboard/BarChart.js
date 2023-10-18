@@ -1,7 +1,7 @@
 "use client";
 
-import Chart from 'chart.js/auto';
-import { useRef, useEffect } from 'react';
+import Chart from "chart.js/auto";
+import { useRef, useEffect } from "react";
 
 export default function BarChart() {
   const canvas = useRef(null);
@@ -9,37 +9,50 @@ export default function BarChart() {
   useEffect(() => {
     const ctx = canvas.current;
 
-    let chartStatus = Chart.getChart(ctx, 'myBarChart');
+    let chartStatus = Chart.getChart(ctx, "myBarChart");
     if (chartStatus !== undefined) {
       chartStatus.destroy();
     }
 
     const chart = new Chart(ctx, {
-      type: 'bar',
+      type: "bar",
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', ' Oct', 'Nov', 'Dec'],
+        labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sept",
+          " Oct",
+          "Nov",
+          "Dec",
+        ],
         datasets: [
           {
-            label: 'Current Employees',
+            label: "Current Employees",
             data: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
-            backgroundColor: 'rgb(190,0,40,1)', // Red for current employees
+            backgroundColor: "rgb(190,0,40,1)", // Red for current employees
             borderWidth: 1,
-            borderColor: 'rgb(255,255,255,1)', // Border color
+            borderColor: "rgb(255,255,255,1)", // Border color
             borderRadius: 5,
           },
           {
-            label: 'New Employees',
+            label: "New Employees",
             data: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65],
-            backgroundColor: 'rgb(240,167,5,1)', //yellow for new employees
+            backgroundColor: "rgb(240,167,5,1)", //yellow for new employees
             borderWidth: 1,
-            borderColor: 'rgb(255,255,255,1)', // Border color
+            borderColor: "rgb(255,255,255,1)", // Border color
             borderRadius: 5,
           },
         ],
       },
       options: {
         responsive: true,
-        indexAxis: 'x', // horizontal bar chart
+        indexAxis: "x", // horizontal bar chart
         scales: {
           x: {
             stacked: true,
@@ -60,13 +73,13 @@ export default function BarChart() {
         plugins: {
           legend: {
             display: true,
-            position: 'top',
+            position: "top",
           },
           tooltip: {
             callbacks: {
               label: (context) => context.parsed.y, // Display only the data value
             },
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', // Solid black background
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Solid black background
           },
         },
         layout: {
@@ -79,12 +92,6 @@ export default function BarChart() {
         },
       },
     });
-
   }, []);
   return <canvas ref={canvas} id="myBarChart"></canvas>;
 }
-
-
-
-
-

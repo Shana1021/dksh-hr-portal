@@ -3,7 +3,7 @@ import styles from "./dashboard.module.css";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import DoughnutChart from "./DoughnutChart";
-import Table from "../Table";
+import EmployeeStatusTable from "./EmployeeStatusTable";
 
 const Dashboard = () => {
   return (
@@ -44,7 +44,7 @@ const Dashboard = () => {
       <div className={styles["midSection"]}>
         <div className={styles["col"]}>
           <div className={styles["barChart"]}>
-            <h3 className={styles["title"]}>Hires Chart</h3>
+            <h3 className={styles["title-chart"]}>Hires Chart</h3>
             <BarChart />
           </div>
         </div>
@@ -65,10 +65,11 @@ const Dashboard = () => {
             <PieChart />
           </div>
         </div>
+
         <div className={styles["col"]}>
-          <div className={styles["table"]}>
-            {/*(<h3 className={styles["title"]}>Employee Status</h3>*/}
-            {/* <Table /> */}
+          <div className={styles["table-form"]}>
+            <h3 className={styles["title"]}>Employee Status</h3>
+            <EmployeeStatusTable />
           </div>
         </div>
       </div>

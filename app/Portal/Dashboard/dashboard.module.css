@@ -15,7 +15,7 @@
 }
 
 .col1 {
-  width: 24%;
+  width: 100%;
 }
 
 .midSection {
@@ -31,14 +31,36 @@
   padding-left: 24px;
 }
 
-.barChart,
 .doughnutChart,
 .pieChart {
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
   padding: 15px;
-  width: 850px; /* Make the chart fill its container */
-  height: 300px; /* Make the chart fill its container */
+  width: 600px; /* Make the chart fill its container */
+  height: 500px; /* Make the chart fill its container */
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.barChart {
+  border: 1px solid rgb(163, 165, 172);
+  border-radius: 5px;
+  padding: 15px;
+  width: 1000px; /* Make the chart fill its container */
+  height: 500px; /* Make the chart fill its container */
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.table-form {
+  left: 20%;
+  border: 1px solid rgb(163, 165, 172);
+  border-radius: 5px;
+  padding: 15px;
+  width: 1000px; /* Make the chart fill its container */
+  height: 500px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -48,15 +70,17 @@
 .doughnutChart:hover,
 .pieChart:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(-5px); /* Bounce effect by moving the card up slightly */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
 }
 
 .bottomSection {
-  padding: 5px 15px;
-  flex: 1; /* Let this section grow to fill the remaining space */
+  padding: 15px;
+  flex: 0; /* Let this section grow to fill the remaining space */
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-self: flex-start;
 }
 
 .card {
@@ -71,7 +95,9 @@
 
 .card:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(-5px); /* Bounce effect by moving the card up slightly */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
 }
 
 .card-body {
@@ -98,6 +124,7 @@
 @media (max-width: 620px) {
   .barChart,
   .doughnutChart,
+  .table-form,
   .pieChart {
     width: 100%; /* Full width for smaller screens */
     height: 260px; /* Adjust the height as needed */
@@ -119,16 +146,63 @@
 
 /* Additional media query for screen height of 836px */
 @media (max-height: 836px) {
-  .card{
+  .card {
     width: 18rem;
   }
   .barChart {
     width: 800px;
-    height: 300px;
+    height: 400px;
+  }
+  .table-form {
+    width: 800px;
+    height: 400px;
   }
   .doughnutChart,
   .pieChart {
-    width: 400px;
-    height: 300px; /* Adjust the height for screens with 836px height */
+    width: 450px;
+    height: 400px; /* Adjust the height for screens with 836px height */
   }
+}
+
+/*------------------------------------ Table Design ------------------------------------------------------*/
+
+.table-container {
+  margin: auto;
+  width: 100%;
+}
+
+.table-scroll-container {
+  overflow: auto;
+  width: calc(100% + 2px);
+  margin: -1px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  padding: 7px;
+  color: black;
+}
+.table td {
+  color: black;
+}
+
+.table th {
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  position: sticky;
+  top: 0;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #fbf7f7;
+}
+
+.table tbody tr:hover {
+  background-color: #cee2f5;
 }
