@@ -22,10 +22,10 @@ export default function PieChart() {
             label: 'Dataset 1',
             data: [12, 19, 20, 35],
             backgroundColor: [
-              'rgb(0, 85, 255, 1)',
-              'rgb(255, 119, 0, 1)',
-              'rgb(0, 255, 240, 1)',
-              'rgb(128, 1, 255, 1)',
+              'rgb(240,167,5,1)',
+              'rgb(0,0,135,1)',
+              'rgb(190,0,40,1)',
+              'rgb(2,46,31,1)',
             ],
             borderColor: ['lightgrey'],
             borderWidth: 1,
@@ -49,5 +49,5 @@ export default function PieChart() {
     chart.update();
   }, []);
 
-  return <canvas ref={canvas} id="myChart" width={200} height={200}></canvas>;
+  return <canvas ref={canvas} id="myChart"></canvas>;
 }

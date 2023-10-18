@@ -21,8 +21,8 @@ export default function DoughnutChart() {
           {
             label: 'Total:',
             data: [12, 19],
-            backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
-            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+            backgroundColor: ['rgb(0,0,135,1)', 'rgb(190,0,40, 1)'],
+            borderColor: ['rgb(255,255,255)', 'rgb(255,255,255)'],
             borderWidth: 1,
             hoverOffset: 25, // Set the hover offset
           },
@@ -35,6 +35,14 @@ export default function DoughnutChart() {
             position: 'right',
           },
         },
+        layout: {
+          padding: {
+            top: 0,
+            bottom: 0,
+            left: 10,
+            right: 0,
+          },
+        },
       },
     });
 
@@ -44,5 +52,5 @@ export default function DoughnutChart() {
     chart.update();
   }, []);
 
-  return <canvas ref={canvas} id="myDoughnutChart" width={100} height={100}></canvas>;
+  return <canvas ref={canvas} id="myDoughnutChart"></canvas>;
 }

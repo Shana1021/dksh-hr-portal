@@ -17,23 +17,23 @@ export default function BarChart() {
     const chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', ' Oct', 'Nov', 'Dec'],
         datasets: [
           {
             label: 'Current Employees',
             data: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
-            backgroundColor: 'rgb(190, 0, 40, 0.9)', // Red for current employees
+            backgroundColor: 'rgb(190,0,40,1)', // Red for current employees
             borderWidth: 1,
-            borderColor: 'rgba(255, 99, 132, 1)', // Border color
+            borderColor: 'rgb(255,255,255,1)', // Border color
             borderRadius: 5,
           },
           {
             label: 'New Employees',
             data: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65],
-            backgroundColor: 'rgb(173, 216, 230, 0.5)', // blue for new employees
+            backgroundColor: 'rgb(240,167,5,1)', //yellow for new employees
             borderWidth: 1,
-            borderColor: 'rgba(169, 169, 169, 1)', // Border color
-            borderRadius: 0,
+            borderColor: 'rgb(255,255,255,1)', // Border color
+            borderRadius: 5,
           },
         ],
       },
@@ -55,6 +55,8 @@ export default function BarChart() {
             },
           },
         },
+        categoryPercentage: 0.8, // Adjust the spacing between bars
+        barPercentage: 1.2, // Adjust the width of the bars
         plugins: {
           legend: {
             display: true,
@@ -67,8 +69,22 @@ export default function BarChart() {
             backgroundColor: 'rgba(0, 0, 0, 0.5)', // Solid black background
           },
         },
+        layout: {
+          padding: {
+            top: 0,
+            bottom: 20,
+            left: 10,
+            right: 0,
+          },
+        },
       },
     });
+
   }, []);
-  return <canvas ref={canvas} id="myBarChart" width={400} height={200}></canvas>;
+  return <canvas ref={canvas} id="myBarChart"></canvas>;
 }
+
+
+
+
+
