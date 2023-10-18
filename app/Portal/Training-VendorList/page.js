@@ -1,40 +1,39 @@
-"use client";
+import clientPromise from "@/lib/mongodb";
+import TrainingVendorListPage from "./TrainingVendorListPage";
 
-import React, { useState } from "react";
-import Table from "../Table";
-import styles from "./Training-VendorList.module.css";
-import SearchBar from "../SearchBar";
+export default async function TrainingVendorList({ searchParams: { pageSize=25, page=1 } }) {
+  pageSize = parseInt(pageSize);
+  page = parseInt(page);
 
-const TableItems = [
-  {
-    _id: 1,
-    name: "Oracle",
-    number: "12345",
-    address: "Selangor",
-    vendor: "Training Co.",
-    email: "john@example.com",
-  },
-];
+  const client = await clientPromise;
+  const db = await client.db();
 
-export default function VendorList() {
-  return (
-    <div className={styles["container"]}>
-      <SearchBar />
-      <Table
-        columns={[
-          { key: "_id", title: "Vendor_ID" },
-          { key: "name", title: "Name" },
-          { key: "number", title: "Number" },
-          { key: "address", title: "Address" },
-          { key: "vendor", title: "Vendor Details" },
-          { key: "email", title: "Email Status" },
-        ]}
-        data={TableItems}
-        height="400px"
-      />
-      <div className={styles["actions"]}>
-        <button className="module-button">ADD Vendor</button>
-      </div>
-    </div>
-  );
+  const [vendors, totalRows] = await Promise.all([
+    db.collection("vendors")
+      .aggregate([
+        {
+          $lookup: {
+            from: "training",
+            localField: "_id",
+            foreignField: "vendor",
+            as: "training"
+          }
+        },
+        {
+          $project: {
+            name: true,
+            email: true,
+            phone: true,
+            references: { $size: "$training" }
+          }
+        }
+      ])
+      .sort({ createdAt: -1 })
+      .skip(page > 0 ? (page - 1) * pageSize : 0)
+      .limit(pageSize)
+      .toArray(),
+    db.collection("vendors").countDocuments()
+  ]);
+
+  return <TrainingVendorListPage vendors={vendors} totalRows={totalRows} />;
 }

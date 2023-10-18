@@ -25,7 +25,7 @@ export default function Home() {
     const data = await res.json();
 
     if (data.status === "idDoesNotExist") {
-      employeeIdRef.current.setCustomValidity("Employee does not exist.");
+      employeeIdRef.current.setCustomValidity("This employee does not exist.");
       employeeIdRef.current.reportValidity();
       return;
     }

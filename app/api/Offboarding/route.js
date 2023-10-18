@@ -19,16 +19,11 @@ export async function POST(request) {
     return NextResponse.json({ status: "alreadyResigned" });
   }
 
-  await db.collection("resignation_requests").updateOne(
-    { _id: formData.get("_id") },
-    {
-      $set: {
-        reason: formData.get("reason"),
-      },
-      $currentDate: { createdAt: true }
-    },
-    { upsert: true }
-  );
+  await db.collection("resignation_requests").insertOne({
+    _id: formData.get("_id"),
+    reason: formData.get("reason"),
+    createdAt: new Date()
+  });
 
   return NextResponse.json({ status: "success" });
 }

@@ -82,6 +82,9 @@ export default function OnboardingChecklistPage({
           height="400px"
           totalRows={totalRows}
         />
+        <div className={styles["actions"]}>
+          <button onClick={() => router.refresh()} className="module-button">Refresh</button>
+        </div>
       </div>
       {checklists && (
         <Checklist

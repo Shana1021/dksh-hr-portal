@@ -43,7 +43,7 @@ const sidebarData = [
         path: "/Portal/Training-StatusCheck",
       },
       {
-        title: "VendorList",
+        title: "Vendor List",
         path: "/Portal/Training-VendorList",
       },
     ],

@@ -5,6 +5,14 @@ import styles from "./employee.module.css";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { BiSolidPhone } from 'react-icons/bi';
+import { FaUserTie, FaIdCard } from 'react-icons/fa';
+import {  FaBuildingUser } from 'react-icons/fa6';
+import { ImLocation, ImBriefcase} from 'react-icons/im';
+import { IoMdMail } from 'react-icons/io';
+import { IoCalendar } from 'react-icons/io5';
+import { MdFileUpload } from 'react-icons/md';
+
 
 export default function EmployeeProfileForm({ employeeProfile }) {
   const router = useRouter();
@@ -75,7 +83,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.firstName}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-user"></i>
+                      <FaUserTie/>
                     </div>
                   </div>
                 </div>
@@ -91,7 +99,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.lastName}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-user"></i>
+                      <FaUserTie/>
                     </div>
                   </div>
                 </div>
@@ -105,7 +113,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   defaultValue={employeeProfile?.phone}
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-phone"></i>
+                  <BiSolidPhone/>
                 </div>
               </div>
               <div className={styles.row}>
@@ -121,7 +129,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.dob}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-calendar"></i>
+                      <IoCalendar/>
                     </div>
                   </div>
                 </div>
@@ -169,7 +177,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   defaultValue={employeeProfile?.addressLine1}
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-map-marker"></i>
+                  <ImLocation/>
                 </div>
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
@@ -181,7 +189,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   defaultValue={employeeProfile?.addressLine2}
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-map-marker"></i>
+                  <ImLocation/>
                 </div>
               </div>
               <div className={styles.row}>
@@ -197,7 +205,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.postalCode}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <ImLocation/>
                     </div>
                   </div>
                 </div>
@@ -213,7 +221,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.city}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <ImLocation/>
                     </div>
                   </div>
                 </div>
@@ -231,7 +239,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.state}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <ImLocation/>
                     </div>
                   </div>
                 </div>
@@ -247,7 +255,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.country}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <ImLocation/>
                     </div>
                   </div>
                 </div>
@@ -268,7 +276,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   defaultValue={employeeProfile?.email}
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-envelope"></i>
+                  <IoMdMail/>
                 </div>
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
@@ -287,7 +295,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                   readOnly={!!employeeProfile}
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-id-card"></i>
+                  <FaIdCard/>
                 </div>
               </div>
               {/* Position */}
@@ -304,7 +312,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.position}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-briefcase"></i>
+                      <ImBriefcase/>
                     </div>
                   </div>
                 </div>
@@ -321,7 +329,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                       defaultValue={employeeProfile?.department}
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-building"></i>
+                      <FaBuildingUser/>
                     </div>
                   </div>
                 </div>
@@ -339,7 +347,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                     name="profileImage"
                   />
                   <div className={styles.inputIcon}>
-                    <i className="fa fa-upload"></i>
+                    <MdFileUpload/>
                   </div>
                 </div>
               </div>

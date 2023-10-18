@@ -3,7 +3,7 @@
 import styles from "./onboarding-probationary.module.css";
 import Table from "../Table";
 import { BsClipboard2Check } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmationDialog from "../ConfirmationDialog";
 import { useRouter } from "next/navigation";
 import SearchBar from "../SearchBar";
@@ -99,6 +99,9 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
           height="400px"
           totalRows={totalRows}
         />
+        <div className={styles["actions"]}>
+          <button onClick={() => router.refresh()} className="module-button">Refresh</button>
+        </div>
       </div>
       {confirmation && (
         <ConfirmationDialog

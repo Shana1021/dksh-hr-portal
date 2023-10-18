@@ -20,30 +20,25 @@ export async function POST(request) {
       .pipe(bucket.openUploadStream(formData.get("_id")));
   }
   
-  await db.collection("employee_profiles").updateOne(
-    { _id: formData.get("_id") },
-    {
-      $set: {
-        firstName: formData.get("firstName"),
-        lastName: formData.get("lastName"),
-        gender: formData.get("gender"),
-        dob: formData.get("dob"),
-        email: formData.get("email"),
-        position: formData.get("position"),
-        department: formData.get("department"),
-        addressLine1: formData.get("addressLine1"),
-        addressLine2: formData.get("addressLine2"),
-        city: formData.get("city"),
-        state: formData.get("state"),
-        postalCode: formData.get("postalCode"),
-        phone: formData.get("phone"),
-        country: formData.get("country"),
-        bcStatus: "Pending"
-      },
-      $currentDate: { createdAt: true }
-    },
-    { upsert: true }
-  );
+  await db.collection("employee_profiles").insertOne({
+    _id: formData.get("_id"),
+    firstName: formData.get("firstName"),
+    lastName: formData.get("lastName"),
+    gender: formData.get("gender"),
+    dob: formData.get("dob"),
+    email: formData.get("email"),
+    position: formData.get("position"),
+    department: formData.get("department"),
+    addressLine1: formData.get("addressLine1"),
+    addressLine2: formData.get("addressLine2"),
+    city: formData.get("city"),
+    state: formData.get("state"),
+    postalCode: formData.get("postalCode"),
+    phone: formData.get("phone"),
+    country: formData.get("country"),
+    bcStatus: "Pending",
+    createdAt: new Date()
+  });
 
   return NextResponse.json({ status: "success" });
 }
@@ -89,52 +84,38 @@ export async function PUT(request) {
   }
 
   await Promise.all([
-    db.collection("onboarding_checklists").bulkWrite(
+    db.collection("onboarding_checklists").insertMany(
       passedUpdates.map(update => ({
-        updateOne: {
-          filter: { _id: update._id },
-          update: {
-            $set: {
-              todos: [
-                {
-                  title: "1 Hour Introduction",
-                  checked: false
-                },
-                {
-                  title: "Office Tour",
-                  checked: false
-                }
-              ],
-              items: [
-                {
-                  title: "Access Card",
-                  checked: false
-                },
-                {
-                  title: "Laptop",
-                  checked: false
-                }
-              ],
-              completed: false
-            },
-            $currentDate: { createdAt: true }
+        _id: update._id,
+        todos: [
+          {
+            title: "1 Hour Introduction",
+            checked: false
           },
-          upsert: true
-        }
+          {
+            title: "Office Tour",
+            checked: false
+          }
+        ],
+        items: [
+          {
+            title: "Access Card",
+            checked: false
+          },
+          {
+            title: "Laptop",
+            checked: false
+          }
+        ],
+        completed: false,
+        createdAt: new Date()
       }))
     ),
-    db.collection("probationary").bulkWrite(
+    db.collection("probationary").insertMany(
       passedUpdates.map(update => ({
-        updateOne: {
-          filter: { _id: update._id },
-          update: {
-            $set: {
-              completed: false
-            },
-            $currentDate: { createdAt: true }
-          },
-          upsert: true
-        }
+        _id: update._id,
+        completed: false,
+        createdAt: new Date()
       }))
     )
   ]);
