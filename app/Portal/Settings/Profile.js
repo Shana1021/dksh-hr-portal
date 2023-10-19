@@ -2,6 +2,13 @@
 import "font-awesome/css/font-awesome.min.css";
 import styles from "./profile.module.css";
 import Image from "next/image";
+import { BiSolidPhone } from "react-icons/bi";
+import { FaUserTie, FaIdCard } from "react-icons/fa";
+import { FaLocationCrosshairs, FaMapLocationDot, FaBuildingUser } from "react-icons/fa6";
+import { IoCalendar } from "react-icons/io5";
+import { ImLocation, ImBriefcase } from "react-icons/im";
+import { IoMdMail } from "react-icons/io";
+import { MdFileUpload } from "react-icons/md";
 
 export default function Profile() {
   return (
@@ -35,10 +42,10 @@ export default function Profile() {
                       placeholder="First Name"
                       className={styles.input}
                       name="firstName"
-                     /* defaultValue={employeeProfile?.firstName} */
+                    /* defaultValue={employeeProfile?.firstName} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-user"></i>
+                      <FaUserTie />
                     </div>
                   </div>
                 </div>
@@ -51,10 +58,10 @@ export default function Profile() {
                       placeholder="Last Name"
                       className={styles.input}
                       name="lastName"
-                     /* defaultValue={employeeProfile?.lastName}*/
+                    /* defaultValue={employeeProfile?.lastName}*/
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-user"></i>
+                      <FaUserTie />
                     </div>
                   </div>
                 </div>
@@ -65,10 +72,10 @@ export default function Profile() {
                   placeholder="Phone Number"
                   className={styles.input}
                   name="phone"
-                 /* defaultValue={employeeProfile?.phone} */
+                /* defaultValue={employeeProfile?.phone} */
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-phone"></i>
+                  <BiSolidPhone />
                 </div>
               </div>
               <div className={styles.row}>
@@ -81,10 +88,10 @@ export default function Profile() {
                       type="date"
                       className={styles.input}
                       name="dob"
-                      /* defaultValue={employeeProfile?.dob} */
+                    /* defaultValue={employeeProfile?.dob} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-calendar"></i>
+                      <IoCalendar />
                     </div>
                   </div>
                 </div>
@@ -99,7 +106,7 @@ export default function Profile() {
                       className={styles.radioInput}
                       name="gender"
                       value="Male"
-                     /* defaultChecked={gender === "Male"} */
+                    /* defaultChecked={gender === "Male"} */
                     />
                     <label className={styles.label} htmlFor="gender-male">
                       Male
@@ -110,7 +117,7 @@ export default function Profile() {
                       className={styles.radioInput}
                       name="gender"
                       value="Female"
-                      /* defaultChecked={gender === "Female"} */
+                    /* defaultChecked={gender === "Female"} */
                     />
                     <label className={styles.label} htmlFor="gender-female">
                       Female
@@ -129,10 +136,10 @@ export default function Profile() {
                   placeholder="Address Line 1"
                   className={styles.input}
                   name="addressLine1"
-                 /* defaultValue={employeeProfile?.addressLine1} */
+                /* defaultValue={employeeProfile?.addressLine1} */
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-map-marker"></i>
+                  <ImLocation />
                 </div>
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
@@ -141,10 +148,10 @@ export default function Profile() {
                   placeholder="Address Line 2"
                   className={styles.input}
                   name="addressLine2"
-                 /* defaultValue={employeeProfile?.addressLine2} */
+                /* defaultValue={employeeProfile?.addressLine2} */
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-map-marker"></i>
+                  <ImLocation />
                 </div>
               </div>
               <div className={styles.row}>
@@ -157,10 +164,10 @@ export default function Profile() {
                       placeholder="Postal Code"
                       className={styles.input}
                       name="postalCode"
-                     /* defaultValue={employeeProfile?.postalCode} */
+                    /* defaultValue={employeeProfile?.postalCode} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <FaLocationCrosshairs />
                     </div>
                   </div>
                 </div>
@@ -173,10 +180,10 @@ export default function Profile() {
                       placeholder="City"
                       className={styles.input}
                       name="city"
-                     /* defaultValue={employeeProfile?.city} */
+                    /* defaultValue={employeeProfile?.city} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <FaMapLocationDot />
                     </div>
                   </div>
                 </div>
@@ -191,10 +198,10 @@ export default function Profile() {
                       placeholder="State"
                       className={styles.input}
                       name="state"
-                     /* defaultValue={employeeProfile?.state} */
+                    /* defaultValue={employeeProfile?.state} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <FaLocationCrosshairs />
                     </div>
                   </div>
                 </div>
@@ -207,10 +214,10 @@ export default function Profile() {
                       placeholder="Country"
                       className={styles.input}
                       name="country"
-                     /* defaultValue={employeeProfile?.country} */
+                    /* defaultValue={employeeProfile?.country} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-map-marker"></i>
+                      <FaLocationCrosshairs />
                     </div>
                   </div>
                 </div>
@@ -228,29 +235,29 @@ export default function Profile() {
                   placeholder="Email Address"
                   className={styles.input}
                   name="email"
-                 /* defaultValue={employeeProfile?.email} */
+                /* defaultValue={employeeProfile?.email} */
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-envelope"></i>
+                  <IoMdMail />
                 </div>
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                 <input
-                 /* ref={employeeIdRef} */
+                  /* ref={employeeIdRef} */
                   type="text"
                   placeholder="Employee ID"
                   className={styles.input}
                   name="_id"
-                 /* defaultValue={employeeProfile?._id} */
+                  /* defaultValue={employeeProfile?._id} */
                   required
                   onChange={e => {
                     e.target.setCustomValidity("");
                     e.target.reportValidity();
                   }}
-                 /* readOnly={!!employeeProfile} */
+                /* readOnly={!!employeeProfile} */
                 />
                 <div className={styles.inputIcon}>
-                  <i className="fa fa-id-card"></i>
+                  <FaIdCard />
                 </div>
               </div>
               {/* Position */}
@@ -264,10 +271,10 @@ export default function Profile() {
                       placeholder="Position"
                       className={styles.input}
                       name="position"
-                     /* defaultValue={employeeProfile?.position} */
+                    /* defaultValue={employeeProfile?.position} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-briefcase"></i>
+                      <ImBriefcase />
                     </div>
                   </div>
                 </div>
@@ -284,7 +291,7 @@ export default function Profile() {
                     /*  defaultValue={employeeProfile?.department} */
                     />
                     <div className={styles.inputIcon}>
-                      <i className="fa fa-building"></i>
+                      <FaBuildingUser />
                     </div>
                   </div>
                 </div>
@@ -302,7 +309,7 @@ export default function Profile() {
                     name="profileImage"
                   />
                   <div className={styles.inputIcon}>
-                    <i className="fa fa-upload"></i>
+                    <MdFileUpload />
                   </div>
                 </div>
               </div>

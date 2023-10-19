@@ -3,18 +3,15 @@
 import styles from "./training-requesttraining.module.css";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-
-import { FaUserAlt} from "react-icons/fa"; //User
-import { FaMapMarkerAlt } from "react-icons/fa"; //Address
+import { FaIdCard, FaUserTie } from "react-icons/fa"; //User 
+import { ImLocation } from "react-icons/im"; //address
 import { FaMapLocationDot } from "react-icons/fa6"; //Country,State
 import { FaLocationCrosshairs } from "react-icons/fa6"; //PostCode
-import { BiCalendar } from "react-icons/bi"; //Calendar
-import { BiSolidHourglass } from "react-icons/bi"; //Duration Hourglass
+import { IoCalendar } from "react-icons/io5"; //Calendar
+import { BiSolidHourglass, BiSolidPhone } from "react-icons/bi"; //Duration Hourglass and Phone
 import { AiOutlineDollar } from "react-icons/ai"; //Money
-import { AiOutlineMail } from "react-icons/ai"; //Email
-import { BsTelephone } from "react-icons/bs"; //Phone
-import { FaIdCard } from "react-icons/fa6"; //Position
-import { MdOutlineCardMembership} from "react-icons/md"; //Title
+import { IoMdMail } from "react-icons/io"; //Email
+import { MdOutlineCardMembership } from "react-icons/md"; //Title
 
 export default function TrainingRequestTrainingPage({ vendorCodes }) {
   const router = useRouter();
@@ -70,7 +67,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
-                  <MdOutlineCardMembership/>
+                  <MdOutlineCardMembership />
                 </div>
               </div>
               <div
@@ -83,7 +80,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
-                <FaMapMarkerAlt />
+                  <ImLocation />
                 </div>
               </div>
               <div
@@ -96,7 +93,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                   className={styles.input}
                 />
                 <div className={styles.inputIcon}>
-                  <FaMapMarkerAlt />
+                  <ImLocation />
                 </div>
               </div>
               <div className={styles.row}>
@@ -173,7 +170,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
-                    <BiCalendar/>
+                    <IoCalendar />
                   </div>
                 </div>
               </div>
@@ -190,7 +187,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
-                      <BiSolidHourglass/>
+                      <BiSolidHourglass />
                     </div>
                   </div>
                 </div>
@@ -205,7 +202,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                       className={styles.input}
                     />
                     <div className={styles.inputIcon}>
-                      <AiOutlineDollar/>
+                      <AiOutlineDollar />
                     </div>
                   </div>
                 </div>
@@ -311,7 +308,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>
-                    <FaUserAlt/>
+                    <FaUserTie />
                   </div>
                 </div>
                 <div className={styles.row}>
@@ -326,7 +323,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                        <AiOutlineMail/>
+                        <IoMdMail />
                       </div>
                     </div>
                   </div>
@@ -341,7 +338,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                         className={styles.input}
                       />
                       <div className={styles.inputIcon}>
-                        <BsTelephone/>
+                        <BiSolidPhone />
                       </div>
                     </div>
                   </div>
@@ -351,9 +348,9 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                     id="addVendor"
                     type="checkbox"
                     name="addVendor"
-                    className={styles.checkboxInput} 
+                    className={styles.checkboxInput}
                   />
-                  <label className={styles.label} htmlFor="addVendor"> 
+                  <label className={styles.label} htmlFor="addVendor">
                     Add New Vendor details as an Existing Vendor in the Vendor List.
                   </label>
                 </div>
@@ -384,7 +381,7 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                 className={styles.input}
               />
               <div className={styles.inputIcon}>
-                <FaUserAlt/>
+                <FaIdCard />
               </div>
             </div>
           </div>
