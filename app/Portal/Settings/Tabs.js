@@ -17,12 +17,6 @@ const Tabs = ({ activeTab, onChangeTab }) => {
       >
         Email
       </div>
-      <div
-        className={`${styles.tab} ${activeTab === "Account" && styles.active}`}
-        onClick={() => onChangeTab("Account")}
-      >
-        Account
-      </div>
     </div>
   );
 };

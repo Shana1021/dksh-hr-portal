@@ -96,15 +96,6 @@ export default function SettingsPage({
           </div>
         </div>
       )}
-
-      {activeTab === "Account" && (
-        <div className={styles.tabContent}>
-          <div className={styles.tabContentBox}>
-            <h5 className="test">Test</h5>
-            {/* Add content for the Account tab here */}
-          </div>
-        </div>
-      )}
     </>
   );
 }
