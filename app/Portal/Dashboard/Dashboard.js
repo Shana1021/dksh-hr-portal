@@ -51,8 +51,10 @@ const Dashboard = () => {
 
         <div className={styles["col"]}>
           <div className={styles["doughnutChart"]}>
-            <h3 className={styles["title"]}>Employee Composition</h3>
+          <div className={styles["row"]}>
+            <h3 className={styles["title-chart"]}>Employee Composition</h3>
             <DoughnutChart />
+          </div>
           </div>
         </div>
       </div>
@@ -61,14 +63,16 @@ const Dashboard = () => {
       <div className={styles["bottomSection"]}>
         <div className={styles["col"]}>
           <div className={styles["pieChart"]}>
-            <h3 className={styles["title"]}>Department Composition</h3>
+            <div className={styles["row"]}>
+            <h3 className={styles["title-chart"]}>Department Composition</h3>
             <PieChart />
+            </div>
           </div>
         </div>
 
         <div className={styles["col"]}>
           <div className={styles["table-form"]}>
-            <h3 className={styles["title"]}>Employee Status</h3>
+            <h3 className={styles["title-chart"]}>Employee Status</h3>
             <EmployeeStatusTable />
           </div>
         </div>
