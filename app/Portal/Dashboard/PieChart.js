@@ -40,6 +40,14 @@ export default function PieChart() {
             position: "right",
           },
         },
+        layout: {
+          padding: {
+            top: 0,
+            bottom: 0,
+            left: 20,
+            right: 0,
+          },
+        },
       },
     });
 
@@ -49,5 +57,5 @@ export default function PieChart() {
     chart.update();
   }, []);
 
-  return <canvas ref={canvas} id="myChart"></canvas>;
+  return <canvas ref={canvas} id="myChart" width="736" height="736"></canvas>;
 }

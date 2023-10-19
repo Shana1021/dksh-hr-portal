@@ -39,7 +39,7 @@ export default function DoughnutChart() {
           padding: {
             top: 0,
             bottom: 0,
-            left: 10,
+            left: 20,
             right: 0,
           },
         },
@@ -52,5 +52,5 @@ export default function DoughnutChart() {
     chart.update();
   }, []);
 
-  return <canvas ref={canvas} id="myDoughnutChart"></canvas>;
+  return <canvas ref={canvas} id="myDoughnutChart" width="736" height="736"></canvas>;
 }

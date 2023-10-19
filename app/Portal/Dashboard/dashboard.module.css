@@ -22,23 +22,28 @@
   flex: 0; /* Let this section grow to fill the remaining space */
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items:flex-end;
 }
 
 .col {
   flex: 1; /* Allow this column to fill available space */
   padding-left: 24px;
-}
+  float: left;
+  }
 
-.doughnutChart,
-.pieChart {
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+.doughnutChart,.pieChart {
   display: flex;
   align-self: center;
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
   padding: 15px;
-  width: 630px; /* Make the chart fill its container */
-  height: 500px; /* Make the chart fill its container */
+  width: 600px; /* Make the chart fill its container */
+  height: 600px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -105,20 +110,30 @@
 }
 
 .title {
+  font-family:'Times New Roman', Times, serif;
   font-weight: bold;
   text-align: center;
   font-size: 1.25rem;
   margin-bottom: 0rem;
 }
 
+.title-chart {
+ font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0rem;
+}
+
 .value {
+  font-family:'Times New Roman', Times, serif;
   text-align: center;
   font-size: 19px;
-  margin-bottom: 8px;
+  margin: 8px 0px;
   font-weight: bold;
 }
 
 .subtitle {
+  font-family:'Times New Roman', Times, serif;
   text-align: center;
   font-size: 12px;
   margin-bottom: 8px;
@@ -154,16 +169,16 @@
     width: 18rem;
   }
   .barChart {
-    width: 600px;
+    width: 650px;
     height: 400px;
   }
   .table-form {
-    width: 600px;
+    width: 650px;
     height: 400px;
   }
   .doughnutChart,
   .pieChart {
-    width: 520px;
+    width: 580px;
     height: 400px; /* Adjust the height for screens with 836px height */
   }
 }
@@ -173,6 +188,9 @@
 .table-container {
   margin-top: 20px;
   width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  
 }
 
 .table-scroll-container {
