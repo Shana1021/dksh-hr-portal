@@ -11,6 +11,22 @@ import ConfirmationDialog from "../ConfirmationDialog";
 export default function TrainingStatusCheckPage({ trainings, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
+  const [filteredTrainings, setFilteredTrainings] = useState(trainings);
+
+  useEffect(() => setFilteredTrainings(trainings), [trainings]);
+
+  const handleSearch = (query) => {
+    const filteredData = trainings.filter((training) => {
+      return training.title.toLowerCase().includes(query.toLowerCase())
+        || training.profile.firstName.toLowerCase().includes(query.toLowerCase())
+        || training.profile.lastName.toLowerCase().includes(query.toLowerCase())
+        || training._id.toLowerCase().includes(query.toLowerCase())
+        || training.vendor._id.toLowerCase().includes(query.toLowerCase())
+        || training.vendor.name.toLowerCase().includes(query.toLowerCase())
+    });
+    setFilteredTrainings(filteredData);
+  };
+
   const [emailStatuses, setEmailStatuses] = useState(
     trainings.map(training => training.status === "Approved" ? "Pending" : "Complete")
   );
@@ -22,9 +38,10 @@ export default function TrainingStatusCheckPage({ trainings, totalRows }) {
     [trainings]
   );
 
-  for (const [index, training] of trainings.entries()) {
+  for (const [index, training] of filteredTrainings.entries()) {
     training.vendorName = training.vendor ? `${training.vendor._id} - ${training.vendor.name}` : "No Vendor";
-    training.employeeName = `${training.profile.firstName} ${training.profile.lastName}`;
+    training.employeeFirstName = training.profile.firstName;
+    training.employeeLastName = training.profile.lastName;
 
     function handleEmailStatusChange(e) {
       if (training.status === "Approved") {
@@ -87,17 +104,18 @@ export default function TrainingStatusCheckPage({ trainings, totalRows }) {
   return (
     <>
       <div className={styles["container"]}>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <Table
           columns={[
             { key: "title", title: "Course Title" },
-            { key: "employeeName", title: "Employee Name" },
+            { key: "employeeFirstName", title: "First Name" },
+            { key: "employeeLastName", title: "Last Name" },
             { key: "employeeId", title: "Employee ID" },
             { key: "vendorName", title: "Training Vendor" },
             { key: "emailStatus", title: "Email Status" },
             { key: "action", title: "Action" }
           ]}
-          data={trainings}
+          data={filteredTrainings}
           height="400px"
           totalRows={totalRows}
         />
