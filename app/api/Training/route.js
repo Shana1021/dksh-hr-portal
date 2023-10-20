@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
@@ -21,7 +22,7 @@ export async function POST(request) {
   } else if (formData.get("vendorChoice") === "New Vendor") {
     const [vendorCount, trainingCount] = await Promise.all([
       db.collection("vendors").countDocuments({ _id: formData.get("vendorCode") }),
-      db.collection("training").countDocuments({ "vendor._id": formData.get("vendorCode") })
+      db.collection("trainings").countDocuments({ "vendor._id": formData.get("vendorCode") })
     ]);
 
     if (vendorCount > 0 || trainingCount > 0) {
@@ -49,7 +50,7 @@ export async function POST(request) {
     vendor = null;
   }
 
-  await db.collection("training").insertOne({
+  await db.collection("trainings").insertOne({
     title: formData.get("title"),
     addressLine1: formData.get("addressLine1"),
     addressLine2: formData.get("addressLine2"),
@@ -62,8 +63,50 @@ export async function POST(request) {
     fee: formData.get("fee"),
     employeeId: formData.get("employeeId"),
     vendor,
+    status: "Pending",
     createdAt: new Date()
   });
+
+  // TODO: send email to manager
+
+  return NextResponse.json({ status: "success" });
+}
+
+export async function PUT(request) {
+  const updates = await request.json();
+  if (updates.length === 0) {
+    return NextResponse.json({ status: "success" });
+  }
+
+  const client = await clientPromise;
+  const db = await client.db();
+  
+  const trainings = await db.collection("trainings")
+    .find({ _id: { $in: updates.map(id => new ObjectId(id)) } }, { status: true })
+    .map(doc => [doc._id, doc.status])
+    .toArray();
+  
+  const statuses = Object.fromEntries(trainings);
+
+  const validUpdates = updates.filter(id => statuses[id] === "Approved");
+  if (validUpdates.length === 0) {
+    return NextResponse.json({ status: "success" });
+  }
+
+  await db.collection("trainings").bulkWrite(
+    validUpdates.map(id => ({
+      updateOne: {
+        filter: { _id: new ObjectId(id), status: "Approved" },
+        update: {
+          $set: {
+            status: "Complete"
+          }
+        }
+      }
+    }))
+  );
+
+  // TODO: send emails to managers
 
   return NextResponse.json({ status: "success" });
 }

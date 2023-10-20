@@ -13,7 +13,7 @@ export default function OnboardingBackgroundCheckPage({
   employeeProfiles,
   totalRows,
 }) {
-  const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const [filteredProfiles, setFilteredProfiles] = useState(employeeProfiles);
 
   useEffect(() => setFilteredProfiles(employeeProfiles), [employeeProfiles]);
 
@@ -28,20 +28,18 @@ export default function OnboardingBackgroundCheckPage({
   };
 
   const router = useRouter();
-  const [bcStatuses, setBCStatuses] = useState(
-    employeeProfiles.map((employeeProfile) => employeeProfile.bcStatus)
-  );
+  const [bcStatuses, setBCStatuses] = useState(filteredProfiles.map(employeeProfile => employeeProfile.bcStatus));
   const [confirmation, setConfirmation] = useState(null);
-
+  
   useEffect(
     () =>
       setBCStatuses(
-        employeeProfiles.map((employeeProfile) => employeeProfile.bcStatus)
+        filteredProfiles.map(employeeProfile => employeeProfile.bcStatus)
       ),
-    [employeeProfiles]
+    [filteredProfiles]
   );
-
-  for (const [index, employeeProfile] of employeeProfiles.entries()) {
+  
+  for (const [index, employeeProfile] of filteredProfiles.entries()) {
     employeeProfile.id = (
       <Link
         href={`/Portal/Employee/${encodeURIComponent(employeeProfile._id)}`}
@@ -67,7 +65,8 @@ export default function OnboardingBackgroundCheckPage({
             name={`bcStatus-${employeeProfile._id}`}
             value="Pending"
             checked={bcStatuses[index] === "Pending"}
-            onChange={handleBCStatusChange}
+            onChange={() => {}}
+            onClick={handleBCStatusChange}
           />{" "}
           Pending
         </label>
@@ -78,7 +77,8 @@ export default function OnboardingBackgroundCheckPage({
             name={`bcStatus-${employeeProfile._id}`}
             value="Pass"
             checked={bcStatuses[index] === "Pass"}
-            onChange={handleBCStatusChange}
+            onChange={() => {}}
+            onClick={handleBCStatusChange}
           />{" "}
           Pass
         </label>
@@ -89,7 +89,8 @@ export default function OnboardingBackgroundCheckPage({
             name={`bcStatus-${employeeProfile._id}`}
             value="Fail"
             checked={bcStatuses[index] === "Fail"}
-            onChange={handleBCStatusChange}
+            onChange={() => {}}
+            onClick={handleBCStatusChange}
           />{" "}
           Fail
         </label>
@@ -177,13 +178,11 @@ export default function OnboardingBackgroundCheckPage({
                     body: JSON.stringify(
                       bcStatuses
                         .map((bcStatus, i) => ({
-                          _id: employeeProfiles[i]._id,
+                          _id: filteredProfiles[i]._id,
                           bcStatus,
                         }))
-                        .filter(
-                          (update, i) =>
-                            employeeProfiles[i].bcStatus === "Pending" &&
-                            update.bcStatus !== "Pending"
+                        .filter((update, i) =>
+                          filteredProfiles[i].bcStatus === "Pending" && update.bcStatus !== "Pending"
                         )
                     ),
                   });

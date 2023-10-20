@@ -36,12 +36,13 @@ export default function Table({
           </thead>
           <tbody>
             {data.map((d) => {
-              let row = [];
-              for (const column of columns) {
-                row.push(<td key={column.key}>{d[column.key]}</td>);
-              }
-
-              return <tr key={d._id}>{row}</tr>;
+              return (
+                <tr key={d._id}>
+                  {columns.map(column => (
+                    <td key={column.key}>{d[column.key]}</td>
+                  ))}
+                </tr>
+              );
             })}
           </tbody>
         </table>

@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./training-vendorlist.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Table from "../Table";
 import SearchBar from "../SearchBar";
 import { FiTrash } from "react-icons/fi";
@@ -11,8 +11,21 @@ import { useRouter } from "next/navigation";
 export default function TrainingVendorListPage({ vendors, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
+  const [filteredVendors, setFilteredVendors] = useState(vendors);
 
-  for (const vendor of vendors) {
+  useEffect(() => setFilteredVendors(vendors), [vendors]);
+
+  const handleSearch = (query) => {
+    const filteredData = vendors.filter((vendor) => {
+      const searchFields = ["_id", "name", "email", "phone"];
+      return searchFields.some((field) =>
+        vendor[field].toLowerCase().includes(query.toLowerCase())
+      );
+    });
+    setFilteredVendors(filteredData);
+  };
+
+  for (const vendor of filteredVendors) {
     if (vendor.references === 0) {
       vendor.action = (
         <FiTrash
@@ -41,7 +54,7 @@ export default function TrainingVendorListPage({ vendors, totalRows }) {
   return (
     <>
       <div className={styles["container"]}>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <Table
           columns={[
             { key: "_id", title: "Vendor ID" },
@@ -50,7 +63,7 @@ export default function TrainingVendorListPage({ vendors, totalRows }) {
             { key: "phone", title: "Phone" },
             { key: "action", title: "Action" }
           ]}
-          data={vendors}
+          data={filteredVendors}
           height="400px"
           totalRows={totalRows}
         />

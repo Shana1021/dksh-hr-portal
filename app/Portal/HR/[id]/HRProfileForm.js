@@ -31,14 +31,13 @@ export default function HREmployeeProfileForm({ hrProfile }) {
         body: new FormData(e.target),
       }
     );
-
-    const data = await res.json();
-
     if (!res.ok) {
-      alert(data.error);
+      alert(res.statusText);
       return;
     }
 
+    const data = await res.json();
+    
     if (data.status === "idExists") {
       employeeIdRef.current.setCustomValidity("Employee ID already exists.");
       employeeIdRef.current.reportValidity();
@@ -341,36 +340,33 @@ export default function HREmployeeProfileForm({ hrProfile }) {
                 </div>
               </div>
             </div>
-
-            <div className={styles.formBody}>
-              {hrProfile && (
-                <div className={styles["image-container"]}>
-                  <Image
-                    src={`/api/hr/${encodeURIComponent(
-                      hrProfile?._id
-                    )}/profileImage?${new Date().getTime()}`}
-                    alt="Profile Image"
-                    fill
-                    style={{ objectFit: "cover", borderRadius: "50%" }}
-                    unoptimized
-                  />
-                </div>
-              )}
-              {/* Image Upload */}
-              <div className={styles.row}>
-                <h5 className={styles.h5}>Profile Image Upload</h5>
-                <div
-                  className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
-                >
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className={styles.input}
-                    name="profileImage"
-                  />
-                  <div className={styles.inputIcon}>
-                    <MdFileUpload />
-                  </div>
+            {hrProfile && (
+              <div className={styles["image-container"]}>
+                <Image
+                  src={`/api/hr/${encodeURIComponent(
+                    hrProfile?._id
+                  )}/profileImage?${new Date().getTime()}`}
+                  alt="Profile Image"
+                  fill
+                  style={{ objectFit: "cover", borderRadius: "50%" }}
+                  unoptimized
+                />
+              </div>
+            )}
+            {/* Image Upload */}
+            <div className={styles.row}>
+              <h5 className={styles.h5}>Profile Image Upload</h5>
+              <div
+                className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+              >
+                <input
+                  type="file"
+                  accept="image/*"
+                  className={styles.input}
+                  name="profileImage"
+                />
+                <div className={styles.inputIcon}>
+                  <MdFileUpload />
                 </div>
               </div>
             </div>

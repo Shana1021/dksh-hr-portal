@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./offboarding-checklist.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Table from "../Table";
 import Checklist from "../Checklist";
@@ -11,8 +11,21 @@ import { FaDownload } from "react-icons/fa";
 export default function OffboardingChecklistPage({ offboardingChecklists, totalRows }) {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [filteredProfiles, setFilteredProfiles] = useState(offboardingChecklists);
 
-  for (const [index, checklist] of offboardingChecklists.entries()) {
+  useEffect(() => setFilteredProfiles(offboardingChecklists), [offboardingChecklists]);
+
+  const handleSearch = (query) => {
+    const filteredData = offboardingChecklists.filter((checklist) => {
+      return checklist._id.toLowerCase().includes(query.toLowerCase())
+        || checklist.profile.firstName.toLowerCase().includes(query.toLowerCase())
+        || checklist.profile.lastName.toLowerCase().includes(query.toLowerCase())
+        || checklist.profile.department.toLowerCase().includes(query.toLowerCase())
+    });
+    setFilteredProfiles(filteredData);
+  };
+
+  for (const [index, checklist] of filteredProfiles.entries()) {
     checklist.firstName = checklist.profile.firstName;
     checklist.lastName = checklist.profile.lastName;
     checklist.email = checklist.profile.email;
@@ -52,18 +65,18 @@ export default function OffboardingChecklistPage({ offboardingChecklists, totalR
   const checklists = selectedIndex !== null && [
     {
       title: "To Do",
-      items: offboardingChecklists[selectedIndex].todos,
+      items: filteredProfiles[selectedIndex].todos,
     },
     {
       title: "Items to Return",
-      items: offboardingChecklists[selectedIndex].items,
+      items: filteredProfiles[selectedIndex].items,
     },
   ];
 
   return (
     <>
       <div className={styles["container"]}>
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <Table
           columns={[
             { key: "_id", title: "Employee ID" },
@@ -75,7 +88,7 @@ export default function OffboardingChecklistPage({ offboardingChecklists, totalR
             { key: "status", title: "Status" },
             { key: "action", title: "Action" }
           ]}
-          data={offboardingChecklists}
+          data={filteredProfiles}
           height="400px"
           totalRows={totalRows}
         />
@@ -87,13 +100,13 @@ export default function OffboardingChecklistPage({ offboardingChecklists, totalR
         <Checklist
           initialChecklists={checklists}
           checkOnly
-          completed={offboardingChecklists[selectedIndex].completed}
+          completed={filteredProfiles[selectedIndex].completed}
           onSave={async updatedChecklists => {
             setSelectedIndex(null);
 
             const res = await fetch(
               `/api/offboarding-checklist/${encodeURIComponent(
-                offboardingChecklists[selectedIndex]._id
+                filteredProfiles[selectedIndex]._id
               )}`,
               {
                 method: "PUT",

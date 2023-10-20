@@ -53,12 +53,11 @@ export async function PUT(request) {
   const db = await client.db();
 
   const employeeProfiles = await db.collection("employee_profiles")
-    .find({ _id: { $in: updates.map(update => update._id) } }, { _id: true, bcStatus: true })
+    .find({ _id: { $in: updates.map(update => update._id) } }, { bcStatus: true })
+    .map(doc => [doc._id, doc.bcStatus])
     .toArray();
   
-  const bcStatuses = Object.fromEntries(
-    employeeProfiles.map(employeeProfile => [employeeProfile._id, employeeProfile.bcStatus])
-  );
+  const bcStatuses = Object.fromEntries(employeeProfiles);
 
   const validUpdates = updates.filter(update => bcStatuses[update._id] === "Pending");
   if (validUpdates.length === 0) {

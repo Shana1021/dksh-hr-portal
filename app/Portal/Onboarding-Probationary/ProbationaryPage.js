@@ -11,6 +11,9 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
   const router = useRouter();
   const [confirmation, setConfirmation] = useState(null);
   const [filteredProfiles, setFilteredProfiles] = useState(probationaries);
+
+  useEffect(() => setFilteredProfiles(probationaries), [probationaries]);
+
   const handleSearch = (query) => {
     const filteredData = probationaries.filter((profile) => {
       const searchFields = ["firstName", "lastName", "email", "department"];
@@ -23,7 +26,7 @@ export default function ProbationaryPage({ probationaries, totalRows }) {
     setFilteredProfiles(filteredData);
   };
 
-  for (const probationary of probationaries) {
+  for (const probationary of filteredProfiles) {
     probationary.firstName = probationary.profile.firstName;
     probationary.lastName = probationary.profile.lastName;
     probationary.email = probationary.profile.email;
