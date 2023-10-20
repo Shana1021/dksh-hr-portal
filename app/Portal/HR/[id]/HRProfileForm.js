@@ -31,14 +31,13 @@ export default function HREmployeeProfileForm({ hrProfile }) {
         body: new FormData(e.target),
       }
     );
-
-    const data = await res.json();
-
     if (!res.ok) {
-      alert(data.error);
+      alert(res.statusText);
       return;
     }
 
+    const data = await res.json();
+    
     if (data.status === "idExists") {
       employeeIdRef.current.setCustomValidity("Employee ID already exists.");
       employeeIdRef.current.reportValidity();
