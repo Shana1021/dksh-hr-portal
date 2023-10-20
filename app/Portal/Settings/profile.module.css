@@ -39,7 +39,7 @@
   border-color: #bd8200;
 }
 
-.input:focus + .inputIcon i {
+.input:focus + .inputIcon {
   color: #f0a500;
 }
 

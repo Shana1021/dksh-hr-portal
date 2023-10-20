@@ -39,10 +39,9 @@
   border-color: #bd8200;
 }
 
-.input:focus+.inputIcon {
+.input:focus + .inputIcon {
   color: #f0a500;
 }
-
 
 .input:focus+.inputIcon:after {
   border-right-color: #f0a500;
@@ -90,7 +89,7 @@
   font-size: 13px;
 }
 
-.input:checked+.label:after {
+.input:checked + .label:after {
   opacity: 1;
 }
 
@@ -169,7 +168,7 @@
   transition: 0.35s ease-in-out;
 }
 
-.inputGroupIcon .inputIcon i {
+.inputGroupIcon .inputIcon {
   transition: 0.35s ease-in-out;
 }
 
@@ -238,6 +237,7 @@
 .formWrapper {
   display: flex;
   justify-content: space-between;
+  border-right: 2px solid #ffffff;
   padding: 0 10px;
   /* Add some spacing */
 }
@@ -255,6 +255,14 @@
   width: 180px;
   height: 180px;
   margin: auto;
+}
+
+.inputIcon {
+  color: #8d8d8d; 
+}
+
+.inputIcon:after {
+  border-right-color: #8d8d8d;
 }
 
 /* Responsive styles for smaller screens */
