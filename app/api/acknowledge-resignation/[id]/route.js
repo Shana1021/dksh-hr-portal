@@ -9,7 +9,7 @@ export async function POST(request, { params: { id } }) {
   const client = await clientPromise;
   const db = await client.db();
   
-  if (await db.collection("accepted_resignations").countDocuments({ _id: id }, { limit: 1 }) === 0) {
+  if (await db.collection("accepted_resignations").countDocuments({ employeeId: id }, { limit: 1 }) === 0) {
     return NextResponse.json({ status: "idDoesNotExist" });
   }
 

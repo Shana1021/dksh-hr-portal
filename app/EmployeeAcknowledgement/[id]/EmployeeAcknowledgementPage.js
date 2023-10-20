@@ -16,7 +16,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
 
     const res = await fetch(
       `/api/acknowledge-resignation/${encodeURIComponent(
-        acceptedResignation._id
+        acceptedResignation.employeeId
       )}`,
       {
         method: "POST",
@@ -113,7 +113,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
             <h2>Download the AOR file here</h2>
             <a
               href={`/api/offboarding/${encodeURIComponent(
-                acceptedResignation._id
+                acceptedResignation.employeeId
               )}/aor`}
               download
             >

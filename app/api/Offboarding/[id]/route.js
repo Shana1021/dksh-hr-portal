@@ -22,16 +22,16 @@ export async function POST(request, { params: { id } }) {
     Readable.from(Buffer.from(await formData.get("acceptanceLetter").arrayBuffer()))
       .pipe(bucket.openUploadStream(id));
     
-    await db.collection("accepted_resignations").insertOne({
-      _id: id,
+    const { insertedId } = await db.collection("accepted_resignations").insertOne({
+      employeeId: id,
       reason: resignationRequest.reason,
       annualLeaveBalance: formData.get("annualLeaveBalance"),
       managerEmail: formData.get("managerEmail"),
       createdAt: new Date()
     });
-  }
 
-  // TODO: send emails
+    // TODO: send emails
+  }
 
   return NextResponse.json({ status: "success" });
 }

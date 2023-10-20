@@ -15,7 +15,7 @@ export async function POST(request) {
     return NextResponse.json({ status: "requestExists" });
   }
 
-  if (await db.collection("accepted_resignations").countDocuments({ _id: formData.get("_id") }, { limit: 1 }) > 0) {
+  if (await db.collection("accepted_resignations").countDocuments({ employeeId: formData.get("_id") }, { limit: 1 }) > 0) {
     return NextResponse.json({ status: "alreadyResigned" });
   }
 
