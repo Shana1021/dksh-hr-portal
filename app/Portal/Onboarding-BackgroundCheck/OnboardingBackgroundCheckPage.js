@@ -49,7 +49,6 @@ export default function OnboardingBackgroundCheckPage({
     );
 
     function handleBCStatusChange(e) {
-      console.log(index)
       if (employeeProfile.bcStatus === "Pending") {
         setBCStatuses(
           bcStatuses.map((bcStatus, i) =>

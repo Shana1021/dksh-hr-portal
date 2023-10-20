@@ -2,16 +2,17 @@
 
 import React, { useState } from "react";
 import styles from "./settings.module.css";
-//import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Tabs from "./Tabs"; // Import the Tabs component
 import Profile from "./Profile";
 
 export default function SettingsPage({
+  profile,
   initialITTeamEmailAddress,
   initialAdminTeamEmailAddress,
   initialHRTeamEmailAddress,
 }) {
-  // const router = useRouter();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("Profile"); // State to manage the active tab
 
   async function handleSubmit(e) {
@@ -39,7 +40,7 @@ export default function SettingsPage({
         <div className={styles.tabContent}>
           <div className={styles.tabContentBox}>
             {/*Profile*/}
-            <Profile />
+            <Profile profile={profile} />
           </div>
         </div>
       )}

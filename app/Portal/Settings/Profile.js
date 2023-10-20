@@ -1,4 +1,5 @@
 "use client";
+
 import "font-awesome/css/font-awesome.min.css";
 import styles from "./profile.module.css";
 import Image from "next/image";
@@ -9,24 +10,14 @@ import { IoCalendar } from "react-icons/io5";
 import { ImLocation, ImBriefcase } from "react-icons/im";
 import { IoMdMail } from "react-icons/io";
 import { MdFileUpload } from "react-icons/md";
+import { useRef } from "react";
 
-export default function Profile() {
+export default function Profile({ profile }) {
+  const employeeIdRef = useRef(null);
+
   return (
     <form>
       <div className={styles.formBody}>
-        {/*{employeeProfile && (
-          <div className={styles["image-container"]}>
-            <Image
-              src={`/api/onboarding/${encodeURIComponent(
-                employeeProfile?._id
-              )}/profileImage?${new Date().getTime()}`}
-              alt="Profile Image"
-              fill
-              style={{ objectFit: "cover", borderRadius: "50%" }}
-              unoptimized
-            />
-          </div>
-        )}*/}
         <div className={styles.formWrapper}>
           <div className={styles.form}>
             {/* Personal Details */}
@@ -42,7 +33,7 @@ export default function Profile() {
                       placeholder="First Name"
                       className={styles.input}
                       name="firstName"
-                    /* defaultValue={employeeProfile?.firstName} */
+                      defaultValue={profile.firstName}
                     />
                     <div className={styles.inputIcon}>
                       <FaUserTie />
@@ -58,7 +49,7 @@ export default function Profile() {
                       placeholder="Last Name"
                       className={styles.input}
                       name="lastName"
-                    /* defaultValue={employeeProfile?.lastName}*/
+                      defaultValue={profile.lastName}
                     />
                     <div className={styles.inputIcon}>
                       <FaUserTie />
@@ -72,7 +63,7 @@ export default function Profile() {
                   placeholder="Phone Number"
                   className={styles.input}
                   name="phone"
-                /* defaultValue={employeeProfile?.phone} */
+                  defaultValue={profile.phone}
                 />
                 <div className={styles.inputIcon}>
                   <BiSolidPhone />
@@ -88,7 +79,7 @@ export default function Profile() {
                       type="date"
                       className={styles.input}
                       name="dob"
-                    /* defaultValue={employeeProfile?.dob} */
+                      defaultValue={profile.dob}
                     />
                     <div className={styles.inputIcon}>
                       <IoCalendar />
@@ -106,7 +97,7 @@ export default function Profile() {
                       className={styles.radioInput}
                       name="gender"
                       value="Male"
-                    /* defaultChecked={gender === "Male"} */
+                      defaultChecked={profile.gender === "Male"}
                     />
                     <label className={styles.label} htmlFor="gender-male">
                       Male
@@ -117,7 +108,7 @@ export default function Profile() {
                       className={styles.radioInput}
                       name="gender"
                       value="Female"
-                    /* defaultChecked={gender === "Female"} */
+                      defaultChecked={profile.gender === "Female"}
                     />
                     <label className={styles.label} htmlFor="gender-female">
                       Female
@@ -136,7 +127,7 @@ export default function Profile() {
                   placeholder="Address Line 1"
                   className={styles.input}
                   name="addressLine1"
-                /* defaultValue={employeeProfile?.addressLine1} */
+                  defaultValue={profile.addressLine1}
                 />
                 <div className={styles.inputIcon}>
                   <ImLocation />
@@ -148,7 +139,7 @@ export default function Profile() {
                   placeholder="Address Line 2"
                   className={styles.input}
                   name="addressLine2"
-                /* defaultValue={employeeProfile?.addressLine2} */
+                  defaultValue={profile.addressLine2}
                 />
                 <div className={styles.inputIcon}>
                   <ImLocation />
@@ -164,7 +155,7 @@ export default function Profile() {
                       placeholder="Postal Code"
                       className={styles.input}
                       name="postalCode"
-                    /* defaultValue={employeeProfile?.postalCode} */
+                      defaultValue={profile.postalCode}
                     />
                     <div className={styles.inputIcon}>
                       <FaLocationCrosshairs />
@@ -180,7 +171,7 @@ export default function Profile() {
                       placeholder="City"
                       className={styles.input}
                       name="city"
-                    /* defaultValue={employeeProfile?.city} */
+                      defaultValue={profile.city}
                     />
                     <div className={styles.inputIcon}>
                       <FaMapLocationDot />
@@ -198,7 +189,7 @@ export default function Profile() {
                       placeholder="State"
                       className={styles.input}
                       name="state"
-                    /* defaultValue={employeeProfile?.state} */
+                      defaultValue={profile.state}
                     />
                     <div className={styles.inputIcon}>
                       <FaLocationCrosshairs />
@@ -214,7 +205,7 @@ export default function Profile() {
                       placeholder="Country"
                       className={styles.input}
                       name="country"
-                    /* defaultValue={employeeProfile?.country} */
+                      defaultValue={profile.country}
                     />
                     <div className={styles.inputIcon}>
                       <FaLocationCrosshairs />
@@ -235,7 +226,7 @@ export default function Profile() {
                   placeholder="Email Address"
                   className={styles.input}
                   name="email"
-                /* defaultValue={employeeProfile?.email} */
+                  defaultValue={profile.email}
                 />
                 <div className={styles.inputIcon}>
                   <IoMdMail />
@@ -243,18 +234,18 @@ export default function Profile() {
               </div>
               <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                 <input
-                  /* ref={employeeIdRef} */
+                  ref={employeeIdRef}
                   type="text"
                   placeholder="Employee ID"
                   className={styles.input}
                   name="_id"
-                  /* defaultValue={employeeProfile?._id} */
+                  defaultValue={profile._id}
                   required
                   onChange={e => {
                     e.target.setCustomValidity("");
                     e.target.reportValidity();
                   }}
-                /* readOnly={!!employeeProfile} */
+                  readOnly
                 />
                 <div className={styles.inputIcon}>
                   <FaIdCard />
@@ -271,7 +262,7 @@ export default function Profile() {
                       placeholder="Position"
                       className={styles.input}
                       name="position"
-                    /* defaultValue={employeeProfile?.position} */
+                      defaultValue={profile.position}
                     />
                     <div className={styles.inputIcon}>
                       <ImBriefcase />
@@ -288,13 +279,24 @@ export default function Profile() {
                       placeholder="Department"
                       className={styles.input}
                       name="department"
-                    /*  defaultValue={employeeProfile?.department} */
+                      defaultValue={profile.department}
                     />
                     <div className={styles.inputIcon}>
                       <FaBuildingUser />
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className={styles["image-container"]}>
+                <Image
+                  src={`/api/hr/${encodeURIComponent(
+                    profile._id
+                  )}/profileImage?${new Date().getTime()}`}
+                  alt="Profile Image"
+                  fill
+                  style={{ objectFit: "cover", borderRadius: "50%" }}
+                  unoptimized
+                />
               </div>
               {/* Image Upload */}
               <div className={styles.row}>

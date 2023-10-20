@@ -319,35 +319,33 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                 </div>
               </div>
             </div>
-            <div className={styles.formBody}>
-              {employeeProfile && (
-                <div className={styles["image-container"]}>
-                  <Image
-                    src={`/api/onboarding/${encodeURIComponent(
-                      employeeProfile?._id
-                    )}/profileImage?${new Date().getTime()}`}
-                    alt="Profile Image"
-                    fill
-                    style={{ objectFit: "cover", borderRadius: "50%" }}
-                    unoptimized
-                  />
-                </div>
-              )}
-              {/* Image Upload */}
-              <div className={styles.row}>
-                <h5 className={styles.h5}>Profile Image Upload</h5>
-                <div
-                  className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
-                >
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className={styles.input}
-                    name="profileImage"
-                  />
-                  <div className={styles.inputIcon}>
-                    <MdFileUpload />
-                  </div>
+            {employeeProfile && (
+              <div className={styles["image-container"]}>
+                <Image
+                  src={`/api/onboarding/${encodeURIComponent(
+                    employeeProfile?._id
+                  )}/profileImage?${new Date().getTime()}`}
+                  alt="Profile Image"
+                  fill
+                  style={{ objectFit: "cover", borderRadius: "50%" }}
+                  unoptimized
+                />
+              </div>
+            )}
+            {/* Image Upload */}
+            <div className={styles.row}>
+              <h5 className={styles.h5}>Profile Image Upload</h5>
+              <div
+                className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
+              >
+                <input
+                  type="file"
+                  accept="image/*"
+                  className={styles.input}
+                  name="profileImage"
+                />
+                <div className={styles.inputIcon}>
+                  <MdFileUpload />
                 </div>
               </div>
             </div>
