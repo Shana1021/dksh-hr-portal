@@ -217,7 +217,7 @@ export default function Profile() {
                     /* defaultValue={employeeProfile?.country} */
                     />
                     <div className={styles.inputIcon}>
-                      <FaLocationCrosshairs />
+                      <FaMapLocationDot/>
                     </div>
                   </div>
                 </div>
