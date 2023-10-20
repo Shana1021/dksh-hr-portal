@@ -208,7 +208,7 @@ export default function Profile({ profile }) {
                       defaultValue={profile.country}
                     />
                     <div className={styles.inputIcon}>
-                      <FaLocationCrosshairs />
+                      <FaMapLocationDot/>
                     </div>
                   </div>
                 </div>
