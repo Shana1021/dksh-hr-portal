@@ -76,7 +76,7 @@ export default function HRListPage({ hrProfiles, totalRows }) {
           totalRows={totalRows}
         />
         <div className={styles["actions"]}>
-          <Link className="module-button" href="/Portal/HR/New">Add Employee</Link>
+          <Link className="module-button" href="/Portal/HR">Add Employee</Link>
           <button onClick={() => router.refresh()} className="module-button">Refresh</button>
         </div>
       </div>

@@ -163,7 +163,7 @@ export default function OnboardingBackgroundCheckPage({
           totalRows={totalRows}
         />
         <div className={styles["actions"]}>
-          <Link className="module-button" href="/Portal/Employee/New">
+          <Link className="module-button" href="/Portal/Employee">
             Add Employee
           </Link>
           <button

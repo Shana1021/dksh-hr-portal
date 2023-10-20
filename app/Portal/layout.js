@@ -5,15 +5,19 @@ import { signIn, useSession } from "next-auth/react";
 import { useRef, useState, useEffect, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";
-import Image from "next/image";
 import Sidebar from "./Sidebar";
 import sidebarData from "./SidebarData";
+import ReactLoading from "react-loading";
 
 export default function PortalLayout({ children }) {
   const { status } = useSession();
 
   if (status === "loading") {
-    return <>Loading...</>;
+    return (
+      <div className={styles["loading-screen"]}>
+        <ReactLoading type="spinningBubbles" height="75px" width="75px" color="#be0028" />
+      </div>
+    );
   }
 
   if (status === "unauthenticated") {
@@ -79,16 +83,6 @@ function Portal({ children }) {
                 setShowSidebar(!showSidebar);
               }}
             />
-            {/* <div className={styles["portal-header-logo"]}>
-            <Image
-              src="/dksh_logo.png"
-              alt="DKSH Logo"
-              fill
-              unoptimized
-              style={{ objectFit: "contain" }}
-              priority
-            />
-          </div> */}
             <span className={styles["portal-header-title"]}>{headerTitle}</span>
           </div>
           <div className={styles["page-content"]}>{children}</div>

@@ -1,0 +1,160 @@
+/* Body styles */
+.formBody {
+  margin: 10px auto;
+  padding: 1em 3em 2em 3em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #b9b9b9;
+  background-color: #ffffff;
+  max-height: max-content;
+}
+
+/* Form wrapper styles */
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  border-right: 2px solid #ffffff; /* Vertical line separator */
+  padding: 0 10px; /* Add some spacing */
+}
+
+/* Form styles */
+.form {
+  width: 100%; /* Adjust the width as needed */
+  padding: 0 10px; /* Add some padding to form sections */
+}
+
+/* Heading styles */
+.h4 {
+  color: #f0a500;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+/* Row and Column styles */
+.row {
+  zoom: 0;
+}
+
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+
+.row:after {
+  clear: both;
+}
+
+.colHalf {
+  padding-right: 10px;
+  float: left;
+  width: 50%;
+}
+
+.colHalf:last-of-type {
+  padding-right: 0;
+}
+
+/* Spacing between input fields */
+.inputGroup {
+  margin-bottom: 2em;
+}
+
+/* Padding for input fields */
+.inputGroup input {
+  padding: 1.2em;
+}
+
+.inputGroup:before,
+.inputGroup:after {
+  content: "";
+  display: table;
+}
+
+.inputGroup:after {
+  clear: both;
+}
+
+.inputGroupIcon {
+  position: relative;
+}
+
+.inputGroupIcon input {
+  padding-left: 4.4em;
+}
+
+.inputGroupIcon .inputIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.4em;
+  height: 3.4em;
+  line-height: 3.4em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.inputGroupIcon .inputIcon:after {
+  position: absolute;
+  top: 0.6em;
+  bottom: 0.6em;
+  left: 3.4em;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  transition: 0.35s ease-in-out;
+}
+
+.inputGroupIcon .inputIcon {
+  transition: 0.35s ease-in-out;
+}
+
+/* Input styles */
+.input {
+  width: 100%;
+  height: 3.5em;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: 0.35s ease-in-out;
+}
+
+.input:focus {
+  outline: 0;
+  border-color: #bd8200;
+}
+
+.input:focus + .inputIcon {
+  color: #f0a500;
+}
+
+.input:focus + .inputIcon:after {
+  border-right-color: #f0a500;
+}
+
+/* Button styles */
+.button {
+  background-color: #be0028;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  margin-top: 1em; /* Increase the margin above the button */
+  padding: 1em 2.5em;
+  text-decoration: none;
+  width: 100%;
+  height: 3em;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
+}

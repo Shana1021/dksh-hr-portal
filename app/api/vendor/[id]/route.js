@@ -1,5 +1,5 @@
 import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
+import { NextResponse } from "next/server";
 
 export async function PUT(request, { params: { id } }) {
   const formData = await request.formData();
@@ -7,8 +7,8 @@ export async function PUT(request, { params: { id } }) {
   const client = await clientPromise;
   const db = await client.db();
   
-  await db.collection("trainings").updateOne(
-    { _id: new ObjectId(id), status: "Approved" },
+  await db.collection("vendors").updateOne(
+    { _id: id },
     {
       $set: {
         name: formData.get("name"),

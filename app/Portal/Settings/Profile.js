@@ -35,7 +35,7 @@ export default function Profile({ profile }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.formBody} onSubmit={handleSubmit}>
       <div className={styles.formWrapper}>
         <div className={styles.form}>
           {/* Personal Details */}
