@@ -3,15 +3,17 @@
 import styles from "./onboarding-checklist.module.css";
 import Table from "../Table";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Checklist from "../Checklist";
 import SearchBar from "../SearchBar";
 export default function OnboardingChecklistPage({
   onboardingChecklists,
   totalRows,
 }) {
-  const [filteredProfiles, setFilteredProfiles] =
-    useState(onboardingChecklists);
+  const [filteredProfiles, setFilteredProfiles] = useState(onboardingChecklists);
+
+  useEffect(() => setFilteredProfiles(onboardingChecklists), [onboardingChecklists]);
+
   const handleSearch = (query) => {
     const filteredData = onboardingChecklists.filter((profile) => {
       const searchFields = ["firstName", "lastName", "email", "department"];
@@ -26,7 +28,7 @@ export default function OnboardingChecklistPage({
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  for (const [index, checklist] of onboardingChecklists.entries()) {
+  for (const [index, checklist] of filteredProfiles.entries()) {
     checklist.firstName = checklist.profile.firstName;
     checklist.lastName = checklist.profile.lastName;
     checklist.email = checklist.profile.email;
@@ -56,11 +58,11 @@ export default function OnboardingChecklistPage({
   const checklists = selectedIndex !== null && [
     {
       title: "To Do",
-      items: onboardingChecklists[selectedIndex].todos,
+      items: filteredProfiles[selectedIndex].todos,
     },
     {
       title: "Items to Collect",
-      items: onboardingChecklists[selectedIndex].items,
+      items: filteredProfiles[selectedIndex].items,
     },
   ];
 
@@ -89,13 +91,13 @@ export default function OnboardingChecklistPage({
       {checklists && (
         <Checklist
           initialChecklists={checklists}
-          completed={onboardingChecklists[selectedIndex].completed}
+          completed={filteredProfiles[selectedIndex].completed}
           onSave={async (updatedChecklists) => {
             setSelectedIndex(null);
 
             const res = await fetch(
               `/api/onboarding-checklist/${encodeURIComponent(
-                onboardingChecklists[selectedIndex]._id
+                filteredProfiles[selectedIndex]._id
               )}`,
               {
                 method: "PUT",

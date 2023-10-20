@@ -381,7 +381,19 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
                 className={styles.input}
               />
               <div className={styles.inputIcon}>
-                <FaIdCard />
+                <FaIdCard/>
+              </div>
+            </div>
+            <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
+              <input
+                type="email"
+                name="managerEmail"
+                placeholder="Manager Email"
+                required
+                className={styles.input}
+              />
+              <div className={styles.inputIcon}>
+                <IoMdMail/>
               </div>
             </div>
           </div>

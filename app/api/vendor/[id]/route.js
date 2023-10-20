@@ -1,14 +1,22 @@
 import clientPromise from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 
-export async function DELETE(_, { params: { id } }) {
+export async function PUT(request, { params: { id } }) {
+  const formData = await request.formData();
+
   const client = await clientPromise;
   const db = await client.db();
   
-  if (await db.collection("training").countDocuments({ vendor: id }) > 0) {
-    return NextResponse.json({ status: "referencesFound" });
-  }
-
-  await db.collection("vendors").deleteOne({ _id: id });
-
+  await db.collection("trainings").updateOne(
+    { _id: new ObjectId(id), status: "Approved" },
+    {
+      $set: {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        phone: formData.get("phone")
+      }
+    }
+  );
+  
   return NextResponse.json({ status: "success" });
 }

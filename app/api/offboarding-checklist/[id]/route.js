@@ -29,43 +29,49 @@ export async function PUT(request, { params: { id } }) {
     }
   }
 
-  await db.collection("offboarding_checklists").updateOne({ _id: id }, {
-    $set: {
-      todos: uniqueTodos,
-      items: uniqueItems
-    }
-  });
-  
-  await db.collection("offboarding_checklists").updateOne({ _id: id }, [
+  await db.collection("offboarding_checklists").updateOne(
+    { _id: id },
     {
       $set: {
-        completed: {
-          $and: [
-            {
-              $allElementsTrue: [
-                {
-                  $map: {
-                    input: "$todos",
-                    in: "$$this.checked"
-                  }
-                }
-              ]
-            },
-            {
-              $allElementsTrue: [
-                {
-                  $map: {
-                    input: "$items",
-                    in: "$$this.checked"
-                  }
-                }
-              ]
-            }
-          ]
-        }
+        todos: uniqueTodos,
+        items: uniqueItems
       }
     }
-  ]);
+  );
+  
+  await db.collection("offboarding_checklists").updateOne(
+    { _id: id },
+    [
+      {
+        $set: {
+          completed: {
+            $and: [
+              {
+                $allElementsTrue: [
+                  {
+                    $map: {
+                      input: "$todos",
+                      in: "$$this.checked"
+                    }
+                  }
+                ]
+              },
+              {
+                $allElementsTrue: [
+                  {
+                    $map: {
+                      input: "$items",
+                      in: "$$this.checked"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  );
 
   // TODO: send email
 

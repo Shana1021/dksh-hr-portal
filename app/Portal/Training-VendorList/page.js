@@ -13,10 +13,10 @@ export default async function TrainingVendorList({ searchParams: { pageSize=25, 
       .aggregate([
         {
           $lookup: {
-            from: "training",
+            from: "trainings",
             localField: "_id",
             foreignField: "vendor",
-            as: "training"
+            as: "trainings"
           }
         },
         {
@@ -24,7 +24,7 @@ export default async function TrainingVendorList({ searchParams: { pageSize=25, 
             name: true,
             email: true,
             phone: true,
-            references: { $size: "$training" }
+            references: { $size: "$trainings" }
           }
         }
       ])

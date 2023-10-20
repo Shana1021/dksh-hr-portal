@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FaDownload } from "react-icons/fa";
-import { BsFillCheckCircleFill } from "react-icons/bs";
+import { FiCheckCircle } from "react-icons/fi";
 import styles from "./employee-acknowledgement.module.css";
 import Calendar from "react-calendar";
 import Image from "next/image";
@@ -35,7 +35,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
     return (
       <div className={styles["page"]}>
         <div className={styles["thank-you"]}>
-          <BsFillCheckCircleFill size="70" color="green" />
+          <FiCheckCircle size="120" color="forestgreen" />
           <h1>Thank You</h1>
           <p>Your response has been recorded.</p>
 

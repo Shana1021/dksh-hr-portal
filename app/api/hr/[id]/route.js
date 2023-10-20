@@ -24,7 +24,8 @@ export async function PUT(request, { params: { id } }) {
 
   const password = formData.get("password").length > 0 && bcrypt.hashSync(formData.get("password"), 12);
 
-  await db.collection("hr_profiles").updateOne({ _id: id },
+  await db.collection("hr_profiles").updateOne(
+    { _id: id },
     {
       $set: {
         firstName: formData.get("firstName"),

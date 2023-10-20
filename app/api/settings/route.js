@@ -7,13 +7,16 @@ export async function PUT(request) {
   const client = await clientPromise;
   const db = await client.db();
   
-  await db.collection("settings").updateOne({}, {
-    $set: {
-      itTeamEmailAddress: formData.get("itTeamEmailAddress"),
-      adminTeamEmailAddress: formData.get("adminTeamEmailAddress"),
-      hrTeamEmailAddress: formData.get("hrTeamEmailAddress"),
-    },
-  });
+  await db.collection("settings").updateOne(
+    {},
+    {
+      $set: {
+        itTeamEmailAddress: formData.get("itTeamEmailAddress"),
+        adminTeamEmailAddress: formData.get("adminTeamEmailAddress"),
+        hrTeamEmailAddress: formData.get("hrTeamEmailAddress"),
+      },
+    }
+  );
 
   return NextResponse.json({ status: "success" });
 }

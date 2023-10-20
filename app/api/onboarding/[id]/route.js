@@ -21,7 +21,8 @@ export async function PUT(request, { params: { id } }) {
       .pipe(bucket.openUploadStream(formData.get("_id")));
   }
 
-  await db.collection("employee_profiles").updateOne({ _id: id },
+  await db.collection("employee_profiles").updateOne(
+    { _id: id },
     {
       $set: {
         firstName: formData.get("firstName"),
@@ -48,6 +49,10 @@ export async function PUT(request, { params: { id } }) {
 export async function DELETE(_, { params: { id } }) {
   const client = await clientPromise;
   const db = await client.db();
+
+  if (await db.collection("employee_profiles").countDocuments({ _id: id, status: "Pending" }) === 0) {
+    return NextResponse.json({ status: "notAllowed" });
+  }
 
   const bucket = new GridFSBucket(db, { bucketName: "employee_profile_images" });
 

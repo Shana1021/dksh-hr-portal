@@ -1,7 +1,7 @@
 import OnboardingBackgroundCheckPage from "./OnboardingBackgroundCheckPage";
 import clientPromise from "@/lib/mongodb";
 
-export default async function OnboardingBackgroundCheck({ searchParams: { pageSize=25, page=1 } }) {
+export default async function OnboardingBackgroundCheck({ searchParams: { pageSize=25, page=1, search="" } }) {
   pageSize = parseInt(pageSize);
   page = parseInt(page);
 

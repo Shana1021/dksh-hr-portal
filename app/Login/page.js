@@ -61,7 +61,7 @@ export default function Login({ searchParams: { callbackUrl }}) {
                 <input
                   type="email"
                   value={email}
-                  placeholder="employee@dksh.com"
+                  placeholder="hr@dksh.com"
                   required
                   onChange={(e) => setEmail(e.target.value)}
                 />
