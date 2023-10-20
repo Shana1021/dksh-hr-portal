@@ -5,7 +5,14 @@ import PieChart from "./PieChart";
 import DoughnutChart from "./DoughnutChart";
 import EmployeeStatusTable from "./EmployeeStatusTable";
 
-const Dashboard = () => {
+const Dashboard = ({
+  femaleProfiles,
+  maleProfiles,
+  totalEmployees,
+  totalHREmployees,
+  totalTrainingRequest,
+  totalResignedEmployees,
+}) => {
   return (
     <div className={styles["container"]}>
       <div className={styles["topSection"]}>
@@ -13,28 +20,28 @@ const Dashboard = () => {
         <div className={styles["col1"]}>
           <div className={styles["card"]}>
             <h4 className={styles["title"]}>Total Employees</h4>
-            <p className={styles["value"]}>4800</p>
+            <p className={styles["value"]}>{totalEmployees}</p>
             <p className={styles["subtitle"]}>Employees</p>
           </div>
         </div>
         <div className={styles["col1"]}>
           <div className={styles["card"]}>
-            <h4 className={styles["title"]}>Total Employees</h4>
-            <p className={styles["value"]}>4800</p>
+            <h4 className={styles["title"]}>Total HR Employees</h4>
+            <p className={styles["value"]}>{totalHREmployees}</p>
             <p className={styles["subtitle"]}>Employees</p>
           </div>
         </div>
         <div className={styles["col1"]}>
           <div className={styles["card"]}>
-            <h4 className={styles["title"]}>Total Employees</h4>
-            <p className={styles["value"]}>4800</p>
-            <p className={styles["subtitle"]}>Employees</p>
+            <h4 className={styles["title"]}>Total Training Request</h4>
+            <p className={styles["value"]}>{totalTrainingRequest}</p>
+            <p className={styles["subtitle"]}>Applicants</p>
           </div>
         </div>
         <div className={styles["col1"]}>
           <div className={styles["card"]}>
-            <h4 className={styles["title"]}>Total Employees</h4>
-            <p className={styles["value"]}>4800</p>
+            <h4 className={styles["title"]}>Total Resigned Employees</h4>
+            <p className={styles["value"]}>{totalResignedEmployees}</p>
             <p className={styles["subtitle"]}>Employees</p>
           </div>
         </div>
@@ -51,10 +58,13 @@ const Dashboard = () => {
 
         <div className={styles["col"]}>
           <div className={styles["doughnutChart"]}>
-          <div className={styles["row"]}>
-            <h3 className={styles["title-chart"]}>Employee Composition</h3>
-            <DoughnutChart />
-          </div>
+            <div className={styles["row"]}>
+              <h3 className={styles["title-chart"]}>Employee Composition</h3>
+              <DoughnutChart
+                maleProfiles={maleProfiles}
+                femaleProfiles={femaleProfiles}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -64,8 +74,8 @@ const Dashboard = () => {
         <div className={styles["col"]}>
           <div className={styles["pieChart"]}>
             <div className={styles["row"]}>
-            <h3 className={styles["title-chart"]}>Department Composition</h3>
-            <PieChart />
+              <h3 className={styles["title-chart"]}>Department Composition</h3>
+              <PieChart />
             </div>
           </div>
         </div>
