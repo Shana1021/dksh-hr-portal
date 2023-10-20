@@ -2,7 +2,7 @@
 import Chart from "chart.js/auto";
 import { useRef, useEffect } from "react";
 
-export default function DoughnutChart() {
+export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -12,6 +12,7 @@ export default function DoughnutChart() {
     if (chartStatus !== undefined) {
       chartStatus.destroy();
     }
+    console.log(femaleProfiles.length);
 
     const chart = new Chart(ctx, {
       type: "doughnut",
@@ -20,7 +21,7 @@ export default function DoughnutChart() {
         datasets: [
           {
             label: "Total:",
-            data: [12, 19],
+            data: [maleProfiles.length, femaleProfiles.length],
             backgroundColor: ["rgb(0,0,135,1)", "rgb(190,0,40, 1)"],
             borderColor: ["rgb(255,255,255)", "rgb(255,255,255)"],
             borderWidth: 1,
@@ -50,7 +51,9 @@ export default function DoughnutChart() {
     chart.data.datasets[0].hoverRadius = 10;
 
     chart.update();
-  }, []);
+  }, [maleProfiles, femaleProfiles]);
 
-  return <canvas ref={canvas} id="myDoughnutChart" width="736" height="736"></canvas>;
+  return (
+    <canvas ref={canvas} id="myDoughnutChart" width="736" height="736"></canvas>
+  );
 }
