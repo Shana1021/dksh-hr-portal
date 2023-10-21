@@ -12,6 +12,8 @@ const Dashboard = ({
   totalHREmployees,
   totalTrainingRequest,
   totalResignedEmployees,
+  data,
+  labels,
 }) => {
   return (
     <div className={styles["container"]}>
@@ -75,7 +77,7 @@ const Dashboard = ({
           <div className={styles["pieChart"]}>
             <div className={styles["row"]}>
               <h3 className={styles["title-chart"]}>Department Composition</h3>
-              <PieChart />
+              <PieChart labels={labels} data={data} />
             </div>
           </div>
         </div>

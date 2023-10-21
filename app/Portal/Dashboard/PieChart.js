@@ -2,7 +2,7 @@
 import Chart from "chart.js/auto";
 import { useRef, useEffect } from "react";
 
-export default function PieChart() {
+export default function PieChart({ labels, data }) {
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -16,11 +16,11 @@ export default function PieChart() {
     const chart = new Chart(ctx, {
       type: "pie",
       data: {
-        labels: ["IT", "Marketing", "Finance", "R&D"],
+        labels: labels,
         datasets: [
           {
-            label: "Dataset 1",
-            data: [12, 19, 20, 35],
+            label: "Total:",
+            data: data,
             backgroundColor: [
               "rgb(240,167,5,1)",
               "rgb(0,0,135,1)",
@@ -29,7 +29,7 @@ export default function PieChart() {
             ],
             borderColor: ["lightgrey"],
             borderWidth: 1,
-            hoverOffset: 25, // Set the hover offset
+            hoverOffset: 25,
           },
         ],
       },
@@ -51,11 +51,13 @@ export default function PieChart() {
       },
     });
 
-    // Add hoverRadius to create a smooth transition effect
     chart.data.datasets[0].hoverRadius = 10;
-
     chart.update();
-  }, []);
+
+    return () => {
+      chart.destroy();
+    };
+  }, [labels, data]);
 
   return <canvas ref={canvas} id="myChart" width="736" height="736"></canvas>;
 }
