@@ -1,6 +1,5 @@
 "use client";
 
-import "font-awesome/css/font-awesome.min.css";
 import styles from "./employee.module.css";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
