@@ -1,6 +1,5 @@
 "use client";
 
-import "font-awesome/css/font-awesome.min.css";
 import { useRef, useState } from "react";
 import styles from "./hr.module.css";
 import { useRouter } from "next/navigation";
@@ -12,7 +11,7 @@ import { IoCalendar } from "react-icons/io5";
 import { ImLocation, ImBriefcase } from "react-icons/im";
 import { IoMdMail } from "react-icons/io";
 import { MdFileUpload } from "react-icons/md";
-import { PiPasswordFill } from 'react-icons/pi';
+import { BsFillEyeSlashFill } from 'react-icons/bs';
 
 export default function HREmployeeProfileForm({ hrProfile }) {
   const router = useRouter();
@@ -298,9 +297,9 @@ export default function HREmployeeProfileForm({ hrProfile }) {
               />
               <div className={styles.inputIcon}>
                 {passwordVisible ? (
-                  <PiPasswordFill onClick={() => setPasswordVisible(!passwordVisible)} />
+                  <BsFillEyeSlashFill onClick={() => setPasswordVisible(!passwordVisible)} />
                 ) : (
-                  <PiPasswordFill onClick={() => setPasswordVisible(!passwordVisible)} />
+                  <BsFillEyeSlashFill onClick={() => setPasswordVisible(!passwordVisible)} />
                 )}
               </div>
             </div>

@@ -1,6 +1,4 @@
 "use client";
-
-import "font-awesome/css/font-awesome.min.css";
 import styles from "./profile.module.css";
 import Image from "next/image";
 import { BiSolidPhone } from "react-icons/bi";
@@ -12,7 +10,7 @@ import { IoMdMail } from "react-icons/io";
 import { MdFileUpload } from "react-icons/md";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { PiPasswordFill } from "react-icons/pi";
+import { BsFillEyeSlashFill } from 'react-icons/bs';
 
 export default function Profile({ profile }) {
   const router = useRouter();
@@ -281,9 +279,9 @@ export default function Profile({ profile }) {
               />
               <div className={styles.inputIcon}>
                 {passwordVisible ? (
-                  <PiPasswordFill onClick={() => setPasswordVisible(!passwordVisible)} />
+                  <BsFillEyeSlashFill onClick={() => setPasswordVisible(!passwordVisible)} />
                 ) : (
-                  <PiPasswordFill onClick={() => setPasswordVisible(!passwordVisible)} />
+                  <BsFillEyeSlashFill onClick={() => setPasswordVisible(!passwordVisible)} />
                 )}
               </div>
             </div>
