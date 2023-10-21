@@ -20,11 +20,6 @@ export default function PortalLayout({ children }) {
     );
   }
 
-  if (status === "unauthenticated") {
-    signIn();
-    return <></>;
-  }
-
   return <Portal>{children}</Portal>;
 }
 
