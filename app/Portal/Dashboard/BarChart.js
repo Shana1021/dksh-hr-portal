@@ -93,5 +93,5 @@ export default function BarChart() {
       },
     });
   }, []);
-  return <canvas ref={canvas} id="myBarChart" width="800" height="400"></canvas>;
+  return <canvas ref={canvas} id="myBarChart" /*width="800" height="400"*/></canvas>;
 }

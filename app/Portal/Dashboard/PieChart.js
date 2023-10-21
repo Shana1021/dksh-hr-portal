@@ -59,5 +59,5 @@ export default function PieChart({ labels, data }) {
     };
   }, [labels, data]);
 
-  return <canvas ref={canvas} id="myChart" width="736" height="736"></canvas>;
+  return <canvas ref={canvas} id="myChart" /*width="736" height="736"*/></canvas>;
 }
