@@ -3,7 +3,7 @@
 import Chart from "chart.js/auto";
 import { useRef, useEffect } from "react";
 
-export default function BarChart() {
+export default function BarChart({ Statedata, Statelabels }) {
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -17,33 +17,12 @@ export default function BarChart() {
     const chart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sept",
-          " Oct",
-          "Nov",
-          "Dec",
-        ],
+        labels: Statelabels,
         datasets: [
           {
             label: "Current Employees",
-            data: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
+            data: Statedata,
             backgroundColor: "rgb(190,0,40,1)", // Red for current employees
-            borderWidth: 1,
-            borderColor: "rgb(255,255,255,1)", // Border color
-            borderRadius: 5,
-          },
-          {
-            label: "New Employees",
-            data: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65],
-            backgroundColor: "rgb(240,167,5,1)", //yellow for new employees
             borderWidth: 1,
             borderColor: "rgb(255,255,255,1)", // Border color
             borderRadius: 5,
@@ -92,6 +71,8 @@ export default function BarChart() {
         },
       },
     });
-  }, []);
-  return <canvas ref={canvas} id="myBarChart" /*width="800" height="400"*/></canvas>;
+  }, [Statedata, Statelabels]);
+  return (
+    <canvas ref={canvas} id="myBarChart" /*width="800" height="400"*/></canvas>
+  );
 }

@@ -8,21 +8,33 @@ export async function POST(request) {
   const client = await clientPromise;
   const db = await client.db();
 
-  if (await db.collection("probationary").countDocuments({ _id: formData.get("employeeId") }) === 0) {
+  if (
+    (await db
+      .collection("probationary")
+      .countDocuments({ _id: formData.get("employeeId") })) === 0
+  ) {
     return NextResponse.json({ status: "employeeIdDoesNotExist" });
   }
 
   let vendor;
   if (formData.get("vendorChoice") === "Existing Vendor") {
-    if (await db.collection("vendors").countDocuments({ _id: formData.get("vendorCode") }) === 0) {
+    if (
+      (await db
+        .collection("vendors")
+        .countDocuments({ _id: formData.get("vendorCode") })) === 0
+    ) {
       return NextResponse.json({ status: "vendorCodeDoesNotExist" });
     }
 
     vendor = formData.get("vendorCode");
   } else if (formData.get("vendorChoice") === "New Vendor") {
     const [vendorCount, trainingCount] = await Promise.all([
-      db.collection("vendors").countDocuments({ _id: formData.get("vendorCode") }),
-      db.collection("trainings").countDocuments({ "vendor._id": formData.get("vendorCode") })
+      db
+        .collection("vendors")
+        .countDocuments({ _id: formData.get("vendorCode") }),
+      db
+        .collection("trainings")
+        .countDocuments({ "vendor._id": formData.get("vendorCode") }),
     ]);
 
     if (vendorCount > 0 || trainingCount > 0) {
@@ -33,13 +45,13 @@ export async function POST(request) {
       _id: formData.get("vendorCode"),
       name: formData.get("vendorName"),
       email: formData.get("vendorEmail"),
-      phone: formData.get("vendorPhone")
+      phone: formData.get("vendorPhone"),
     };
 
     if (formData.get("addVendor") === "on") {
       const { insertedId } = await db.collection("vendors").insertOne({
         ...vendorObj,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
 
       vendor = insertedId;
@@ -64,7 +76,7 @@ export async function POST(request) {
     employeeId: formData.get("employeeId"),
     vendor,
     status: "Pending",
-    createdAt: new Date()
+    createdAt: new Date(),
   });
 
   // TODO: send email to manager
@@ -80,29 +92,33 @@ export async function PUT(request) {
 
   const client = await clientPromise;
   const db = await client.db();
-  
-  const trainings = await db.collection("trainings")
-    .find({ _id: { $in: updates.map(id => new ObjectId(id)) } }, { status: true })
-    .map(doc => [doc._id, doc.status])
+
+  const trainings = await db
+    .collection("trainings")
+    .find(
+      { _id: { $in: updates.map((id) => new ObjectId(id)) } },
+      { status: true }
+    )
+    .map((doc) => [doc._id, doc.status])
     .toArray();
-  
+
   const statuses = Object.fromEntries(trainings);
 
-  const validUpdates = updates.filter(id => statuses[id] === "Approved");
+  const validUpdates = updates.filter((id) => statuses[id] === "Approved");
   if (validUpdates.length === 0) {
     return NextResponse.json({ status: "success" });
   }
 
   await db.collection("trainings").bulkWrite(
-    validUpdates.map(id => ({
+    validUpdates.map((id) => ({
       updateOne: {
         filter: { _id: new ObjectId(id), status: "Approved" },
         update: {
           $set: {
-            status: "Complete"
-          }
-        }
-      }
+            status: "Complete",
+          },
+        },
+      },
     }))
   );
 

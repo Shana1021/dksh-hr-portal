@@ -12,8 +12,10 @@ const Dashboard = ({
   totalHREmployees,
   totalTrainingRequest,
   totalResignedEmployees,
-  data,
-  labels,
+  Depdata,
+  Deplabels,
+  Statedata,
+  Statelabels,
 }) => {
   return (
     <div className={styles["container"]}>
@@ -71,7 +73,7 @@ const Dashboard = ({
         </div>*/}
         <div className={styles["barChart"]}>
           <h3 className={styles["title-chart"]}>Hires Chart</h3>
-          <BarChart />
+          <BarChart Statedata={Statedata} Statelabels={Statelabels} />
         </div>
         <div className={styles["doughnutChart"]}>
           <h3 className={styles["title-chart"]}>Employee Composition</h3>
@@ -101,7 +103,7 @@ const Dashboard = ({
         </div>*/}
         <div className={styles["pieChart"]}>
           <h3 className={styles["title-chart"]}>Department Composition</h3>
-          <PieChart labels={labels} data={data} />
+          <PieChart Deplabels={Deplabels} Depdata={Depdata} />
         </div>
         <div className={styles["table-form"]}>
           <h3 className={styles["title-chart"]}>Employee Status</h3>

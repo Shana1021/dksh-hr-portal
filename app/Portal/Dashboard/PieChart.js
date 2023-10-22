@@ -2,7 +2,7 @@
 import Chart from "chart.js/auto";
 import { useRef, useEffect } from "react";
 
-export default function PieChart({ labels, data }) {
+export default function PieChart({ Deplabels, Depdata }) {
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -16,11 +16,11 @@ export default function PieChart({ labels, data }) {
     const chart = new Chart(ctx, {
       type: "pie",
       data: {
-        labels: labels,
+        labels: Deplabels,
         datasets: [
           {
             label: "Total:",
-            data: data,
+            data: Depdata,
             backgroundColor: [
               "rgb(240,167,5,1)",
               "rgb(0,0,135,1)",
@@ -57,7 +57,9 @@ export default function PieChart({ labels, data }) {
     return () => {
       chart.destroy();
     };
-  }, [labels, data]);
+  }, [Deplabels, Depdata]);
 
-  return <canvas ref={canvas} id="myChart" /*width="736" height="736"*/></canvas>;
+  return (
+    <canvas ref={canvas} id="myChart" /*width="736" height="736"*/></canvas>
+  );
 }

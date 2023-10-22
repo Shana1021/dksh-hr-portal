@@ -1,5 +1,6 @@
 import Dashboard from "./Dashboard.js";
 import clientPromise from "@/lib/mongodb";
+
 export default async function DashboardPage() {
   //Database connection
   const client = await clientPromise;
@@ -39,7 +40,7 @@ export default async function DashboardPage() {
       },
     ])
     .toArray();
-
+  //Filter by Department
   const GroupByDepartment = await db
     .collection("probationary")
     .aggregate([
@@ -80,6 +81,47 @@ export default async function DashboardPage() {
     ])
     .toArray();
 
+  // Filter by State
+  const GroupByState = await db
+    .collection("probationary")
+    .aggregate([
+      {
+        $lookup: {
+          from: "offboarding_checklists",
+          localField: "_id",
+          foreignField: "_id",
+          as: "offboardingData",
+        },
+      },
+      {
+        $lookup: {
+          from: "employee_profiles",
+          localField: "_id",
+          foreignField: "_id",
+          as: "employeeData",
+        },
+      },
+      {
+        $match: {
+          offboardingData: { $eq: [] },
+        },
+      },
+      {
+        $group: {
+          _id: "$employeeData.state", // Group by department
+          count: { $sum: 1 }, // Count employees in each department
+        },
+      },
+      {
+        $project: {
+          _id: 0, // Exclude _id field from the output
+          label: "$_id",
+          data: "$count",
+        },
+      },
+    ])
+    .toArray();
+
   //Gender Filtering
   const maleProfiles = Totalemp.filter(
     (profile) => profile.employeeData[0].gender === "Male"
@@ -94,9 +136,6 @@ export default async function DashboardPage() {
   const totalTrainingRequest = tr_request.length;
   const totalResignedEmployees = resigned.length;
 
-  // console.log(GroupByDepartment.map((item) => item.label));
-  // console.log(GroupByDepartment.map((item) => item.data));
-  // console.log(Totalemp);
   return (
     <Dashboard
       maleProfiles={maleProfiles}
@@ -105,8 +144,10 @@ export default async function DashboardPage() {
       totalHREmployees={totalHREmployees}
       totalTrainingRequest={totalTrainingRequest}
       totalResignedEmployees={totalResignedEmployees}
-      labels={GroupByDepartment.map((item) => item.label)}
-      data={GroupByDepartment.map((item) => item.data)}
+      Deplabels={GroupByDepartment.map((item) => item.label)}
+      Depdata={GroupByDepartment.map((item) => item.data)}
+      Statelabels={GroupByState.map((item) => item.label)}
+      Statedata={GroupByState.map((item) => item.data)}
     />
   );
 }

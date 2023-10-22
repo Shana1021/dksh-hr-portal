@@ -2,7 +2,7 @@
 
 import styles from "./offboarding-requestforresignation.module.css";
 import { HiOutlineIdentification } from "react-icons/hi2"; //ID
-import { CiMoneyCheck1} from "react-icons/ci"; //Title
+import { CiMoneyCheck1 } from "react-icons/ci"; //Title
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
@@ -15,7 +15,7 @@ export default function Home() {
 
     const res = await fetch("/api/offboarding", {
       method: "POST",
-      body: new FormData(e.target)
+      body: new FormData(e.target),
     });
     if (!res.ok) {
       alert(res.statusText);
@@ -31,13 +31,17 @@ export default function Home() {
     }
 
     if (data.status === "requestExists") {
-      employeeIdRef.current.setCustomValidity("This employee has an existing resignation request.");
+      employeeIdRef.current.setCustomValidity(
+        "This employee has an existing resignation request."
+      );
       employeeIdRef.current.reportValidity();
       return;
     }
 
     if (data.status === "alreadyResigned") {
-      employeeIdRef.current.setCustomValidity("This employee has already resigned.");
+      employeeIdRef.current.setCustomValidity(
+        "This employee has already resigned."
+      );
       employeeIdRef.current.reportValidity();
       return;
     }
@@ -63,7 +67,7 @@ export default function Home() {
                   className={styles.input}
                   name="_id"
                   required
-                  onChange={e => {
+                  onChange={(e) => {
                     e.target.setCustomValidity("");
                     e.target.reportValidity();
                   }}
@@ -77,7 +81,7 @@ export default function Home() {
                   placeholder="Reason"
                   className={`${styles.input} ${styles.textarea}`}
                   rows="1"
-                  onChange={e => {
+                  onChange={(e) => {
                     e.target.style.height = "inherit";
                     e.target.style.height = `${e.target.scrollHeight}px`;
                   }}
@@ -85,7 +89,7 @@ export default function Home() {
                   required
                 />
                 <div className={styles.inputIcon}>
-                  <CiMoneyCheck1/>
+                  <CiMoneyCheck1 />
                 </div>
               </div>
             </div>
