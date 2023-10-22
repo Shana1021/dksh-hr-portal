@@ -224,13 +224,11 @@
   width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  
 }
 
 .table-scroll-container {
   overflow-y: auto; /* Enable vertical scrolling */
-  /*max-height: 400px; /* Set a fixed maximum height for the table */
-  height: 100%;
+  max-height: 200px; /* Set a fixed maximum height for the table */
   width: calc(100% + 2px);
   margin: -1px;
 }
@@ -242,7 +240,7 @@
 
 .table th,
 .table td {
-  padding: 20px;
+  padding: 10px;
   color: #949494;
 }
 .table td {
@@ -251,6 +249,7 @@
 }
 
 .table th {
+  background-color: white;
   border-bottom: 3px solid #efefef;
   text-align: left;
   font-size: 1.2em;

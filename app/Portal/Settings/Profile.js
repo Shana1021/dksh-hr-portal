@@ -94,7 +94,7 @@ export default function Profile({ profile }) {
                   <input
                     type="date"
                     name="dob"
-                    defaultValue={profile.dob}
+                    defaultValue={profile.dob && profile.dob.toISOString().split('T')[0]}
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>

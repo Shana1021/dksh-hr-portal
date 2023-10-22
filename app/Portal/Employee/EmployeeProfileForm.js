@@ -47,7 +47,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
   }
 
   const gender = employeeProfile?.gender ?? "Male";
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.formWrapper}>
@@ -111,7 +111,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                     type="date"
                     className={styles.input}
                     name="dob"
-                    defaultValue={employeeProfile?.dob}
+                    defaultValue={employeeProfile?.dob && employeeProfile.dob.toISOString().split('T')[0]}
                   />
                   <div className={styles.inputIcon}>
                     <IoCalendar />
