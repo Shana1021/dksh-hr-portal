@@ -136,17 +136,29 @@ export default async function DashboardPage() {
   const totalTrainingRequest = tr_request.length;
   const totalResignedEmployees = resigned.length;
 
-  const employeeStatuses = await db.collection("employee_profiles")
+  const employeeStatuses = await db
+    .collection("employee_profiles")
     .aggregate([
       {
         $project: {
           name: { $concat: ["$firstName", " ", "$lastName"] },
           department: true,
-          age: { $ifNull: [{ $dateDiff: { startDate: "$dob", endDate: new Date(), unit: "year" } }, "-"] },
+          age: {
+            $ifNull: [
+              {
+                $dateDiff: {
+                  startDate: "$dob",
+                  endDate: new Date(),
+                  unit: "year",
+                },
+              },
+              "-",
+            ],
+          },
           task: "BC",
           status: "$bcStatus",
-          createdAt: true
-        }
+          createdAt: true,
+        },
       },
       {
         $unionWith: {
@@ -157,24 +169,39 @@ export default async function DashboardPage() {
                 from: "employee_profiles",
                 localField: "employeeId",
                 foreignField: "_id",
-                as: "profile"
-              }
+                as: "profile",
+              },
             },
             {
               $project: {
                 _id: "$employeeId",
-                name: { $concat: [{ $first: "$profile.firstName" }, " ", { $first: "$profile.lastName" }] },
+                name: {
+                  $concat: [
+                    { $first: "$profile.firstName" },
+                    " ",
+                    { $first: "$profile.lastName" },
+                  ],
+                },
                 department: { $first: "$profile.department" },
                 age: {
-                  $ifNull: [{ $dateDiff: { startDate: { $first: "$profile.dob" }, endDate: new Date(), unit: "year" } }, "-"]
+                  $ifNull: [
+                    {
+                      $dateDiff: {
+                        startDate: { $first: "$profile.dob" },
+                        endDate: new Date(),
+                        unit: "year",
+                      },
+                    },
+                    "-",
+                  ],
                 },
                 task: "TR",
                 status: true,
-                createdAt: true
-              }
-            }
-          ]
-        }
+                createdAt: true,
+              },
+            },
+          ],
+        },
       },
       {
         $unionWith: {
@@ -185,38 +212,53 @@ export default async function DashboardPage() {
                 from: "employee_profiles",
                 localField: "_id",
                 foreignField: "_id",
-                as: "profile"
-              }
+                as: "profile",
+              },
             },
             {
               $lookup: {
                 from: "offboarding_checklists",
                 localField: "_id",
                 foreignField: "_id",
-                as: "acknowledgement"
-              }
+                as: "acknowledgement",
+              },
             },
             {
               $project: {
-                name: { $concat: [{ $first: "$profile.firstName" }, " ", { $first: "$profile.lastName" }] },
+                name: {
+                  $concat: [
+                    { $first: "$profile.firstName" },
+                    " ",
+                    { $first: "$profile.lastName" },
+                  ],
+                },
                 department: { $first: "$profile.department" },
                 age: {
-                  $ifNull: [{ $dateDiff: { startDate: { $first: "$profile.dob" }, endDate: new Date(), unit: "year" } }, "-"]
+                  $ifNull: [
+                    {
+                      $dateDiff: {
+                        startDate: { $first: "$profile.dob" },
+                        endDate: new Date(),
+                        unit: "year",
+                      },
+                    },
+                    "-",
+                  ],
                 },
                 task: "AOR",
                 status: {
                   $cond: {
                     if: { $gt: [{ $size: "$acknowledgement" }, 0] },
                     then: "Complete",
-                    else: "Pending"
-                  }
+                    else: "Pending",
+                  },
                 },
-                createdAt: true
-              }
-            }
-          ]
-        }
-      }
+                createdAt: true,
+              },
+            },
+          ],
+        },
+      },
     ])
     .sort({ createdAt: -1 })
     .limit(5)
