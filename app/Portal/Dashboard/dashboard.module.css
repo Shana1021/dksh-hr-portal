@@ -4,41 +4,39 @@
   display: flex;
   flex-direction: column; /* Make the children stack vertically */
   justify-content: space-between; /* Distribute space evenly between children */
-  /*padding: 0px 45px;*/
   padding: 0 20px 20px 20px;
   overflow: auto;
   gap: 5px;
 }
 
 .topSection {
-  /*padding: 15px;*/
+  padding: 5px;
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   justify-content: space-between; /* Distribute space evenly between children */
   flex: 1;
   height: 100%;
-  gap: 5px;
+  gap: 25px;
 }
 
 .col1 {
-  /*width: 100%;*/
   flex: 1;
 }
 
 .midSection {
-  /*padding: 15px;
-  /*flex: 0; /* Let this section grow to fill the remaining space */
+  padding: 5px;
   display: flex;
   justify-content: space-between;
   flex: 2;
   height: 100%;
-  gap: 5px;
+  gap: 25px;
   overflow: hidden;
 }
 
 .col {
   flex: 1; /* Allow this column to fill available space */
-  /*padding-left: 24px;*/
   float: left;
 }
 
@@ -48,61 +46,64 @@
 }
 
 .doughnutChart {
-  /*display: flex;
-  align-self: center;*/
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
-  padding: 15px;
-  /*width: 550px; /* Make the chart fill its container */
-  /*height: 380px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  padding-bottom: 15px;
   flex: 2;
 }
 
 .pieChart {
-  /*display: flex;
-  align-self: center;*/
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
-  padding: 15px;
-  /*width: 550px; /* Make the chart fill its container */
-  /*height: 380px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  padding-bottom: 15px;
   flex: 1;
 }
 
 .barChart {
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
-  padding: 15px;
-  /*width: 980px; /* Make the chart fill its container */
-  /*height: 380px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   flex: 3;
+  padding-bottom: 40px;
 }
 
 .table-form {
   border: 1px solid rgb(163, 165, 172);
   border-radius: 5px;
-  padding: 15px;
-  /*width: 980px; /* Make the chart fill its container */
-  /*height: 380px; /* Make the chart fill its container */
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   flex: 2;
   height: 100%;
 }
+.lineChart {
+  border: 1px solid rgb(163, 165, 172);
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex: 4;
+  padding-bottom: 40px;
+}
 
+.table-form:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
+}
 .barChart:hover,
 .doughnutChart:hover,
-.pieChart:hover {
+.pieChart:hover,
+.lineChart:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
   transform: translateY(
     -5px
@@ -110,7 +111,7 @@
 }
 
 .bottomSection {
-  /*padding: 15px;
+  padding: 5px;
   /*flex: 0; /* Let this section grow to fill the remaining space */
   display: flex;
   justify-content: space-between;
@@ -118,14 +119,12 @@
   flex: 2;
   height: 100%;
   overflow: hidden;
-  gap: 5px;
+  gap: 25px;
 }
 
 .card {
-  /*width: 20rem;
-  height: 8rem;*/
   height: 100%;
-  padding: 25px;
+  padding: 30px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -144,83 +143,40 @@
 }
 
 .title {
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 20px;
   margin-bottom: 0rem;
 }
 
 .title-chart {
- font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
+  padding: 15px;
   font-size: 1.25rem;
   margin-bottom: 0rem;
 }
 
 .value {
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   text-align: center;
-  font-size: 19px;
+  font-size: 30px;
+  color: #be0028;
   margin: 8px 0px;
   font-weight: bold;
 }
 
 .subtitle {
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   text-align: center;
-  font-size: 12px;
+  font-size: 18px;
   margin-bottom: 8px;
 }
-
-/* Media queries for screen size and sidebar state */
-@media (max-width: 620px) {
-  .barChart,
-  .doughnutChart,
-  .table-form,
-  .pieChart {
-    /*width: 100%; /* Full width for smaller screens */
-    /*height: 260px; /* Adjust the height as needed */
-  }
-
-  .card {
-    height: auto; /* Allow content to determine the card's height */
-  }
-
-  /* Adjust styles when the sidebar is open */
-  .sidebar-open .col1 {
-    width: 0;
-  }
-
-  .sidebar-open .col {
-    padding-left: 0;
-  }
-}
-
-/* Additional media query for screen height of 836px */
-@media (max-height: 836px) {
-  .card {
-    /*width: 18rem;*/
-  }
-  .barChart {
-    /*width: 650px;
-    height: 350px;*/
-  }
-  .table-form {
-    /*width: 650px;
-    height: 350px;*/
-  }
-  .doughnutChart,
-  .pieChart {
-    /*width: 510px;
-    height: 350px; /* Adjust the height for screens with 836px height */
-  }
-}
-
 /*------------------------------------ Table Design ------------------------------------------------------*/
-
 .table-container {
-  margin-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -228,9 +184,12 @@
 
 .table-scroll-container {
   overflow-y: auto; /* Enable vertical scrolling */
-  max-height: 200px; /* Set a fixed maximum height for the table */
+  max-height: 195px; /* Set a fixed maximum height for the table */
   width: calc(100% + 2px);
   margin: -1px;
+}
+.table-form .title-chart {
+  text-align: center;
 }
 
 .table {
@@ -252,7 +211,7 @@
   background-color: white;
   border-bottom: 3px solid #efefef;
   text-align: left;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
   font-family: Arial, sans-serif;
   position: sticky;
@@ -266,7 +225,6 @@
 .table tbody tr:hover {
   background-color: #cee2f5;
 }
-
 .image-container {
   display: inline-block;
   vertical-align: middle;

@@ -2,11 +2,11 @@
 import Chart from "chart.js/auto";
 import { useRef, useEffect } from "react";
 
-export default function PieChart({ Deplabels, Depdata }) {
-  const canvas = useRef(null);
+const LineChart = ({ month, probationary }) => {
+  const chartRef = useRef(null);
 
   useEffect(() => {
-    const ctx = canvas.current;
+    const ctx = chartRef.current.getContext("2d");
 
     let chartStatus = Chart.getChart(ctx, "myChart");
     if (chartStatus !== undefined) {
@@ -14,22 +14,18 @@ export default function PieChart({ Deplabels, Depdata }) {
     }
 
     const chart = new Chart(ctx, {
-      type: "pie",
+      type: "line",
       data: {
-        labels: Deplabels,
+        labels: month,
         datasets: [
           {
             label: "Total:",
-            data: Depdata,
-            backgroundColor: [
-              "rgb(240,167,5,1)",
-              "rgb(0,0,135,1)",
-              "rgb(190,0,40,1)",
-              "rgb(2,46,31,1)",
-            ],
-            borderColor: ["lightgrey"],
+            data: probationary,
+            backgroundColor: "rgba(240, 167, 5, 0.2)",
+            borderColor: "blue",
             borderWidth: 1,
             hoverOffset: 25,
+            fill: false,
           },
         ],
       },
@@ -57,7 +53,9 @@ export default function PieChart({ Deplabels, Depdata }) {
     return () => {
       chart.destroy();
     };
-  }, [Deplabels, Depdata]);
+  }, [month, probationary]);
 
-  return <canvas ref={canvas} id="myChart"></canvas>;
-}
+  return <canvas ref={chartRef} id="myChart" width="745" height="280"></canvas>;
+};
+
+export default LineChart;
