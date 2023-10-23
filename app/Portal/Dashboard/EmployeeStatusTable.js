@@ -18,20 +18,7 @@ export default function EmployeeStatusTable({ employeeStatuses }) {
           <tbody>
             {employeeStatuses.map((employee) => (
               <tr key={employee._id}>
-                <td>
-                  <div className={styles["profile-image"]}>
-                    <Image
-                      src={`/api/onboarding/${encodeURIComponent(
-                        employee._id
-                      )}/profileImage?${new Date().getTime()}`}
-                      alt="Profile Image"
-                      fill
-                      style={{ objectFit: "cover", borderRadius: "50%" }}
-                      unoptimized
-                    />
-                  </div>
-                  {employee.name}
-                </td>
+                <td>{employee.name}</td>
                 <td>{employee.department}</td>
                 <td>{employee.age}</td>
                 <td>{employee.task}</td>
