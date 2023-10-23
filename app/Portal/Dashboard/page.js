@@ -136,6 +136,92 @@ export default async function DashboardPage() {
   const totalTrainingRequest = tr_request.length;
   const totalResignedEmployees = resigned.length;
 
+  const employeeStatuses = await db.collection("employee_profiles")
+    .aggregate([
+      {
+        $project: {
+          name: { $concat: ["$firstName", " ", "$lastName"] },
+          department: true,
+          age: { $ifNull: [{ $dateDiff: { startDate: "$dob", endDate: new Date(), unit: "year" } }, "-"] },
+          task: "BC",
+          status: "$bcStatus",
+          createdAt: true
+        }
+      },
+      {
+        $unionWith: {
+          coll: "trainings",
+          pipeline: [
+            {
+              $lookup: {
+                from: "employee_profiles",
+                localField: "employeeId",
+                foreignField: "_id",
+                as: "profile"
+              }
+            },
+            {
+              $project: {
+                _id: "$employeeId",
+                name: { $concat: [{ $first: "$profile.firstName" }, " ", { $first: "$profile.lastName" }] },
+                department: { $first: "$profile.department" },
+                age: {
+                  $ifNull: [{ $dateDiff: { startDate: { $first: "$profile.dob" }, endDate: new Date(), unit: "year" } }, "-"]
+                },
+                task: "TR",
+                status: true,
+                createdAt: true
+              }
+            }
+          ]
+        }
+      },
+      {
+        $unionWith: {
+          coll: "accepted_resignations",
+          pipeline: [
+            {
+              $lookup: {
+                from: "employee_profiles",
+                localField: "_id",
+                foreignField: "_id",
+                as: "profile"
+              }
+            },
+            {
+              $lookup: {
+                from: "offboarding_checklists",
+                localField: "_id",
+                foreignField: "_id",
+                as: "acknowledgement"
+              }
+            },
+            {
+              $project: {
+                name: { $concat: [{ $first: "$profile.firstName" }, " ", { $first: "$profile.lastName" }] },
+                department: { $first: "$profile.department" },
+                age: {
+                  $ifNull: [{ $dateDiff: { startDate: { $first: "$profile.dob" }, endDate: new Date(), unit: "year" } }, "-"]
+                },
+                task: "AOR",
+                status: {
+                  $cond: {
+                    if: { $gt: [{ $size: "$acknowledgement" }, 0] },
+                    then: "Complete",
+                    else: "Pending"
+                  }
+                },
+                createdAt: true
+              }
+            }
+          ]
+        }
+      }
+    ])
+    .sort({ createdAt: -1 })
+    .limit(5)
+    .toArray();
+
   return (
     <Dashboard
       maleProfiles={maleProfiles}
@@ -148,6 +234,7 @@ export default async function DashboardPage() {
       Depdata={GroupByDepartment.map((item) => item.data)}
       Statelabels={GroupByState.map((item) => item.label)}
       Statedata={GroupByState.map((item) => item.data)}
+      employeeStatuses={employeeStatuses}
     />
   );
 }

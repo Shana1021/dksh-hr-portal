@@ -22,13 +22,18 @@ export async function POST(request) {
   }
 
   const password = bcrypt.hashSync(formData.get("password"), 12);
+  
+  let dob = new Date(formData.get("dob"));
+  if (isNaN(dob)) {
+    dob = null;
+  }
 
   await db.collection("hr_profiles").insertOne({
     _id: formData.get("_id"),
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
     gender: formData.get("gender"),
-    dob: formData.get("dob"),
+    dob,
     email: formData.get("email"),
     position: formData.get("position"),
     department: formData.get("department"),

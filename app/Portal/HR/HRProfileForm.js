@@ -111,7 +111,7 @@ export default function HREmployeeProfileForm({ hrProfile }) {
                   <input
                     type="date"
                     name="dob"
-                    defaultValue={hrProfile?.dob}
+                    defaultValue={hrProfile?.dob && hrProfile.dob.toISOString().split('T')[0]}
                     className={styles.input}
                   />
                   <div className={styles.inputIcon}>

@@ -20,6 +20,11 @@ export async function PUT(request, { params: { id } }) {
     Readable.from(Buffer.from(await formData.get("profileImage").arrayBuffer()))
       .pipe(bucket.openUploadStream(formData.get("_id")));
   }
+  
+  let dob = new Date(formData.get("dob"));
+  if (isNaN(dob)) {
+    dob = null;
+  }
 
   await db.collection("employee_profiles").updateOne(
     { _id: id },
@@ -28,7 +33,7 @@ export async function PUT(request, { params: { id } }) {
         firstName: formData.get("firstName"),
         lastName: formData.get("lastName"),
         gender: formData.get("gender"),
-        dob: formData.get("dob"),
+        dob,
         email: formData.get("email"),
         position: formData.get("position"),
         department: formData.get("department"),
@@ -50,7 +55,7 @@ export async function DELETE(_, { params: { id } }) {
   const client = await clientPromise;
   const db = await client.db();
 
-  if (await db.collection("employee_profiles").countDocuments({ _id: id, status: "Pending" }) === 0) {
+  if (await db.collection("employee_profiles").countDocuments({ _id: id, bcStatus: "Pending" }) === 0) {
     return NextResponse.json({ status: "notAllowed" });
   }
 

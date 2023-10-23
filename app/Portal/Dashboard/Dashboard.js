@@ -16,6 +16,7 @@ const Dashboard = ({
   Deplabels,
   Statedata,
   Statelabels,
+  employeeStatuses
 }) => {
   return (
     <div className={styles["container"]}>
@@ -107,7 +108,7 @@ const Dashboard = ({
         </div>
         <div className={styles["table-form"]}>
           <h3 className={styles["title-chart"]}>Employee Status</h3>
-          <EmployeeStatusTable />
+          <EmployeeStatusTable employeeStatuses={employeeStatuses} />
         </div>
       </div>
     </div>
