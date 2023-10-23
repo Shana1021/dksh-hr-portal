@@ -135,7 +135,56 @@ export default async function DashboardPage() {
   const totalHREmployees = hr_profiles.length;
   const totalTrainingRequest = tr_request.length;
   const totalResignedEmployees = resigned.length;
+  //Filter By month
+  const GroupByMonth = await db
+    .collection("probationary")
+    .aggregate([
+      {
+        $project: {
+          month: {
+            $dateToString: {
+              format: "%m",
+              date: "$createdAt",
+            },
+          },
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          probationaryCount: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          monthNumber: "$_id",
+          monthName: {
+            $switch: {
+              branches: [
+                { case: { $eq: ["$_id", "01"] }, then: "January" },
+                { case: { $eq: ["$_id", "02"] }, then: "February" },
+                { case: { $eq: ["$_id", "03"] }, then: "March" },
+                { case: { $eq: ["$_id", "04"] }, then: "April" },
+                { case: { $eq: ["$_id", "05"] }, then: "May" },
+                { case: { $eq: ["$_id", "06"] }, then: "June" },
+                { case: { $eq: ["$_id", "07"] }, then: "July" },
+                { case: { $eq: ["$_id", "08"] }, then: "August" },
+                { case: { $eq: ["$_id", "09"] }, then: "September" },
+                { case: { $eq: ["$_id", "10"] }, then: "October" },
+                { case: { $eq: ["$_id", "11"] }, then: "November" },
+                { case: { $eq: ["$_id", "12"] }, then: "December" },
+              ],
+              default: "Invalid Month",
+            },
+          },
+          probationary: "$probationaryCount",
+        },
+      },
+    ])
+    .toArray();
 
+  // Filter Employee by Status
   const employeeStatuses = await db
     .collection("employee_profiles")
     .aggregate([
@@ -272,11 +321,10 @@ export default async function DashboardPage() {
       totalHREmployees={totalHREmployees}
       totalTrainingRequest={totalTrainingRequest}
       totalResignedEmployees={totalResignedEmployees}
-      Deplabels={GroupByDepartment.map((item) => item.label)}
-      Depdata={GroupByDepartment.map((item) => item.data)}
-      Statelabels={GroupByState.map((item) => item.label)}
-      Statedata={GroupByState.map((item) => item.data)}
+      GroupByDepartment={GroupByDepartment}
+      GroupByState={GroupByState}
       employeeStatuses={employeeStatuses}
+      GroupByMonth={GroupByMonth}
     />
   );
 }

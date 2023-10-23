@@ -72,7 +72,5 @@ export default function BarChart({ Statedata, Statelabels }) {
       },
     });
   }, [Statedata, Statelabels]);
-  return (
-    <canvas ref={canvas} id="myBarChart" /*width="800" height="400"*/></canvas>
-  );
+  return <canvas ref={canvas} id="myBarChart"></canvas>;
 }

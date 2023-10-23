@@ -4,7 +4,7 @@ import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import DoughnutChart from "./DoughnutChart";
 import EmployeeStatusTable from "./EmployeeStatusTable";
-
+import LineChart from "./LineChart";
 const Dashboard = ({
   femaleProfiles,
   maleProfiles,
@@ -12,11 +12,10 @@ const Dashboard = ({
   totalHREmployees,
   totalTrainingRequest,
   totalResignedEmployees,
-  Depdata,
-  Deplabels,
-  Statedata,
-  Statelabels,
-  employeeStatuses
+  employeeStatuses,
+  GroupByMonth,
+  GroupByDepartment,
+  GroupByState,
 }) => {
   return (
     <div className={styles["container"]}>
@@ -72,9 +71,19 @@ const Dashboard = ({
             </div>
           </div>
         </div>*/}
-        <div className={styles["barChart"]}>
+        <div className={styles["lineChart"]}>
           <h3 className={styles["title-chart"]}>Hires Chart</h3>
-          <BarChart Statedata={Statedata} Statelabels={Statelabels} />
+          <LineChart
+            probationary={GroupByMonth.map((item) => item.probationary)}
+            month={GroupByMonth.map((item) => item.monthName)}
+          />
+        </div>
+        <div className={styles["barChart"]}>
+          <h3 className={styles["title-chart"]}>Employees by State</h3>
+          <BarChart
+            Statedata={GroupByState.map((item) => item.data)}
+            Statelabels={GroupByState.map((item) => item.label)}
+          />
         </div>
         <div className={styles["doughnutChart"]}>
           <h3 className={styles["title-chart"]}>Employee Composition</h3>
@@ -104,7 +113,10 @@ const Dashboard = ({
         </div>*/}
         <div className={styles["pieChart"]}>
           <h3 className={styles["title-chart"]}>Department Composition</h3>
-          <PieChart Deplabels={Deplabels} Depdata={Depdata} />
+          <PieChart
+            Deplabels={GroupByDepartment.map((item) => item.label)}
+            Depdata={GroupByDepartment.map((item) => item.data)}
+          />
         </div>
         <div className={styles["table-form"]}>
           <h3 className={styles["title-chart"]}>Employee Status</h3>

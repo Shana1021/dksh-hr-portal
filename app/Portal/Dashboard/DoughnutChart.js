@@ -53,7 +53,5 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
     chart.update();
   }, [maleProfiles, femaleProfiles]);
 
-  return (
-    <canvas ref={canvas} id="myDoughnutChart" /*width="736" height="736"*/></canvas>
-  );
+  return <canvas ref={canvas} id="myDoughnutChart"></canvas>;
 }
