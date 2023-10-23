@@ -12,13 +12,13 @@ cron.schedule("0 8 * * *", async () => {
   const cutOffDate = new Date();
   cutOffDate.setHours(0, 0, 0, 0);
   cutOffDate.setDate(cutOffDate.getDate() - 89);
-  
+
   await db.collection("probationary").updateMany(
     { completed: false, createdAt: { $lt: cutOffDate } },
     {
       $set: {
-        completed: true
-      }
+        completed: true,
+      },
     }
   );
 
