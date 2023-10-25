@@ -44,3 +44,6 @@ Mongodb user
 - password: LePTvVyxyFMCZQD5
 - username: dksh
 - password: JvciixmqD7ciMwRS
+
+# SendGrid
+- password: Hp2RCDgnUQcRofsR
