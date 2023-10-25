@@ -181,6 +181,11 @@ export default async function DashboardPage() {
           probationary: "$probationaryCount",
         },
       },
+      {
+        $sort: {
+          monthNumber: 1, // Sorting by monthNumber in ascending order
+        },
+      },
     ])
     .toArray();
 

@@ -7,7 +7,8 @@ const LineChart = ({ month, probationary }) => {
 
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");
-
+    ctx.canvas.width = 300;
+    ctx.canvas.height = 100;
     let chartStatus = Chart.getChart(ctx, "myChart");
     if (chartStatus !== undefined) {
       chartStatus.destroy();
@@ -33,13 +34,13 @@ const LineChart = ({ month, probationary }) => {
         responsive: true,
         plugins: {
           legend: {
-            position: "right",
+            position: "none",
           },
         },
         layout: {
           padding: {
             top: 0,
-            bottom: 0,
+            bottom: 20,
             left: 20,
             right: 0,
           },
@@ -55,7 +56,7 @@ const LineChart = ({ month, probationary }) => {
     };
   }, [month, probationary]);
 
-  return <canvas ref={chartRef} id="myChart" width="745" height="280"></canvas>;
+  return <canvas ref={chartRef} id="lineChart"></canvas>;
 };
 
 export default LineChart;

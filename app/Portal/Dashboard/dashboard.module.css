@@ -16,9 +16,9 @@
   align-items: center;
   justify-content: center;
   justify-content: space-between; /* Distribute space evenly between children */
-  flex: 1;
+  flex: 0;
   height: 100%;
-  gap: 25px;
+  gap: 5px;
 }
 
 .col1 {
@@ -31,7 +31,7 @@
   justify-content: space-between;
   flex: 2;
   height: 100%;
-  gap: 25px;
+  gap: 5px;
   overflow: hidden;
 }
 
@@ -52,7 +52,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   padding-bottom: 15px;
-  flex: 2;
+  flex: 1;
 }
 
 .pieChart {
@@ -71,7 +71,7 @@
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  flex: 3;
+  flex: 1;
   padding-bottom: 40px;
 }
 
@@ -90,7 +90,7 @@
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  flex: 4;
+  flex: 2;
   padding-bottom: 40px;
 }
 
@@ -119,12 +119,13 @@
   flex: 2;
   height: 100%;
   overflow: hidden;
-  gap: 25px;
+  gap: 5px;
 }
 
 .card {
   height: 100%;
-  padding: 30px;
+  padding: 8px;
+
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -146,14 +147,15 @@
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   text-align: center;
-  font-size: 20px;
+  color: black;
+  font-size: 1em;
   margin-bottom: 0rem;
 }
 
 .title-chart {
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
-  padding: 15px;
+  padding: 1em;
   font-size: 1.25rem;
   margin-bottom: 0rem;
 }
@@ -161,7 +163,7 @@
 .value {
   font-family: "Times New Roman", Times, serif;
   text-align: center;
-  font-size: 30px;
+  font-size: 1.5em;
   color: #be0028;
   margin: 8px 0px;
   font-weight: bold;
@@ -170,7 +172,8 @@
 .subtitle {
   font-family: "Times New Roman", Times, serif;
   text-align: center;
-  font-size: 18px;
+  font-size: 1em;
+  color: black;
   margin-bottom: 8px;
 }
 /*------------------------------------ Table Design ------------------------------------------------------*/
@@ -184,7 +187,8 @@
 
 .table-scroll-container {
   overflow-y: auto; /* Enable vertical scrolling */
-  max-height: 195px; /* Set a fixed maximum height for the table */
+  max-height: 25vh;
+  /* Set a fixed maximum height for the table */
   width: calc(100% + 2px);
   margin: -1px;
 }
@@ -241,4 +245,27 @@
   height: 40px;
   border-radius: 50%;
   margin-right: 5px;
+}
+@media only screen and (width> 1000px) {
+  .table-scroll-container {
+    max-height: 29.5vh;
+  }
+  .title {
+    font-size: 1.25em;
+  }
+
+  .title-chart {
+    font-size: 1.3rem;
+  }
+
+  .value {
+    font-size: 2em;
+  }
+
+  .subtitle {
+    font-size: 1em;
+  }
+  .card {
+    padding: 15px;
+  }
 }

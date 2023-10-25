@@ -22,10 +22,15 @@ export default function PieChart({ Deplabels, Depdata }) {
             label: "Total:",
             data: Depdata,
             backgroundColor: [
-              "rgb(240,167,5,1)",
-              "rgb(0,0,135,1)",
-              "rgb(190,0,40,1)",
-              "rgb(2,46,31,1)",
+              "#00FFF0",
+              "#0047FF",
+              "#FF7700",
+              "#8001FF",
+              "#FF2E7E",
+              "#FFAB05",
+              "#003f5c",
+              "#58508d",
+              "#bc5090",
             ],
             borderColor: ["lightgrey"],
             borderWidth: 1,
@@ -35,16 +40,17 @@ export default function PieChart({ Deplabels, Depdata }) {
       },
       options: {
         responsive: true,
+
         plugins: {
           legend: {
-            position: "right",
+            position: "none",
           },
         },
         layout: {
           padding: {
             top: 0,
-            bottom: 0,
-            left: 20,
+            bottom: 80,
+            left: 80,
             right: 0,
           },
         },

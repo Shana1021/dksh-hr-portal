@@ -22,7 +22,7 @@ export default function BarChart({ Statedata, Statelabels }) {
           {
             label: "Current Employees",
             data: Statedata,
-            backgroundColor: "rgb(190,0,40,1)", // Red for current employees
+            backgroundColor: "#DE3535", // Red for current employees
             borderWidth: 1,
             borderColor: "rgb(255,255,255,1)", // Border color
             borderRadius: 5,
@@ -52,7 +52,7 @@ export default function BarChart({ Statedata, Statelabels }) {
         plugins: {
           legend: {
             display: true,
-            position: "top",
+            position: "none",
           },
           tooltip: {
             callbacks: {

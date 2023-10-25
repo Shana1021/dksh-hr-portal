@@ -71,6 +71,14 @@ const Dashboard = ({
             </div>
           </div>
         </div>*/}
+
+        <div className={styles["doughnutChart"]}>
+          <h3 className={styles["title-chart"]}>Employee Composition</h3>
+          <DoughnutChart
+            maleProfiles={maleProfiles}
+            femaleProfiles={femaleProfiles}
+          />
+        </div>
         <div className={styles["lineChart"]}>
           <h3 className={styles["title-chart"]}>Hires Chart</h3>
           <LineChart
@@ -78,18 +86,12 @@ const Dashboard = ({
             month={GroupByMonth.map((item) => item.monthName)}
           />
         </div>
-        <div className={styles["barChart"]}>
-          <h3 className={styles["title-chart"]}>Employees by State</h3>
-          <BarChart
-            Statedata={GroupByState.map((item) => item.data)}
-            Statelabels={GroupByState.map((item) => item.label)}
-          />
-        </div>
-        <div className={styles["doughnutChart"]}>
-          <h3 className={styles["title-chart"]}>Employee Composition</h3>
-          <DoughnutChart
-            maleProfiles={maleProfiles}
-            femaleProfiles={femaleProfiles}
+
+        <div className={styles["pieChart"]}>
+          <h3 className={styles["title-chart"]}>Department Composition</h3>
+          <PieChart
+            Deplabels={GroupByDepartment.map((item) => item.label)}
+            Depdata={GroupByDepartment.map((item) => item.data)}
           />
         </div>
       </div>
@@ -111,11 +113,12 @@ const Dashboard = ({
             <EmployeeStatusTable />
           </div>
         </div>*/}
-        <div className={styles["pieChart"]}>
-          <h3 className={styles["title-chart"]}>Department Composition</h3>
-          <PieChart
-            Deplabels={GroupByDepartment.map((item) => item.label)}
-            Depdata={GroupByDepartment.map((item) => item.data)}
+
+        <div className={styles["barChart"]}>
+          <h3 className={styles["title-chart"]}>Employees by State</h3>
+          <BarChart
+            Statedata={GroupByState.map((item) => item.data)}
+            Statelabels={GroupByState.map((item) => item.label)}
           />
         </div>
         <div className={styles["table-form"]}>

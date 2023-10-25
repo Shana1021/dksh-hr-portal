@@ -12,7 +12,6 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
     if (chartStatus !== undefined) {
       chartStatus.destroy();
     }
-    console.log(femaleProfiles.length);
 
     const chart = new Chart(ctx, {
       type: "doughnut",
@@ -22,7 +21,7 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
           {
             label: "Total:",
             data: [maleProfiles.length, femaleProfiles.length],
-            backgroundColor: ["rgb(0,0,135,1)", "rgb(190,0,40, 1)"],
+            backgroundColor: ["#16C098", "#5932EA"],
             borderColor: ["rgb(255,255,255)", "rgb(255,255,255)"],
             borderWidth: 1,
             hoverOffset: 25, // Set the hover offset
@@ -31,16 +30,17 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
       },
       options: {
         responsive: true,
+
         plugins: {
           legend: {
-            position: "right",
+            position: "none",
           },
         },
         layout: {
           padding: {
             top: 0,
-            bottom: 0,
-            left: 20,
+            bottom: 80,
+            left: 80,
             right: 0,
           },
         },
