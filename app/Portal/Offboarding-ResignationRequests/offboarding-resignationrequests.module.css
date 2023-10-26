@@ -9,14 +9,16 @@
 
 .card {
   max-height: 20rem;
-  border: 1px solid #ccc;;
+  border: 1px solid #ccc;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  transform: translateY(-5px); /* Bounce effect by moving the card up slightly */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
 }
 
 .card-img {
@@ -62,33 +64,56 @@
 
 /* Style for the modal container */
 .modal {
-  background-color: #d02216;
+  background-color: #f9f9f9;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 3%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   max-width: 80%;
+
   width: 400px;
   position: relative; /* Added for positioning the close button */
 }
-
+.modal-overlay h2 {
+  padding: 25px;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-transform: uppercase;
+}
+.header {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
 .scroll-container {
   overflow: auto;
   max-height: 500px;
 }
 
 .modal-content {
-  background-color: white;
-  margin: 2px;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: #f9f9f9;
+  padding: 5px;
+  box-sizing: border-box;
+
   word-wrap: break-word;
+}
+.modal-content:nth-child(1) {
+  border-bottom: 2px solid black;
 }
 
 .radio-button-group {
   display: flex;
   flex-direction: column;
 }
-
+.radio-button-group input {
+  margin-right: 5px;
+}
+.modal-content h4 {
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+.modal-content input {
+  margin-bottom: 5px;
+  padding: 5px;
+}
 /* Style for the close button */
 .close-button {
   position: absolute;
@@ -96,7 +121,7 @@
   right: 10px;
   width: 30px;
   height: 30px;
-  background-color: #7b809a;
+  border: 1px solid black;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -104,7 +129,7 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 20px;
-  color: white;
+  color: black;
   transition: background-color 0.3s; /* Add smooth transitions for background-color and color */
 }
 
@@ -112,6 +137,7 @@
 .close-button:hover {
   background-color: #d02216;
   color: white;
+  border: none;
 }
 
 /* Style for the confirm action button */
@@ -128,7 +154,7 @@
   border: 0px;
   font-weight: 700;
   box-shadow: 0px 0px 14px -7px #000000;
-  background-image: linear-gradient(45deg, #fb8c00   0%, #d02216  51%, #fb8c00  100%);
+  background-color: #be0028;
   cursor: pointer;
   touch-action: manipulation;
 }
@@ -137,7 +163,10 @@
   background-position: right center;
   /* change the direction of the change here */
   color: #fff;
-  text-decoration: none;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
 }
 
 .confirm-btn:active {
@@ -146,4 +175,7 @@
 
 .input-field {
   padding: 2px;
+  border-radius: 10px;
+}
+.modal-content input[type="file"] {
 }
