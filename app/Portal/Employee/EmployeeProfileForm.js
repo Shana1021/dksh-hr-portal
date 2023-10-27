@@ -4,14 +4,17 @@ import styles from "./employee.module.css";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { BiSolidPhone } from 'react-icons/bi';
-import { FaUserTie, FaIdCard } from 'react-icons/fa';
-import { FaBuildingUser, FaMapLocationDot, FaLocationCrosshairs } from 'react-icons/fa6';
-import { ImLocation, ImBriefcase } from 'react-icons/im';
-import { IoMdMail } from 'react-icons/io';
-import { IoCalendar } from 'react-icons/io5';
-import { MdFileUpload } from 'react-icons/md';
-
+import { BiSolidPhone } from "react-icons/bi";
+import { FaUserTie, FaIdCard } from "react-icons/fa";
+import {
+  FaBuildingUser,
+  FaMapLocationDot,
+  FaLocationCrosshairs,
+} from "react-icons/fa6";
+import { ImLocation, ImBriefcase } from "react-icons/im";
+import { IoMdMail } from "react-icons/io";
+import { IoCalendar } from "react-icons/io5";
+import { MdFileUpload } from "react-icons/md";
 
 export default function EmployeeProfileForm({ employeeProfile }) {
   const router = useRouter();
@@ -47,7 +50,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
   }
 
   const gender = employeeProfile?.gender ?? "Male";
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.formWrapper}>
@@ -111,7 +114,10 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                     type="date"
                     className={styles.input}
                     name="dob"
-                    defaultValue={employeeProfile?.dob && employeeProfile.dob.toISOString().split('T')[0]}
+                    defaultValue={
+                      employeeProfile?.dob &&
+                      employeeProfile.dob.toISOString().split("T")[0]
+                    }
                   />
                   <div className={styles.inputIcon}>
                     <IoCalendar />
@@ -272,7 +278,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                 name="_id"
                 defaultValue={employeeProfile?._id}
                 required
-                onChange={e => {
+                onChange={(e) => {
                   e.target.setCustomValidity("");
                   e.target.reportValidity();
                 }}
@@ -334,9 +340,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
             {/* Image Upload */}
             <div className={styles.row}>
               <h5 className={styles.h5}>Profile Image Upload</h5>
-              <div
-                className={`${styles.inputGroup} ${styles.inputGroupIcon}`}
-              >
+              <div className={`${styles.inputGroup} ${styles.inputGroupIcon}`}>
                 <input
                   type="file"
                   accept="image/*"

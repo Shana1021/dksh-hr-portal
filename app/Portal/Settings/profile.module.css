@@ -14,7 +14,7 @@
 /* Heading styles */
 .h4,
 .h5 {
-  color: #f0a500;
+  color: #ffa500;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
@@ -44,7 +44,7 @@
 }
 
 .input:focus + .inputIcon:after {
-  border-right-color: #f0a500;
+  border-right-color: #ffa500;
 }
 
 .radioInput {
@@ -80,7 +80,7 @@
 .input:checked + .label:before,
 .select:focus,
 .select:active {
-  background-color: #f0a500;
+  background-color: #ffa500;
   color: #fff;
   border-color: #bd8200;
 }
@@ -225,10 +225,12 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .button:hover {
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(-5px);
 }
 
 /* Form wrapper styles */

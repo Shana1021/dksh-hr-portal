@@ -24,11 +24,11 @@
   text-align: center;
   margin-left: 20%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .acknowledged:hover {
-  transform: translateY(-5px);
+  transform: scale(1.05);
 }
 
 .acknowledged input[type="text"] {
@@ -196,14 +196,16 @@
   text-transform: uppercase;
   font-size: 0.9em;
   padding: 10px 40px;
+  margin-left: 7%;
   border: none;
-  transition: background-color 0.5s ease;
-  margin-left: 10%;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .button-container button:hover {
-  transform: scale(1.05);
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(
+    -5px
+  ); /* Bounce effect by moving the card up slightly */
 }
 
 .react-calendar-medium {

@@ -28,17 +28,19 @@ export default function OnboardingBackgroundCheckPage({
   };
 
   const router = useRouter();
-  const [bcStatuses, setBCStatuses] = useState(filteredProfiles.map(employeeProfile => employeeProfile.bcStatus));
+  const [bcStatuses, setBCStatuses] = useState(
+    filteredProfiles.map((employeeProfile) => employeeProfile.bcStatus)
+  );
   const [confirmation, setConfirmation] = useState(null);
-  
+
   useEffect(
     () =>
       setBCStatuses(
-        filteredProfiles.map(employeeProfile => employeeProfile.bcStatus)
+        filteredProfiles.map((employeeProfile) => employeeProfile.bcStatus)
       ),
     [filteredProfiles]
   );
-  
+
   for (const [index, employeeProfile] of filteredProfiles.entries()) {
     employeeProfile.id = (
       <Link
@@ -121,9 +123,7 @@ export default function OnboardingBackgroundCheckPage({
               message: "Are you sure you want to delete this?",
               async onConfirm() {
                 const res = await fetch(
-                  `/api/onboarding/${encodeURIComponent(
-                    employeeProfile._id
-                  )}`,
+                  `/api/onboarding/${encodeURIComponent(employeeProfile._id)}`,
                   {
                     method: "DELETE",
                   }
@@ -181,8 +181,10 @@ export default function OnboardingBackgroundCheckPage({
                           _id: filteredProfiles[i]._id,
                           bcStatus,
                         }))
-                        .filter((update, i) =>
-                          filteredProfiles[i].bcStatus === "Pending" && update.bcStatus !== "Pending"
+                        .filter(
+                          (update, i) =>
+                            filteredProfiles[i].bcStatus === "Pending" &&
+                            update.bcStatus !== "Pending"
                         )
                     ),
                   });
@@ -198,7 +200,9 @@ export default function OnboardingBackgroundCheckPage({
           >
             Send Email
           </button>
-          <button onClick={() => router.refresh()} className="module-button">Refresh</button>
+          <button onClick={() => router.refresh()} className="module-button">
+            Refresh
+          </button>
         </div>
       </div>
       {confirmation && (
