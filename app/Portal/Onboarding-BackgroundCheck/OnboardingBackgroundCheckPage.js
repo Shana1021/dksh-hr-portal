@@ -114,7 +114,7 @@ export default function OnboardingBackgroundCheckPage({
       </div>
     );
 
-    if (employeeProfile.bcStatus === "Pending") {
+    if (employeeProfile.bcStatus !== "Pass") {
       employeeProfile.action = (
         <FiTrash
           className="delete-button"
