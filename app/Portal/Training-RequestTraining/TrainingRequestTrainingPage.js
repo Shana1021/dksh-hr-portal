@@ -18,15 +18,22 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
   const vendorCodeRef = useRef(null);
   const employeeIdRef = useRef(null);
   const [vendorChoice, setVendorChoice] = useState("Existing Vendor");
+  const [submitted, setSubmitted] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
 
     const res = await fetch("/api/training", {
       method: "POST",
       body: new FormData(e.target)
     });
     if (!res.ok) {
+      setSubmitted(false);
       alert(res.statusText);
       return;
     }
@@ -34,12 +41,14 @@ export default function TrainingRequestTrainingPage({ vendorCodes }) {
     const data = await res.json();
 
     if (data.status === "employeeIdDoesNotExist") {
+      setSubmitted(false);
       employeeIdRef.current.setCustomValidity("This employee does not exist.");
       employeeIdRef.current.reportValidity();
       return;
     }
 
     if (data.status === "vendorCodeAlreadyExists") {
+      setSubmitted(false);
       vendorCodeRef.current.setCustomValidity("Vendor Code already exists.");
       vendorCodeRef.current.reportValidity();
       return;

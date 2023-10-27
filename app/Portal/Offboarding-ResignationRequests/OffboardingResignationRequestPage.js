@@ -116,6 +116,7 @@ export default function OffboardingResignationRequestsPage({
 }) {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   return (
     <>
@@ -155,6 +156,11 @@ export default function OffboardingResignationRequestsPage({
           reason={resignationRequests[selectedIndex].reason}
           onClose={() => setSelectedIndex(null)}
           onConfirm={async (formData) => {
+            if (submitted) {
+              return;
+            }
+            setSubmitted(true);
+
             const res = await fetch(
               `/api/offboarding/${encodeURIComponent(
                 resignationRequests[selectedIndex]._id
@@ -165,11 +171,13 @@ export default function OffboardingResignationRequestsPage({
               }
             );
             if (!res.ok) {
+              setSubmitted(false);
               alert(res.statusText);
               return;
             }
 
             setSelectedIndex(null);
+            setSubmitted(false);
             router.refresh();
           }}
         />

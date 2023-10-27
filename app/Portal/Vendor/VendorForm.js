@@ -4,21 +4,28 @@ import { FaIdCard, FaUserTie } from "react-icons/fa";
 import styles from "./vendor.module.css";
 import { IoMdMail } from "react-icons/io";
 import { BiSolidPhone } from "react-icons/bi";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function VendorForm({ vendor }) {
   const router = useRouter();
   const vendorCodeRef = useRef(null);
+  const [submitted, setSubmitted] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
 
     const res = await fetch(vendor ? `/api/vendor/${encodeURIComponent(vendor._id)}` : "/api/vendor", {
       method: vendor ? "PUT" : "POST",
       body: new FormData(e.target)
     });
     if (!res.ok) {
+      setSubmitted(false);
       alert(res.statusText);
       return;
     }
@@ -26,6 +33,7 @@ export default function VendorForm({ vendor }) {
     const data = await res.json();
 
     if (data.status === "vendorCodeAlreadyExists") {
+      setSubmitted(false);
       vendorCodeRef.current.setCustomValidity("Vendor Code already exists.");
       vendorCodeRef.current.reportValidity();
       return;
