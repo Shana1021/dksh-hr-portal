@@ -55,7 +55,14 @@ export async function DELETE(_, { params: { id } }) {
   const client = await clientPromise;
   const db = await client.db();
 
-  if (await db.collection("employee_profiles").countDocuments({ _id: id, bcStatus: "Pending" }) === 0) {
+  if (
+    await db.collection("employee_profiles").countDocuments({
+      $and: [
+        { _id: id },
+        { $or: [{ bcStatus: "Pending" }, { bcStatus: "Fail" }] }
+      ]
+    }) === 0
+  ) {
     return NextResponse.json({ status: "notAllowed" });
   }
 
