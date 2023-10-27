@@ -187,7 +187,7 @@
 
 .table-scroll-container {
   overflow-y: auto; /* Enable vertical scrolling */
-  max-height: 25vh;
+  /*max-height: 25vh;*/
   /* Set a fixed maximum height for the table */
   width: calc(100% + 2px);
   margin: -1px;
@@ -248,7 +248,7 @@
 }
 @media only screen and (width> 1000px) {
   .table-scroll-container {
-    max-height: 29.2vh;
+    /*max-height: 29.2vh;*/
   }
   .title {
     font-size: 1.25em;

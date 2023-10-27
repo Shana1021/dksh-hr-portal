@@ -1,10 +1,13 @@
-import React from "react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import styles from "./dashboard.module.css";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import DoughnutChart from "./DoughnutChart";
 import EmployeeStatusTable from "./EmployeeStatusTable";
 import LineChart from "./LineChart";
+
 const Dashboard = ({
   femaleProfiles,
   maleProfiles,
@@ -17,6 +20,12 @@ const Dashboard = ({
   GroupByDepartment,
   GroupByState,
 }) => {
+  const tableCardRef = useRef(null);
+  const tableCardTitleRef = useRef(null);
+  const [tableHeight, setTableHeight] = useState(0);
+
+  useEffect(() => setTableHeight(tableCardRef.current.clientHeight - tableCardTitleRef.current.clientHeight), []);
+
   return (
     <div className={styles["container"]}>
       <div className={styles["topSection"]}>
@@ -121,9 +130,12 @@ const Dashboard = ({
             Statelabels={GroupByState.map((item) => item.label)}
           />
         </div>
-        <div className={styles["table-form"]}>
-          <h3 className={styles["title-chart"]}>Employee Status</h3>
-          <EmployeeStatusTable employeeStatuses={employeeStatuses} />
+        <div ref={tableCardRef} className={styles["table-form"]}>
+          <h3 ref={tableCardTitleRef} className={styles["title-chart"]}>Employee Status</h3>
+          <EmployeeStatusTable
+            employeeStatuses={employeeStatuses}
+            height={tableHeight}
+          />
         </div>
       </div>
     </div>

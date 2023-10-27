@@ -1,10 +1,10 @@
 import styles from "./dashboard.module.css";
 import Image from "next/image";
 
-export default function EmployeeStatusTable({ employeeStatuses }) {
+export default function EmployeeStatusTable({ employeeStatuses, height }) {
   return (
     <div className={styles["table-container"]}>
-      <div className={styles["table-scroll-container"]}>
+      <div className={styles["table-scroll-container"]} style={{ maxHeight: height }}>
         <table className={styles["table"]}>
           <thead>
             <tr>

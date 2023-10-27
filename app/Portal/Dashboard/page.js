@@ -316,6 +316,7 @@ export default async function DashboardPage() {
     ])
     .sort({ createdAt: -1 })
     .limit(5)
+    .map(doc => ({ ...doc, _id: doc._id.toString() }))
     .toArray();
 
   return (
