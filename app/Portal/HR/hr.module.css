@@ -208,7 +208,7 @@
 
 /* Button styles */
 .button {
-  background-color: #de3737;
+  background-color: #be0028;
   border-radius: 0.5rem;
   box-sizing: border-box;
   color: #ffffff;
@@ -224,10 +224,12 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .button:hover {
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(-5px);
 }
 
 /* Form wrapper styles */
@@ -251,11 +253,11 @@
 }
 
 .inputIcon {
-  color: #8d8d8d; 
+  color: #8d8d8d;
 }
 
 .inputIcon:after {
-  border-right-color: #8d8d8d; 
+  border-right-color: #8d8d8d;
 }
 
 /* Responsive styles for smaller screens */
@@ -282,52 +284,50 @@
   }
 }
 
-
 @media only screen and (max-width: 820px) and (max-height: 1180px) {
   .formBody {
-    margin: 5px auto; 
-    padding: 1em 2em; 
-    font-size: 14px; 
+    margin: 5px auto;
+    padding: 1em 2em;
+    font-size: 14px;
   }
 
   .button {
-    margin-top: 1em; 
-    padding: 1em 2em; 
+    margin-top: 1em;
+    padding: 1em 2em;
   }
 
   .colHalf,
   .colThird {
-    width: 100%; 
-    padding-right: 0; 
+    width: 100%;
+    padding-right: 0;
   }
 }
 
 @media screen and (max-width: 912px) and (max-height: 1368px) {
-
   .formWrapper {
-    flex-direction: column; 
-    justify-content: center; 
-    padding: 10px; 
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
   }
 
   .form {
-    width: 100%; 
-    padding: 10px; 
+    width: 100%;
+    padding: 10px;
   }
 
   .colHalf {
-    width: 100%; 
-    padding-right: 0; 
+    width: 100%;
+    padding-right: 0;
   }
 
   .button {
-    margin-top: 1em; 
-    padding: 1.2em 2.5em; 
+    margin-top: 1em;
+    padding: 1.2em 2.5em;
   }
 
   .image-container {
-    width: 100px; 
-    height: 100px; 
-    margin: auto; 
+    width: 100px;
+    height: 100px;
+    margin: auto;
   }
 }

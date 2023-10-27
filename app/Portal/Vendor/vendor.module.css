@@ -153,8 +153,10 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .button:hover {
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #3c13ac 100%);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+  transform: translateY(-5px);
 }

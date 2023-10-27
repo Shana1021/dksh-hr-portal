@@ -5,21 +5,28 @@ import { Readable } from "stream";
 
 export async function POST(request) {
   const formData = await request.formData();
-  
+
   const client = await clientPromise;
   const db = await client.db();
 
-  if (await db.collection("employee_profiles").countDocuments({ _id: formData.get("_id") }, { limit: 1 }) > 0) {
+  if (
+    (await db
+      .collection("employee_profiles")
+      .countDocuments({ _id: formData.get("_id") }, { limit: 1 })) > 0
+  ) {
     return NextResponse.json({ status: "idExists" });
   }
-  
-  if (formData.get("profileImage").size > 0) {
-    const bucket = new GridFSBucket(db, { bucketName: "employee_profile_images" });
 
-    Readable.from(Buffer.from(await formData.get("profileImage").arrayBuffer()))
-      .pipe(bucket.openUploadStream(formData.get("_id")));
+  if (formData.get("profileImage").size > 0) {
+    const bucket = new GridFSBucket(db, {
+      bucketName: "employee_profile_images",
+    });
+
+    Readable.from(
+      Buffer.from(await formData.get("profileImage").arrayBuffer())
+    ).pipe(bucket.openUploadStream(formData.get("_id")));
   }
-  
+
   let dob = new Date(formData.get("dob"));
   if (isNaN(dob)) {
     dob = null;
@@ -42,7 +49,7 @@ export async function POST(request) {
     phone: formData.get("phone"),
     country: formData.get("country"),
     bcStatus: "Pending",
-    createdAt: new Date()
+    createdAt: new Date(),
   });
 
   return NextResponse.json({ status: "success" });
@@ -53,75 +60,83 @@ export async function PUT(request) {
   if (updates.length === 0) {
     return NextResponse.json({ status: "success" });
   }
-  
+
   const client = await clientPromise;
   const db = await client.db();
 
-  const employeeProfiles = await db.collection("employee_profiles")
-    .find({ _id: { $in: updates.map(update => update._id) } }, { bcStatus: true })
-    .map(doc => [doc._id, doc.bcStatus])
+  const employeeProfiles = await db
+    .collection("employee_profiles")
+    .find(
+      { _id: { $in: updates.map((update) => update._id) } },
+      { bcStatus: true }
+    )
+    .map((doc) => [doc._id, doc.bcStatus])
     .toArray();
-  
+
   const bcStatuses = Object.fromEntries(employeeProfiles);
 
-  const validUpdates = updates.filter(update => bcStatuses[update._id] === "Pending");
+  const validUpdates = updates.filter(
+    (update) => bcStatuses[update._id] === "Pending"
+  );
   if (validUpdates.length === 0) {
     return NextResponse.json({ status: "success" });
   }
 
   await db.collection("employee_profiles").bulkWrite(
-    validUpdates.map(update => ({
+    validUpdates.map((update) => ({
       updateOne: {
         filter: { _id: update._id },
         update: {
           $set: {
-            bcStatus: update.bcStatus
-          }
-        }
-      }
+            bcStatus: update.bcStatus,
+          },
+        },
+      },
     }))
   );
 
-  const passedUpdates = validUpdates.filter(update => update.bcStatus === "Pass");
+  const passedUpdates = validUpdates.filter(
+    (update) => update.bcStatus === "Pass"
+  );
   if (passedUpdates.length === 0) {
     return NextResponse.json({ status: "success" });
   }
 
   await Promise.all([
     db.collection("onboarding_checklists").insertMany(
-      passedUpdates.map(update => ({
+      passedUpdates.map((update) => ({
         _id: update._id,
         todos: [
           {
             title: "1 Hour Introduction",
-            checked: false
+            checked: false,
           },
           {
             title: "Office Tour",
-            checked: false
-          }
+            checked: false,
+          },
         ],
         items: [
           {
             title: "Access Card",
-            checked: false
+            checked: false,
           },
           {
             title: "Laptop",
-            checked: false
-          }
+            checked: false,
+          },
         ],
         completed: false,
-        createdAt: new Date()
+        createdAt: new Date(),
       }))
     ),
     db.collection("probationary").insertMany(
-      passedUpdates.map(update => ({
+      passedUpdates.map((update) => ({
         _id: update._id,
         completed: false,
-        createdAt: new Date()
+        createdAt: new Date(),
       }))
-    )
+    ),
   ]);
 
   // TODO: send email for those who passed
