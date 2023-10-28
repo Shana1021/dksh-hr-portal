@@ -9,7 +9,7 @@ export default async function DashboardPage() {
   const tr_request = await db.collection("trainings").find().toArray();
   const resigned = await db
     .collection("offboarding_checklists")
-    .find()
+    .find({ completed: true })
     .toArray();
 
   //Total Employee filtering

@@ -20,9 +20,9 @@ const LineChart = ({ month, probationary }) => {
         labels: month,
         datasets: [
           {
-            label: "Total:",
+            label: "Number of Employees:",
             data: probationary,
-            backgroundColor: "rgba(240, 167, 5, 0.2)",
+            backgroundColor: "blue",
             borderColor: "blue",
             borderWidth: 1,
             hoverOffset: 25,
@@ -39,7 +39,7 @@ const LineChart = ({ month, probationary }) => {
         },
         layout: {
           padding: {
-            top: 30,
+            top: 0,
             bottom: 20,
             left: 20,
             right: 0,
