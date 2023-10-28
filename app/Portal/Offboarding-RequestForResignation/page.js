@@ -4,20 +4,27 @@ import styles from "./offboarding-requestforresignation.module.css";
 import { HiOutlineIdentification } from "react-icons/hi2"; //ID
 import { CiMoneyCheck1 } from "react-icons/ci"; //Title
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const employeeIdRef = useRef(null);
+  const [submitted, setSubmitted] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
 
     const res = await fetch("/api/offboarding", {
       method: "POST",
       body: new FormData(e.target),
     });
     if (!res.ok) {
+      setSubmitted(false);
       alert(res.statusText);
       return;
     }
@@ -25,12 +32,14 @@ export default function Home() {
     const data = await res.json();
 
     if (data.status === "idDoesNotExist") {
+      setSubmitted(false);
       employeeIdRef.current.setCustomValidity("This employee does not exist.");
       employeeIdRef.current.reportValidity();
       return;
     }
 
     if (data.status === "requestExists") {
+      setSubmitted(false);
       employeeIdRef.current.setCustomValidity(
         "This employee has an existing resignation request."
       );
@@ -39,6 +48,7 @@ export default function Home() {
     }
 
     if (data.status === "alreadyResigned") {
+      setSubmitted(false);
       employeeIdRef.current.setCustomValidity(
         "This employee has already resigned."
       );

@@ -17,9 +17,15 @@ export default function HREmployeeProfileForm({ hrProfile }) {
   const router = useRouter();
   const employeeIdRef = useRef(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
 
     const res = await fetch(
       hrProfile
@@ -31,6 +37,7 @@ export default function HREmployeeProfileForm({ hrProfile }) {
       }
     );
     if (!res.ok) {
+      setSubmitted(false);
       alert(res.statusText);
       return;
     }
@@ -38,6 +45,7 @@ export default function HREmployeeProfileForm({ hrProfile }) {
     const data = await res.json();
     
     if (data.status === "idExists") {
+      setSubmitted(false);
       employeeIdRef.current.setCustomValidity("Employee ID already exists.");
       employeeIdRef.current.reportValidity();
       return;

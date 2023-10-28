@@ -9,10 +9,16 @@ import Image from "next/image";
 
 export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
   const [endDate, setEndDate] = useState(new Date());
+  const [acknowledged, setAcknowledged] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
 
     const res = await fetch(
       `/api/acknowledge-resignation/${encodeURIComponent(
@@ -24,14 +30,15 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
       }
     );
     if (!res.ok) {
+      setSubmitted(false);
       alert(res.statusText);
       return;
     }
 
-    setSubmitted(true);
+    setAcknowledged(true);
   }
 
-  if (submitted) {
+  if (acknowledged) {
     return (
       <div className={styles["page"]}>
         <div className={styles["thank-you"]}>

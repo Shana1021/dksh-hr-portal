@@ -12,6 +12,7 @@ export default function Login({ searchParams: { callbackUrl }}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevState) => !prevState);
@@ -20,6 +21,11 @@ export default function Login({ searchParams: { callbackUrl }}) {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
+
     const res = await signIn("credentials", {
       email,
       password,
@@ -27,6 +33,7 @@ export default function Login({ searchParams: { callbackUrl }}) {
     });
 
     if (res.error) {
+      setSubmitted(false);
       passwordRef.current.setCustomValidity("Invalid email or password.");
       passwordRef.current.reportValidity();
       return;

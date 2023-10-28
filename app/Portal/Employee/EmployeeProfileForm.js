@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./employee.module.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { BiSolidPhone } from "react-icons/bi";
@@ -19,9 +19,15 @@ import { MdFileUpload } from "react-icons/md";
 export default function EmployeeProfileForm({ employeeProfile }) {
   const router = useRouter();
   const employeeIdRef = useRef(null);
+  const [submitted, setSubmitted] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (submitted) {
+      return;
+    }
+    setSubmitted(true);
 
     const res = await fetch(
       employeeProfile
@@ -33,6 +39,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
       }
     );
     if (!res.ok) {
+      setSubmitted(false);
       alert(res.statusText);
       return;
     }
@@ -40,6 +47,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
     const data = await res.json();
 
     if (data.status === "idExists") {
+      setSubmitted(false);
       employeeIdRef.current.setCustomValidity("Employee ID already exists.");
       employeeIdRef.current.reportValidity();
       return;
