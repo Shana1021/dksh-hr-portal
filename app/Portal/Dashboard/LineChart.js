@@ -34,12 +34,12 @@ const LineChart = ({ month, probationary }) => {
         responsive: true,
         plugins: {
           legend: {
-            position: "none",
+            position: "top",
           },
         },
         layout: {
           padding: {
-            top: 0,
+            top: 30,
             bottom: 20,
             left: 20,
             right: 0,

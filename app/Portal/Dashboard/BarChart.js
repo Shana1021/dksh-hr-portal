@@ -52,7 +52,7 @@ export default function BarChart({ Statedata, Statelabels }) {
         plugins: {
           legend: {
             display: true,
-            position: "none",
+            position: "top",
           },
           tooltip: {
             callbacks: {

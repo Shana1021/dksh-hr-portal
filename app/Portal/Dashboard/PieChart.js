@@ -43,7 +43,7 @@ export default function PieChart({ Deplabels, Depdata }) {
 
         plugins: {
           legend: {
-            position: "none",
+            position: "top",
           },
         },
         layout: {

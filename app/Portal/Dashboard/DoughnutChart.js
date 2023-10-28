@@ -33,12 +33,12 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
 
         plugins: {
           legend: {
-            position: "none",
+            position: "top",
           },
         },
         layout: {
           padding: {
-            top: 0,
+            top: 35,
             bottom: 80,
             left: 80,
             right: 0,
