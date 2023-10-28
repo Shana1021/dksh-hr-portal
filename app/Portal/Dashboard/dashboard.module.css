@@ -247,9 +247,6 @@
   margin-right: 5px;
 }
 @media only screen and (width> 1000px) {
-  .table-scroll-container {
-    /*max-height: 29.2vh;*/
-  }
   .title {
     font-size: 1.25em;
   }

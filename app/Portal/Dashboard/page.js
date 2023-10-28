@@ -8,7 +8,7 @@ export default async function DashboardPage() {
   const hr_profiles = await db.collection("hr_profiles").find().toArray();
   const tr_request = await db.collection("trainings").find().toArray();
   const resigned = await db
-    .collection("signed_acceptance_of_resignations.chunks")
+    .collection("offboarding_checklists")
     .find()
     .toArray();
 
@@ -316,7 +316,7 @@ export default async function DashboardPage() {
     ])
     .sort({ createdAt: -1 })
     .limit(5)
-    .map(doc => ({ ...doc, _id: doc._id.toString() }))
+    .map((doc) => ({ ...doc, _id: doc._id.toString() }))
     .toArray();
 
   return (
