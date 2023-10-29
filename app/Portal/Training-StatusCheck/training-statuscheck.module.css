@@ -8,6 +8,7 @@
 .header h1 {
   margin: 0;
   align-items: center;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 120%;
   margin: 10px;
   padding: 10px;
@@ -16,6 +17,7 @@
 .actions {
   align-self: flex-end;
   margin-top: 15px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   gap: 15px;
 }

@@ -19,6 +19,7 @@
 .sidebar-menu {
   display: block;
   transition: background-color 0.5s;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px; /* Standardized font size */
   color: #be0028; /* Set font color to red */
   padding: 5px;
@@ -26,6 +27,7 @@
 
 .sidebar-title {
   display: flex;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   justify-content: space-between;
   cursor: pointer;
   align-items: center;
@@ -88,6 +90,7 @@
   border: none;
   border-radius: 5px;
   font-size: 1em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 2px;
   font-weight: lighter;
   margin-top: auto;

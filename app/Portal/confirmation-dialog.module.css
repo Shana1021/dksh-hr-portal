@@ -37,6 +37,7 @@
   align-items: center;
   cursor: pointer;
   font-weight: bold;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   color: white;
   transition: background-color 0.3s; /* Add smooth transitions for background-color and color */
@@ -48,18 +49,19 @@
   color: white;
 }
 
-
 /* Style for the alert text */
 .alert-msg1 {
   margin-top: 15px;
   text-align: center;
   font-size: 18px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .alert-msg2 {
   padding: 10px;
   text-align: center;
   font-size: 15px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* Style for the confirm action button */
@@ -75,8 +77,14 @@
   display: block;
   border: 0px;
   font-weight: 700;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-shadow: 0px 0px 14px -7px #000000;
-  background-image: linear-gradient(45deg, #fb8c00   0%, #be0028  51%, #fb8c00  100%);
+  background-image: linear-gradient(
+    45deg,
+    #fb8c00 0%,
+    #be0028 51%,
+    #fb8c00 100%
+  );
   cursor: pointer;
   touch-action: manipulation;
 }

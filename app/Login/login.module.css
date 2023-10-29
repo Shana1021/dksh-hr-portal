@@ -28,6 +28,7 @@
   color: #be0028;
   font-size: 2.7em;
   font-weight: bold;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .fields {
@@ -39,6 +40,7 @@
   font-size: 0.75em;
   color: gray;
   margin-top: 20px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .sign-in {
@@ -46,6 +48,7 @@
   font-size: 2.3em;
   font-weight: 600;
   margin: 5px 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .login-field {
@@ -66,6 +69,7 @@
   width: 100%;
   margin-top: 3px;
   font-size: 0.7em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-shadow: 2px 4px 5px -5px black;
   transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
@@ -100,6 +104,7 @@
 .show-password {
   margin-top: 5px;
   font-size: 0.8em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .show-password input[type="checkbox"] {

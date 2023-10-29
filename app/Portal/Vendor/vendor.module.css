@@ -138,6 +138,7 @@
 .button {
   background-color: #be0028;
   border-radius: 0.5rem;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   color: #ffffff;
   display: flex;

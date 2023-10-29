@@ -15,12 +15,14 @@
 .h4 {
   color: #f0a500;
   margin-top: 1.5em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 1em;
 }
 
 .h5 {
   color: #8d8d8d;
   margin-top: 1em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 0;
 }
 
@@ -35,6 +37,7 @@
   padding: 1em;
   line-height: 1.4;
   background-color: #f9f9f9;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
   transition: 0.35s ease-in-out;
@@ -63,6 +66,7 @@
   width: 33.33%;
   height: 3.2em;
   padding-top: 12px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
   float: none;
   border-radius: 0;

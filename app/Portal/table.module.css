@@ -18,6 +18,7 @@
 .table th,
 .table td {
   padding: 7px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
   text-align: center;
   border: 1px solid rgb(230, 228, 228);
@@ -28,6 +29,7 @@
 
 .table th {
   font-size: 1.1em;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #be0028;
   font-weight: bold;
   font-family: Arial, sans-serif;
@@ -44,6 +46,7 @@
 }
 .table-footer {
   font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #f1efef;
   padding: 5px;
 }
@@ -53,6 +56,7 @@
 .table-footer-right {
   display: flex;
   font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-right: 10px;
   float: right;
 }
@@ -65,6 +69,7 @@
 }
 .table-footer-right .pagination-btn {
   font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-left: 5px;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -76,4 +81,5 @@
 }
 .table-footer-right .Go-btn {
   color: #be0028;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

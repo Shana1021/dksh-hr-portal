@@ -12,6 +12,7 @@
 /* Heading styles */
 .h4,
 .h5 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #f0a500;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
@@ -86,6 +87,7 @@
 
 .input[id="terms"] + .label {
   font-size: 13px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .input:checked + .label:after {
@@ -214,6 +216,7 @@
   color: #ffffff;
   display: flex;
   font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   justify-content: center;
   padding: 1em 2.5em;
   text-decoration: none;

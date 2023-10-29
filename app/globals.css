@@ -22,6 +22,7 @@ button {
   color: white;
   border-radius: 10px;
   background-color: #be0028;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-size: 0.9em;
   padding: 10px 40px;
@@ -41,6 +42,7 @@ button {
 
 .edit-button {
   background: none;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: none;
   cursor: pointer;
   padding: 0;
@@ -54,5 +56,6 @@ button {
   cursor: pointer;
   padding: 0;
   font-size: 16px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #c61717;
 }

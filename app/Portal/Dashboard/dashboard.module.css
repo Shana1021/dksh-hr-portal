@@ -144,7 +144,7 @@
 }
 
 .title {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   text-align: center;
   color: black;
@@ -153,7 +153,7 @@
 }
 
 .title-chart {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   padding: 1em;
   font-size: 1.25rem;
@@ -161,7 +161,7 @@
 }
 
 .value {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
   font-size: 1.5em;
   color: #be0028;
@@ -170,7 +170,7 @@
 }
 
 .subtitle {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
   font-size: 1em;
   color: black;
