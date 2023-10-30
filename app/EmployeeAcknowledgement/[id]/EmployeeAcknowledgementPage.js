@@ -87,12 +87,10 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
           <b>
             <u>{acceptedResignation.annualLeaveBalance} day(s)</u>
           </b>
-          .
+          . Please state your last day of work and re-upload the signed AOR for
+          our reference.
         </p>
-        <p>
-          Please state your last day of work and re-upload the signed AOR for
-          our reference, Thank you.
-        </p>
+        <p>Thank you!</p>
       </div>
 
       <div className={styles["row"]}>

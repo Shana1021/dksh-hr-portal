@@ -45,5 +45,10 @@ Mongodb user
 - username: dksh
 - password: JvciixmqD7ciMwRS
 
+# Email
+- email: dksh40002@gmail.com
+- password: Hp2RCDgnUQcRofsR
+
 # SendGrid
+- username: sepab40002
 - password: Hp2RCDgnUQcRofsR
