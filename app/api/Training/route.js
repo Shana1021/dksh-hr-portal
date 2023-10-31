@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import sgMailSend from "@/lib/sendgrid";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
@@ -28,16 +29,7 @@ export async function POST(request) {
 
     vendor = formData.get("vendorCode");
   } else if (formData.get("vendorChoice") === "New Vendor") {
-    const [vendorCount, trainingCount] = await Promise.all([
-      db
-        .collection("vendors")
-        .countDocuments({ _id: formData.get("vendorCode") }),
-      db
-        .collection("trainings")
-        .countDocuments({ "vendor._id": formData.get("vendorCode") }),
-    ]);
-
-    if (vendorCount > 0 || trainingCount > 0) {
+    if (await db.collection("vendors").countDocuments({ _id: formData.get("vendorCode") }) > 0) {
       return NextResponse.json({ status: "vendorCodeAlreadyExists" });
     }
 
@@ -62,7 +54,7 @@ export async function POST(request) {
     vendor = null;
   }
 
-  await db.collection("trainings").insertOne({
+  const training = {
     title: formData.get("title"),
     addressLine1: formData.get("addressLine1"),
     addressLine2: formData.get("addressLine2"),
@@ -76,10 +68,26 @@ export async function POST(request) {
     employeeId: formData.get("employeeId"),
     vendor,
     status: "Pending",
+    managerEmail: formData.get("managerEmail"),
     createdAt: new Date(),
-  });
+  };
 
-  // TODO: send email to manager
+  const { insertedId } = await db.collection("trainings").insertOne(training);
+
+  const employeeProfile = await db.collection("employee_profiles").findOne({ _id: formData.get("employeeId") });
+  if (typeof training.vendor === "string") {
+    training.vendor = await db.collection("vendors").findOne({ _id: training.vendor });
+  }
+
+  await sgMailSend(
+    formData.get("managerEmail"),
+    "d-7db989dc6426473dbfbe147a8aad855a",
+    {
+      employee: employeeProfile,
+      training,
+      approveTrainingUrl: `${process.env.NEXTAUTH_URL}TrainingApproval/${encodeURIComponent(insertedId)}`
+    }
+  );
 
   return NextResponse.json({ status: "success" });
 }
@@ -122,7 +130,35 @@ export async function PUT(request) {
     }))
   );
 
-  // TODO: send emails to managers
+  const completedTrainings = await db.collection("trainings")
+    .aggregate([
+      {
+        $match : { _id: { $in: validUpdates.map((id) => new ObjectId(id)) } }
+      },
+      {
+        $lookup: {
+          from: "employee_profiles",
+          localField: "employeeId",
+          foreignField: "_id",
+          as: "profile"
+        }
+      }
+    ])
+    .map(doc => ({ ...doc, profile: doc.profile[0] }))
+    .toArray();
+  
+  await Promise.all(
+    completedTrainings.map(({ profile, ...training }) =>
+      sgMailSend(
+        training.managerEmail,
+        "d-4400989f52404df1a013818b83c6e4f0",
+        {
+          employee: profile,
+          training
+        }
+      )
+    )
+  );
 
   return NextResponse.json({ status: "success" });
 }

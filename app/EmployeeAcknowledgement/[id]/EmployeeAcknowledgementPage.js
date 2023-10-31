@@ -50,7 +50,7 @@ export default function EmployeeAcknowledgementPage({ acceptedResignation }) {
             className={styles["button-container"]}
             style={{ marginTop: 20, marginRight: 35 }}
           >
-            <button onClick={() => setSubmitted(false)}>Back to Form?</button>
+            <button onClick={() => setAcknowledged(false)}>Back to Form?</button>
           </div>
         </div>
       </div>

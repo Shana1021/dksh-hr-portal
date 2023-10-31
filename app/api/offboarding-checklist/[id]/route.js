@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
+import sgMailSend from "@/lib/sendgrid";
 
 export async function PUT(request, { params: { id } }) {
   const { todos, items } = await request.json();
@@ -39,7 +40,7 @@ export async function PUT(request, { params: { id } }) {
     }
   );
   
-  await db.collection("offboarding_checklists").updateOne(
+  const update = await db.collection("offboarding_checklists").findOneAndUpdate(
     { _id: id },
     [
       {
@@ -70,10 +71,27 @@ export async function PUT(request, { params: { id } }) {
           }
         }
       }
-    ]
+    ],
+    {
+      projection: { completed: true },
+      returnDocument: "after"
+    }
   );
 
-  // TODO: send email
+  if (update.value.completed) {
+    const [employeeProfile, settings] = await Promise.all([
+      db.collection("employee_profiles").findOne({ _id: id }),
+      db.collection("settings").findOne()
+    ]);
+
+    await sgMailSend(
+      settings.hrTeamEmailAddress,
+      "d-806eef9a541341388924bc7fdf6d85c5",
+      {
+        employee: employeeProfile
+      }
+    );
+  }
 
   return NextResponse.json({ status: "success" });
 }

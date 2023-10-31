@@ -271,6 +271,7 @@ export default function EmployeeProfileForm({ employeeProfile }) {
                 placeholder="Email Address"
                 className={styles.input}
                 name="email"
+                required
                 defaultValue={employeeProfile?.email}
               />
               <div className={styles.inputIcon}>

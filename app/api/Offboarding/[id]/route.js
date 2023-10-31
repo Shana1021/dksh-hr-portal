@@ -2,6 +2,7 @@ import clientPromise from "@/lib/mongodb";
 import { GridFSBucket } from "mongodb";
 import { Readable } from "stream";
 import { NextResponse } from "next/server";
+import sgMailSend from "@/lib/sendgrid";
 
 export async function POST(request, { params: { id } }) {
   const formData = await request.formData();
@@ -26,11 +27,40 @@ export async function POST(request, { params: { id } }) {
       employeeId: id,
       reason: resignationRequest.reason,
       annualLeaveBalance: formData.get("annualLeaveBalance"),
-      managerEmail: formData.get("managerEmail"),
       createdAt: new Date()
     });
 
-    // TODO: send emails
+    const [employeeProfile, settings] = await Promise.all([
+      db.collection("employee_profiles").findOne({ _id: id }),
+      db.collection("settings").findOne()
+    ]);
+
+    await Promise.all([
+      sgMailSend(
+        employeeProfile.email,
+        "d-49fbb147b8fb4bd79047b2073f55561c",
+        {
+          employee: employeeProfile,
+          employeeAcknowledgementUrl: `${process.env.NEXTAUTH_URL}EmployeeAcknowledgement/${encodeURIComponent(insertedId)}`
+        }
+      ),
+      sgMailSend(
+        formData.get("managerEmail"),
+        "d-0b9e7c530607413db13eb4d95fdfdf0e",
+        {
+          employee: employeeProfile,
+          reason: resignationRequest.reason
+        }
+      ),
+      sgMailSend(
+        settings.hrTeamEmailAddress,
+        "d-b7435aa7ad374599a5c791c3c8fb0efb",
+        {
+          employee: employeeProfile,
+          reason: resignationRequest.reason
+        }
+      )
+    ]);
   }
 
   return NextResponse.json({ status: "success" });

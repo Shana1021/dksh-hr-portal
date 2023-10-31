@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import { GridFSBucket } from "mongodb";
 import { Readable } from "stream";
+import sgMailSend from "@/lib/sendgrid";
 
 export async function POST(request) {
   const formData = await request.formData();
@@ -95,17 +96,17 @@ export async function PUT(request) {
     }))
   );
 
-  const passedUpdates = validUpdates.filter(
-    (update) => update.bcStatus === "Pass"
-  );
-  if (passedUpdates.length === 0) {
+  const passedIds = validUpdates
+    .filter((update) => update.bcStatus === "Pass")
+    .map((update) => update._id);
+  if (passedIds.length === 0) {
     return NextResponse.json({ status: "success" });
   }
 
   await Promise.all([
     db.collection("onboarding_checklists").insertMany(
-      passedUpdates.map((update) => ({
-        _id: update._id,
+      passedIds.map((_id) => ({
+        _id,
         todos: [
           {
             title: "1 Hour Introduction",
@@ -131,15 +132,44 @@ export async function PUT(request) {
       }))
     ),
     db.collection("probationary").insertMany(
-      passedUpdates.map((update) => ({
-        _id: update._id,
+      passedIds.map((_id) => ({
+        _id,
         completed: false,
         createdAt: new Date(),
       }))
-    ),
+    )
   ]);
 
-  // TODO: send email for those who passed
+  const [passedEmployees, settings] = await Promise.all([
+    db.collection("employee_profiles")
+      .find({ _id: { $in: passedIds } })
+      .toArray(),
+    db.collection("settings").findOne()
+  ]);
+
+  await Promise.all([
+    sgMailSend(
+      settings.itTeamEmailAddress,
+      "d-4c01d07ecf7e44e6be4e4c877504df51",
+      {
+        employees: passedEmployees
+      }
+    ),
+    sgMailSend(
+      settings.adminTeamEmailAddress,
+      "d-249feb6627db4dd7a674fea5b98d7c0f",
+      {
+        employees: passedEmployees
+      }
+    ),
+    sgMailSend(
+      settings.adminTeamEmailAddress,
+      "d-dcfefff9005e419d998b40b24606e430",
+      {
+        employees: passedEmployees
+      }
+    )
+  ]);
 
   return NextResponse.json({ status: "success" });
 }
