@@ -25,7 +25,7 @@ cron.schedule("0 8 * * *", async () => {
 });
 
 // Schedules a job that runs every Monday at 08:00 in the morning.
-cron.schedule("33 21 * * *", async () => {
+cron.schedule("0 8 * * 1", async () => {
   console.log("Weekly cron is running...");
 
   const client = await clientPromise;
