@@ -9,7 +9,7 @@ export async function GET(request) {
     return NextResponse.json(
       { status: "unauthorized" },
       {
-        status: 401,
+        status: 401
       }
     );
   }
