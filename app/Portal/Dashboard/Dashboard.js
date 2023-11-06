@@ -24,7 +24,14 @@ const Dashboard = ({
   const tableCardTitleRef = useRef(null);
   const [tableHeight, setTableHeight] = useState(0);
 
-  useEffect(() => setTableHeight(tableCardRef.current.clientHeight - tableCardTitleRef.current.clientHeight), []);
+  useEffect(
+    () =>
+      setTableHeight(
+        tableCardRef.current.clientHeight -
+          tableCardTitleRef.current.clientHeight
+      ),
+    []
+  );
 
   return (
     <div className={styles["container"]}>
@@ -62,25 +69,6 @@ const Dashboard = ({
 
       {/* Section 2 */}
       <div className={styles["midSection"]}>
-        {/*<div className={styles["col"]}>
-          <div className={styles["barChart"]}>
-            <h3 className={styles["title-chart"]}>Hires Chart</h3>
-            <BarChart />
-          </div>
-        </div>
-
-        <div className={styles["col"]}>
-          <div className={styles["doughnutChart"]}>
-            <div className={styles["row"]}>
-              <h3 className={styles["title-chart"]}>Employee Composition</h3>
-              <DoughnutChart
-                maleProfiles={maleProfiles}
-                femaleProfiles={femaleProfiles}
-              />
-            </div>
-          </div>
-        </div>*/}
-
         <div className={styles["doughnutChart"]}>
           <h3 className={styles["title-chart"]}>Employee Composition</h3>
           <DoughnutChart
@@ -107,22 +95,6 @@ const Dashboard = ({
 
       {/* Section 3 */}
       <div className={styles["bottomSection"]}>
-        {/*<div className={styles["col"]}>
-          <div className={styles["pieChart"]}>
-            <div className={styles["row"]}>
-              <h3 className={styles["title-chart"]}>Department Composition</h3>
-              <PieChart labels={labels} data={data} />
-            </div>
-          </div>
-        </div>
-
-        <div className={styles["col"]}>
-          <div className={styles["table-form"]}>
-            <h3 className={styles["title-chart"]}>Employee Status</h3>
-            <EmployeeStatusTable />
-          </div>
-        </div>*/}
-
         <div className={styles["barChart"]}>
           <h3 className={styles["title-chart"]}>Employees by State</h3>
           <BarChart
@@ -131,7 +103,9 @@ const Dashboard = ({
           />
         </div>
         <div ref={tableCardRef} className={styles["table-form"]}>
-          <h3 ref={tableCardTitleRef} className={styles["title-chart"]}>Employee Status</h3>
+          <h3 ref={tableCardTitleRef} className={styles["title-chart"]}>
+            Employee Status
+          </h3>
           <EmployeeStatusTable
             employeeStatuses={employeeStatuses}
             height={tableHeight}

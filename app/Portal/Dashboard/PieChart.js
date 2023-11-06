@@ -1,19 +1,18 @@
 "use client";
 import Chart from "chart.js/auto";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function PieChart({ Deplabels, Depdata }) {
   const canvas = useRef(null);
+  const [chart, setChart] = useState(null);
 
   useEffect(() => {
     const ctx = canvas.current;
-
-    let chartStatus = Chart.getChart(ctx, "myChart");
-    if (chartStatus !== undefined) {
-      chartStatus.destroy();
+    if (chart) {
+      chart.destroy();
     }
 
-    const chart = new Chart(ctx, {
+    const newChart = new Chart(ctx, {
       type: "pie",
       data: {
         labels: Deplabels,
@@ -40,7 +39,7 @@ export default function PieChart({ Deplabels, Depdata }) {
       },
       options: {
         responsive: true,
-
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             position: "top",
@@ -49,21 +48,36 @@ export default function PieChart({ Deplabels, Depdata }) {
         layout: {
           padding: {
             top: 0,
-            bottom: 80,
-            left: 80,
+            bottom: 55,
+            left: 0,
             right: 0,
           },
         },
       },
     });
 
-    chart.data.datasets[0].hoverRadius = 10;
-    chart.update();
+    setChart(newChart);
 
     return () => {
-      chart.destroy();
+      if (newChart) {
+        newChart.destroy();
+      }
     };
   }, [Deplabels, Depdata]);
+
+  useEffect(() => {
+    function handleResize() {
+      if (chart) {
+        chart.resize();
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [chart]);
 
   return <canvas ref={canvas} id="myChart"></canvas>;
 }

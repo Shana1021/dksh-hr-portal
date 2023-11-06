@@ -90,7 +90,7 @@
   box-sizing: border-box; /* Ensure padding doesn't cause overflow */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  flex: 2;
+  flex: 1;
   padding-bottom: 40px;
 }
 

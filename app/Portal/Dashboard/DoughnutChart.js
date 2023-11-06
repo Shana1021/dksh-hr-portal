@@ -1,19 +1,19 @@
 "use client";
 import Chart from "chart.js/auto";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
   const canvas = useRef(null);
+  const [chart, setChart] = useState(null);
 
   useEffect(() => {
     const ctx = canvas.current;
 
-    let chartStatus = Chart.getChart(ctx, "myDoughnutChart");
-    if (chartStatus !== undefined) {
-      chartStatus.destroy();
+    if (chart) {
+      chart.destroy();
     }
 
-    const chart = new Chart(ctx, {
+    const newChart = new Chart(ctx, {
       type: "doughnut",
       data: {
         labels: ["Male", "Female"],
@@ -30,7 +30,6 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
       },
       options: {
         responsive: true,
-
         plugins: {
           legend: {
             position: "top",
@@ -38,9 +37,9 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
         },
         layout: {
           padding: {
-            top: 35,
-            bottom: 80,
-            left: 80,
+            top: 0,
+            bottom: 60,
+            left: 0,
             right: 0,
           },
         },
@@ -48,10 +47,30 @@ export default function DoughnutChart({ maleProfiles, femaleProfiles }) {
     });
 
     // Add hoverRadius to create a smooth transition effect
-    chart.data.datasets[0].hoverRadius = 10;
+    newChart.data.datasets[0].hoverRadius = 10;
+    newChart.update();
+    setChart(newChart);
 
-    chart.update();
+    return () => {
+      if (newChart) {
+        newChart.destroy();
+      }
+    };
   }, [maleProfiles, femaleProfiles]);
+
+  useEffect(() => {
+    function handleResize() {
+      if (chart) {
+        chart.resize();
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [chart]);
 
   return <canvas ref={canvas} id="myDoughnutChart"></canvas>;
 }

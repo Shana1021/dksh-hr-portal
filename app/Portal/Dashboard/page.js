@@ -6,7 +6,10 @@ export default async function DashboardPage() {
   const client = await clientPromise;
   const db = await client.db();
   const hr_profiles = await db.collection("hr_profiles").find().toArray();
-  const tr_request = await db.collection("trainings").find().toArray();
+  const tr_request = await db
+    .collection("trainings")
+    .find({ status: "Complete" })
+    .toArray();
   const resigned = await db
     .collection("offboarding_checklists")
     .find({ completed: true })

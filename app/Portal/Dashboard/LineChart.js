@@ -7,8 +7,6 @@ const LineChart = ({ month, probationary }) => {
 
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");
-    ctx.canvas.width = 300;
-    ctx.canvas.height = 100;
     let chartStatus = Chart.getChart(ctx, "myChart");
     if (chartStatus !== undefined) {
       chartStatus.destroy();
@@ -40,7 +38,7 @@ const LineChart = ({ month, probationary }) => {
         layout: {
           padding: {
             top: 0,
-            bottom: 20,
+            bottom: 25,
             left: 20,
             right: 0,
           },
