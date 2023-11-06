@@ -31,7 +31,6 @@ export default function BarChart({ Statedata, Statelabels }) {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
         indexAxis: "x", // horizontal bar chart
         scales: {
           x: {
@@ -65,7 +64,7 @@ export default function BarChart({ Statedata, Statelabels }) {
         layout: {
           padding: {
             top: 0,
-            bottom: 20,
+            bottom: 30,
             left: 10,
             right: 0,
           },
