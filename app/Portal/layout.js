@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./portal.module.css";
-import { signIn, useSession } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import { useRef, useState, useEffect, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -10,6 +10,16 @@ import sidebarData from "./SidebarData";
 import ReactLoading from "react-loading";
 
 export default function PortalLayout({ children }) {
+  return (
+    <SessionProvider>
+      <PortalLayoutSession>
+        {children}
+      </PortalLayoutSession>
+    </SessionProvider>
+  );
+}
+
+function PortalLayoutSession({ children }) {
   const { status } = useSession();
 
   if (status === "loading") {
