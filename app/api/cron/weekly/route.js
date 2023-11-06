@@ -4,7 +4,17 @@ import sgMailSend from "@/lib/sendgrid";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request) {
+  const authHeader = request.headers.get('authorization');
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    return NextResponse.json(
+      { status: "unauthorized" },
+      {
+        status: 401,
+      },
+    );
+  }
+  
   console.log("Weekly cron is running...");
 
   const client = await clientPromise;
