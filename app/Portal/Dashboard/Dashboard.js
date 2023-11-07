@@ -8,8 +8,6 @@ import DoughnutChart from "./DoughnutChart";
 import EmployeeStatusTable from "./EmployeeStatusTable";
 import LineChart from "./LineChart";
 
-export const dynamic = "force-dynamic";
-
 const Dashboard = ({
   femaleProfiles,
   maleProfiles,

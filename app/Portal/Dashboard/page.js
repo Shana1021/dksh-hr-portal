@@ -1,6 +1,8 @@
 import Dashboard from "./Dashboard.js";
 import clientPromise from "@/lib/mongodb";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   //Database connection
   const client = await clientPromise;
