@@ -99,50 +99,55 @@ export async function PUT(request) {
   const passedIds = validUpdates
     .filter((update) => update.bcStatus === "Pass")
     .map((update) => update._id);
-  if (passedIds.length === 0) {
-    return NextResponse.json({ status: "success" });
+  const failedIds = validUpdates
+    .filter((update) => update.bcStatus === "Fail")
+    .map((update) => update._id);
+  
+  if (passedIds.length > 0) {
+    await Promise.all([
+      db.collection("onboarding_checklists").insertMany(
+        passedIds.map((_id) => ({
+          _id,
+          todos: [
+            {
+              title: "1 Hour Introduction",
+              checked: false,
+            },
+            {
+              title: "Office Tour",
+              checked: false,
+            },
+          ],
+          items: [
+            {
+              title: "Access Card",
+              checked: false,
+            },
+            {
+              title: "Laptop",
+              checked: false,
+            },
+          ],
+          completed: false,
+          createdAt: new Date(),
+        }))
+      ),
+      db.collection("probationary").insertMany(
+        passedIds.map((_id) => ({
+          _id,
+          completed: false,
+          createdAt: new Date(),
+        }))
+      )
+    ]);
   }
 
-  await Promise.all([
-    db.collection("onboarding_checklists").insertMany(
-      passedIds.map((_id) => ({
-        _id,
-        todos: [
-          {
-            title: "1 Hour Introduction",
-            checked: false,
-          },
-          {
-            title: "Office Tour",
-            checked: false,
-          },
-        ],
-        items: [
-          {
-            title: "Access Card",
-            checked: false,
-          },
-          {
-            title: "Laptop",
-            checked: false,
-          },
-        ],
-        completed: false,
-        createdAt: new Date(),
-      }))
-    ),
-    db.collection("probationary").insertMany(
-      passedIds.map((_id) => ({
-        _id,
-        completed: false,
-        createdAt: new Date(),
-      }))
-    )
-  ]);
-
-  const [passedEmployees, settings] = await Promise.all([
+  const [passedEmployees, failedEmployees, settings] = await Promise.all([
     db.collection("employee_profiles")
       .find({ _id: { $in: passedIds } })
+      .toArray(),
+    db.collection("employee_profiles")
+      .find({ _id: { $in: failedIds } })
       .toArray(),
     db.collection("settings").findOne()
   ]);
@@ -163,10 +168,11 @@ export async function PUT(request) {
       }
     ),
     sgMailSend(
-      settings.adminTeamEmailAddress,
+      settings.hrTeamEmailAddress,
       "d-dcfefff9005e419d998b40b24606e430",
       {
-        employees: passedEmployees
+        passedEmployees,
+        failedEmployees
       }
     )
   ]);
