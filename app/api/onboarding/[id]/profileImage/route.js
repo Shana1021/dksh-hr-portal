@@ -11,8 +11,7 @@ export async function GET(_, { params: { id } }) {
 
   const file = (await bucket.find({ filename: id }).toArray())[0];
   if (!file) {
-    // Default image
-    return new NextResponse(fs.createReadStream("public/user.png"), {
+    return new NextResponse(fs.createReadStream(process.env.NODE_ENV === "development" ? "public/user.png" : "user.png"), {
       headers: {
         "Content-Type": "image/png"
       }
