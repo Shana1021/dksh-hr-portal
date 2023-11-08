@@ -130,8 +130,8 @@ export default function OffboardingResignationRequestsPage({
             <div className={styles["card-img"]}>
               <Image
                 src={`/api/onboarding/${encodeURIComponent(
-                  resignationRequest._id
-                )}/profileImage`}
+                  employee._id
+                )}/profileImage?${new Date().getTime()}`}
                 alt="Profile Image"
                 fill
                 style={{ objectFit: "cover" }}

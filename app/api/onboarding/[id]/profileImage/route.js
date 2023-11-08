@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import { GridFSBucket } from "mongodb";
+import fs from "fs";
 
 export async function GET(_, { params: { id } }) {
   const client = await clientPromise;
@@ -10,7 +11,12 @@ export async function GET(_, { params: { id } }) {
 
   const file = (await bucket.find({ filename: id }).toArray())[0];
   if (!file) {
-    return new NextResponse(null, { status: 404 });
+    // Default image
+    return new NextResponse(fs.createReadStream("public/user.png"), {
+      headers: {
+        "Content-Type": "image/png"
+      }
+    });
   }
 
   return new NextResponse(bucket.openDownloadStream(file._id), {
