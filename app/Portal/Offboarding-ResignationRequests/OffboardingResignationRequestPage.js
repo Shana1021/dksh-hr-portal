@@ -135,6 +135,7 @@ export default function OffboardingResignationRequestsPage({
                 alt="Profile Image"
                 fill
                 style={{ objectFit: "cover" }}
+                unoptimized
               />
             </div>
             <div className={styles["card-body"]}>
