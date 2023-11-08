@@ -12,7 +12,7 @@ export async function GET(_, { params: { id } }) {
 
   const file = (await bucket.find({ filename: id }).toArray())[0];
   if (!file) {
-    return new NextResponse(fs.createReadStream(path.join("public", "user.png")), {
+    return new NextResponse(fs.createReadStream(path.resolve("public", "user.png")), {
       headers: {
         "Content-Type": "image/png"
       }
