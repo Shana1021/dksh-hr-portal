@@ -24,7 +24,8 @@ export default async function TrainingVendorList({ searchParams: { pageSize=25, 
             name: true,
             email: true,
             phone: true,
-            references: { $size: "$trainings" }
+            references: { $size: "$trainings" },
+            createdAt: true
           }
         }
       ])
