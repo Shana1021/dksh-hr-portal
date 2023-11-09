@@ -1,6 +1,8 @@
 import clientPromise from "@/lib/mongodb";
 import TrainingRequestTrainingPage from "./TrainingRequestTrainingPage";
 
+export const dynamic = "force-dynamic";
+
 export default async function TrainingRequestTraining() {
   const client = await clientPromise;
   const db = await client.db();
