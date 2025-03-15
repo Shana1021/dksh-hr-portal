@@ -1,3 +1,12 @@
+## Automation of HR Processes System
+This is a final year project for the course unit SWE40001 & SWE40002 Software Engineering Project and the effort of students of Swinburne University of Technology, Group Master Minds. The group members are Rasul Bayramdurdyyev, Jared Tan Rui Hoong, Nakshatramaalah R Thirukumar, and Desmond Dui Chi Ye.
+
+## Background
+The Automation of HR Processes project represents a significant initiative within the DKSH organization, to modernize and optimize the HR management processes. This project is driven by the need to improve the efficiency and effectiveness of HR within the organization. There is currently a notable absence of a centralized system for managing the beginning and conclusion of an employee’s tenure with the organization. This fragmented approach to HR management has led to time-consuming and often busy processes.
+
+In these challenges, our project is taking a step to bring about a change. We are working on the development of a user-friendly HR portal that will empower HR personnel to not just monitor but also actively manage the key HR processes to ease their employees' journey within the organization, particularly those related to onboarding, training and offboarding. These phases of an employee's journey within the organization are pivotal, and we are committed to enhancing the experience for both HR and employees themselves.
+
+## Running the Project
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
